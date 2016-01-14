@@ -4,6 +4,10 @@
 
 PinpointKit is a library that makes bug reporting dead simple for your testers and users by allowing them to send annotated screenshots and logs from a simple gesture.
 
+## Specifications
+
+* Written in Swift
+
 ## Design Goals
 
 * Allow screenshot capture and annotation.
