@@ -48,7 +48,7 @@ protocol PinpointKitDelegate: class {
     func pinpointKit(pinpointKit: PinpointKit, willShowScreenshotEditor: ScreenshotEditor)
     func pinpointKit(pinpointKit: PinpointKit, didShowScreenshotEditor: ScreenshotEditor)
     
-    func pinpointKit(pinpointKit: PinpointKit, didFinishWithResult: Bool)
+    func pinpointKit(pinpointKit: PinpointKit, didFinishWithResult: Result<Feedback, PinpointError>)
 }
 
 // Default protocol extension to make all functions in the delegate optional.
@@ -62,7 +62,16 @@ extension PinpointKitDelegate {
     func pinpointKit(pinpointKit: PinpointKit, willShowScreenshotEditor: ScreenshotEditor) {}
     func pinpointKit(pinpointKit: PinpointKit, didShowScreenshotEditor: ScreenshotEditor) {}
     
-    func pinpointKit(pinpointKit: PinpointKit, didFinishWithResult: Bool) {}
+    func pinpointKit(pinpointKit: PinpointKit, didFinishWithResult: Result<Feedback, PinpointError>) {}
+}
+
+enum Result<Value, Error: ErrorType> {
+    case Success(value: Value)
+    case Failure(error: Error)
+}
+
+enum PinpointError: ErrorType {
+    case UnknownError
 }
 
 protocol Sender {}
