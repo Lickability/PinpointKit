@@ -6,7 +6,7 @@ class PinpointKit {
     
     struct Configuration {
         
-        enum LogCollectionStatus {
+        enum LogCollectingBehavior {
             case CollectSilently(collector: LogCollector)
             case CollectAndPrompt(collector: LogCollector, promptText: String)
             case DoNotCollect
@@ -15,16 +15,16 @@ class PinpointKit {
         let tintColor: UIColor
         let annotationStrokeColor: UIColor
         
-        let logCollectionStatus: LogCollectionStatus
+        let logCollectingBehavior: LogCollectingBehavior
         
         let screenshotEditor: ScreenshotEditor
         let feedbackCollector: FeedbackCollector?
         let sender: Sender
         
-        init(tintColor: UIColor = .redColor(), annotationStrokeColor: UIColor = .whiteColor(), logCollectionStatus: LogCollectionStatus = LogCollectionStatus.CollectAndPrompt(collector: SystemLogCollector(), promptText: NSLocalizedString("Include Console Log", comment: "Text asking whether or not to include a console log in a feedback form.")), screenshotEditor: ScreenshotEditor = EditImageViewController(), feedbackCollector: FeedbackCollector? = FeedbackViewController(), sender: Sender = MailSender()) {
+        init(tintColor: UIColor = .redColor(), annotationStrokeColor: UIColor = .whiteColor(), logCollectingBehavior: LogCollectingBehavior = LogCollectingBehavior.CollectAndPrompt(collector: SystemLogCollector(), promptText: NSLocalizedString("Include Console Log", comment: "Text asking whether or not to include a console log in a feedback form.")), screenshotEditor: ScreenshotEditor = EditImageViewController(), feedbackCollector: FeedbackCollector? = FeedbackViewController(), sender: Sender = MailSender()) {
             self.tintColor = tintColor
             self.annotationStrokeColor = annotationStrokeColor
-            self.logCollectionStatus = logCollectionStatus
+            self.logCollectingBehavior = logCollectingBehavior
             self.screenshotEditor = screenshotEditor
             self.feedbackCollector = feedbackCollector
             self.sender = sender
