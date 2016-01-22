@@ -11,11 +11,11 @@ class PinpointKit {
         let annotationStrokeColor: UIColor
         
         let screenshotEditor: ScreenshotEditor
-        let feedbackCollector: FeedbackCollector?
+        let feedbackCollector: FeedbackCollector
         let sender: Sender
-        let logCollector: LogCollector
+        let logCollector: LogCollector?
         
-        init(tintColor: UIColor = .redColor(), annotationStrokeColor: UIColor = .whiteColor(), screenshotEditor: ScreenshotEditor = EditImageViewController(), feedbackCollector: FeedbackCollector? = FeedbackViewController(), sender: Sender = MailSender(), logCollector: LogCollector = SystemLogCollector()) {
+        init(tintColor: UIColor = .redColor(), annotationStrokeColor: UIColor = .whiteColor(), screenshotEditor: ScreenshotEditor = EditImageViewController(), feedbackCollector: FeedbackCollector = FeedbackViewController(), sender: Sender = MailSender(), logCollector: LogCollector? = SystemLogCollector()) {
             self.tintColor = tintColor
             self.annotationStrokeColor = annotationStrokeColor
             self.screenshotEditor = screenshotEditor
