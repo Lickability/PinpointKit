@@ -1,6 +1,7 @@
 //: Playground - noun: a place where people can play
 
 import UIKit
+import MessageUI
 
 class PinpointKit {
     
@@ -102,7 +103,7 @@ class EditImageViewController: UIViewController, ScreenshotEditor {}
 
 class FeedbackViewController: UIViewController, FeedbackCollector {}
 
-class MailSender: Sender {}
+class MailSender: NSObject, MFMailComposeViewControllerDelegate, Sender {}
 
 class SystemLogCollector: LogCollector {}
 
