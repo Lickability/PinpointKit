@@ -7,28 +7,21 @@ class PinpointKit {
     
     struct Configuration {
         
-        enum LogCollectingBehavior {
-            case CollectSilently(collector: LogCollector)
-            case CollectAndPrompt(collector: LogCollector, promptText: String)
-            case DoNotCollect
-        }
-        
         let tintColor: UIColor
         let annotationStrokeColor: UIColor
-        
-        let logCollectingBehavior: LogCollectingBehavior
         
         let screenshotEditor: ScreenshotEditor
         let feedbackCollector: FeedbackCollector?
         let sender: Sender
+        let logCollector: LogCollector
         
-        init(tintColor: UIColor = .redColor(), annotationStrokeColor: UIColor = .whiteColor(), logCollectingBehavior: LogCollectingBehavior = LogCollectingBehavior.CollectAndPrompt(collector: SystemLogCollector(), promptText: NSLocalizedString("Include Console Log", comment: "Text asking whether or not to include a console log in a feedback form.")), screenshotEditor: ScreenshotEditor = EditImageViewController(), feedbackCollector: FeedbackCollector? = FeedbackViewController(), sender: Sender = MailSender()) {
+        init(tintColor: UIColor = .redColor(), annotationStrokeColor: UIColor = .whiteColor(), screenshotEditor: ScreenshotEditor = EditImageViewController(), feedbackCollector: FeedbackCollector? = FeedbackViewController(), sender: Sender = MailSender(), logCollector: LogCollector = SystemLogCollector()) {
             self.tintColor = tintColor
             self.annotationStrokeColor = annotationStrokeColor
-            self.logCollectingBehavior = logCollectingBehavior
             self.screenshotEditor = screenshotEditor
             self.feedbackCollector = feedbackCollector
             self.sender = sender
+            self.logCollector = logCollector
         }
     }
     
@@ -76,6 +69,11 @@ protocol Sender {}
 
 protocol LogCollector {}
 
+enum LogCollectorBehavior {
+    case CollectSilently
+    case CollectAndPrompt(promptText: String)
+}
+
 struct Feedback {
 
     let image: UIImage
@@ -106,5 +104,4 @@ class FeedbackViewController: UIViewController, FeedbackCollector {}
 class MailSender: NSObject, MFMailComposeViewControllerDelegate, Sender {}
 
 class SystemLogCollector: LogCollector {}
-
 
