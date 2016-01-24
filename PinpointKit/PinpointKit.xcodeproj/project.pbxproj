@@ -11,6 +11,13 @@
 		B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */; };
 		B92901841C55639B007CCA5E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901831C55639B007CCA5E /* Fonts.swift */; };
 		B92901861C55648A007CCA5E /* KeyboardAvoider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901851C55648A007CCA5E /* KeyboardAvoider.swift */; };
+		B929018A1C556512007CCA5E /* BlurAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901881C556512007CCA5E /* BlurAnnotationView.swift */; };
+		B929018B1C556512007CCA5E /* BoxAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901891C556512007CCA5E /* BoxAnnotationView.swift */; };
+		B929018E1C556525007CCA5E /* AnnotationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B929018C1C556525007CCA5E /* AnnotationsView.swift */; };
+		B929018F1C556525007CCA5E /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B929018D1C556525007CCA5E /* AnnotationView.swift */; };
+		B92901911C556559007CCA5E /* ArrowAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901901C556559007CCA5E /* ArrowAnnotationView.swift */; };
+		B92901941C5565A1007CCA5E /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901931C5565A1007CCA5E /* Annotations.swift */; };
+		B92901961C5565B7007CCA5E /* TextAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901951C5565B7007CCA5E /* TextAnnotationView.swift */; };
 		DA0DA6061C53049B0012ADBE /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0DA6051C53049B0012ADBE /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
 		DA0DA6121C53049B0012ADBE /* PinpointKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */; };
@@ -33,6 +40,13 @@
 		B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIGestureRecognizer+FailRecognizing.swift"; path = "Sources/UIGestureRecognizer+FailRecognizing.swift"; sourceTree = "<group>"; };
 		B92901831C55639B007CCA5E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = Sources/Fonts.swift; sourceTree = "<group>"; };
 		B92901851C55648A007CCA5E /* KeyboardAvoider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeyboardAvoider.swift; path = Sources/KeyboardAvoider.swift; sourceTree = "<group>"; };
+		B92901881C556512007CCA5E /* BlurAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlurAnnotationView.swift; sourceTree = "<group>"; };
+		B92901891C556512007CCA5E /* BoxAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoxAnnotationView.swift; sourceTree = "<group>"; };
+		B929018C1C556525007CCA5E /* AnnotationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationsView.swift; sourceTree = "<group>"; };
+		B929018D1C556525007CCA5E /* AnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		B92901901C556559007CCA5E /* ArrowAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowAnnotationView.swift; sourceTree = "<group>"; };
+		B92901931C5565A1007CCA5E /* Annotations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotations.swift; sourceTree = "<group>"; };
+		B92901951C5565B7007CCA5E /* TextAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAnnotationView.swift; sourceTree = "<group>"; };
 		DA0DA6021C53049B0012ADBE /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0DA6051C53049B0012ADBE /* PinpointKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PinpointKit.h; sourceTree = "<group>"; };
 		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +79,8 @@
 		B929017F1C555FDB007CCA5E /* EditImageViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B92901921C55659A007CCA5E /* Annotations */,
+				B92901871C55650A007CCA5E /* Views */,
 				B929017D1C555F86007CCA5E /* EditImageViewController.swift */,
 				B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */,
 			);
@@ -78,6 +94,27 @@
 				B92901851C55648A007CCA5E /* KeyboardAvoider.swift */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		B92901871C55650A007CCA5E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B929018C1C556525007CCA5E /* AnnotationsView.swift */,
+				B929018D1C556525007CCA5E /* AnnotationView.swift */,
+				B92901881C556512007CCA5E /* BlurAnnotationView.swift */,
+				B92901901C556559007CCA5E /* ArrowAnnotationView.swift */,
+				B92901891C556512007CCA5E /* BoxAnnotationView.swift */,
+				B92901951C5565B7007CCA5E /* TextAnnotationView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		B92901921C55659A007CCA5E /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+				B92901931C5565A1007CCA5E /* Annotations.swift */,
+			);
+			name = Annotations;
 			sourceTree = "<group>";
 		};
 		DA0DA5F81C53049B0012ADBE = {
@@ -230,9 +267,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B92901861C55648A007CCA5E /* KeyboardAvoider.swift in Sources */,
+				B929018F1C556525007CCA5E /* AnnotationView.swift in Sources */,
+				B929018E1C556525007CCA5E /* AnnotationsView.swift in Sources */,
 				B92901841C55639B007CCA5E /* Fonts.swift in Sources */,
 				B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */,
+				B92901911C556559007CCA5E /* ArrowAnnotationView.swift in Sources */,
 				B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */,
+				B929018A1C556512007CCA5E /* BlurAnnotationView.swift in Sources */,
+				B929018B1C556512007CCA5E /* BoxAnnotationView.swift in Sources */,
+				B92901941C5565A1007CCA5E /* Annotations.swift in Sources */,
+				B92901961C5565B7007CCA5E /* TextAnnotationView.swift in Sources */,
 				DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
