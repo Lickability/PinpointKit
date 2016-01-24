@@ -266,7 +266,7 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         super.viewWillAppear(animated)
         
         // TODO
-       // reportEventNameAsScreenView(AnalyticsEvent(name: "Edit Image"))
+        // reportEventNameAsScreenView(AnalyticsEvent(name: "Edit Image"))
         
         navigationController?.hidesBarsOnTap = true
         navigationController?.setNavigationBarHidden(true, animated: false)
@@ -276,7 +276,9 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         super.viewDidAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-        BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("navbarSlideIn", fileExtension: "aif")
+        
+        // TODO
+        // BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("navbarSlideIn", fileExtension: "aif")
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -324,51 +326,53 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
     
     // MARK: - Private
     
-    @objc private func shareImage(button: UIBarButtonItem) {
-        var activityItems: [AnyObject] = [ ImageActivityItemProvider(placeholderItem: view.pinpoint_screenshot) ]
-        
-        if let asset = currentViewModel?.asset {
-            activityItems.append(asset)
-        }
-        
-        let promotionTextProvider = AppPromotionTextItemProvider(placeholderItem: "")
-        activityItems.append(promotionTextProvider)
-        
-        let itunesURLProvider = iTunesURLItemProvider(withiTunesID: String(App.iTunesIdentifier))
-        activityItems.append(itunesURLProvider)
-        
-        let deleteActivity = DeleteOriginalAssetActivity()
-        let facebookMessenger = FacebookMessengerActivity()
-        let openInAppActivity = TTOpenInAppActivity(view: view, andBarButtonItem: button)
-        
-        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: [openInAppActivity, deleteActivity, facebookMessenger])
-        controller.completionWithItemsHandler = finishedSharing
-        
-        openInAppActivity.superViewController = controller
-        
-        controller.popoverPresentationController?.barButtonItem = button
-        controller.excludedActivityTypes = [ UIActivityTypeAssignToContact ]
-        presentViewController(controller, animated: true, completion: nil)
-    }
-    
-    private func finishedSharing(activityType: String?, completed: Bool, items: [AnyObject]?, error: NSError?) {
-        let finished = completed && error == nil
-        
-        if finished {
-            if activityType == DeleteOriginalAssetActivity.ActivityType {
-                // Adds a delay for the screenshots view controller to receive the change notification.
-                let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-                    Int64(0.1 * Double(NSEC_PER_SEC)))
-                dispatch_after(delayTime, dispatch_get_main_queue()) {
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                }
-            }
-            else {
-                hasACopyOfCurrentComposition = true
-                hasSavedOrSharedAnyComposion = true
-            }
-        }
-    }
+    // TODO - turns sharing off - this seems like a Pinpoint app only need - also it pulls in a ton of other types.
+
+//    @objc private func shareImage(button: UIBarButtonItem) {
+//        var activityItems: [AnyObject] = [ ImageActivityItemProvider(placeholderItem: view.pinpoint_screenshot) ]
+//        
+//        if let asset = currentViewModel?.asset {
+//            activityItems.append(asset)
+//        }
+//        
+//        let promotionTextProvider = AppPromotionTextItemProvider(placeholderItem: "")
+//        activityItems.append(promotionTextProvider)
+//        
+//        let itunesURLProvider = iTunesURLItemProvider(withiTunesID: String(App.iTunesIdentifier))
+//        activityItems.append(itunesURLProvider)
+//        
+//        let deleteActivity = DeleteOriginalAssetActivity()
+//        let facebookMessenger = FacebookMessengerActivity()
+//        let openInAppActivity = TTOpenInAppActivity(view: view, andBarButtonItem: button)
+//        
+//        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: [openInAppActivity, deleteActivity, facebookMessenger])
+//        controller.completionWithItemsHandler = finishedSharing
+//        
+//        openInAppActivity.superViewController = controller
+//        
+//        controller.popoverPresentationController?.barButtonItem = button
+//        controller.excludedActivityTypes = [ UIActivityTypeAssignToContact ]
+//        presentViewController(controller, animated: true, completion: nil)
+//    }
+//    
+//    private func finishedSharing(activityType: String?, completed: Bool, items: [AnyObject]?, error: NSError?) {
+//        let finished = completed && error == nil
+//        
+//        if finished {
+//            if activityType == DeleteOriginalAssetActivity.ActivityType {
+//                // Adds a delay for the screenshots view controller to receive the change notification.
+//                let delayTime = dispatch_time(DISPATCH_TIME_NOW,
+//                    Int64(0.1 * Double(NSEC_PER_SEC)))
+//                dispatch_after(delayTime, dispatch_get_main_queue()) {
+//                    self.dismissViewControllerAnimated(true, completion: nil)
+//                }
+//            }
+//            else {
+//                hasACopyOfCurrentComposition = true
+//                hasSavedOrSharedAnyComposion = true
+//            }
+//        }
+//    }
     
     private func setupConstraints() {
         let views = [
@@ -387,10 +391,6 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         let alert = UIAlertController(title: nil, message: NSLocalizedString("Your edits to this screenshot will be lost unless you share it or save a copy.", comment: "Alert title for closing a screenshot that has annotations that hasn’t been shared."), preferredStyle: .ActionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Discard", comment: "Alert button title to close a screenshot and discard edits"), style: .Destructive, handler: { (action) in
             self.dismissViewControllerAnimated(true, completion: nil)
-        }))
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Share", comment: "Alert button title to share a screenshot."), style: .Default, handler: { (action) in
-            self.shareImage(self.shareBarButtonItem)
         }))
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: "Alert button title to save a copy of a composition."), style: .Default, handler: { (action) in
