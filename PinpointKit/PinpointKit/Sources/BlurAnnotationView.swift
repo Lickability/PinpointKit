@@ -52,11 +52,11 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     
     // MARK: - Initializers
 
-    convenience init() {
+    public convenience init() {
         self.init(frame: CGRectZero)
     }
 
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         let bounds = CGRect(origin: CGPointZero, size: frame.size)
 
         EAGLContext = OpenGLES.EAGLContext(API: .OpenGLES2)
@@ -75,24 +75,24 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
         addSubview(GLKView)
     }
 
-    required init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
 
     // MARK: - UIView
 
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         GLKView.frame = bounds
     }
 
-    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+    override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
         let frame = touchTargetFrame
         return frame.map({ CGRectContainsPoint($0, point) }) ?? false
     }
     
-    override func drawRect(rect: CGRect) {
+    override public func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
         if drawsBorder {
@@ -134,7 +134,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
 
     // MARK: - GLKViewDelegate
 
-    func glkView(view: GLKit.GLKView, drawInRect rect: CGRect) {
+    public func glkView(view: GLKit.GLKView, drawInRect rect: CGRect) {
         glClearColor(0, 0, 0, 0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
 
