@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B929017D1C555F86007CCA5E /* EditImageViewController.swift */; };
+		B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */; };
 		DA0DA6061C53049B0012ADBE /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0DA6051C53049B0012ADBE /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
 		DA0DA6121C53049B0012ADBE /* PinpointKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B929017D1C555F86007CCA5E /* EditImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditImageViewController.swift; path = Sources/EditImageViewController.swift; sourceTree = "<group>"; };
+		B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIGestureRecognizer+FailRecognizing.swift"; path = "Sources/UIGestureRecognizer+FailRecognizing.swift"; sourceTree = "<group>"; };
 		DA0DA6021C53049B0012ADBE /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0DA6051C53049B0012ADBE /* PinpointKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PinpointKit.h; sourceTree = "<group>"; };
 		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +58,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B929017F1C555FDB007CCA5E /* EditImageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B929017D1C555F86007CCA5E /* EditImageViewController.swift */,
+				B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */,
+			);
+			name = EditImageViewController;
+			sourceTree = "<group>";
+		};
 		DA0DA5F81C53049B0012ADBE = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +92,7 @@
 				DA0DA6071C53049B0012ADBE /* Info.plist */,
 				DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */,
 				DA0DA61E1C5306E80012ADBE /* PinpointKitMedia.xcassets */,
+				B929017F1C555FDB007CCA5E /* EditImageViewController */,
 			);
 			path = PinpointKit;
 			sourceTree = "<group>";
@@ -201,6 +215,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */,
+				B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */,
 				DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -387,6 +403,7 @@
 				DA0DA6181C53049B0012ADBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DA0DA6191C53049B0012ADBE /* Build configuration list for PBXNativeTarget "PinpointKitTests" */ = {
 			isa = XCConfigurationList;
@@ -395,6 +412,7 @@
 				DA0DA61B1C53049B0012ADBE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
