@@ -21,6 +21,7 @@
 		B92901A91C556831007CCA5E /* AnnotationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901A81C556831007CCA5E /* AnnotationsView.swift */; };
 		B92901AB1C5568CF007CCA5E /* StrokeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901AA1C5568CF007CCA5E /* StrokeLayoutManager.swift */; };
 		B92901AD1C556D22007CCA5E /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901AC1C556D22007CCA5E /* BezierPath.swift */; };
+		B92901AF1C556E47007CCA5E /* AssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901AE1C556E47007CCA5E /* AssetViewModel.swift */; };
 		DA0DA6061C53049B0012ADBE /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0DA6051C53049B0012ADBE /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
 		DA0DA6121C53049B0012ADBE /* PinpointKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */; };
@@ -53,6 +54,7 @@
 		B92901A81C556831007CCA5E /* AnnotationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationsView.swift; path = Sources/AnnotationsView.swift; sourceTree = "<group>"; };
 		B92901AA1C5568CF007CCA5E /* StrokeLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokeLayoutManager.swift; sourceTree = "<group>"; };
 		B92901AC1C556D22007CCA5E /* BezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPath.swift; sourceTree = "<group>"; };
+		B92901AE1C556E47007CCA5E /* AssetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetViewModel.swift; sourceTree = "<group>"; };
 		DA0DA6021C53049B0012ADBE /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0DA6051C53049B0012ADBE /* PinpointKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PinpointKit.h; sourceTree = "<group>"; };
 		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 		B929017F1C555FDB007CCA5E /* EditImageViewController */ = {
 			isa = PBXGroup;
 			children = (
+				B92901AE1C556E47007CCA5E /* AssetViewModel.swift */,
 				B92901A31C556783007CCA5E /* Annotations */,
 				B92901871C55650A007CCA5E /* Views */,
 				B929017D1C555F86007CCA5E /* EditImageViewController.swift */,
@@ -286,6 +289,7 @@
 				B92901AB1C5568CF007CCA5E /* StrokeLayoutManager.swift in Sources */,
 				B92901A71C5567EC007CCA5E /* BarButtonItem.swift in Sources */,
 				B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */,
+				B92901AF1C556E47007CCA5E /* AssetViewModel.swift in Sources */,
 				B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */,
 				B929019E1C556778007CCA5E /* BlurAnnotationView.swift in Sources */,
 				B92901A51C556791007CCA5E /* Annotations.swift in Sources */,

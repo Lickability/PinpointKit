@@ -2,11 +2,7 @@ import UIKit
 import Photos
 import CoreImage
 
-func NotificationCenter() -> NSNotificationCenter {
-    return NSNotificationCenter.defaultCenter()
-}
-
-final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
+public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
     static let TextViewEditingBarAnimationDuration = 0.25
     static let MinimumAnnotationsNeededToPromptBeforeDismissal = 3
     
@@ -127,13 +123,13 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
     private var currentAnnotationView: AnnotationView? {
         didSet {
             if let oldTextAnnotationView = oldValue as? TextAnnotationView {
-                NotificationCenter().removeObserver(self, name: UITextViewTextDidEndEditingNotification, object: oldTextAnnotationView.textView)
+                NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextViewTextDidEndEditingNotification, object: oldTextAnnotationView.textView)
             }
             
             if let currentTextAnnotationView = currentTextAnnotationView {
                 keyboardAvoider.triggerViews = [currentTextAnnotationView.textView]
                 
-                NotificationCenter().addObserver(self, selector: "forceEndEditingTextView", name: UITextViewTextDidEndEditingNotification, object: currentTextAnnotationView.textView)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "forceEndEditingTextView", name: UITextViewTextDidEndEditingNotification, object: currentTextAnnotationView.textView)
             }
         }
     }
@@ -148,19 +144,19 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
     
     private var selectedAnnotationView: AnnotationView?
     
-    dynamic var currentViewModel: AssetViewModel?
+    private(set) public var currentViewModel: AssetViewModel?
     
     
     // MARK: - Initializers
     convenience init() {
-        self.init(image: nil)
+        self.init(image: nil, currentViewModel: nil)
     }
     
     override convenience init(nibName: String?, bundle nibBundle: NSBundle?) {
-        self.init(image: nil)
+        self.init(image: nil, currentViewModel: nil)
     }
     
-    init(image: UIImage?) {
+    init(image: UIImage?, currentViewModel: AssetViewModel?) {
         super.init(nibName: nil, bundle: nil)
         
         navigationItem.leftBarButtonItem = closeBarButtonItem
@@ -193,19 +189,19 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         
         closeBarButtonItem.accessibilityLabel = "Close"
         
-        rac_valuesForKeyPath("currentViewModel", observer: self)
-            .map({ ($0 as? AssetViewModel)?.imageSignal() })
-            .switchToLatest()
-            .deliverOnMainThread()
-            .setKeyPath("image", onObject: imageView)
+        if let currentViewModel = currentViewModel {
+            self.currentViewModel = currentViewModel
+            currentViewModel.requestImage { [weak self] in self?.imageView.image = $0 }
+        }
+       
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     deinit {
-        NotificationCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         createAnnotationPanGestureRecognizer.delegate = nil
         updateAnnotationPanGestureRecognizer.delegate = nil
         createOrUpdateAnnotationTapGestureRecognizer.delegate = nil
@@ -215,18 +211,18 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
     
     // MARK: - UIResponder
     
-    override func canBecomeFirstResponder() -> Bool {
+    public override func canBecomeFirstResponder() -> Bool {
         return true
     }
     
-    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+    public override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
         let textViewIsEditing = currentTextAnnotationView?.textView.isFirstResponder() ?? false
         return action == "deleteSelectedAnnotationView" && !textViewIsEditing
     }
     
     // MARK: - UIViewController
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.whiteColor()
@@ -262,7 +258,7 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         setupConstraints()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         // TODO
@@ -272,7 +268,7 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    public override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -281,12 +277,12 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         // BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("navbarSlideIn", fileExtension: "aif")
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    public override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = true
     }
     
-    override func viewDidLayoutSubviews() {
+    public override func viewDidLayoutSubviews() {
         if let height = self.navigationController?.navigationBar.frame.size.height {
             var rect = annotationsView.frame
             rect.origin.y += height
@@ -295,23 +291,23 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         }
     }
     
-    override func prefersStatusBarHidden() -> Bool {
+    public override func prefersStatusBarHidden() -> Bool {
         return true
     }
     
-    override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
+    public override func traitCollectionDidChange(previousTraitCollection: UITraitCollection?) {
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    override func shouldAutorotate() -> Bool {
+    public override func shouldAutorotate() -> Bool {
         return false
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return currentModelAssetIsLandscape() ? .Landscape : [.Portrait, .PortraitUpsideDown]
     }
     
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+    public override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
         var landscapeOrientation = UIInterfaceOrientation.LandscapeRight
         var portraitOrientation = UIInterfaceOrientation.Portrait
         
@@ -739,7 +735,7 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
     
     // MARK: - UIGestureRecognizerDelegate
     
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer == createAnnotationPanGestureRecognizer {
             return annotationViewWithGestureRecognizer(gestureRecognizer) == nil
         }
@@ -762,7 +758,7 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         return !isEditingText
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    public func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         let isTouchDown = gestureRecognizer == touchDownGestureRecognizer || otherGestureRecognizer == touchDownGestureRecognizer
         let isPinch = gestureRecognizer == updateAnnotationPinchGestureRecognizer || otherGestureRecognizer == updateAnnotationPinchGestureRecognizer
         
