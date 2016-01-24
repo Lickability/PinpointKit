@@ -1,18 +1,28 @@
 //: Playground - noun: a place where people can play
 
 import UIKit
+import MessageUI
 
 class PinpointKit {
     
     struct Configuration {
-        static let defaultConfiguration = Configuration()
-
-        var fillColor: UIColor = .redColor()
-        var strokeColor: UIColor = .whiteColor()
         
-        var screenshotEditor: ScreenshotEditor = EditImageViewController()
-        var feedbackCollector: FeedbackCollector = FeedbackViewController()
-        var sender: Sender = MailSender()
+        let tintColor: UIColor
+        let annotationStrokeColor: UIColor
+        
+        let screenshotEditor: ScreenshotEditor
+        let feedbackCollector: FeedbackCollector
+        let sender: Sender
+        let logCollector: LogCollector?
+        
+        init(tintColor: UIColor = .redColor(), annotationStrokeColor: UIColor = .whiteColor(), screenshotEditor: ScreenshotEditor = EditImageViewController(), feedbackCollector: FeedbackCollector = FeedbackViewController(), sender: Sender = MailSender(), logCollector: LogCollector? = SystemLogCollector()) {
+            self.tintColor = tintColor
+            self.annotationStrokeColor = annotationStrokeColor
+            self.screenshotEditor = screenshotEditor
+            self.feedbackCollector = feedbackCollector
+            self.sender = sender
+            self.logCollector = logCollector
+        }
     }
     
     static let defaultPinpointKit = PinpointKit()
@@ -20,7 +30,7 @@ class PinpointKit {
     let configuration: Configuration
     weak var delegate: PinpointKitDelegate?
     
-    init(configuration: Configuration = Configuration.defaultConfiguration, delegate: PinpointKitDelegate? = nil)  {
+    init(configuration: Configuration = Configuration(), delegate: PinpointKitDelegate? = nil)  {
         self.configuration = configuration
         self.delegate = delegate
     }
@@ -38,10 +48,40 @@ protocol PinpointKitDelegate: class {
     func pinpointKit(pinpointKit: PinpointKit, willShowScreenshotEditor: ScreenshotEditor)
     func pinpointKit(pinpointKit: PinpointKit, didShowScreenshotEditor: ScreenshotEditor)
     
-    func pinpointKit(pinpointKit: PinpointKit, didFinishWithResult: Bool)
+    func pinpointKit(pinpointKit: PinpointKit, didFinishWithResult: Result<Feedback, PinpointError>)
+}
+
+// Default protocol extension to make all functions in the delegate optional.
+extension PinpointKitDelegate {
+    func pinpointKit(pinpointKit: PinpointKit, willShowFeedbackCollector: FeedbackCollector) {}
+    func pinpointKit(pinpointKit: PinpointKit, didShowFeedbackCollector: FeedbackCollector) {}
+    
+    func pinpointKit(pinpointKit: PinpointKit, willSendFeedback: Feedback) {}
+    func pinpointKit(pinpointKit: PinpointKit, didSendFeedback: Feedback) {}
+    
+    func pinpointKit(pinpointKit: PinpointKit, willShowScreenshotEditor: ScreenshotEditor) {}
+    func pinpointKit(pinpointKit: PinpointKit, didShowScreenshotEditor: ScreenshotEditor) {}
+    
+    func pinpointKit(pinpointKit: PinpointKit, didFinishWithResult: Result<Feedback, PinpointError>) {}
+}
+
+enum Result<Value, Error: ErrorType> {
+    case Success(value: Value)
+    case Failure(error: Error)
+}
+
+enum PinpointError: ErrorType {
+    case UnknownError
 }
 
 protocol Sender {}
+
+protocol LogCollector {}
+
+enum LogCollectorBehavior {
+    case CollectSilently
+    case CollectAndPrompt(promptText: String)
+}
 
 struct Feedback {
 
@@ -70,5 +110,7 @@ class EditImageViewController: UIViewController, ScreenshotEditor {}
 
 class FeedbackViewController: UIViewController, FeedbackCollector {}
 
-class MailSender: NSObject, Sender {}
+class MailSender: NSObject, MFMailComposeViewControllerDelegate, Sender {}
+
+class SystemLogCollector: LogCollector {}
 
