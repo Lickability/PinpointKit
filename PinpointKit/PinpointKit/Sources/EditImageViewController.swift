@@ -421,9 +421,10 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         }
         else {
             dismissViewControllerAnimated(true, completion: {
-                if self.hasSavedOrSharedAnyComposion && Preferences().deleteAfterSharing {
-                    self.currentViewModel?.asset.delete()
-                }
+                // TODO I don't THINK this is needed
+//                if self.hasSavedOrSharedAnyComposion && Preferences().deleteAfterSharing {
+//                    self.currentViewModel?.asset.delete()
+//                }
             })
         }
     }
@@ -538,7 +539,8 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
     }
     
     @objc private func toolChanged(segmentedControl: UISegmentedControl) {
-        BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("annotationSegmentTap", fileExtension: "aif")
+        // TODO
+        // BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("annotationSegmentTap", fileExtension: "aif")
         
         endEditingTextView()
         
@@ -557,7 +559,7 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         case .Cancelled, .Failed, .Ended:
             handleGestureRecognizerFinished()
         default:
-            noop()
+            break
         }
     }
     
@@ -613,7 +615,7 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         case .Cancelled, .Failed, .Ended:
             handleGestureRecognizerFinished()
         default:
-            noop()
+            break
         }
     }
     
@@ -644,7 +646,7 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
                 handleCreateAnnotationGestureRecognizerBegan(gestureRecognizer)
             }
         default:
-            noop()
+            break
         }
     }
     
@@ -657,7 +659,7 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         case .Cancelled, .Failed, .Ended:
             handleGestureRecognizerFinished()
         default:
-            noop()
+            break
         }
     }
     
@@ -716,7 +718,8 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
         }
         
         if animated {
-            BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("annotationDelete", fileExtension: "aif")
+            // TODO
+            // BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("annotationDelete", fileExtension: "aif")
             
             UIView.performSystemAnimation(.Delete, onViews: [annotationView], options: [], animations: nil, completion: { (finished: Bool) -> Void in
                 removeAnnotationView()
