@@ -20,6 +20,7 @@
 		B92901A71C5567EC007CCA5E /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901A61C5567EC007CCA5E /* BarButtonItem.swift */; };
 		B92901A91C556831007CCA5E /* AnnotationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901A81C556831007CCA5E /* AnnotationsView.swift */; };
 		B92901AB1C5568CF007CCA5E /* StrokeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901AA1C5568CF007CCA5E /* StrokeLayoutManager.swift */; };
+		B92901AD1C556D22007CCA5E /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901AC1C556D22007CCA5E /* BezierPath.swift */; };
 		DA0DA6061C53049B0012ADBE /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0DA6051C53049B0012ADBE /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
 		DA0DA6121C53049B0012ADBE /* PinpointKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */; };
@@ -51,6 +52,7 @@
 		B92901A61C5567EC007CCA5E /* BarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BarButtonItem.swift; path = Sources/BarButtonItem.swift; sourceTree = "<group>"; };
 		B92901A81C556831007CCA5E /* AnnotationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationsView.swift; path = Sources/AnnotationsView.swift; sourceTree = "<group>"; };
 		B92901AA1C5568CF007CCA5E /* StrokeLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokeLayoutManager.swift; sourceTree = "<group>"; };
+		B92901AC1C556D22007CCA5E /* BezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPath.swift; sourceTree = "<group>"; };
 		DA0DA6021C53049B0012ADBE /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0DA6051C53049B0012ADBE /* PinpointKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PinpointKit.h; sourceTree = "<group>"; };
 		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				B92901851C55648A007CCA5E /* KeyboardAvoider.swift */,
 				B92901A61C5567EC007CCA5E /* BarButtonItem.swift */,
 				B92901AA1C5568CF007CCA5E /* StrokeLayoutManager.swift */,
+				B92901AC1C556D22007CCA5E /* BezierPath.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B92901A21C55677C007CCA5E /* TextAnnotationView.swift in Sources */,
+				B92901AD1C556D22007CCA5E /* BezierPath.swift in Sources */,
 				B92901861C55648A007CCA5E /* KeyboardAvoider.swift in Sources */,
 				B929019C1C556774007CCA5E /* ArrowAnnotationView.swift in Sources */,
 				B92901A11C55677C007CCA5E /* BoxAnnotationView.swift in Sources */,
