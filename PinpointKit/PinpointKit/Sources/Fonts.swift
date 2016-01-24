@@ -15,14 +15,16 @@ import UIKit
  - Semibold: Semibold weight.
  - Bold:     Bold weight.
  */
-enum FontWeight: Int {
+public enum FontWeight: Int {
     case Regular
     case Semibold
     case Bold
 }
 
-extension UIFont {
-    static func applicationFontOfSize(fontSize: CGFloat, weight: FontWeight) -> UIFont {
+public extension UIFont {
+    
+    // TODO: Figure out if we can even ship with this font - I doubt it but for now, lets just do this.
+    public static func applicationFontOfSize(fontSize: CGFloat, weight: FontWeight) -> UIFont {
         let fontName: String = {
             switch weight {
             case .Regular:
