@@ -18,11 +18,11 @@ public final class KeyboardAvoider {
     public init(window: UIWindow?) {
         self.window = window
         
-        NotificationCenter().addObserver(self, selector: "keyboardWillChangeFrame:", name: UIKeyboardWillChangeFrameNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillChangeFrame:", name: UIKeyboardWillChangeFrameNotification, object: nil)
     }
     
     deinit {
-        NotificationCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     @objc private func keyboardWillChangeFrame(notification: NSNotification) {

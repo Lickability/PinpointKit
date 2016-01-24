@@ -19,9 +19,10 @@
 		B92901A51C556791007CCA5E /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901A41C556791007CCA5E /* Annotations.swift */; };
 		B92901A71C5567EC007CCA5E /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901A61C5567EC007CCA5E /* BarButtonItem.swift */; };
 		B92901A91C556831007CCA5E /* AnnotationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901A81C556831007CCA5E /* AnnotationsView.swift */; };
-		B92901AB1C5568CF007CCA5E /* StrokeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901AA1C5568CF007CCA5E /* StrokeLayoutManager.swift */; };
-		B92901AD1C556D22007CCA5E /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901AC1C556D22007CCA5E /* BezierPath.swift */; };
-		B92901AF1C556E47007CCA5E /* AssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901AE1C556E47007CCA5E /* AssetViewModel.swift */; };
+		B92901B31C557401007CCA5E /* AssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901B21C557401007CCA5E /* AssetViewModel.swift */; };
+		B92901B71C557406007CCA5E /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901B41C557406007CCA5E /* BezierPath.swift */; };
+		B92901B81C557406007CCA5E /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901B51C557406007CCA5E /* Screen.swift */; };
+		B92901B91C557406007CCA5E /* StrokeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901B61C557406007CCA5E /* StrokeLayoutManager.swift */; };
 		DA0DA6061C53049B0012ADBE /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0DA6051C53049B0012ADBE /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
 		DA0DA6121C53049B0012ADBE /* PinpointKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */; };
@@ -52,9 +53,10 @@
 		B92901A41C556791007CCA5E /* Annotations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Annotations.swift; path = Sources/Annotations.swift; sourceTree = "<group>"; };
 		B92901A61C5567EC007CCA5E /* BarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BarButtonItem.swift; path = Sources/BarButtonItem.swift; sourceTree = "<group>"; };
 		B92901A81C556831007CCA5E /* AnnotationsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationsView.swift; path = Sources/AnnotationsView.swift; sourceTree = "<group>"; };
-		B92901AA1C5568CF007CCA5E /* StrokeLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokeLayoutManager.swift; sourceTree = "<group>"; };
-		B92901AC1C556D22007CCA5E /* BezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPath.swift; sourceTree = "<group>"; };
-		B92901AE1C556E47007CCA5E /* AssetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetViewModel.swift; sourceTree = "<group>"; };
+		B92901B21C557401007CCA5E /* AssetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AssetViewModel.swift; path = Sources/AssetViewModel.swift; sourceTree = "<group>"; };
+		B92901B41C557406007CCA5E /* BezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BezierPath.swift; path = Sources/BezierPath.swift; sourceTree = "<group>"; };
+		B92901B51C557406007CCA5E /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Screen.swift; path = Sources/Screen.swift; sourceTree = "<group>"; };
+		B92901B61C557406007CCA5E /* StrokeLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StrokeLayoutManager.swift; path = Sources/StrokeLayoutManager.swift; sourceTree = "<group>"; };
 		DA0DA6021C53049B0012ADBE /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0DA6051C53049B0012ADBE /* PinpointKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PinpointKit.h; sourceTree = "<group>"; };
 		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -87,7 +89,7 @@
 		B929017F1C555FDB007CCA5E /* EditImageViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B92901AE1C556E47007CCA5E /* AssetViewModel.swift */,
+				B92901B21C557401007CCA5E /* AssetViewModel.swift */,
 				B92901A31C556783007CCA5E /* Annotations */,
 				B92901871C55650A007CCA5E /* Views */,
 				B929017D1C555F86007CCA5E /* EditImageViewController.swift */,
@@ -102,8 +104,9 @@
 				B92901831C55639B007CCA5E /* Fonts.swift */,
 				B92901851C55648A007CCA5E /* KeyboardAvoider.swift */,
 				B92901A61C5567EC007CCA5E /* BarButtonItem.swift */,
-				B92901AA1C5568CF007CCA5E /* StrokeLayoutManager.swift */,
-				B92901AC1C556D22007CCA5E /* BezierPath.swift */,
+				B92901B41C557406007CCA5E /* BezierPath.swift */,
+				B92901B51C557406007CCA5E /* Screen.swift */,
+				B92901B61C557406007CCA5E /* StrokeLayoutManager.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -279,21 +282,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				B92901A21C55677C007CCA5E /* TextAnnotationView.swift in Sources */,
-				B92901AD1C556D22007CCA5E /* BezierPath.swift in Sources */,
+				B92901B71C557406007CCA5E /* BezierPath.swift in Sources */,
 				B92901861C55648A007CCA5E /* KeyboardAvoider.swift in Sources */,
 				B929019C1C556774007CCA5E /* ArrowAnnotationView.swift in Sources */,
+				B92901B91C557406007CCA5E /* StrokeLayoutManager.swift in Sources */,
 				B92901A11C55677C007CCA5E /* BoxAnnotationView.swift in Sources */,
 				B92901A91C556831007CCA5E /* AnnotationsView.swift in Sources */,
 				B929019B1C556774007CCA5E /* AnnotationView.swift in Sources */,
+				B92901B81C557406007CCA5E /* Screen.swift in Sources */,
 				B92901841C55639B007CCA5E /* Fonts.swift in Sources */,
-				B92901AB1C5568CF007CCA5E /* StrokeLayoutManager.swift in Sources */,
 				B92901A71C5567EC007CCA5E /* BarButtonItem.swift in Sources */,
 				B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */,
-				B92901AF1C556E47007CCA5E /* AssetViewModel.swift in Sources */,
 				B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */,
 				B929019E1C556778007CCA5E /* BlurAnnotationView.swift in Sources */,
 				B92901A51C556791007CCA5E /* Annotations.swift in Sources */,
 				DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */,
+				B92901B31C557401007CCA5E /* AssetViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

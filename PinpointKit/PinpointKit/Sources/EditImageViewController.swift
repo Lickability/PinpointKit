@@ -389,21 +389,22 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             self.dismissViewControllerAnimated(true, completion: nil)
         }))
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: "Alert button title to save a copy of a composition."), style: .Default, handler: { (action) in
-            let URL = writeImageToTemporaryLocation(image: self.view.pinpoint_screenshot, fileName: "Screenshot.png")
-            
-            if let URL = URL {
-                do {
-                    try PHPhotoLibrary.sharedPhotoLibrary().performChangesAndWait({
-                        let creationRequest = PHAssetChangeRequest.creationRequestForAssetFromImageAtFileURL(URL)
-                        creationRequest?.creationDate = NSDate()
-                    })
-                } catch _ {
-                }
-            }
-            
-            self.dismissViewControllerAnimated(true, completion: nil)
-        }))
+// TODO - are we going to support saving like this?
+//        alert.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: "Alert button title to save a copy of a composition."), style: .Default, handler: { (action) in
+//            let URL = writeImageToTemporaryLocation(image: self.view.pinpoint_screenshot, fileName: "Screenshot.png")
+//            
+//            if let URL = URL {
+//                do {
+//                    try PHPhotoLibrary.sharedPhotoLibrary().performChangesAndWait({
+//                        let creationRequest = PHAssetChangeRequest.creationRequestForAssetFromImageAtFileURL(URL)
+//                        creationRequest?.creationDate = NSDate()
+//                    })
+//                } catch _ {
+//                }
+//            }
+//            
+//            self.dismissViewControllerAnimated(true, completion: nil)
+//        }))
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert button title to cancel the alert."), style: .Cancel, handler: nil))
         return alert
