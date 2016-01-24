@@ -18,6 +18,7 @@
 		B92901911C556559007CCA5E /* ArrowAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901901C556559007CCA5E /* ArrowAnnotationView.swift */; };
 		B92901941C5565A1007CCA5E /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901931C5565A1007CCA5E /* Annotations.swift */; };
 		B92901961C5565B7007CCA5E /* TextAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901951C5565B7007CCA5E /* TextAnnotationView.swift */; };
+		B92901981C5566EC007CCA5E /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901971C5566EC007CCA5E /* BarButtonItem.swift */; };
 		DA0DA6061C53049B0012ADBE /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0DA6051C53049B0012ADBE /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
 		DA0DA6121C53049B0012ADBE /* PinpointKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */; };
@@ -47,6 +48,7 @@
 		B92901901C556559007CCA5E /* ArrowAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowAnnotationView.swift; sourceTree = "<group>"; };
 		B92901931C5565A1007CCA5E /* Annotations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotations.swift; sourceTree = "<group>"; };
 		B92901951C5565B7007CCA5E /* TextAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAnnotationView.swift; sourceTree = "<group>"; };
+		B92901971C5566EC007CCA5E /* BarButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarButtonItem.swift; sourceTree = "<group>"; };
 		DA0DA6021C53049B0012ADBE /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0DA6051C53049B0012ADBE /* PinpointKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PinpointKit.h; sourceTree = "<group>"; };
 		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				B92901831C55639B007CCA5E /* Fonts.swift */,
 				B92901851C55648A007CCA5E /* KeyboardAvoider.swift */,
+				B92901971C5566EC007CCA5E /* BarButtonItem.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */,
 				B92901911C556559007CCA5E /* ArrowAnnotationView.swift in Sources */,
 				B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */,
+				B92901981C5566EC007CCA5E /* BarButtonItem.swift in Sources */,
 				B929018A1C556512007CCA5E /* BlurAnnotationView.swift in Sources */,
 				B929018B1C556512007CCA5E /* BoxAnnotationView.swift in Sources */,
 				B92901941C5565A1007CCA5E /* Annotations.swift in Sources */,

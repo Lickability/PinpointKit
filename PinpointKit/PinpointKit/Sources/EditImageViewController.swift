@@ -265,7 +265,8 @@ final class EditImageViewController: UIViewController, UIGestureRecognizerDelega
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        reportEventNameAsScreenView(AnalyticsEvent(name: "Edit Image"))
+        // TODO
+       // reportEventNameAsScreenView(AnalyticsEvent(name: "Edit Image"))
         
         navigationController?.hidesBarsOnTap = true
         navigationController?.setNavigationBarHidden(true, animated: false)
