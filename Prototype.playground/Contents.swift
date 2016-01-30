@@ -4,9 +4,7 @@ import UIKit
 import MessageUI
 
 class PinpointKit {
-    
     struct Configuration {
-        
         let tintColor: UIColor
         let annotationStrokeColor: UIColor
         
@@ -48,7 +46,8 @@ protocol PinpointKitDelegate: class {
     func pinpointKit(pinpointKit: PinpointKit, willShowScreenshotEditor: ScreenshotEditor)
     func pinpointKit(pinpointKit: PinpointKit, didShowScreenshotEditor: ScreenshotEditor)
     
-    func pinpointKit(pinpointKit: PinpointKit, didFinishWithResult: Result<Feedback, PinpointError>)
+    func pinpointKit(pinpointKit: PinpointKit, didFinishWithFeedback: Feedback?)
+    func pinpointKit(pinpointKit: PinpointKit, didFailWithError: ErrorType)
 }
 
 // Default protocol extension to make all functions in the delegate optional.
@@ -61,13 +60,9 @@ extension PinpointKitDelegate {
     
     func pinpointKit(pinpointKit: PinpointKit, willShowScreenshotEditor: ScreenshotEditor) {}
     func pinpointKit(pinpointKit: PinpointKit, didShowScreenshotEditor: ScreenshotEditor) {}
-    
-    func pinpointKit(pinpointKit: PinpointKit, didFinishWithResult: Result<Feedback, PinpointError>) {}
-}
 
-enum Result<Value, Error: ErrorType> {
-    case Success(value: Value)
-    case Failure(error: Error)
+    func pinpointKit(pinpointKit: PinpointKit, didFinishWithFeedback: Feedback?) {}
+    func pinpointKit(pinpointKit: PinpointKit, didFailWithError: ErrorType) {}
 }
 
 enum PinpointError: ErrorType {
@@ -84,7 +79,6 @@ enum LogCollectorBehavior {
 }
 
 struct Feedback {
-
     let image: UIImage
     let title: String
     let body: String
@@ -102,7 +96,6 @@ protocol ScreenshotEditor {}
 protocol GestureWindowDelegate: class {}
 
 class GestureWindow: UIWindow {
-    
     weak var delegate: GestureWindowDelegate?
 }
 
