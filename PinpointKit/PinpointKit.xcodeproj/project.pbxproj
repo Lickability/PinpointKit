@@ -80,13 +80,13 @@
 		B92901B51C557406007CCA5E /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Screen.swift; path = Sources/Screen.swift; sourceTree = "<group>"; };
 		B92901B61C557406007CCA5E /* StrokeLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StrokeLayoutManager.swift; path = Sources/StrokeLayoutManager.swift; sourceTree = "<group>"; };
 		DA0DA6021C53049B0012ADBE /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA0DA6051C53049B0012ADBE /* PinpointKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PinpointKit.h; sourceTree = "<group>"; };
-		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA0DA6051C53049B0012ADBE /* PinpointKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PinpointKit.h; path = PinpointKit/PinpointKit.h; sourceTree = "<group>"; };
+		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PinpointKit/Info.plist; sourceTree = "<group>"; };
 		DA0DA60C1C53049B0012ADBE /* PinpointKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinpointKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinpointKitTests.swift; sourceTree = "<group>"; };
 		DA0DA6131C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PinpointKit.swift; path = Sources/PinpointKit.swift; sourceTree = "<group>"; };
-		DA0DA61E1C5306E80012ADBE /* PinpointKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PinpointKitMedia.xcassets; sourceTree = "<group>"; };
+		DA0DA61E1C5306E80012ADBE /* PinpointKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = PinpointKitMedia.xcassets; path = PinpointKit/PinpointKitMedia.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +108,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12580A4A1C654B3E00ADC01C /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				12580A361C65304800ADC01C /* LogCollector.swift */,
+				12580A401C65330600ADC01C /* SystemLogCollector.swift */,
+			);
+			name = Logging;
+			sourceTree = "<group>";
+		};
+		12580A4B1C654B4700ADC01C /* Sending */ = {
+			isa = PBXGroup;
+			children = (
+				12580A381C65307300ADC01C /* Sender.swift */,
+				12580A421C65332C00ADC01C /* MailSender.swift */,
+			);
+			name = Sending;
+			sourceTree = "<group>";
+		};
+		12580A4C1C654B6500ADC01C /* Editing */ = {
+			isa = PBXGroup;
+			children = (
+				12580A3A1C65309000ADC01C /* Editor.swift */,
+				B929017F1C555FDB007CCA5E /* EditImageViewController */,
+			);
+			name = Editing;
+			sourceTree = "<group>";
+		};
+		12580A4D1C654B7E00ADC01C /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				2CB6C1F11C652D6400022CEB /* Feedback.swift */,
+				12580A3C1C6530CC00ADC01C /* FeedbackCollector.swift */,
+				12580A461C65339F00ADC01C /* FeedbackViewController.swift */,
+			);
+			name = Feedback;
+			sourceTree = "<group>";
+		};
+		12580A4E1C654B9700ADC01C /* Log Viewing */ = {
+			isa = PBXGroup;
+			children = (
+				12580A3E1C6530FB00ADC01C /* LogViewer.swift */,
+				12580A481C6533DC00ADC01C /* BasicLogViewController.swift */,
+			);
+			name = "Log Viewing";
+			sourceTree = "<group>";
+		};
 		B929017F1C555FDB007CCA5E /* EditImageViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +204,9 @@
 			isa = PBXGroup;
 			children = (
 				DA0DA6041C53049B0012ADBE /* PinpointKit */,
+				DA0DA61E1C5306E80012ADBE /* PinpointKitMedia.xcassets */,
+				DA0DA6071C53049B0012ADBE /* Info.plist */,
+				DA0DA6051C53049B0012ADBE /* PinpointKit.h */,
 				DA0DA6101C53049B0012ADBE /* PinpointKitTests */,
 				DA0DA6031C53049B0012ADBE /* Products */,
 			);
@@ -175,23 +224,14 @@
 		DA0DA6041C53049B0012ADBE /* PinpointKit */ = {
 			isa = PBXGroup;
 			children = (
-				DA0DA6051C53049B0012ADBE /* PinpointKit.h */,
-				DA0DA6071C53049B0012ADBE /* Info.plist */,
 				DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */,
 				12580A341C652FA000ADC01C /* Configuration.swift */,
-				12580A361C65304800ADC01C /* LogCollector.swift */,
-				12580A401C65330600ADC01C /* SystemLogCollector.swift */,
-				12580A381C65307300ADC01C /* Sender.swift */,
-				12580A421C65332C00ADC01C /* MailSender.swift */,
-				12580A3A1C65309000ADC01C /* Editor.swift */,
-				12580A3C1C6530CC00ADC01C /* FeedbackCollector.swift */,
-				12580A461C65339F00ADC01C /* FeedbackViewController.swift */,
-				12580A3E1C6530FB00ADC01C /* LogViewer.swift */,
-				12580A481C6533DC00ADC01C /* BasicLogViewController.swift */,
-				2CB6C1F11C652D6400022CEB /* Feedback.swift */,
-				DA0DA61E1C5306E80012ADBE /* PinpointKitMedia.xcassets */,
+				12580A4A1C654B3E00ADC01C /* Logging */,
+				12580A4B1C654B4700ADC01C /* Sending */,
+				12580A4C1C654B6500ADC01C /* Editing */,
+				12580A4D1C654B7E00ADC01C /* Feedback */,
+				12580A4E1C654B9700ADC01C /* Log Viewing */,
 				B92901821C556383007CCA5E /* Helpers */,
-				B929017F1C555FDB007CCA5E /* EditImageViewController */,
 			);
 			path = PinpointKit;
 			sourceTree = "<group>";
