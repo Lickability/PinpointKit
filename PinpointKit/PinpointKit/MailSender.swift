@@ -30,6 +30,8 @@ class MailSender: NSObject, Sender {
     
     // MARK: - Sender
     
+    weak var delegate: SenderDelegate?
+    
     func sendFeedback(feedback: Feedback, fromViewController viewController: UIViewController) {
         mailComposer = MFMailComposeViewController()
         
