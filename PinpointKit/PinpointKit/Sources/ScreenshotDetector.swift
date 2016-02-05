@@ -14,14 +14,6 @@ import Photos
 @available(iOS 9.0, *)
 public final class ScreenshotDetector: NSObject {
     
-    /// A boolean value indicating whether the detector is enabled. When set to true, the detector will request photo access whenever a screenshot is taken by the user and deliver screenshots to its delegate.
-    public var detectionEnabled: Bool = true
-    
-    private weak var delegate: ScreenshotDetectorDelegate?
-    private let notificationCenter: NSNotificationCenter
-    private let application: UIApplication
-    private let imageManager: PHImageManager
-    
     /// An error encountered when detecting and retreiving a screenshot.
     enum Error: ErrorType {
         /// The user did not give authorization to this application to their Photo Library.
@@ -33,6 +25,14 @@ public final class ScreenshotDetector: NSObject {
         /// The screenshot image data could not be loaded from the library.
         case LoadFailure
     }
+    
+    /// A boolean value indicating whether the detector is enabled. When set to true, the detector will request photo access whenever a screenshot is taken by the user and deliver screenshots to its delegate.
+    public var detectionEnabled: Bool = true
+    
+    private weak var delegate: ScreenshotDetectorDelegate?
+    private let notificationCenter: NSNotificationCenter
+    private let application: UIApplication
+    private let imageManager: PHImageManager
     
     /**
      Initializes a `ScreenshotDetector` with its dependencies. Note that `ScreenshotDetector` requires access to the user’s Photo Library and it will request this access if your application does not already have it.
