@@ -38,18 +38,26 @@ struct Configuration {
         }
     }
     
+    /// A struct containing information about the appearance of displayed components.
     let appearance: Appearance
     
+    /// An optional type that collects logs to be displayed and sent with feedback.
     let logCollector: LogCollector?
+    
+    /// A feedback collector that obtains the feedback to send.
     let feedbackCollector: FeedbackCollector
+    
+    /// An editor that allows annotation of images.
     let editor: Editor
+    
+    /// A sender that allows sending the feedback outside the framework.
     let sender: Sender
     
     /**
      Initializes a `Configuration` object with optionally customizable appearance and behaviors.
      
      - parameter appearance:        A struct containing information about the appearance of displayed components.
-     - parameter logCollector:      An optional type that collects logs to be displayed and sent along with feedback.
+     - parameter logCollector:      An optional type that collects logs to be displayed and sent with feedback.
      - parameter feedbackCollector: A feedback collector that obtains the feedback, by default in the form of annotated screenshots, to send.
      - parameter editor:            An editor that allows annotation of images.
      - parameter sender:            A sender that allows sending the feedback outside the framework.
