@@ -6,7 +6,7 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /**
  *  A struct that contains configuration information for the behavior and appearance of PinpointKit.
