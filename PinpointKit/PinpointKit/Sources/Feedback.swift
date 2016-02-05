@@ -13,10 +13,10 @@ import Foundation
  */
 struct Feedback {
     
-    /// An un-annotated screenshot of the screen the feedback realtes to.
+    /// An un-annotated screenshot of the screen the feedback relates to.
     let screenshot: UIImage
     
-    /// An annotated screenshot of the screen the feedback realtes to or `nil` if the user did not annotate it.
+    /// An annotated screenshot of the screen the feedback relates to or `nil` if the user did not annotate it.
     let annotatedScreenshot: UIImage?
     
     /// A short, optional title of the feedback submission. Suitable for an email subject.
@@ -25,7 +25,7 @@ struct Feedback {
     /// An optional plain-text body of the feedback submission. Suitable for an email body.
     let body: String?
     
-    /// A dictionary of additaionl information provided by the application developer.
+    /// A dictionary of additional information provided by the application developer.
     let additionalInformation: [String: AnyObject]
     
     /// A struct containing information about the application and its environment.
