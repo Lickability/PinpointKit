@@ -8,7 +8,10 @@
 
 import MessageUI
 
-class MailSender: NSObject, MFMailComposeViewControllerDelegate, Sender {
+class MailSender: NSObject, Sender {
     
 }
 
+extension MailSender: MFMailComposeViewControllerDelegate {
+    
+}
