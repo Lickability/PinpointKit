@@ -84,11 +84,11 @@ final class ScreenshotDetector: NSObject {
     }
     
     private func succeed(image: UIImage) {
-        self.delegate?.screenshotDetector(self, didDetectScreenshot: image)
+        delegate?.screenshotDetector(self, didDetectScreenshot: image)
     }
     
     private func fail(error: Error) {
-        self.delegate?.screenshotDetector(self, didFailWithError: error)
+        delegate?.screenshotDetector(self, didFailWithError: error)
     }
 }
 
