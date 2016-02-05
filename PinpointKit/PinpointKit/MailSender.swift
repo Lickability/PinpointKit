@@ -13,9 +13,20 @@ class MailSender: NSObject, Sender {
     enum Error: ErrorType {
         case Unknown
         case ImageEncoding
+        case MailCanceled(underlyingError: NSError?)
+        case MailFailed(underlyingError: NSError?)
     }
     
-    private var mailComposer: MFMailComposeViewController!
+    enum Success {
+        case Saved
+        case Sent
+    }
+    
+    private var mailComposer: MFMailComposeViewController! {
+        didSet {
+            mailComposer.mailComposeDelegate = self
+        }
+    }
     
     // MARK: - Sender
     
@@ -64,6 +75,10 @@ class MailSender: NSObject, Sender {
         //TODO: call the delegate
     }
     
+    func succeed(success: Success) {
+        //TODO: call the delegate
+    }
+    
 }
 
 private extension MFMailComposeViewController {
@@ -76,5 +91,24 @@ private extension MFMailComposeViewController {
 }
 
 extension MailSender: MFMailComposeViewControllerDelegate {
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        controller.dismissViewControllerAnimated(true) {
+            self.completeWithResult(result, error: error)
+        }
+    }
     
+    private func completeWithResult(result: MFMailComposeResult, error: NSError?) {
+        switch result {
+        case MFMailComposeResultCancelled:
+            fail(.MailCanceled(underlyingError: error))
+        case MFMailComposeResultFailed:
+            fail(.MailFailed(underlyingError: error))
+        case MFMailComposeResultSaved:
+            succeed(.Saved)
+        case MFMailComposeResultSent:
+            succeed(.Sent)
+        default:
+            fail(.Unknown)
+        }
+    }
 }
