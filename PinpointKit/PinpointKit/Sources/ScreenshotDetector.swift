@@ -12,7 +12,10 @@ import Photos
 /// A class that detects when the user has taken a screenshot and provides it via a delegate callback.
 
 @available(iOS 9.0, *)
-final class ScreenshotDetector: NSObject {
+public final class ScreenshotDetector: NSObject {
+    
+    /// A boolean value indicating whether the detector is enabled. When set to true, the detector will request photo access whenever a screenshot is taken by the user and deliver screenshots to its delegate.
+    public var detectionEnabled: Bool = true
     
     private weak var delegate: ScreenshotDetectorDelegate?
     private let notificationCenter: NSNotificationCenter
@@ -53,6 +56,8 @@ final class ScreenshotDetector: NSObject {
     }
     
     @objc private func userTookScreenshot(notification: NSNotification) {
+        guard detectionEnabled else { return }
+        
         requestPhotosAuthorization()
     }
     
