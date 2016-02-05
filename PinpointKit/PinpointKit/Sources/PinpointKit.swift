@@ -41,4 +41,26 @@ final class PinpointKit {
 /// A protocol describing an object that can be notified of events from PinpointKit.
 protocol PinpointKitDelegate: class {
 
+    /**
+     Notifies the delegate that PinpointKit is about to send user feedback.
+     
+     - parameter pinpointKit:   The `PinpointKit` instance responsible for the feedback.
+     - parameter feedback:      The feedback that’s about to be sent.
+     */
+    func pinpointKit(pinpointKit: PinpointKit, willSendFeedback feedback: Feedback)
+    
+    /**
+     Notifies the delegate that PinpointKit has just sent user feedback.
+     
+     - parameter pinpointKit:   The `PinpointKit` instance responsible for the feedback.
+     - parameter feedback:      The feedback that’s just been sent.
+     */
+    func pinpointKit(pinpointKit: PinpointKit, didSendFeedback feedback: Feedback)
+}
+
+/// A private extension on PinpointKitDelegate that makes all delegate methods optional by giving them empty implementations by default.
+private extension PinpointKitDelegate {
+    
+    func pinpointKit(pinpointKit: PinpointKit, willSendFeedback feedback: Feedback) {}
+    func pinpointKit(pinpointKit: PinpointKit, didSendFeedback feedback: Feedback) {}
 }
