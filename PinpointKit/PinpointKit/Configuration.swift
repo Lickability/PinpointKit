@@ -13,6 +13,9 @@ import Foundation
  */
 struct Configuration {
     
+    /**
+     *  A struct containing information about the appearance of displayed components.
+     */
     struct Appearance {
         
         // The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
@@ -42,6 +45,17 @@ struct Configuration {
     let editor: Editor
     let sender: Sender
     
+    /**
+     Initializes a `Configuration` object with optionally customizable appearance and behaviors.
+     
+     - parameter appearance:        A struct containing information about the appearance of displayed components.
+     - parameter logCollector:      An optional type that collects logs to be displayed and sent along with feedback.
+     - parameter feedbackCollector: A feedback collector that obtains the feedback, by default in the form of annotated screenshots, to send.
+     - parameter editor:            An editor that allows annotation of images.
+     - parameter sender:            A sender that allows sending the feedback outside the framework.
+     
+     - returns: A fully initialized `Configuration` object.
+     */
     init(appearance: Appearance = Appearance(), logCollector: LogCollector? = SystemLogCollector(), feedbackCollector: FeedbackCollector = FeedbackViewController(), editor: Editor = EditImageViewController(), sender: Sender = MailSender()) {
         self.appearance = appearance
         self.logCollector = logCollector
