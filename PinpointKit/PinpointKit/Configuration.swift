@@ -64,11 +64,16 @@ struct Configuration {
      
      - returns: A fully initialized `Configuration` object.
      */
-    init(appearance: Appearance = Appearance(), logCollector: LogCollector? = SystemLogCollector(), feedbackCollector: FeedbackCollector = FeedbackViewController(), editor: Editor = EditImageViewController(), sender: Sender = MailSender()) {
-        self.appearance = appearance
-        self.logCollector = logCollector
-        self.feedbackCollector = feedbackCollector
-        self.editor = editor
-        self.sender = sender
+    init(appearance: Appearance = Appearance(),
+        logCollector: LogCollector? = SystemLogCollector(),
+        feedbackCollector: FeedbackCollector = FeedbackViewController(),
+        editor: Editor = EditImageViewController(),
+        sender: Sender = MailSender()) {
+            
+            self.appearance = appearance
+            self.logCollector = logCollector
+            self.feedbackCollector = feedbackCollector
+            self.editor = editor
+            self.sender = sender
     }
 }
