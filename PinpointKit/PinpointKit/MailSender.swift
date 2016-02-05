@@ -8,6 +8,7 @@
 
 import MessageUI
 
+/// A `Sender`
 class MailSender: NSObject, Sender {
 
     enum Error: ErrorType {

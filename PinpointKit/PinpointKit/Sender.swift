@@ -9,7 +9,7 @@
 import UIKit
 
 /// A behavior protocol that describes an object that sends feedback.
-protocol Sender {
+public protocol Sender {
     
     /// A delegate that is informed of successful or failed feedback sending.
     var delegate: SenderDelegate? { get set }
@@ -24,7 +24,7 @@ protocol Sender {
 }
 
 /// A delegate protocol describing an object that receives success and failure events from a `Sender`.
-protocol SenderDelegate: class {
+public protocol SenderDelegate: class {
     
     /**
      Notifies the delegate that the sender successfully sent the feedback with a given type of success.
@@ -43,4 +43,10 @@ protocol SenderDelegate: class {
      - parameter error:    The error that caused the failure.
      */
     func sender(sender: Sender, didFailToSendFeedback feedback: Feedback?, error: ErrorType)
+}
+
+/// An extension on PinpointKitDelegate that makes some of the delegate methods optional by giving them empty implementations by default.
+public extension SenderDelegate {
+
+    func sender(sender: Sender, didFailToSendFeedback feedback: Feedback?, error: ErrorType) { }
 }
