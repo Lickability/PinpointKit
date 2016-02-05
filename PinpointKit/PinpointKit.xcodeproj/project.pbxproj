@@ -184,6 +184,7 @@
 		B92901821C556383007CCA5E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2C5C41131C6568D60033ED3D /* SucessType.swift */,
 				B92901831C55639B007CCA5E /* Fonts.swift */,
 				B92901851C55648A007CCA5E /* KeyboardAvoider.swift */,
 				B92901A61C5567EC007CCA5E /* BarButtonItem.swift */,
@@ -241,7 +242,6 @@
 			children = (
 				DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */,
 				12580A341C652FA000ADC01C /* Configuration.swift */,
-				2C5C41131C6568D60033ED3D /* SucessType.swift */,
 				12580A4A1C654B3E00ADC01C /* Logging */,
 				12580A4B1C654B4700ADC01C /* Sending */,
 				12580A4C1C654B6500ADC01C /* Editing */,

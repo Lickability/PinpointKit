@@ -13,7 +13,6 @@ protocol Sender {
 }
 
 protocol SenderDelegate: class {
-
-    func sender(sender: Sender, didSendFeedback feedback: Feedback, success: SuccessType?)
-    func sender(sender: Sender, didFailToSendFeedback feedback: Feedback, error: ErrorType)
+    func sender(sender: Sender, didSendFeedback feedback: Feedback?, success: SuccessType?)
+    func sender(sender: Sender, didFailToSendFeedback feedback: Feedback?, error: ErrorType)
 }

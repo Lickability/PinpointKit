@@ -17,7 +17,7 @@ class MailSender: NSObject, Sender {
         case MailFailed(underlyingError: NSError?)
     }
     
-    enum Success {
+    enum Success: SuccessType {
         case Saved
         case Sent
     }
@@ -28,12 +28,15 @@ class MailSender: NSObject, Sender {
         }
     }
     
+    private var feedback: Feedback?
+    
     // MARK: - Sender
     
     weak var delegate: SenderDelegate?
     
     func sendFeedback(feedback: Feedback, fromViewController viewController: UIViewController) {
         mailComposer = MFMailComposeViewController()
+        self.feedback = feedback
         
         if let subject = feedback.title {
             mailComposer.setSubject(subject)
@@ -81,11 +84,11 @@ class MailSender: NSObject, Sender {
     }
     
     func fail(error: Error) {
-        //TODO: call the delegate
+        delegate?.sender(self, didFailToSendFeedback: feedback, error: error)
     }
     
     func succeed(success: Success) {
-        //TODO: call the delegate
+        delegate?.sender(self, didSendFeedback: feedback, success: success)
     }
     
 }
