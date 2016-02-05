@@ -11,6 +11,7 @@ import Photos
 
 /// A class that detects when the user has taken a screenshot and provides it via a delegate callback.
 final class ScreenshotDetector: NSObject {
+    
     private weak var delegate: ScreenshotDetectorDelegate?
     private let notificationCenter: NSNotificationCenter
     private let application: UIApplication
