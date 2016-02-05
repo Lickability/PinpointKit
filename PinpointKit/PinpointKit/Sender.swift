@@ -6,6 +6,8 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
+import UIKit
+
 protocol Sender {
     var delegate: SenderDelegate? { get set }
     

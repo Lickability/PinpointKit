@@ -1,5 +1,5 @@
 //
-//  SucessType.swift
+//  SuccessType.swift
 //  PinpointKit
 //
 //  Created by Matthew Bischoff on 2/5/16.
