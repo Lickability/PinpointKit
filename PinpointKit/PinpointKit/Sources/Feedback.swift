@@ -26,29 +26,29 @@ public struct Feedback {
     let body: String?
     
     /// A dictionary of additional information provided by the application developer.
-    let additionalInformation: [String: AnyObject]
+    let additionalInformation: [String: AnyObject]?
     
     /// A struct containing information about the application and its environment.
-    let applicationInformation: ApplicationInformation
+    let applicationInformation: ApplicationInformation?
     
     /**
      *  A substructure containing information about the application and its environment.
      */
     struct ApplicationInformation {
         /// The application’s marketing version.
-        let version: String
+        let version: String?
         
         /// The application’s build number.
-        let build: String
+        let build: String?
         
         /// The application’s display name.
-        let name: String
+        let name: String?
         
         /// The application’s bundle identifer.
-        let bundleIdentifer: String
+        let bundleIdentifer: String?
         
         /// The operating system version of the OS in which the application is running.
-        let operatingSystemVersion: NSOperatingSystemVersion
+        let operatingSystemVersion: NSOperatingSystemVersion?
     }
 
 }
