@@ -2,7 +2,7 @@ import UIKit
 import Photos
 import CoreImage
 
-public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
+public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate, Editor {
     static let TextViewEditingBarAnimationDuration = 0.25
     static let MinimumAnnotationsNeededToPromptBeforeDismissal = 3
     

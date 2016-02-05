@@ -12,8 +12,6 @@ import Foundation
 *  `PinpointKit` is an object that can be used to collect feedback from application users.
 */
 final class PinpointKit {
-    struct Configuration {
-    }
 
     /// Returns a `PinpointKit` instance with a default configuration.
     static let defaultPinpointKit = PinpointKit()
