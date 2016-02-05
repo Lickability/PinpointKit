@@ -12,7 +12,7 @@ import Photos
 /// A class that detects when the user has taken a screenshot and provides it via a delegate callback.
 
 @available(iOS 9.0, *)
-public final class ScreenshotDetector: NSObject {
+public class ScreenshotDetector: NSObject {
     
     /// An error encountered when detecting and retreiving a screenshot.
     enum Error: ErrorType {
