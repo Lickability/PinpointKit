@@ -25,8 +25,14 @@ struct Feedback {
     /// An optional plain-text body of the feedback submission. Suitable for an email body.
     let body: String?
     
+    /// A dictionary of additaionl information provided by the application developer.
+    let additionalInformation: [String: AnyObject]
+    
+    /// A struct containing information about the application and its environment.
+    let applicationInformation: ApplicationInformation
+    
     /**
-     *  A sub-structure containing information about the application and its environment.
+     *  A substructure containing information about the application and its environment.
      */
     struct ApplicationInformation {
         /// The application’s marketing version.
@@ -37,14 +43,12 @@ struct Feedback {
         
         /// The application’s display name.
         let name: String
-
+        
         /// The application’s bundle identifer.
         let bundleIdentifer: String
         
         /// The operating system version of the OS in which the application is running.
         let operatingSystemVersion: NSOperatingSystemVersion
     }
-    
-    /// A dictionary of additaionl information provided by the application developer.
-    let additionalInformation: [String: AnyObject]
+
 }
