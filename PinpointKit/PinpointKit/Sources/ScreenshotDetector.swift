@@ -10,6 +10,8 @@ import UIKit
 import Photos
 
 /// A class that detects when the user has taken a screenshot and provides it via a delegate callback.
+
+@available(iOS 9.0, *)
 final class ScreenshotDetector: NSObject {
     
     private weak var delegate: ScreenshotDetectorDelegate?
@@ -97,6 +99,8 @@ final class ScreenshotDetector: NSObject {
 }
 
 /// A protocol that `ScreenshotDetector` uses to inform its delegate of sucessful and failed screenshot detection events.
+
+@available(iOS 9.0, *)
 protocol ScreenshotDetectorDelegate: class {
     
     /**
@@ -116,6 +120,7 @@ protocol ScreenshotDetectorDelegate: class {
     func screenshotDetector(screenshotDetector: ScreenshotDetector, didFailWithError error: ScreenshotDetector.Error)
 }
 
+@available(iOS 9.0, *)
 private extension PHAsset {
 
     static func fetchLastScreenshot() -> PHAsset? {
@@ -131,6 +136,7 @@ private extension PHAsset {
     }
 }
 
+@available(iOS 9.0, *)
 private extension PHImageRequestOptions {
     
     static func highQualitySynchronousLocalOptions() -> PHImageRequestOptions {
