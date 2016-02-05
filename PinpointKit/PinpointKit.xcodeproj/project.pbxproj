@@ -18,6 +18,7 @@
 		12580A471C65339F00ADC01C /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A461C65339F00ADC01C /* FeedbackViewController.swift */; };
 		12580A491C6533DC00ADC01C /* BasicLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A481C6533DC00ADC01C /* BasicLogViewController.swift */; };
 		2CB6C1F21C652D6400022CEB /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F11C652D6400022CEB /* Feedback.swift */; };
+		2CB6C1F61C65361900022CEB /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */; };
 		B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B929017D1C555F86007CCA5E /* EditImageViewController.swift */; };
 		B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */; };
 		B92901841C55639B007CCA5E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901831C55639B007CCA5E /* Fonts.swift */; };
@@ -63,6 +64,7 @@
 		12580A461C65339F00ADC01C /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		12580A481C6533DC00ADC01C /* BasicLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicLogViewController.swift; sourceTree = "<group>"; };
 		2CB6C1F11C652D6400022CEB /* Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Feedback.swift; path = Sources/Feedback.swift; sourceTree = "<group>"; };
+		2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotDetector.swift; path = Sources/ScreenshotDetector.swift; sourceTree = "<group>"; };
 		B929017D1C555F86007CCA5E /* EditImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditImageViewController.swift; path = Sources/EditImageViewController.swift; sourceTree = "<group>"; };
 		B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIGestureRecognizer+FailRecognizing.swift"; path = "Sources/UIGestureRecognizer+FailRecognizing.swift"; sourceTree = "<group>"; };
 		B92901831C55639B007CCA5E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = Sources/Fonts.swift; sourceTree = "<group>"; };
@@ -154,6 +156,14 @@
 			name = "Log Viewing";
 			sourceTree = "<group>";
 		};
+		2C5C41101C655B7D0033ED3D /* Screenshot Detection */ = {
+			isa = PBXGroup;
+			children = (
+				2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */,
+			);
+			name = "Screenshot Detection";
+			sourceTree = "<group>";
+		};
 		B929017F1C555FDB007CCA5E /* EditImageViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +241,7 @@
 				12580A4C1C654B6500ADC01C /* Editing */,
 				12580A4D1C654B7E00ADC01C /* Feedback */,
 				12580A4E1C654B9700ADC01C /* Log Viewing */,
+				2C5C41101C655B7D0033ED3D /* Screenshot Detection */,
 				B92901821C556383007CCA5E /* Helpers */,
 			);
 			path = PinpointKit;
@@ -356,6 +367,7 @@
 			files = (
 				12580A431C65332C00ADC01C /* MailSender.swift in Sources */,
 				B92901A21C55677C007CCA5E /* TextAnnotationView.swift in Sources */,
+				2CB6C1F61C65361900022CEB /* ScreenshotDetector.swift in Sources */,
 				12580A411C65330600ADC01C /* SystemLogCollector.swift in Sources */,
 				B92901B71C557406007CCA5E /* BezierPath.swift in Sources */,
 				2CB6C1F21C652D6400022CEB /* Feedback.swift in Sources */,
@@ -503,6 +515,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PinpointKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.Lickability.PinpointKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -521,6 +534,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PinpointKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.Lickability.PinpointKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";

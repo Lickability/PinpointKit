@@ -11,7 +11,7 @@ import UIKit
 /**
  *  A struct that contains configuration information for the behavior and appearance of PinpointKit.
  */
-struct Configuration {
+public struct Configuration {
     
     /**
      *  A struct containing information about the appearance of displayed components.
