@@ -156,6 +156,14 @@
 			name = "Log Viewing";
 			sourceTree = "<group>";
 		};
+		2C5C41101C655B7D0033ED3D /* Screenshot Detection */ = {
+			isa = PBXGroup;
+			children = (
+				2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */,
+			);
+			name = "Screenshot Detection";
+			sourceTree = "<group>";
+		};
 		B929017F1C555FDB007CCA5E /* EditImageViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,13 +235,13 @@
 			isa = PBXGroup;
 			children = (
 				DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */,
-				2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */,
 				12580A341C652FA000ADC01C /* Configuration.swift */,
 				12580A4A1C654B3E00ADC01C /* Logging */,
 				12580A4B1C654B4700ADC01C /* Sending */,
 				12580A4C1C654B6500ADC01C /* Editing */,
 				12580A4D1C654B7E00ADC01C /* Feedback */,
 				12580A4E1C654B9700ADC01C /* Log Viewing */,
+				2C5C41101C655B7D0033ED3D /* Screenshot Detection */,
 				B92901821C556383007CCA5E /* Helpers */,
 			);
 			path = PinpointKit;
