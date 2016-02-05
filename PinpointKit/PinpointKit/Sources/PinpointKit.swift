@@ -57,7 +57,7 @@ protocol PinpointKitDelegate: class {
 }
 
 /// A private extension on PinpointKitDelegate that makes all delegate methods optional by giving them empty implementations by default.
-private extension PinpointKitDelegate {
+extension PinpointKitDelegate {
     
     func pinpointKit(pinpointKit: PinpointKit, willSendFeedback feedback: Feedback) {}
     func pinpointKit(pinpointKit: PinpointKit, didSendFeedback feedback: Feedback) {}
