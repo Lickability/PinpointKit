@@ -8,5 +8,6 @@
 
 enum MIMEType: String {
     case PNG = "image/png"
+    case JSON = "application/json"
 }
 

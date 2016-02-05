@@ -36,9 +36,6 @@ class MailSender: NSObject, Sender {
         if let subject = feedback.title {
             mailComposer.setSubject(subject)
         }
-        else {
-            //TODO: Default subject
-        }
         
         if let body = feedback.body {
             mailComposer.setMessageBody(body, isHTML: false)
@@ -52,9 +49,20 @@ class MailSender: NSObject, Sender {
             attemptToAttachScreeenshot(feedback.screenshot)
         }
         
-        // TODO: Encode application information into JSON
+        // TODO: Encode log
         
-        // TODO:
+        if let additionalInformation = feedback.additionalInformation {
+            let data = try? NSJSONSerialization.dataWithJSONObject(additionalInformation, options: .PrettyPrinted)
+            
+            if let data = data {
+                mailComposer.addAttachmentData(data, mimeType: MIMEType.JSON.rawValue, fileName: "info.json")
+            }
+            else {
+                print("PinpointKit could not attach Feedback.additionalInformation because it was not valid JSON.")
+            }
+        }
+        
+        viewController.presentViewController(mailComposer, animated: true, completion: nil)
     }
     
     func attemptToAttachScreeenshot(screenshot: UIImage) {
@@ -68,7 +76,6 @@ class MailSender: NSObject, Sender {
         catch {
             fail(.Unknown)
         }
-
     }
     
     func fail(error: Error) {
