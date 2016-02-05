@@ -11,7 +11,7 @@ import Foundation
 /**
  *  A struct containing user feedback on an application.
  */
-struct Feedback {
+public struct Feedback {
     
     /// An un-annotated screenshot of the screen the feedback relates to.
     let screenshot: UIImage

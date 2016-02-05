@@ -11,7 +11,7 @@ import Foundation
 /**
 *  `PinpointKit` is an object that can be used to collect feedback from application users.
 */
-final class PinpointKit {
+public final class PinpointKit {
     struct Configuration {
     }
 
@@ -39,7 +39,7 @@ final class PinpointKit {
 }
 
 /// A protocol describing an object that can be notified of events from PinpointKit.
-protocol PinpointKitDelegate: class {
+public protocol PinpointKitDelegate: class {
 
     /**
      Notifies the delegate that PinpointKit is about to send user feedback.
@@ -59,7 +59,7 @@ protocol PinpointKitDelegate: class {
 }
 
 /// A private extension on PinpointKitDelegate that makes all delegate methods optional by giving them empty implementations by default.
-extension PinpointKitDelegate {
+public extension PinpointKitDelegate {
     
     func pinpointKit(pinpointKit: PinpointKit, willSendFeedback feedback: Feedback) {}
     func pinpointKit(pinpointKit: PinpointKit, didSendFeedback feedback: Feedback) {}
