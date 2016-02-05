@@ -138,6 +138,7 @@
 		12580A4D1C654B7E00ADC01C /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
+				2CB6C1F11C652D6400022CEB /* Feedback.swift */,
 				12580A3C1C6530CC00ADC01C /* FeedbackCollector.swift */,
 				12580A461C65339F00ADC01C /* FeedbackViewController.swift */,
 			);
@@ -230,8 +231,6 @@
 				12580A4C1C654B6500ADC01C /* Editing */,
 				12580A4D1C654B7E00ADC01C /* Feedback */,
 				12580A4E1C654B9700ADC01C /* Log Viewing */,
-				2CB6C1F11C652D6400022CEB /* Feedback.swift */,
-				DA0DA61E1C5306E80012ADBE /* PinpointKitMedia.xcassets */,
 				B92901821C556383007CCA5E /* Helpers */,
 			);
 			path = PinpointKit;
