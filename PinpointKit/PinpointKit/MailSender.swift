@@ -12,6 +12,7 @@ class MailSender: NSObject, Sender {
 
     enum Error: ErrorType {
         case Unknown
+        case NoViewControllerProvided
         case ImageEncoding
         case MailCanceled(underlyingError: NSError?)
         case MailFailed(underlyingError: NSError?)
@@ -34,7 +35,9 @@ class MailSender: NSObject, Sender {
     
     weak var delegate: SenderDelegate?
     
-    func sendFeedback(feedback: Feedback, fromViewController viewController: UIViewController) {
+    func sendFeedback(feedback: Feedback, fromViewController viewController: UIViewController?) {
+        guard let viewController = viewController else { fail(.NoViewControllerProvided); return }
+        
         mailComposer = MFMailComposeViewController()
         self.feedback = feedback
         
