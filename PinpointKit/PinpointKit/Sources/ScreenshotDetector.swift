@@ -52,10 +52,6 @@ final class ScreenshotDetector: NSObject {
         notificationCenter.addObserver(self, selector: "userTookScreenshot:", name: UIApplicationUserDidTakeScreenshotNotification, object: application)
     }
     
-    deinit {
-        notificationCenter.removeObserver(self)
-    }
-
     @objc private func userTookScreenshot(notification: NSNotification) {
         requestPhotosAuthorization()
     }
