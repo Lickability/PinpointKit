@@ -13,7 +13,6 @@ import Foundation
 */
 public final class PinpointKit {
 
-
     /// Returns a `PinpointKit` instance with a default configuration.
     static let defaultPinpointKit = PinpointKit()
 
