@@ -7,5 +7,5 @@
 //
 
 protocol Sender {
-    
+    func sendFeedback(feedback: Feedback, fromViewController viewController: UIViewController)
 }
