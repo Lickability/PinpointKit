@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12580A351C652FA000ADC01C /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A341C652FA000ADC01C /* Configuration.swift */; };
+		12580A371C65304800ADC01C /* LogCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A361C65304800ADC01C /* LogCollector.swift */; };
+		12580A391C65307300ADC01C /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A381C65307300ADC01C /* Sender.swift */; };
+		12580A3B1C65309000ADC01C /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A3A1C65309000ADC01C /* Editor.swift */; };
+		12580A3D1C6530CC00ADC01C /* FeedbackCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A3C1C6530CC00ADC01C /* FeedbackCollector.swift */; };
+		12580A3F1C6530FB00ADC01C /* LogViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A3E1C6530FB00ADC01C /* LogViewer.swift */; };
+		12580A411C65330600ADC01C /* SystemLogCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A401C65330600ADC01C /* SystemLogCollector.swift */; };
+		12580A431C65332C00ADC01C /* MailSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A421C65332C00ADC01C /* MailSender.swift */; };
+		12580A471C65339F00ADC01C /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A461C65339F00ADC01C /* FeedbackViewController.swift */; };
+		12580A491C6533DC00ADC01C /* BasicLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A481C6533DC00ADC01C /* BasicLogViewController.swift */; };
 		B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B929017D1C555F86007CCA5E /* EditImageViewController.swift */; };
 		B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */; };
 		B92901841C55639B007CCA5E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901831C55639B007CCA5E /* Fonts.swift */; };
@@ -41,6 +51,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12580A341C652FA000ADC01C /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		12580A361C65304800ADC01C /* LogCollector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogCollector.swift; sourceTree = "<group>"; };
+		12580A381C65307300ADC01C /* Sender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		12580A3A1C65309000ADC01C /* Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
+		12580A3C1C6530CC00ADC01C /* FeedbackCollector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackCollector.swift; sourceTree = "<group>"; };
+		12580A3E1C6530FB00ADC01C /* LogViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogViewer.swift; sourceTree = "<group>"; };
+		12580A401C65330600ADC01C /* SystemLogCollector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemLogCollector.swift; sourceTree = "<group>"; };
+		12580A421C65332C00ADC01C /* MailSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailSender.swift; sourceTree = "<group>"; };
+		12580A461C65339F00ADC01C /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
+		12580A481C6533DC00ADC01C /* BasicLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicLogViewController.swift; sourceTree = "<group>"; };
 		B929017D1C555F86007CCA5E /* EditImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditImageViewController.swift; path = Sources/EditImageViewController.swift; sourceTree = "<group>"; };
 		B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIGestureRecognizer+FailRecognizing.swift"; path = "Sources/UIGestureRecognizer+FailRecognizing.swift"; sourceTree = "<group>"; };
 		B92901831C55639B007CCA5E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = Sources/Fonts.swift; sourceTree = "<group>"; };
@@ -156,6 +176,16 @@
 				DA0DA6051C53049B0012ADBE /* PinpointKit.h */,
 				DA0DA6071C53049B0012ADBE /* Info.plist */,
 				DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */,
+				12580A341C652FA000ADC01C /* Configuration.swift */,
+				12580A361C65304800ADC01C /* LogCollector.swift */,
+				12580A401C65330600ADC01C /* SystemLogCollector.swift */,
+				12580A381C65307300ADC01C /* Sender.swift */,
+				12580A421C65332C00ADC01C /* MailSender.swift */,
+				12580A3A1C65309000ADC01C /* Editor.swift */,
+				12580A3C1C6530CC00ADC01C /* FeedbackCollector.swift */,
+				12580A461C65339F00ADC01C /* FeedbackViewController.swift */,
+				12580A3E1C6530FB00ADC01C /* LogViewer.swift */,
+				12580A481C6533DC00ADC01C /* BasicLogViewController.swift */,
 				DA0DA61E1C5306E80012ADBE /* PinpointKitMedia.xcassets */,
 				B92901821C556383007CCA5E /* Helpers */,
 				B929017F1C555FDB007CCA5E /* EditImageViewController */,
@@ -281,21 +311,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12580A431C65332C00ADC01C /* MailSender.swift in Sources */,
 				B92901A21C55677C007CCA5E /* TextAnnotationView.swift in Sources */,
+				12580A411C65330600ADC01C /* SystemLogCollector.swift in Sources */,
 				B92901B71C557406007CCA5E /* BezierPath.swift in Sources */,
 				B92901861C55648A007CCA5E /* KeyboardAvoider.swift in Sources */,
 				B929019C1C556774007CCA5E /* ArrowAnnotationView.swift in Sources */,
+				12580A391C65307300ADC01C /* Sender.swift in Sources */,
 				B92901B91C557406007CCA5E /* StrokeLayoutManager.swift in Sources */,
 				B92901A11C55677C007CCA5E /* BoxAnnotationView.swift in Sources */,
+				12580A3B1C65309000ADC01C /* Editor.swift in Sources */,
+				12580A371C65304800ADC01C /* LogCollector.swift in Sources */,
 				B92901A91C556831007CCA5E /* AnnotationsView.swift in Sources */,
+				12580A491C6533DC00ADC01C /* BasicLogViewController.swift in Sources */,
 				B929019B1C556774007CCA5E /* AnnotationView.swift in Sources */,
 				B92901B81C557406007CCA5E /* Screen.swift in Sources */,
 				B92901841C55639B007CCA5E /* Fonts.swift in Sources */,
 				B92901A71C5567EC007CCA5E /* BarButtonItem.swift in Sources */,
 				B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */,
+				12580A351C652FA000ADC01C /* Configuration.swift in Sources */,
+				12580A3F1C6530FB00ADC01C /* LogViewer.swift in Sources */,
+				12580A3D1C6530CC00ADC01C /* FeedbackCollector.swift in Sources */,
 				B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */,
 				B929019E1C556778007CCA5E /* BlurAnnotationView.swift in Sources */,
 				B92901A51C556791007CCA5E /* Annotations.swift in Sources */,
+				12580A471C65339F00ADC01C /* FeedbackViewController.swift in Sources */,
 				DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */,
 				B92901B31C557401007CCA5E /* AssetViewModel.swift in Sources */,
 			);
