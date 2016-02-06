@@ -70,6 +70,14 @@ class MailSender: NSObject, Sender {
         mailComposer = MFMailComposeViewController()
         self.feedback = feedback
         
+        attachFeedback(feedback)
+        
+        viewController.presentViewController(mailComposer, animated: true, completion: nil)
+    }
+    
+    // MARK: - MailSender
+    
+    private func attachFeedback(feedback: Feedback) {
         if let subject = feedback.title {
             mailComposer.setSubject(subject)
         }
@@ -77,7 +85,7 @@ class MailSender: NSObject, Sender {
         if let body = feedback.body {
             mailComposer.setMessageBody(body, isHTML: false)
         }
-
+        
         if let annotatedScreenshot = feedback.annotatedScreenshot {
             tryToAttachScreeenshot(annotatedScreenshot)
             
@@ -89,20 +97,9 @@ class MailSender: NSObject, Sender {
         // TODO: Encode log once it exists.
         
         if let additionalInformation = feedback.additionalInformation {
-            let data = try? NSJSONSerialization.dataWithJSONObject(additionalInformation, options: .PrettyPrinted)
-            
-            if let data = data {
-                mailComposer.addAttachmentData(data, mimeType: MIMEType.JSON.rawValue, fileName: "info.json")
-            }
-            else {
-                print("PinpointKit could not attach Feedback.additionalInformation because it was not valid JSON.")
-            }
+            attachAdditionalInformation(additionalInformation)
         }
-        
-        viewController.presentViewController(mailComposer, animated: true, completion: nil)
     }
-    
-    // MARK: - MailSender
     
     private func tryToAttachScreeenshot(screenshot: UIImage) {
         do {
@@ -114,6 +111,17 @@ class MailSender: NSObject, Sender {
         }
         catch {
             fail(.Unknown)
+        }
+    }
+    
+    private func attachAdditionalInformation(additionalInformation: [String: AnyObject]) {
+        let data = try? NSJSONSerialization.dataWithJSONObject(additionalInformation, options: .PrettyPrinted)
+        
+        if let data = data {
+            mailComposer.addAttachmentData(data, mimeType: MIMEType.JSON.rawValue, fileName: "info.json")
+        }
+        else {
+            print("PinpointKit could not attach Feedback.additionalInformation because it was not valid JSON.")
         }
     }
     
