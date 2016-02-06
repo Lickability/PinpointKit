@@ -35,6 +35,7 @@ class MailSender: NSObject, Sender {
     
     /// A success in sending feedback.
     enum Success: SuccessType {
+        
         /// The email was saved as a draft.
         case Saved
         
@@ -85,7 +86,7 @@ class MailSender: NSObject, Sender {
             tryToAttachScreeenshot(feedback.screenshot)
         }
         
-        // TODO: Encode log
+        // TODO: Encode log once it exists.
         
         if let additionalInformation = feedback.additionalInformation {
             let data = try? NSJSONSerialization.dataWithJSONObject(additionalInformation, options: .PrettyPrinted)
