@@ -123,7 +123,6 @@ class MailSender: NSObject, Sender {
     private func succeed(success: Success) {
         delegate?.sender(self, didSendFeedback: feedback, success: success)
     }
-    
 }
 
 private extension MFMailComposeViewController {
