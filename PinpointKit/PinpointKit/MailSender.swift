@@ -43,12 +43,6 @@ class MailSender: NSObject, Sender {
         case Sent
     }
     
-    private var mailComposer: MFMailComposeViewController! {
-        didSet {
-            mailComposer.mailComposeDelegate = self
-        }
-    }
-    
     private var feedback: Feedback?
     
     // MARK: - Sender
@@ -68,8 +62,8 @@ class MailSender: NSObject, Sender {
         guard MFMailComposeViewController.canSendMail() else { fail(.MailCannotSend); return }
         
         let mailComposer = MFMailComposeViewController()
+        mailComposer.mailComposeDelegate = self
         
-        self.mailComposer = mailComposer
         self.feedback = feedback
         
         tryToAttachFeedback(feedback, toMailComposer: mailComposer)
