@@ -100,7 +100,7 @@ class MailSender: NSObject, Sender {
             let fileName = feedback?.screenshotFilename ?? NSLocalizedString("Screenshot", comment: "The name of a screenshot file")
             try mailComposer.addAttachmentImage(screenshot, filename: fileName + ".png")
         }
-        catch (let error as Error) {
+        catch let error as Error {
             fail(error)
         }
         catch {
