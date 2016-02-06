@@ -105,8 +105,8 @@ class MailSender: NSObject, Sender {
     
     private func tryToAttachScreeenshot(screenshot: UIImage) {
         do {
-            let filename = feedback?.screenshotFilename ?? NSLocalizedString("Screenshot", comment: "The name of a screenshot file") + ".png"
-            try mailComposer.addAttachmentImage(screenshot, filename: filename)
+            let fileName = feedback?.screenshotFilename ?? NSLocalizedString("Screenshot", comment: "The name of a screenshot file")
+            try mailComposer.addAttachmentImage(screenshot, filename: fileName + ".png")
         }
         catch (let error as Error) {
             fail(error)
