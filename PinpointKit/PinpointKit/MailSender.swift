@@ -105,8 +105,8 @@ class MailSender: NSObject, Sender {
     
     private func tryToAttachScreeenshot(screenshot: UIImage) {
         do {
-            //TODO: Make screenshot.png configurable
-            try mailComposer.addAttachmentImage(screenshot, fileName: "Screenshot.png")
+            let filename = feedback?.screenshotFilename ?? NSLocalizedString("Screenshot", comment: "The name of a screenshot file") + ".png"
+            try mailComposer.addAttachmentImage(screenshot, filename: filename)
         }
         catch (let error as Error) {
             fail(error)
@@ -128,10 +128,10 @@ class MailSender: NSObject, Sender {
 
 private extension MFMailComposeViewController {
     
-    func addAttachmentImage(image: UIImage, fileName: String) throws {
+    func addAttachmentImage(image: UIImage, filename: String) throws {
         guard let PNGData = UIImagePNGRepresentation(image) else { throw MailSender.Error.ImageEncoding }
         
-        addAttachmentData(PNGData, mimeType: MIMEType.PNG.rawValue, fileName: fileName)
+        addAttachmentData(PNGData, mimeType: MIMEType.PNG.rawValue, fileName: filename)
     }
 }
 

@@ -19,6 +19,9 @@ public struct Feedback {
     /// An annotated screenshot of the screen the feedback relates to or `nil` if the user did not annotate it.
     let annotatedScreenshot: UIImage?
     
+    /// A filename without an extension for the screenshot or annotated screenshot.
+    let screenshotFilename: String
+    
     /// A short, optional title of the feedback submission. Suitable for an email subject.
     let title: String?
     
