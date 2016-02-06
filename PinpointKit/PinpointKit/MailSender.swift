@@ -86,13 +86,7 @@ class MailSender: NSObject, Sender {
             mailComposer.setMessageBody(body, isHTML: false)
         }
         
-        if let annotatedScreenshot = feedback.annotatedScreenshot {
-            tryToAttachScreeenshot(annotatedScreenshot)
-            
-        }
-        else {
-            tryToAttachScreeenshot(feedback.screenshot)
-        }
+        tryToAttachScreeenshot(feedback.annotatedScreenshot ?? feedback.screenshot)
         
         // TODO: Encode log once it exists.
         
