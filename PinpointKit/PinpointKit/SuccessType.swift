@@ -6,8 +6,7 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
-import Foundation
-
+/// An empty model protocol that represents a reason for success. The opposite of `ErrorType`.
 public protocol SuccessType {
 
 }
