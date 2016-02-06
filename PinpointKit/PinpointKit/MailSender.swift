@@ -116,10 +116,10 @@ private extension MFMailComposeViewController {
     
     func attachScreeenshot(screenshot: UIImage, screenshotFilename: String?) throws {
         let fileName = screenshotFilename ?? NSLocalizedString("Screenshot", comment: "The name of a screenshot file")
-        try attachmentImage(screenshot, filename: fileName + ".png")
+        try attachImage(screenshot, filename: fileName + ".png")
     }
     
-    func attachmentImage(image: UIImage, filename: String) throws {
+    func attachImage(image: UIImage, filename: String) throws {
         guard let PNGData = UIImagePNGRepresentation(image) else { throw MailSender.Error.ImageEncoding }
         
         addAttachmentData(PNGData, mimeType: MIMEType.PNG.rawValue, fileName: filename)
