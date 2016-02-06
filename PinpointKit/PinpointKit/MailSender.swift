@@ -8,19 +8,37 @@
 
 import MessageUI
 
-/// A `Sender`
+/// A `Sender` that uses `MessageUI` to send an email containing the feedback.
 class MailSender: NSObject, Sender {
 
+    /// An error in sending feedback.
     enum Error: ErrorType {
+
+        /// An unknown error occured.
         case Unknown
+
+        /// No view controller was provided for presentation.
         case NoViewControllerProvided
+        
+        /// The screenshot failed to encode.
         case ImageEncoding
+        
+        /// `MFMailComposeViewController.canSendMail` returned `false`.
+        case MailCannotSend
+        
+        /// Email composing was canceled by the user.
         case MailCanceled(underlyingError: NSError?)
+        
+        /// Email sending failed.
         case MailFailed(underlyingError: NSError?)
     }
     
+    /// A success in sending feedback.
     enum Success: SuccessType {
+        /// The email was saved as a draft.
         case Saved
+        
+        /// The email was sent.
         case Sent
     }
     
@@ -34,10 +52,19 @@ class MailSender: NSObject, Sender {
     
     // MARK: - Sender
     
+    /// A delegate that is informed of successful or failed feedback sending.
     weak var delegate: SenderDelegate?
     
+    /**
+     Sends the feedback using the provided view controller as a presenting view controller.
+     
+     - parameter feedback:       The feedback to send.
+     - parameter viewController: The view controller from which to present any of the sender’s necessary views.
+     */
     func sendFeedback(feedback: Feedback, fromViewController viewController: UIViewController?) {
         guard let viewController = viewController else { fail(.NoViewControllerProvided); return }
+        
+        guard MFMailComposeViewController.canSendMail() else { fail(.MailCannotSend); return }
         
         mailComposer = MFMailComposeViewController()
         self.feedback = feedback
@@ -51,11 +78,11 @@ class MailSender: NSObject, Sender {
         }
 
         if let annotatedScreenshot = feedback.annotatedScreenshot {
-            attemptToAttachScreeenshot(annotatedScreenshot)
+            tryToAttachScreeenshot(annotatedScreenshot)
             
         }
         else {
-            attemptToAttachScreeenshot(feedback.screenshot)
+            tryToAttachScreeenshot(feedback.screenshot)
         }
         
         // TODO: Encode log
@@ -74,7 +101,9 @@ class MailSender: NSObject, Sender {
         viewController.presentViewController(mailComposer, animated: true, completion: nil)
     }
     
-    func attemptToAttachScreeenshot(screenshot: UIImage) {
+    // MARK: - MailSender
+    
+    private func tryToAttachScreeenshot(screenshot: UIImage) {
         do {
             //TODO: Make screenshot.png configurable
             try mailComposer.addAttachmentImage(screenshot, fileName: "Screenshot.png")
@@ -87,11 +116,11 @@ class MailSender: NSObject, Sender {
         }
     }
     
-    func fail(error: Error) {
+    private func fail(error: Error) {
         delegate?.sender(self, didFailToSendFeedback: feedback, error: error)
     }
     
-    func succeed(success: Success) {
+    private func succeed(success: Success) {
         delegate?.sender(self, didSendFeedback: feedback, success: success)
     }
     
