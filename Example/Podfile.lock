@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../PinpointKit"
 
 SPEC CHECKSUMS:
-  PinpointKit: 70ea6bf7e28164941d140f4b3ebabf8ae3ca42f5
+  PinpointKit: fb4ccd50712a50457121486cc5c91ba526aec626
 
 COCOAPODS: 0.39.0
