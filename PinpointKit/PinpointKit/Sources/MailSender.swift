@@ -8,7 +8,7 @@
 
 import MessageUI
 
-class MailSender: NSObject, Sender {
+public class MailSender: NSObject, Sender {
     
 }
 

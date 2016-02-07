@@ -6,6 +6,6 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
-protocol Sender {
+public protocol Sender {
     
 }

@@ -156,7 +156,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         self.init(image: nil, currentViewModel: nil)
     }
     
-    init(image: UIImage?, currentViewModel: AssetViewModel?) {
+    public init(image: UIImage?, currentViewModel: AssetViewModel?) {
         super.init(nibName: nil, bundle: nil)
         
         navigationItem.leftBarButtonItem = closeBarButtonItem
