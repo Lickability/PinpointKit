@@ -1,0 +1,14 @@
+PODS:
+  - PinpointKit (0.1.0)
+
+DEPENDENCIES:
+  - PinpointKit (from `../PinpointKit`)
+
+EXTERNAL SOURCES:
+  PinpointKit:
+    :path: "../PinpointKit"
+
+SPEC CHECKSUMS:
+  PinpointKit: cc472e7febe2733546a751e4538f9362a2ad739a
+
+COCOAPODS: 0.39.0
