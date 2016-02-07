@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import PinpointKit
 
 class ViewController: UIViewController {
-    let pinpointKit = PinpointKit()
+
 }
 
