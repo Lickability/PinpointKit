@@ -68,7 +68,6 @@ class MailSender: NSObject, Sender {
         
         do {
             try mailComposer.attachFeedback(feedback)
-            viewController.presentViewController(mailComposer, animated: true, completion: nil)
         }
         catch let error as Error {
             fail(error)
@@ -76,6 +75,8 @@ class MailSender: NSObject, Sender {
         catch {
             fail(.Unknown)
         }
+        
+        viewController.presentViewController(mailComposer, animated: true, completion: nil)
     }
     
     // MARK: - MailSender
