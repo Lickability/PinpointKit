@@ -23,7 +23,7 @@ class MailSender: NSObject, Sender {
         /// The screenshot failed to encode.
         case ImageEncoding
         
-        /// `MFMailComposeViewController.canSendMail` returned `false`.
+        /// `MFMailComposeViewController.canSendMail()` returned `false`.
         case MailCannotSend
         
         /// Email composing was canceled by the user.
