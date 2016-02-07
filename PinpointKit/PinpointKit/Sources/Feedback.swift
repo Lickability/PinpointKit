@@ -40,7 +40,7 @@ public struct Feedback {
         case Annotated(image: UIImage)
         
         /// Both the original and annotated screenshot.
-        case Combined(annotatedImage: UIImage, originalImage: UIImage)
+        case Combined(originalImage: UIImage, annotatedImage: UIImage)
         
         /// Returns an image of the screenshot preferring the annotated image.
         var preferredImage: UIImage {
@@ -49,7 +49,7 @@ public struct Feedback {
                 return image
             case let Annotated(image):
                 return image
-            case let Combined(annotatedImage, _):
+            case let Combined(_, annotatedImage):
                 return annotatedImage
             }
         }
