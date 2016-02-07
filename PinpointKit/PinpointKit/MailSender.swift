@@ -105,7 +105,7 @@ private extension MFMailComposeViewController {
            setMessageBody(body, isHTML: false)
         }
         
-        try attachScreeenshot(feedback.annotatedScreenshot ?? feedback.screenshot, screenshotFilename: feedback.screenshotFilename)
+        try attachScreenshot(feedback.annotatedScreenshot ?? feedback.screenshot, screenshotFilename: feedback.screenshotFilename)
         
         // TODO: Encode log once it exists.
         
@@ -114,7 +114,7 @@ private extension MFMailComposeViewController {
         }
     }
     
-    func attachScreeenshot(screenshot: UIImage, screenshotFilename: String?) throws {
+    func attachScreenshot(screenshot: UIImage, screenshotFilename: String?) throws {
         let fileName = screenshotFilename ?? NSLocalizedString("Screenshot", comment: "The name of a screenshot file")
         try attachImage(screenshot, filename: fileName + ".png")
     }
