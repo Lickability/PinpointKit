@@ -66,12 +66,6 @@ class MailSender: NSObject, Sender {
         
         self.feedback = feedback
         
-        tryToAttachFeedback(feedback, toMailComposer: mailComposer)
-        
-        viewController.presentViewController(mailComposer, animated: true, completion: nil)
-    }
-    
-    private func tryToAttachFeedback(feedback: Feedback, toMailComposer mailComposer: MFMailComposeViewController) {
         do {
             try mailComposer.attachFeedback(feedback)
         }
@@ -81,16 +75,20 @@ class MailSender: NSObject, Sender {
         catch {
             fail(.Unknown)
         }
+        
+        viewController.presentViewController(mailComposer, animated: true, completion: nil)
     }
     
     // MARK: - MailSender
     
     private func fail(error: Error) {
         delegate?.sender(self, didFailToSendFeedback: feedback, error: error)
+        feedback = nil
     }
     
     private func succeed(success: Success) {
         delegate?.sender(self, didSendFeedback: feedback, success: success)
+        feedback = nil
     }
 }
 
