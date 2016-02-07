@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "summary": "Model, networking, UI, and persistance classes used in Tumblr's composition UI for iOS.",
   "authors": {
-    "Matthew Bishoff": "mb@matthewbischoff.com",
+    "Matthew Bishoff": "matt@lickability.com",
     "Brian Capps": "brian@lickability.com",
     "Kenneth Ackerson": "pearapps@gmail.com",
     "Paul Rehkugler": "paul@rehkugler.com"
