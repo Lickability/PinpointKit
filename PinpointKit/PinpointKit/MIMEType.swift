@@ -9,10 +9,10 @@
 /// An enumeration of MIME types used in PinpointKit.
 enum MIMEType: String {
     
-    /// Portable Network Graphics.
+    /// The MIME type used to represent a Portable Network Graphics image.
     case PNG = "image/png"
     
-    /// JavaScript Object Notation.
+    /// The MIME type used to represent a JavaScript Object Notation data.
     case JSON = "application/json"
 }
 
