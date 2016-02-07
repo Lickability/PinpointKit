@@ -27,7 +27,7 @@ public protocol Sender {
 public protocol SenderDelegate: class {
     
     /**
-     Notifies the delegate that the sender successfully sent the feedback with a given type of success.
+     Notifies the receiver that the sender successfully sent the feedback with a given type of success.
      
      - parameter sender:   The object responsible for the successful sending.
      - parameter feedback: The feedback that was sent.
@@ -36,7 +36,7 @@ public protocol SenderDelegate: class {
     func sender(sender: Sender, didSendFeedback feedback: Feedback?, success: SuccessType?)
     
     /**
-     Notifies the delegate that the sender failed to send the feedback with a given error.
+     Notifies the receiver that the sender failed to send the feedback with a given error.
      
      - parameter sender:   The object responsible for the failed sending.
      - parameter feedback: The feedback that failed to send.
