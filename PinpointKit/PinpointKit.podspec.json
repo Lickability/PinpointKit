@@ -9,7 +9,7 @@
     "Paul Rehkugler": "paul@rehkugler.com"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "8.0"
   },
   "requires_arc": true,
   "frameworks": [
