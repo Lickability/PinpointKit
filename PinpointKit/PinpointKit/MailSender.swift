@@ -105,7 +105,7 @@ private extension MFMailComposeViewController {
            setMessageBody(body, isHTML: false)
         }
         
-        try attachScreenshot(feedback.annotatedScreenshot ?? feedback.screenshot, screenshotFilename: feedback.screenshotFilename)
+        try attachScreenshot(feedback.screenshot, screenshotFilename: feedback.screenshotFilename)
         
         // TODO: Encode log once it exists.
         
@@ -114,9 +114,9 @@ private extension MFMailComposeViewController {
         }
     }
     
-    func attachScreenshot(screenshot: UIImage, screenshotFilename: String?) throws {
-        let fileName = screenshotFilename ?? NSLocalizedString("Screenshot", comment: "The name of a screenshot file")
-        try attachImage(screenshot, filename: fileName + ".png")
+    func attachScreenshot(screenshot: Feedback.ScreenshotType, screenshotFilename: String?) throws {
+        let fileName = screenshotFilename ?? NSLocalizedString("Screenshot", comment: "The default name of a screenshot file.")
+        try attachImage(screenshot.preferredImage, filename: fileName + MIMEType.PNG.fileExtension)
     }
     
     func attachImage(image: UIImage, filename: String) throws {
@@ -135,7 +135,6 @@ private extension MFMailComposeViewController {
             print("PinpointKit could not attach Feedback.additionalInformation because it was not valid JSON.")
         }
     }
-    
 }
 
 extension MailSender: MFMailComposeViewControllerDelegate {

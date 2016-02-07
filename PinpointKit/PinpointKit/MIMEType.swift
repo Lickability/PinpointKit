@@ -14,5 +14,15 @@ enum MIMEType: String {
     
     /// The MIME type used to represent a JavaScript Object Notation data.
     case JSON = "application/json"
+    
+    /// The file extension associated with the MIME type including the leading `.`.
+    var fileExtension: String {
+        switch self {
+        case PNG:
+            return ".png"
+        case .JSON:
+            return ".json"
+        }
+    }
 }
 
