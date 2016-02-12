@@ -17,6 +17,8 @@
 		12580A431C65332C00ADC01C /* MailSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A421C65332C00ADC01C /* MailSender.swift */; };
 		12580A471C65339F00ADC01C /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A461C65339F00ADC01C /* FeedbackViewController.swift */; };
 		12580A491C6533DC00ADC01C /* BasicLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A481C6533DC00ADC01C /* BasicLogViewController.swift */; };
+		2C5C41121C6560AD0033ED3D /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C41111C6560AD0033ED3D /* MIMEType.swift */; };
+		2C5C41141C6568D60033ED3D /* SuccessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C41131C6568D60033ED3D /* SuccessType.swift */; };
 		2CB6C1F21C652D6400022CEB /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F11C652D6400022CEB /* Feedback.swift */; };
 		2CB6C1F61C65361900022CEB /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */; };
 		B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B929017D1C555F86007CCA5E /* EditImageViewController.swift */; };
@@ -63,6 +65,8 @@
 		12580A421C65332C00ADC01C /* MailSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailSender.swift; sourceTree = "<group>"; };
 		12580A461C65339F00ADC01C /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		12580A481C6533DC00ADC01C /* BasicLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicLogViewController.swift; sourceTree = "<group>"; };
+		2C5C41111C6560AD0033ED3D /* MIMEType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIMEType.swift; sourceTree = "<group>"; };
+		2C5C41131C6568D60033ED3D /* SuccessType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessType.swift; sourceTree = "<group>"; };
 		2CB6C1F11C652D6400022CEB /* Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Feedback.swift; path = Sources/Feedback.swift; sourceTree = "<group>"; };
 		2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotDetector.swift; path = Sources/ScreenshotDetector.swift; sourceTree = "<group>"; };
 		B929017D1C555F86007CCA5E /* EditImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditImageViewController.swift; path = Sources/EditImageViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 			children = (
 				12580A381C65307300ADC01C /* Sender.swift */,
 				12580A421C65332C00ADC01C /* MailSender.swift */,
+				2C5C41111C6560AD0033ED3D /* MIMEType.swift */,
 			);
 			name = Sending;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 		B92901821C556383007CCA5E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2C5C41131C6568D60033ED3D /* SuccessType.swift */,
 				B92901831C55639B007CCA5E /* Fonts.swift */,
 				B92901851C55648A007CCA5E /* KeyboardAvoider.swift */,
 				B92901A61C5567EC007CCA5E /* BarButtonItem.swift */,
@@ -388,9 +394,11 @@
 				12580A351C652FA000ADC01C /* Configuration.swift in Sources */,
 				12580A3F1C6530FB00ADC01C /* LogViewer.swift in Sources */,
 				12580A3D1C6530CC00ADC01C /* FeedbackCollector.swift in Sources */,
+				2C5C41121C6560AD0033ED3D /* MIMEType.swift in Sources */,
 				B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */,
 				B929019E1C556778007CCA5E /* BlurAnnotationView.swift in Sources */,
 				B92901A51C556791007CCA5E /* Annotations.swift in Sources */,
+				2C5C41141C6568D60033ED3D /* SuccessType.swift in Sources */,
 				12580A471C65339F00ADC01C /* FeedbackViewController.swift in Sources */,
 				DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */,
 				B92901B31C557401007CCA5E /* AssetViewModel.swift in Sources */,
