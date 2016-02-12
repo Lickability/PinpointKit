@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ASL
 
 /**
 *  `PinpointKit` is an object that can be used to collect feedback from application users.
