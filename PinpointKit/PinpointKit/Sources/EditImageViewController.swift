@@ -33,16 +33,19 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }
         
         var image: UIImage {
-            switch self {
-            case .Arrow:
-                return UIImage(named: "ArrowIcon")!
-            case .Box:
-                return UIImage(named: "BoxIcon")!
-            case .Text:
-                return UIImage()
-            case .Blur:
-                return UIImage(named: "BlurIcon")!
-            }
+            return UIImage()
+            
+// TODO: Incorporate images
+//            switch self {
+//            case .Arrow:
+//                return UIImage(named: "ArrowIcon")!
+//            case .Box:
+//                return UIImage(named: "BoxIcon")!
+//            case .Text:
+//                return UIImage()
+//            case .Blur:
+//                return UIImage(named: "BlurIcon")!
+//            }
         }
         
         var segmentedControlItem: AnyObject {
