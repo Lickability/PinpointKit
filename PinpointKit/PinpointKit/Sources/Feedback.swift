@@ -6,18 +6,18 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /**
  *  A struct containing user feedback on an application.
  */
 public struct Feedback {
     
-    /// An un-annotated screenshot of the screen the feedback relates to.
-    let screenshot: UIImage
+    /// A screenshot of the screen the feedback relates to.
+    let screenshot: ScreenshotType
     
-    /// An annotated screenshot of the screen the feedback relates to or `nil` if the user did not annotate it.
-    let annotatedScreenshot: UIImage?
+    /// A filename without an extension for the screenshot or annotated screenshot.
+    let screenshotFilename: String
     
     /// A short, optional title of the feedback submission. Suitable for an email subject.
     let title: String?
@@ -30,6 +30,30 @@ public struct Feedback {
     
     /// A struct containing information about the application and its environment.
     let applicationInformation: ApplicationInformation?
+    
+    /// An enum with assocated values that represents the screenshot.
+    enum ScreenshotType {
+        /// The original, un-annotated screenshot.
+        case Original(image: UIImage)
+        
+        /// An annotated screenshot.
+        case Annotated(image: UIImage)
+        
+        /// Both the original and annotated screenshot.
+        case Combined(originalImage: UIImage, annotatedImage: UIImage)
+        
+        /// Returns an image of the screenshot preferring the annotated image.
+        var preferredImage: UIImage {
+            switch self {
+            case let Original(image):
+                return image
+            case let Annotated(image):
+                return image
+            case let Combined(_, annotatedImage):
+                return annotatedImage
+            }
+        }
+    }
     
     /**
      *  A substructure containing information about the application and its environment.
