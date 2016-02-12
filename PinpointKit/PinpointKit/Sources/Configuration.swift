@@ -16,7 +16,7 @@ public struct Configuration {
     /**
      *  A struct containing information about the appearance of displayed components.
      */
-    struct Appearance {
+    public struct Appearance {
         
         // The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
         let annotationFillColor: UIColor?
@@ -32,7 +32,7 @@ public struct Configuration {
          
          - returns: A fully initialized `Appearance` object.
          */
-        init(annotationFillColor: UIColor? = nil, annotationStrokeColor: UIColor = .whiteColor()) {
+        public init(annotationFillColor: UIColor? = nil, annotationStrokeColor: UIColor = .whiteColor()) {
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor
         }
@@ -64,7 +64,7 @@ public struct Configuration {
      
      - returns: A fully initialized `Configuration` object.
      */
-    init(appearance: Appearance = Appearance(),
+    public init(appearance: Appearance = Appearance(),
         logCollector: LogCollector? = SystemLogCollector(),
         feedbackCollector: FeedbackCollector = FeedbackViewController(),
         editor: Editor = EditImageViewController(),

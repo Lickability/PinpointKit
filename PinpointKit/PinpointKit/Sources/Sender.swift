@@ -24,8 +24,7 @@ public protocol Sender {
 }
 
 /// A delegate protocol describing an object that receives success and failure events from a `Sender`.
-public protocol SenderDelegate: class {
-    
+public protocol SenderDelegate: class {    
     /**
      Notifies the receiver that the sender successfully sent the feedback with a given type of success.
      

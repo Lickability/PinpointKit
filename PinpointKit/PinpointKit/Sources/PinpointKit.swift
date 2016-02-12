@@ -30,7 +30,7 @@ public class PinpointKit {
      
      - returns: A fully initialized `PinpointKit` object.
      */
-    init(configuration: Configuration = Configuration(), delegate: PinpointKitDelegate? = nil)  {
+    public init(configuration: Configuration = Configuration(), delegate: PinpointKitDelegate? = nil) {
         self.configuration = configuration
         self.delegate = delegate
     }

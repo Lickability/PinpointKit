@@ -1,0 +1,24 @@
+{
+  "name": "PinpointKit",
+  "version": "0.1.0",
+  "summary": "A library that makes bug reporting dead simple for your testers and users by allowing them to send annotated screenshots and logs from a simple gesture.",
+  "authors": {
+    "Matthew Bishoff": "matt@lickability.com",
+    "Brian Capps": "brian@lickability.com",
+    "Kenneth Ackerson": "pearapps@gmail.com",
+    "Paul Rehkugler": "paul@rehkugler.com"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "requires_arc": true,
+  "frameworks": [
+    "Foundation",
+    "UIKit",
+    "MessageUI"
+  ],
+  "source_files": "PinpointKit/Sources/*.{swift}",
+  "resources": "PinpointKit/Resources/*",
+  "dependencies": {
+  }
+}

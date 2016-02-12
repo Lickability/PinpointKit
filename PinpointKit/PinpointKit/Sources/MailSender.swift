@@ -9,7 +9,7 @@
 import MessageUI
 
 /// A `Sender` that uses `MessageUI` to send an email containing the feedback.
-class MailSender: NSObject, Sender {
+public class MailSender: NSObject, Sender {
 
     /// An error in sending feedback.
     enum Error: ErrorType {
@@ -48,7 +48,7 @@ class MailSender: NSObject, Sender {
     // MARK: - Sender
     
     /// A delegate that is informed of successful or failed feedback sending.
-    weak var delegate: SenderDelegate?
+    weak public var delegate: SenderDelegate?
     
     /**
      Sends the feedback using the provided view controller as a presenting view controller.
@@ -56,7 +56,7 @@ class MailSender: NSObject, Sender {
      - parameter feedback:       The feedback to send.
      - parameter viewController: The view controller from which to present any of the sender’s necessary views.
      */
-    func sendFeedback(feedback: Feedback, fromViewController viewController: UIViewController?) {
+    public func sendFeedback(feedback: Feedback, fromViewController viewController: UIViewController?) {
         guard let viewController = viewController else { fail(.NoViewControllerProvided); return }
         
         guard MFMailComposeViewController.canSendMail() else { fail(.MailCannotSend); return }
@@ -136,7 +136,7 @@ private extension MFMailComposeViewController {
 }
 
 extension MailSender: MFMailComposeViewControllerDelegate {
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    public func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
         controller.dismissViewControllerAnimated(true) {
             self.completeWithResult(result, error: error)
         }
