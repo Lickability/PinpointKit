@@ -9,6 +9,8 @@
 public protocol FeedbackCollector {
     var feedbackDelegate: FeedbackCollectorDelegate? { get set }
     var configuration: Configuration? { get set }
+    
+    func collectFeedbackFromViewController(viewConroller: UIViewController)
 }
 
 public protocol FeedbackCollectorDelegate: class {

@@ -10,7 +10,11 @@ import UIKit
 
 class FeedbackViewController: UITableViewController, FeedbackCollector {
     weak var feedbackDelegate: FeedbackCollectorDelegate?
-    var configuration: Configuration?
+    var configuration: Configuration? {
+        didSet {
+            title = configuration?.interfaceText.feedbackCollectorTitle
+        }
+    }
     
     required init() {
         super.init(style: .Grouped)
@@ -24,6 +28,12 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - FeedbackCollector
+    
+    func collectFeedbackFromViewController(viewConroller: UIViewController) {
+        viewConroller.showDetailViewController(self, sender: viewConroller)
     }
     
 }

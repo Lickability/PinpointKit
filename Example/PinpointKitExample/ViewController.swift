@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import PinpointKit
 
 class ViewController: UIViewController {
 
+    let pinpointKit = PinpointKit()
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        pinpointKit.show(fromViewController: self)
+    }
 }
 

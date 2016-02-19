@@ -34,6 +34,10 @@ public class PinpointKit {
         self.configuration = configuration
         self.delegate = delegate
     }
+    
+    public func show(fromViewController viewController: UIViewController) {
+        self.configuration.feedbackCollector.collectFeedbackFromViewController(viewController)
+    }
 }
 
 /// A protocol describing an object that can be notified of events from PinpointKit.

@@ -63,7 +63,11 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
     
     func commonInitialization() {
         viewControllers = [feedbackViewController]
-        title = configuration?.interfaceText.feedbackCollectorTitle
     }
 
+    // MARK: - FeedbackCollector
+    
+    public func collectFeedbackFromViewController(viewConroller: UIViewController) {
+        viewConroller.presentViewController(self, animated: true, completion: nil)
+    }
 }
