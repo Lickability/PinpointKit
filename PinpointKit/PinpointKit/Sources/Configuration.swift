@@ -38,8 +38,19 @@ public struct Configuration {
         }
     }
     
+    public struct InterfaceText {
+        
+        let feedbackCollectorTitle: String?
+        
+        public init(feedbackCollectorTitle: String? = NSLocalizedString("Report a Bug", comment: "Title of a view that reports a bug")) {
+            self.feedbackCollectorTitle = feedbackCollectorTitle
+        }
+    }
+    
     /// A struct containing information about the appearance of displayed components.
     let appearance: Appearance
+    
+    let interfaceText: InterfaceText
     
     /// An optional type that collects logs to be displayed and sent with feedback.
     let logCollector: LogCollector?
@@ -65,12 +76,14 @@ public struct Configuration {
      - returns: A fully initialized `Configuration` object.
      */
     public init(appearance: Appearance = Appearance(),
+        interfaceText: InterfaceText = InterfaceText(),
         logCollector: LogCollector? = SystemLogCollector(),
         feedbackCollector: FeedbackCollector = FeedbackNavigationController(),
         editor: Editor = EditImageViewController(),
         sender: Sender = MailSender()) {
             
             self.appearance = appearance
+            self.interfaceText = interfaceText
             self.logCollector = logCollector
             self.feedbackCollector = feedbackCollector
             self.editor = editor

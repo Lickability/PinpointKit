@@ -62,7 +62,8 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
     // MARK: - FeedbackNavigationController
     
     func commonInitialization() {
-        self.viewControllers = [feedbackViewController]
+        viewControllers = [feedbackViewController]
+        title = configuration?.interfaceText.feedbackCollectorTitle
     }
 
 }
