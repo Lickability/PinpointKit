@@ -21,6 +21,7 @@
 		2C5C41141C6568D60033ED3D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2CB63F1B1C77B1B6000CEFC6 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */; };
 		2CB63F1D1C77B50D000CEFC6 /* Screenshotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */; };
+		2CB63F1F1C77C38B000CEFC6 /* ScreenshotHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1E1C77C38B000CEFC6 /* ScreenshotHeaderView.swift */; };
 		2CB6C1F21C652D6400022CEB /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F11C652D6400022CEB /* Feedback.swift */; };
 		2CB6C1F61C65361900022CEB /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */; };
 		2CE6D3FF1C6E5D8D00DD8189 /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6D3FE1C6E5D8D00DD8189 /* MIMEType.swift */; };
@@ -72,6 +73,7 @@
 		12580A481C6533DC00ADC01C /* BasicLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicLogViewController.swift; sourceTree = "<group>"; };
 		2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screenshotter.swift; sourceTree = "<group>"; };
+		2CB63F1E1C77C38B000CEFC6 /* ScreenshotHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotHeaderView.swift; sourceTree = "<group>"; };
 		2CB6C1F11C652D6400022CEB /* Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotDetector.swift; sourceTree = "<group>"; };
 		2CE6D3FE1C6E5D8D00DD8189 /* MIMEType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIMEType.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				12580A461C65339F00ADC01C /* FeedbackViewController.swift */,
 				2CEAF65B1C779C8D009368B8 /* FeedbackNavigationController.swift */,
 				2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */,
+				2CB63F1E1C77C38B000CEFC6 /* ScreenshotHeaderView.swift */,
 			);
 			name = Feedback;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CB63F1F1C77C38B000CEFC6 /* ScreenshotHeaderView.swift in Sources */,
 				12580A431C65332C00ADC01C /* MailSender.swift in Sources */,
 				B92901A21C55677C007CCA5E /* TextAnnotationView.swift in Sources */,
 				2CB6C1F61C65361900022CEB /* ScreenshotDetector.swift in Sources */,
@@ -540,7 +544,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PinpointKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.Lickability.PinpointKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -559,7 +563,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PinpointKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.Lickability.PinpointKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";

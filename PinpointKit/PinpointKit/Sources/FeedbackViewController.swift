@@ -10,6 +10,15 @@ import UIKit
 
 class FeedbackViewController: UITableViewController, FeedbackCollector {
     weak var feedbackDelegate: FeedbackCollectorDelegate?
+    
+    var screenshot: UIImage? {
+        didSet {
+            if isViewLoaded() {
+                updateTableHeaderView()
+            }
+        }
+    }
+    
     var configuration: Configuration? {
         didSet {
             title = configuration?.interfaceText.feedbackCollectorTitle
@@ -27,6 +36,7 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
             navigationItem.leftBarButtonItem = cancelBarButtonItem
             
             view.tintColor = configuration?.appearance.tintColor
+            updateTableHeaderView()
         }
     }
     
@@ -44,7 +54,25 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    // MARK: - UIViewController
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateTableHeaderView()
+    }
+    
     // MARK: - FeedbackViewController
+    
+    func updateTableHeaderView() {
+        guard let screenshot = screenshot else { return }
+        
+        let header = ScreenshotHeaderView()
+        header.viewData = ScreenshotHeaderView.ViewData(screenshot: screenshot, hintText: configuration?.interfaceText.feedbackEditHint)
+        
+        tableView.tableHeaderView = header
+        tableView.enableTableHeaderViewDynamicHeight()
+    }
     
     func sendButtonTapped() {
         
@@ -61,7 +89,32 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     // MARK: - FeedbackCollector
     
     func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewConroller: UIViewController) {
+        self.screenshot = screenshot
         viewConroller.showDetailViewController(self, sender: viewConroller)
     }
     
+}
+
+extension UITableView {
+
+    /**
+     A workaround to make table header views created in nibs able to use their intrinsic content size to size the header. Removes the autoresizing constraints that constrain the height, and instead adds width contraints to the table header view.
+     */
+    func enableTableHeaderViewDynamicHeight() {
+        tableHeaderView?.translatesAutoresizingMaskIntoConstraints = false
+        
+        if let headerView = tableHeaderView {
+            let leadingConstraint = headerView.leadingAnchor.constraintEqualToAnchor(leadingAnchor)
+            let trailingContraint = headerView.trailingAnchor.constraintEqualToAnchor(trailingAnchor)
+            let topConstraint = headerView.topAnchor.constraintEqualToAnchor(topAnchor)
+            let widthConstraint = headerView.widthAnchor.constraintEqualToAnchor(widthAnchor)
+            
+            NSLayoutConstraint.activateConstraints([leadingConstraint, trailingContraint, topConstraint, widthConstraint])
+            
+            headerView.layoutIfNeeded()
+            tableHeaderView = headerView
+        }
+        
+    }
+
 }

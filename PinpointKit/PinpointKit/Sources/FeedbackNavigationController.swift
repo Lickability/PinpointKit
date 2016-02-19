@@ -30,7 +30,7 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
             feedbackViewController.feedbackDelegate = newValue
         }
     }
-    
+        
     override init(navigationBarClass: AnyClass?, toolbarClass: AnyClass?) {
         feedbackViewController = FeedbackViewController()
         
@@ -69,6 +69,7 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
     // MARK: - FeedbackCollector
     
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewConroller: UIViewController) {
+        feedbackViewController.screenshot = screenshot
         viewConroller.presentViewController(self, animated: true, completion: nil)
     }
 }
