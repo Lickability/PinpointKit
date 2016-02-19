@@ -10,7 +10,7 @@ import Foundation
 
 public class Screenshotter {
 
-    public class func takeScreenshot(screen: UIScreen = UIScreen.mainScreen(), application: UIApplication = UIApplication.sharedApplication()) -> UIImage? {
+    public class func takeScreenshot(screen: UIScreen = UIScreen.mainScreen(), application: UIApplication = UIApplication.sharedApplication()) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(screen.bounds.size, true, 0)
         
         application.windows.forEach { window in

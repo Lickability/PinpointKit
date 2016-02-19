@@ -60,7 +60,7 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     
     // MARK: - FeedbackCollector
     
-    func collectFeedbackFromViewController(viewConroller: UIViewController) {
+    func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewConroller: UIViewController) {
         viewConroller.showDetailViewController(self, sender: viewConroller)
     }
     

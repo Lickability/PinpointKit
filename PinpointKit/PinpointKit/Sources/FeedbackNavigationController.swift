@@ -68,7 +68,7 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
 
     // MARK: - FeedbackCollector
     
-    public func collectFeedbackFromViewController(viewConroller: UIViewController) {
+    public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewConroller: UIViewController) {
         viewConroller.presentViewController(self, animated: true, completion: nil)
     }
 }

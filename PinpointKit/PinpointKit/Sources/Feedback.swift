@@ -13,6 +13,20 @@ import UIKit
  */
 public struct Feedback {
     
+    init(screenshot: ScreenshotType,
+        screenshotFilename: String = "Screenshot.png",
+        title: String? = "Bug Report",
+        body: String? = nil,
+        additionalInformation: [String: AnyObject]? = nil,
+        applicationInformation: ApplicationInformation? = nil) {
+            self.screenshot = screenshot
+            self.screenshotFilename = screenshotFilename
+            self.title = title
+            self.body = body
+            self.additionalInformation = additionalInformation
+            self.applicationInformation = applicationInformation
+    }
+    
     /// A screenshot of the screen the feedback relates to.
     let screenshot: ScreenshotType
     
@@ -74,5 +88,5 @@ public struct Feedback {
         /// The operating system version of the OS in which the application is running.
         let operatingSystemVersion: NSOperatingSystemVersion?
     }
-
+    
 }
