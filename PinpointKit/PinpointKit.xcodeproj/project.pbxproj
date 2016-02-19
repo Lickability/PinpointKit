@@ -20,6 +20,7 @@
 		2C5C41121C6560AD0033ED3D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2C5C41141C6568D60033ED3D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2CB63F1B1C77B1B6000CEFC6 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */; };
+		2CB63F1D1C77B50D000CEFC6 /* Screenshotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */; };
 		2CB6C1F21C652D6400022CEB /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F11C652D6400022CEB /* Feedback.swift */; };
 		2CB6C1F61C65361900022CEB /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */; };
 		2CE6D3FF1C6E5D8D00DD8189 /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6D3FE1C6E5D8D00DD8189 /* MIMEType.swift */; };
@@ -70,6 +71,7 @@
 		12580A461C65339F00ADC01C /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		12580A481C6533DC00ADC01C /* BasicLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicLogViewController.swift; sourceTree = "<group>"; };
 		2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
+		2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screenshotter.swift; sourceTree = "<group>"; };
 		2CB6C1F11C652D6400022CEB /* Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotDetector.swift; sourceTree = "<group>"; };
 		2CE6D3FE1C6E5D8D00DD8189 /* MIMEType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIMEType.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				12580A3C1C6530CC00ADC01C /* FeedbackCollector.swift */,
 				12580A461C65339F00ADC01C /* FeedbackViewController.swift */,
 				2CEAF65B1C779C8D009368B8 /* FeedbackNavigationController.swift */,
+				2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */,
 			);
 			name = Feedback;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				12580A351C652FA000ADC01C /* Configuration.swift in Sources */,
 				12580A3F1C6530FB00ADC01C /* LogViewer.swift in Sources */,
 				12580A3D1C6530CC00ADC01C /* FeedbackCollector.swift in Sources */,
+				2CB63F1D1C77B50D000CEFC6 /* Screenshotter.swift in Sources */,
 				2C5C41121C6560AD0033ED3D /* (null) in Sources */,
 				B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */,
 				B929019E1C556778007CCA5E /* BlurAnnotationView.swift in Sources */,
