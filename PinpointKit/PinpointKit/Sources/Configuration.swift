@@ -66,7 +66,7 @@ public struct Configuration {
      */
     public init(appearance: Appearance = Appearance(),
         logCollector: LogCollector? = SystemLogCollector(),
-        feedbackCollector: FeedbackCollector = FeedbackViewController(),
+        feedbackCollector: FeedbackCollector = FeedbackNavigationController(),
         editor: Editor = EditImageViewController(),
         sender: Sender = MailSender()) {
             
@@ -75,5 +75,7 @@ public struct Configuration {
             self.feedbackCollector = feedbackCollector
             self.editor = editor
             self.sender = sender
+            
+            self.feedbackCollector.configuration = self
     }
 }

@@ -8,11 +8,20 @@
 
 import UIKit
 
-class FeedbackNavigationController: UINavigationController, FeedbackCollector {
+public class FeedbackNavigationController: UINavigationController, FeedbackCollector {
     /// The root view controller used to collect feedback.
     let feedbackViewController: FeedbackViewController
     
-    var feedbackDelegate: FeedbackCollectorDelegate? {
+    public var configuration: Configuration? {
+        get {
+            return feedbackViewController.configuration
+        }
+        set {
+            feedbackViewController.configuration = newValue
+        }
+    }
+
+    public var feedbackDelegate: FeedbackCollectorDelegate? {
         get {
             return feedbackViewController.feedbackDelegate
         }
@@ -21,23 +30,21 @@ class FeedbackNavigationController: UINavigationController, FeedbackCollector {
         }
     }
     
-    override init(navigationBarClass: AnyClass?, toolbarClass: AnyClass?) {
+    override init(navigationBarClass: AnyClass? = nil, toolbarClass: AnyClass? = nil) {
         feedbackViewController = FeedbackViewController()
         
         super.init(navigationBarClass: navigationBarClass, toolbarClass: toolbarClass)
         
         self.viewControllers = [feedbackViewController]
     }
-    
-    convenience init () {
-        self.init(navigationBarClass: nil, toolbarClass: nil)
-    }
-    
+        
+    @available(*, unavailable)
     override init(rootViewController: UIViewController) {
         fatalError("init(rootViewController:) is not supported. Use init() or init(navigationBarClass:, toolbarClass:)")
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    @available(*, unavailable)
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

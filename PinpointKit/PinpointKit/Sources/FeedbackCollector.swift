@@ -8,6 +8,7 @@
 
 public protocol FeedbackCollector {
     var feedbackDelegate: FeedbackCollectorDelegate? { get set }
+    var configuration: Configuration? { get set }
 }
 
 public protocol FeedbackCollectorDelegate: class {
