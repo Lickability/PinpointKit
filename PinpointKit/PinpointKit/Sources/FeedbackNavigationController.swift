@@ -9,9 +9,17 @@
 import UIKit
 
 class FeedbackNavigationController: UINavigationController, FeedbackCollector {
-    
     /// The root view controller used to collect feedback.
     let feedbackViewController: FeedbackViewController
+    
+    var feedbackDelegate: FeedbackCollectorDelegate? {
+        get {
+            return feedbackViewController.feedbackDelegate
+        }
+        set {
+            feedbackViewController.feedbackDelegate = newValue
+        }
+    }
     
     override init(navigationBarClass: AnyClass?, toolbarClass: AnyClass?) {
         feedbackViewController = FeedbackViewController()

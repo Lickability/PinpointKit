@@ -10,4 +10,6 @@ import UIKit
 
 class FeedbackViewController: UIViewController, FeedbackCollector {
 
+    weak var feedbackDelegate: FeedbackCollectorDelegate?
+    
 }

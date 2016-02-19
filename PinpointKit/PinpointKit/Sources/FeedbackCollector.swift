@@ -7,5 +7,9 @@
 //
 
 public protocol FeedbackCollector {
-    
+    var feedbackDelegate: FeedbackCollectorDelegate? { get set }
+}
+
+public protocol FeedbackCollectorDelegate: class {
+    func feedbackCollector(feedbackCollector: FeedbackCollector, didCollectFeedback feedback: Feedback)
 }
