@@ -23,6 +23,7 @@
 		2CB6C1F61C65361900022CEB /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */; };
 		2CE6D3FF1C6E5D8D00DD8189 /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6D3FE1C6E5D8D00DD8189 /* MIMEType.swift */; };
 		2CE6D4011C6E5DA400DD8189 /* SuccessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6D4001C6E5DA400DD8189 /* SuccessType.swift */; };
+		2CEAF65C1C779C8D009368B8 /* FeedbackNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEAF65B1C779C8D009368B8 /* FeedbackNavigationController.swift */; };
 		B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B929017D1C555F86007CCA5E /* EditImageViewController.swift */; };
 		B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */; };
 		B92901841C55639B007CCA5E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901831C55639B007CCA5E /* Fonts.swift */; };
@@ -71,6 +72,7 @@
 		2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotDetector.swift; sourceTree = "<group>"; };
 		2CE6D3FE1C6E5D8D00DD8189 /* MIMEType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIMEType.swift; sourceTree = "<group>"; };
 		2CE6D4001C6E5DA400DD8189 /* SuccessType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessType.swift; sourceTree = "<group>"; };
+		2CEAF65B1C779C8D009368B8 /* FeedbackNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackNavigationController.swift; sourceTree = "<group>"; };
 		B929017D1C555F86007CCA5E /* EditImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditImageViewController.swift; sourceTree = "<group>"; };
 		B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+FailRecognizing.swift"; sourceTree = "<group>"; };
 		B92901831C55639B007CCA5E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				2CB6C1F11C652D6400022CEB /* Feedback.swift */,
 				12580A3C1C6530CC00ADC01C /* FeedbackCollector.swift */,
 				12580A461C65339F00ADC01C /* FeedbackViewController.swift */,
+				2CEAF65B1C779C8D009368B8 /* FeedbackNavigationController.swift */,
 			);
 			name = Feedback;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				2CB6C1F21C652D6400022CEB /* Feedback.swift in Sources */,
 				B92901861C55648A007CCA5E /* KeyboardAvoider.swift in Sources */,
 				B929019C1C556774007CCA5E /* ArrowAnnotationView.swift in Sources */,
+				2CEAF65C1C779C8D009368B8 /* FeedbackNavigationController.swift in Sources */,
 				12580A391C65307300ADC01C /* Sender.swift in Sources */,
 				B92901B91C557406007CCA5E /* StrokeLayoutManager.swift in Sources */,
 				B92901A11C55677C007CCA5E /* BoxAnnotationView.swift in Sources */,
