@@ -13,6 +13,19 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     var configuration: Configuration? {
         didSet {
             title = configuration?.interfaceText.feedbackCollectorTitle
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: configuration?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: "sendButtonTapped")
+            
+            let cancelBarButtonItem: UIBarButtonItem
+            let cancelAction: Selector = "cancelButtonTapped"
+            if let cancelButtonTitle = configuration?.interfaceText.feedbackCancelButtonTitle {
+                cancelBarButtonItem = UIBarButtonItem(title: cancelButtonTitle, style: .Plain, target: self, action: cancelAction)
+            }
+            else {
+                cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelAction)
+            }
+            navigationItem.leftBarButtonItem = cancelBarButtonItem
+            
         }
     }
     
@@ -24,7 +37,7 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     override init(style: UITableViewStyle) {
         super.init(style: .Grouped)
     }
-
+    
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

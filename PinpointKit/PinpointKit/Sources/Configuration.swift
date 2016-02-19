@@ -41,9 +41,24 @@ public struct Configuration {
     public struct InterfaceText {
         
         let feedbackCollectorTitle: String?
+        let feedbackSendButtonTitle: String
         
-        public init(feedbackCollectorTitle: String? = NSLocalizedString("Report a Bug", comment: "Title of a view that reports a bug")) {
-            self.feedbackCollectorTitle = feedbackCollectorTitle
+        // nil means use system items
+        let feedbackCancelButtonTitle: String?
+        
+        let feedbackEditHint: String?
+        let logCollectionPermissionTitle: String?
+        
+        public init(feedbackCollectorTitle: String? = NSLocalizedString("Report a Bug", comment: "Title of a view that reports a bug"),
+            feedbackSendButtonTitle: String = NSLocalizedString("Send", comment: "A button that sends feedback."),
+            feedbackCancelButtonTitle: String? = nil,
+            feedbackEditHint: String? = NSLocalizedString("Tap the screenshot to annotate.", comment: "A hint on how to edit the screenshot"),
+            logCollectionPermissionTitle: String? = NSLocalizedString("Include Console Log", comment: "Title of a button asking the user to include system logs")) {
+                self.feedbackCollectorTitle = feedbackCollectorTitle
+                self.feedbackSendButtonTitle = feedbackSendButtonTitle
+                self.feedbackCancelButtonTitle = feedbackCancelButtonTitle
+                self.feedbackEditHint = feedbackEditHint
+                self.logCollectionPermissionTitle = logCollectionPermissionTitle
         }
     }
     
