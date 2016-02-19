@@ -30,14 +30,25 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
         }
     }
     
-    override init(navigationBarClass: AnyClass? = nil, toolbarClass: AnyClass? = nil) {
+    override init(navigationBarClass: AnyClass?, toolbarClass: AnyClass?) {
         feedbackViewController = FeedbackViewController()
         
         super.init(navigationBarClass: navigationBarClass, toolbarClass: toolbarClass)
-        
-        self.viewControllers = [feedbackViewController]
+     
+        commonInitialization()
     }
+    
+    convenience init () {
+        self.init(navigationBarClass: nil, toolbarClass: nil)
+    }
+    
+    @available(*, unavailable)
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        feedbackViewController = FeedbackViewController()
         
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
     @available(*, unavailable)
     override init(rootViewController: UIViewController) {
         fatalError("init(rootViewController:) is not supported. Use init() or init(navigationBarClass:, toolbarClass:)")
@@ -48,4 +59,10 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - FeedbackNavigationController
+    
+    func commonInitialization() {
+        self.viewControllers = [feedbackViewController]
+    }
+
 }
