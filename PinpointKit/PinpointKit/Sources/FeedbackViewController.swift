@@ -44,6 +44,20 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - FeedbackViewController
+    
+    func sendButtonTapped() {
+        
+        //let feedback = Feedback()
+        //feedbackDelegate?.feedbackCollector(self, didCollectFeedback: )
+    }
+    
+    func cancelButtonTapped() {
+        // TODO: http://stackoverflow.com/questions/25742944/whats-the-programmatic-opposite-of-showviewcontrollersender
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     // MARK: - FeedbackCollector
     
     func collectFeedbackFromViewController(viewConroller: UIViewController) {
