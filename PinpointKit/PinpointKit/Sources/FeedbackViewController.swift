@@ -54,11 +54,15 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var dataSource: FeedbackTableViewDataSource = FeedbackTableViewDataSource()
     
     // MARK: - UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = dataSource
+        
         updateTableHeaderView()
     }
     
