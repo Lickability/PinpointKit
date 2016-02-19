@@ -37,6 +37,7 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
             
             view.tintColor = configuration?.appearance.tintColor
             updateTableHeaderView()
+            updateDataSource()
         }
     }
     
@@ -54,19 +55,30 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var dataSource: FeedbackTableViewDataSource = FeedbackTableViewDataSource()
+    var dataSource: FeedbackTableViewDataSource? {
+        didSet {
+            if isViewLoaded() {
+                tableView.dataSource = dataSource
+            }
+        }
+    }
     
     // MARK: - UIViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.dataSource = dataSource
-        
+
+        updateDataSource()
         updateTableHeaderView()
     }
     
     // MARK: - FeedbackViewController
+    
+    func updateDataSource() {
+        guard let configuration = configuration else { assertionFailure(); return }
+        
+        dataSource = FeedbackTableViewDataSource(configuration: configuration, userEnabledLogCollection: true)
+    }
     
     func updateTableHeaderView() {
         guard let screenshot = screenshot else { return }

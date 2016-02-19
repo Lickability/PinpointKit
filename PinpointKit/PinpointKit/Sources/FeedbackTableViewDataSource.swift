@@ -10,7 +10,16 @@ import UIKit
 
 class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     
-    var sections: [Section] = [Section.Feedback(rows: [Row.CollectLogs(enabled: true, title: "Test")])]
+    let sections: [Section]
+    
+    init(configuration: Configuration, userEnabledLogCollection: Bool) {
+        if configuration.logCollector != nil {
+            sections = [Section.Feedback(rows: [Row.CollectLogs(enabled: userEnabledLogCollection, title: configuration.interfaceText.logCollectionPermissionTitle, canView: configuration.logViewer != nil)])]
+        }
+        else {
+            sections = []
+        }
+    }
     
     enum Section {
         case Feedback(rows: [Row])
@@ -23,7 +32,7 @@ class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
         }
     }
     enum Row {
-        case CollectLogs(enabled: Bool, title: String)
+        case CollectLogs(enabled: Bool, title: String, canView: Bool)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,9 +52,9 @@ class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
             let row = rows[indexPath.row]
             
             switch row {
-            case let .CollectLogs(enabled, title):
+            case let .CollectLogs(enabled, title, canView):
                 cell.textLabel?.text = title
-                cell.accessoryType = .DetailButton
+                cell.accessoryType = canView ? .DetailButton : .None
                 //TODO: cell.imageview.image = checkmark
             }
         }

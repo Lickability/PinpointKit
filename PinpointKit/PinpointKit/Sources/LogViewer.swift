@@ -6,6 +6,6 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
-protocol LogViewer {
+public protocol LogViewer {
     
 }

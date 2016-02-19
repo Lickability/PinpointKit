@@ -8,6 +8,6 @@
 
 import UIKit
 
-class BasicLogViewController: UIViewController {
+public class BasicLogViewController: UIViewController, LogViewer {
     
 }

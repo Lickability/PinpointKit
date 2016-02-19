@@ -50,13 +50,13 @@ public struct Configuration {
         let feedbackCancelButtonTitle: String?
         
         let feedbackEditHint: String?
-        let logCollectionPermissionTitle: String?
+        let logCollectionPermissionTitle: String
         
         public init(feedbackCollectorTitle: String? = NSLocalizedString("Report a Bug", comment: "Title of a view that reports a bug"),
             feedbackSendButtonTitle: String = NSLocalizedString("Send", comment: "A button that sends feedback."),
             feedbackCancelButtonTitle: String? = nil,
             feedbackEditHint: String? = NSLocalizedString("Tap the screenshot to annotate.", comment: "A hint on how to edit the screenshot"),
-            logCollectionPermissionTitle: String? = NSLocalizedString("Include Console Log", comment: "Title of a button asking the user to include system logs")) {
+            logCollectionPermissionTitle: String = NSLocalizedString("Include Console Log", comment: "Title of a button asking the user to include system logs")) {
                 self.feedbackCollectorTitle = feedbackCollectorTitle
                 self.feedbackSendButtonTitle = feedbackSendButtonTitle
                 self.feedbackCancelButtonTitle = feedbackCancelButtonTitle
@@ -72,6 +72,8 @@ public struct Configuration {
     
     /// An optional type that collects logs to be displayed and sent with feedback.
     let logCollector: LogCollector?
+    
+    let logViewer: LogViewer?
     
     /// A feedback collector that obtains the feedback to send.
     let feedbackCollector: FeedbackCollector
@@ -96,6 +98,7 @@ public struct Configuration {
     public init(appearance: Appearance = Appearance(),
         interfaceText: InterfaceText = InterfaceText(),
         logCollector: LogCollector? = SystemLogCollector(),
+        logViewer: LogViewer? = BasicLogViewController(),
         feedbackCollector: FeedbackCollector = FeedbackNavigationController(),
         editor: Editor = EditImageViewController(),
         sender: Sender = MailSender()) {
@@ -103,6 +106,7 @@ public struct Configuration {
             self.appearance = appearance
             self.interfaceText = interfaceText
             self.logCollector = logCollector
+            self.logViewer = logViewer
             self.feedbackCollector = feedbackCollector
             self.editor = editor
             self.sender = sender
