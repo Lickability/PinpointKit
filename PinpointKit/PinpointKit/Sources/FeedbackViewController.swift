@@ -26,6 +26,7 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
             }
             navigationItem.leftBarButtonItem = cancelBarButtonItem
             
+            view.tintColor = configuration?.appearance.tintColor
         }
     }
     

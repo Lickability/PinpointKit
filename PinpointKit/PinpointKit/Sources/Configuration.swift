@@ -18,6 +18,8 @@ public struct Configuration {
      */
     public struct Appearance {
         
+        let tintColor: UIColor?
+        
         // The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
         let annotationFillColor: UIColor?
         
@@ -32,7 +34,8 @@ public struct Configuration {
          
          - returns: A fully initialized `Appearance` object.
          */
-        public init(annotationFillColor: UIColor? = nil, annotationStrokeColor: UIColor = .whiteColor()) {
+        public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(), annotationFillColor: UIColor? = nil, annotationStrokeColor: UIColor = .whiteColor()) {
+            self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor
         }

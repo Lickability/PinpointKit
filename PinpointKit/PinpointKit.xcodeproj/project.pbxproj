@@ -19,6 +19,7 @@
 		12580A491C6533DC00ADC01C /* BasicLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A481C6533DC00ADC01C /* BasicLogViewController.swift */; };
 		2C5C41121C6560AD0033ED3D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2C5C41141C6568D60033ED3D /* (null) in Sources */ = {isa = PBXBuildFile; };
+		2CB63F1B1C77B1B6000CEFC6 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */; };
 		2CB6C1F21C652D6400022CEB /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F11C652D6400022CEB /* Feedback.swift */; };
 		2CB6C1F61C65361900022CEB /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */; };
 		2CE6D3FF1C6E5D8D00DD8189 /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6D3FE1C6E5D8D00DD8189 /* MIMEType.swift */; };
@@ -68,6 +69,7 @@
 		12580A421C65332C00ADC01C /* MailSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailSender.swift; sourceTree = "<group>"; };
 		12580A461C65339F00ADC01C /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		12580A481C6533DC00ADC01C /* BasicLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicLogViewController.swift; sourceTree = "<group>"; };
+		2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		2CB6C1F11C652D6400022CEB /* Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotDetector.swift; sourceTree = "<group>"; };
 		2CE6D3FE1C6E5D8D00DD8189 /* MIMEType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIMEType.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				B92901B51C557406007CCA5E /* Screen.swift */,
 				B92901B61C557406007CCA5E /* StrokeLayoutManager.swift */,
 				2CE6D4001C6E5DA400DD8189 /* SuccessType.swift */,
+				2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				B92901A11C55677C007CCA5E /* BoxAnnotationView.swift in Sources */,
 				12580A3B1C65309000ADC01C /* Editor.swift in Sources */,
 				12580A371C65304800ADC01C /* LogCollector.swift in Sources */,
+				2CB63F1B1C77B1B6000CEFC6 /* UIColor+Palette.swift in Sources */,
 				B92901A91C556831007CCA5E /* AnnotationsView.swift in Sources */,
 				12580A491C6533DC00ADC01C /* BasicLogViewController.swift in Sources */,
 				B929019B1C556774007CCA5E /* AnnotationView.swift in Sources */,

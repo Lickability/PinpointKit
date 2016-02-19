@@ -18,6 +18,7 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
         }
         set {
             feedbackViewController.configuration = newValue
+            view.tintColor = configuration?.appearance.tintColor
         }
     }
 
