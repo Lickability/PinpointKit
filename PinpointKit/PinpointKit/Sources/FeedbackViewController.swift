@@ -41,6 +41,14 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
         }
     }
     
+    private var dataSource: FeedbackTableViewDataSource? {
+        didSet {
+            if isViewLoaded() {
+                tableView.dataSource = dataSource
+            }
+        }
+    }
+    
     required init() {
         super.init(style: .Grouped)
     }
@@ -53,14 +61,6 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    var dataSource: FeedbackTableViewDataSource? {
-        didSet {
-            if isViewLoaded() {
-                tableView.dataSource = dataSource
-            }
-        }
     }
     
     // MARK: - UIViewController
