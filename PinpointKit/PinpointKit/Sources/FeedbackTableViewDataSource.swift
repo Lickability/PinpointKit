@@ -10,15 +10,10 @@ import UIKit
 
 class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     
-    let sections: [Section]
+    private let sections: [Section]
     
     init(configuration: Configuration, userEnabledLogCollection: Bool) {
-        if configuration.logCollector != nil {
-            sections = [Section.Feedback(rows: [Row.CollectLogs(enabled: userEnabledLogCollection, title: configuration.interfaceText.logCollectionPermissionTitle, canView: configuration.logViewer != nil)])]
-        }
-        else {
-            sections = []
-        }
+        sections = self.dynamicType.sectionsFromConfiguration(configuration, userEnabledLogCollection: userEnabledLogCollection)
     }
     
     enum Section {
@@ -31,9 +26,23 @@ class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
             }
         }
     }
+    
     enum Row {
         case CollectLogs(enabled: Bool, title: String, canView: Bool)
     }
+    
+    // MARK: - FeedbackTableViewDataSource
+    
+    private static func sectionsFromConfiguration(configuration: Configuration, userEnabledLogCollection: Bool) -> [Section] {
+        guard configuration.logCollector != nil else { return [] }
+        
+        let collectLogsRow = Row.CollectLogs(enabled: userEnabledLogCollection, title: configuration.interfaceText.logCollectionPermissionTitle, canView: configuration.logViewer != nil)
+        let feedbackSection = Section.Feedback(rows: [collectLogsRow])
+        
+        return [feedbackSection]
+    }
+    
+    // MARK: - UITableViewDataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].numberOfRows
