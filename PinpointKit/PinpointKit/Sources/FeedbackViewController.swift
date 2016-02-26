@@ -91,7 +91,7 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     }
     
     func sendButtonTapped() {
-        guard let screenshot = screenshot else { return }
+        guard let screenshot = screenshot else { assertionFailure(); return }
         
         // TODO: Handle annotated screenshot.
         let feedback = Feedback(screenshot: Feedback.ScreenshotType.Original(image: screenshot))
