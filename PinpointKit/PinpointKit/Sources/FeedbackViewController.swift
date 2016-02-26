@@ -91,9 +91,11 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     }
     
     func sendButtonTapped() {
+        guard let screenshot = screenshot else { return }
         
-        //let feedback = Feedback()
-        //feedbackDelegate?.feedbackCollector(self, didCollectFeedback: )
+        // TODO: Handle annotated screenshot.
+        let feedback = Feedback(screenshot: Feedback.ScreenshotType.Original(image: screenshot))
+        feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedback)
     }
     
     func cancelButtonTapped() {
