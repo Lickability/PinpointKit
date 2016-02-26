@@ -10,12 +10,17 @@ import UIKit
 
 class ScreenshotHeaderView: UIView {
     
+    typealias TapHandler = (button: UIButton) -> Void
+    
     struct ViewData {
         let screenshot: UIImage
         let hintText: String?
     }
     
-    typealias TapHandler = (button: UIButton) -> Void
+    private enum DesignConstants: CGFloat {
+        case DefaultMargin = 15
+        case MinimumScreenshotPadding = 50
+    }
     
     var viewData: ViewData? {
         didSet {
@@ -54,18 +59,19 @@ class ScreenshotHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUp() {
-        stackView.axis = .Vertical
-        stackView.alignment = .Center
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
         
+    }
+    
+    private func setUp() {
+        setUpStackView()
         addSubview(stackView)
         
-        stackView.topAnchor.constraintEqualToAnchor(layoutMarginsGuide.topAnchor).active = true
-        stackView.bottomAnchor.constraintEqualToAnchor(layoutMarginsGuide.bottomAnchor).active = true
-        stackView.leadingAnchor.constraintEqualToAnchor(layoutMarginsGuide.leadingAnchor).active = true
-        stackView.trailingAnchor.constraintEqualToAnchor(layoutMarginsGuide.trailingAnchor).active = true
+        stackView.topAnchor.constraintEqualToAnchor(topAnchor).active = true
+        stackView.bottomAnchor.constraintEqualToAnchor(bottomAnchor).active = true
+        stackView.leadingAnchor.constraintEqualToAnchor(leadingAnchor).active = true
+        stackView.trailingAnchor.constraintEqualToAnchor(trailingAnchor).active = true
         
         stackView.addArrangedSubview(screenshotButton)
         stackView.addArrangedSubview(hintLabel)
@@ -73,9 +79,19 @@ class ScreenshotHeaderView: UIView {
         setUpScreenshotButton()
     }
     
+    private func setUpStackView() {
+        stackView.axis = .Vertical
+        stackView.alignment = .Center
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackView.layoutMargins = UIEdgeInsets(top: DesignConstants.DefaultMargin.rawValue, left: DesignConstants.DefaultMargin.rawValue, bottom: DesignConstants.DefaultMargin.rawValue, right: DesignConstants.DefaultMargin.rawValue)
+        stackView.layoutMarginsRelativeArrangement = true
+    }
+    
     private func setUpScreenshotButton() {
-        screenshotButton.leadingAnchor.constraintGreaterThanOrEqualToAnchor(stackView.leadingAnchor, constant: 50).active = true
-        screenshotButton.trailingAnchor.constraintLessThanOrEqualToAnchor(stackView.trailingAnchor, constant: -50).active = true
+        screenshotButton.leadingAnchor.constraintGreaterThanOrEqualToAnchor(stackView.leadingAnchor, constant: DesignConstants.MinimumScreenshotPadding.rawValue).active = true
+        screenshotButton.trailingAnchor.constraintLessThanOrEqualToAnchor(stackView.trailingAnchor, constant: -DesignConstants.MinimumScreenshotPadding.rawValue).active = true
         
         screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraintEqualToAnchor(screenshotButton.widthAnchor, multiplier: 1.0)
         
