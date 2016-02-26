@@ -59,7 +59,7 @@ class ScreenshotHeaderView: UIView {
         stackView.alignment = .Center
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
-                
+        
         addSubview(stackView)
         
         stackView.topAnchor.constraintEqualToAnchor(layoutMarginsGuide.topAnchor).active = true
@@ -81,10 +81,6 @@ class ScreenshotHeaderView: UIView {
         
         screenshotButton.addTarget(self, action: "screenshotButtonTapped:", forControlEvents: .TouchUpInside)
     }
-    
-//    private func screenshotButtonHeightConstraint(multiplier: CGFloat) {
-//        return screenshotButton.heightAnchor.constraintEqualToAnchor(screenshotButton.widthAnchor, multiplier: multiplier)
-//    }
     
     @objc private func screenshotButtonTapped(sender: UIButton) {
         screenshotButtonTapHandler?(button: sender)
