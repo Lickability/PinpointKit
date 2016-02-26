@@ -72,6 +72,15 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
         updateTableHeaderView()
     }
     
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        coordinator.animateAlongsideTransition({ context in
+            // Layout and adjust the height of the table header view by setting the property once more to alert the table view of a layout change.
+            self.tableView.tableHeaderView?.layoutIfNeeded()
+            self.tableView.tableHeaderView = self.tableView.tableHeaderView
+        }, completion: nil)
+    }
+    
     // MARK: - FeedbackViewController
     
     func updateDataSource() {
