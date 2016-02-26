@@ -19,7 +19,13 @@ class ScreenshotHeaderView: UIView {
     
     var viewData: ViewData? {
         didSet {
+            
             screenshotButton.setImage(viewData?.screenshot, forState: .Normal)
+            
+            if let screenshot = viewData?.screenshot {
+                screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraintEqualToAnchor(screenshotButton.widthAnchor, multiplier: 1.0 / screenshot.aspectRatio)
+            }
+            
             hintLabel.text = viewData?.hintText
         }
     }
@@ -30,6 +36,13 @@ class ScreenshotHeaderView: UIView {
     
     private let screenshotButton = UIButton()
     private let hintLabel = UILabel()
+    
+    private var screenshotButtonHeightConstraint: NSLayoutConstraint? {
+        didSet {
+            oldValue?.active = false
+            screenshotButtonHeightConstraint?.active = true
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,7 +59,7 @@ class ScreenshotHeaderView: UIView {
         stackView.alignment = .Center
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
+                
         addSubview(stackView)
         
         stackView.topAnchor.constraintEqualToAnchor(layoutMarginsGuide.topAnchor).active = true
@@ -61,13 +74,26 @@ class ScreenshotHeaderView: UIView {
     }
     
     private func setUpScreenshotButton() {
-        screenshotButton.leadingAnchor.constraintEqualToAnchor(stackView.leadingAnchor, constant: 50).active = true
-        screenshotButton.trailingAnchor.constraintEqualToAnchor(stackView.trailingAnchor, constant: -50).active = true
-
+        screenshotButton.leadingAnchor.constraintGreaterThanOrEqualToAnchor(stackView.leadingAnchor, constant: 50).active = true
+        screenshotButton.trailingAnchor.constraintLessThanOrEqualToAnchor(stackView.trailingAnchor, constant: -50).active = true
+        
+        screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraintEqualToAnchor(screenshotButton.widthAnchor, multiplier: 1.0)
+        
         screenshotButton.addTarget(self, action: "screenshotButtonTapped:", forControlEvents: .TouchUpInside)
     }
     
+//    private func screenshotButtonHeightConstraint(multiplier: CGFloat) {
+//        return screenshotButton.heightAnchor.constraintEqualToAnchor(screenshotButton.widthAnchor, multiplier: multiplier)
+//    }
+    
     @objc private func screenshotButtonTapped(sender: UIButton) {
         screenshotButtonTapHandler?(button: sender)
+    }
+}
+
+private extension UIImage {
+    
+    var aspectRatio: CGFloat {
+        return size.width / size.height
     }
 }
