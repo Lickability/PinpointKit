@@ -22,10 +22,10 @@ class ScreenshotHeaderView: UIView {
         }
     }
     
-    let stackView = UIStackView()
+    private let stackView = UIStackView()
     
-    let screenshotButton = UIButton()
-    let hintLabel = UILabel()
+    private let screenshotButton = UIButton()
+    private let hintLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,13 +37,13 @@ class ScreenshotHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUp() {
+    private func setUp() {
         stackView.axis = .Vertical
         stackView.alignment = .Center
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(stackView)
+        addSubview(stackView)
         
         stackView.topAnchor.constraintEqualToAnchor(layoutMarginsGuide.topAnchor).active = true
         stackView.bottomAnchor.constraintEqualToAnchor(layoutMarginsGuide.bottomAnchor).active = true

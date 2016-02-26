@@ -105,7 +105,7 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     // MARK: - FeedbackCollector
     
     func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
-        screenshot = screenshot
+        self.screenshot = screenshot
         viewController.showDetailViewController(self, sender: viewController)
     }
     
