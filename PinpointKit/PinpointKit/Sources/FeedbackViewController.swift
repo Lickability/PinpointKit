@@ -99,13 +99,13 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     func cancelButtonTapped() {
         // TODO: http://stackoverflow.com/questions/25742944/whats-the-programmatic-opposite-of-showviewcontrollersender
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - FeedbackCollector
     
     func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewConroller: UIViewController) {
-        self.screenshot = screenshot
+        screenshot = screenshot
         viewConroller.showDetailViewController(self, sender: viewConroller)
     }
     
