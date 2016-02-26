@@ -15,12 +15,16 @@ class ScreenshotHeaderView: UIView {
         let hintText: String?
     }
     
+    typealias TapHandler = (button: UIButton) -> Void
+    
     var viewData: ViewData? {
         didSet {
             screenshotButton.setImage(viewData?.screenshot, forState: .Normal)
             hintLabel.text = viewData?.hintText
         }
     }
+    
+    var screenshotButtonTapHandler: TapHandler?
     
     private let stackView = UIStackView()
     
@@ -53,7 +57,17 @@ class ScreenshotHeaderView: UIView {
         stackView.addArrangedSubview(screenshotButton)
         stackView.addArrangedSubview(hintLabel)
         
+        setUpScreenshotButton()
+    }
+    
+    private func setUpScreenshotButton() {
         screenshotButton.leadingAnchor.constraintEqualToAnchor(stackView.leadingAnchor, constant: 50).active = true
         screenshotButton.trailingAnchor.constraintEqualToAnchor(stackView.trailingAnchor, constant: -50).active = true
+
+        screenshotButton.addTarget(self, action: "screenshotButtonTapped:", forControlEvents: .TouchUpInside)
+    }
+    
+    @objc private func screenshotButtonTapped(sender: UIButton) {
+        screenshotButtonTapHandler?(button: sender)
     }
 }
