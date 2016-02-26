@@ -10,7 +10,7 @@ public protocol FeedbackCollector {
     var feedbackDelegate: FeedbackCollectorDelegate? { get set }
     var configuration: Configuration? { get set }
     
-    func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewConroller: UIViewController)
+    func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController)
 }
 
 public protocol FeedbackCollectorDelegate: class {
