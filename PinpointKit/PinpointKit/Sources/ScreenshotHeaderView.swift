@@ -40,7 +40,13 @@ class ScreenshotHeaderView: UIView {
     private let stackView = UIStackView()
     
     private let screenshotButton = UIButton()
-    private let hintLabel = UILabel()
+    
+    private let hintLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.lightGrayColor()
+        label.font = UIFont.systemFontOfSize(13)
+        return label
+    }()
     
     private var screenshotButtonHeightConstraint: NSLayoutConstraint? {
         didSet {
