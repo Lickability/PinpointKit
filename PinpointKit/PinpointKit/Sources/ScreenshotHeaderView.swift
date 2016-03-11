@@ -24,7 +24,6 @@ class ScreenshotHeaderView: UIView {
     
     var viewData: ViewData? {
         didSet {
-            
             screenshotButton.setImage(viewData?.screenshot, forState: .Normal)
             
             if let screenshot = viewData?.screenshot {
@@ -37,7 +36,19 @@ class ScreenshotHeaderView: UIView {
     
     var screenshotButtonTapHandler: TapHandler?
     
-    private let stackView = UIStackView()
+    private let stackView: UIStackView = {
+        let stackView = UIStackView()
+        
+        stackView.axis = .Vertical
+        stackView.alignment = .Center
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        stackView.layoutMargins = UIEdgeInsets(top: DesignConstants.DefaultMargin.rawValue, left: DesignConstants.DefaultMargin.rawValue, bottom: DesignConstants.DefaultMargin.rawValue, right: DesignConstants.DefaultMargin.rawValue)
+        stackView.layoutMarginsRelativeArrangement = true
+        
+        return stackView
+    }()
     
     private let screenshotButton = UIButton()
     
@@ -66,7 +77,6 @@ class ScreenshotHeaderView: UIView {
     }
     
     private func setUp() {
-        setUpStackView()
         addSubview(stackView)
         
         stackView.topAnchor.constraintEqualToAnchor(topAnchor).active = true
@@ -78,16 +88,6 @@ class ScreenshotHeaderView: UIView {
         stackView.addArrangedSubview(hintLabel)
         
         setUpScreenshotButton()
-    }
-    
-    private func setUpStackView() {
-        stackView.axis = .Vertical
-        stackView.alignment = .Center
-        stackView.spacing = 10
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        stackView.layoutMargins = UIEdgeInsets(top: DesignConstants.DefaultMargin.rawValue, left: DesignConstants.DefaultMargin.rawValue, bottom: DesignConstants.DefaultMargin.rawValue, right: DesignConstants.DefaultMargin.rawValue)
-        stackView.layoutMarginsRelativeArrangement = true
     }
     
     private func setUpScreenshotButton() {
