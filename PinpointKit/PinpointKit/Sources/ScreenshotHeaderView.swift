@@ -11,6 +11,10 @@ import UIKit
 /// A view that displays a screenshot and hint text about how to edit it.
 class ScreenshotHeaderView: UIView {
     
+    deinit {
+        print("")
+    }
+    
     /// A type of closure that is invoked when a button is tapped.
     typealias TapHandler = (button: UIButton) -> Void
     
@@ -69,7 +73,7 @@ class ScreenshotHeaderView: UIView {
     private let hintLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.lightGrayColor()
-        label.font = UIFont.systemFontOfSize(13)
+        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
         return label
     }()
     
