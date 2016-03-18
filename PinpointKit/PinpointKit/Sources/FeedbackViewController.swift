@@ -112,7 +112,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         tableView.enableTableHeaderViewDynamicHeight()
     }
     
-    private func sendButtonTapped() {
+    @objc private func sendButtonTapped() {
         guard let screenshot = screenshot else { assertionFailure(); return }
         
         // TODO: Handle annotated screenshot.
@@ -122,7 +122,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedback)
     }
     
-    private func cancelButtonTapped() {
+    @objc private func cancelButtonTapped() {
         // TODO: http://stackoverflow.com/questions/25742944/whats-the-programmatic-opposite-of-showviewcontrollersender
         
         dismissViewControllerAnimated(true, completion: nil)
