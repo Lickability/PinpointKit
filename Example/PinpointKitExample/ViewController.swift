@@ -12,6 +12,12 @@ import PinpointKit
 class ViewController: UIViewController {
 
     let pinpointKit = PinpointKit()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.greenColor()
+    }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
