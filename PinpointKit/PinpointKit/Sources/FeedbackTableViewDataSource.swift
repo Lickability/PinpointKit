@@ -53,7 +53,7 @@ class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = CheckmarkCell()
         let section = sections[indexPath.section]
         
         switch section {
@@ -64,7 +64,7 @@ class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
             case let .CollectLogs(enabled, title, canView):
                 cell.textLabel?.text = title
                 cell.accessoryType = canView ? .DetailButton : .None
-                //TODO: cell.imageview.image = checkmark
+                cell.isChecked = enabled
             }
         }
         

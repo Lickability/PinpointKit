@@ -13,9 +13,9 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     
     var screenshot: UIImage? {
         didSet {
-            if isViewLoaded() {
-                updateTableHeaderView()
-            }
+            guard isViewLoaded() else { return }
+            
+            updateTableHeaderView()
         }
     }
     
@@ -48,6 +48,8 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
             }
         }
     }
+    
+    private var userEnabledLogCollection = true
     
     required init() {
         super.init(style: .Grouped)
@@ -86,7 +88,7 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     func updateDataSource() {
         guard let configuration = configuration else { assertionFailure(); return }
         
-        dataSource = FeedbackTableViewDataSource(configuration: configuration, userEnabledLogCollection: true)
+        dataSource = FeedbackTableViewDataSource(configuration: configuration, userEnabledLogCollection: userEnabledLogCollection)
     }
     
     func updateTableHeaderView() {
@@ -119,7 +121,6 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
         self.screenshot = screenshot
         viewController.showDetailViewController(self, sender: viewController)
     }
-    
 }
 
 // MARK: - UITableViewDelegate
@@ -153,7 +154,5 @@ extension UITableView {
             headerView.layoutIfNeeded()
             tableHeaderView = headerView
         }
-        
     }
-
 }
