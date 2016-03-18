@@ -19,7 +19,7 @@ public class Screenshotter {
      
      - returns: A screenshot as a `UIImage`.
      */
-    public class func takeScreenshot(screen: UIScreen = UIScreen.mainScreen(), application: UIApplication = UIApplication.sharedApplication()) -> UIImage {
+    public static func takeScreenshot(screen: UIScreen = UIScreen.mainScreen(), application: UIApplication = UIApplication.sharedApplication()) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(screen.bounds.size, true, 0)
         
         application.windows.forEach { window in
