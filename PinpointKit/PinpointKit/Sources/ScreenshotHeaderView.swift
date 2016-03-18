@@ -63,7 +63,7 @@ class ScreenshotHeaderView: UIView {
     }()
     
     private lazy var screenshotButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .System)
         button.layer.borderColor = self.tintColor.CGColor
         button.layer.borderWidth = 1
         

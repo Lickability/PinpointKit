@@ -31,6 +31,6 @@ public class Screenshotter {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return image
+        return image.imageWithRenderingMode(.AlwaysOriginal)
     }
 }
