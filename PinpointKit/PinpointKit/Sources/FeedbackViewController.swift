@@ -49,7 +49,11 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
         }
     }
     
-    private var userEnabledLogCollection = true
+    private var userEnabledLogCollection = true {
+        didSet {
+            updateDataSource()
+        }
+    }
     
     required init() {
         super.init(style: .Grouped)
@@ -132,6 +136,11 @@ extension FeedbackViewController {
         }
         
         configuration?.logViewer?.viewLog(logCollector, fromViewController: self)
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        userEnabledLogCollection = !userEnabledLogCollection
+        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
 }
 
