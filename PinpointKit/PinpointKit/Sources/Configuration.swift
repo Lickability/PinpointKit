@@ -18,6 +18,7 @@ public struct Configuration {
      */
     public struct Appearance {
         
+        /// The tint color of PinpointKit views used to style interactive and selected elements.
         let tintColor: UIColor?
         
         // The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
@@ -41,17 +42,27 @@ public struct Configuration {
         }
     }
     
+    /**
+     *  A struct containing user-facing strings for display in the interface.
+     */
     public struct InterfaceText {
         
+        /// The title of the feedback collection screen.
         let feedbackCollectorTitle: String?
+        
+        /// The title of a button that sends feedback.
         let feedbackSendButtonTitle: String
         
-        // nil means use system items
+        /// The title of a button that cancels feedback collection. Setting this property to `nil` uses a default value.
         let feedbackCancelButtonTitle: String?
         
+        /// A hint to the user on how to edit the screenshot from the feedback screen.
         let feedbackEditHint: String?
+        
+        /// The title of a cell that allows the user to toggle log collection.
         let logCollectionPermissionTitle: String
         
+        /// Initializes an `InterfaceText` with custom values, using a default if a particular property is unspecified.
         public init(feedbackCollectorTitle: String? = NSLocalizedString("Report a Bug", comment: "Title of a view that reports a bug"),
             feedbackSendButtonTitle: String = NSLocalizedString("Send", comment: "A button that sends feedback."),
             feedbackCancelButtonTitle: String? = nil,
