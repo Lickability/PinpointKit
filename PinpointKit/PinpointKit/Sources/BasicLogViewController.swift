@@ -17,7 +17,7 @@ public class BasicLogViewController: UIViewController, LogViewer {
     // MARK: - LogViewer
     
     public func viewLog(collector: LogCollector, fromViewController viewController: UIViewController) {
-        viewController.showViewController(self, sender: viewController)
+        viewController.showDetailViewController(self, sender: viewController)
     }
 }
 
