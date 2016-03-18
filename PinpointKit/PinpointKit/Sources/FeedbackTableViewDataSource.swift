@@ -9,7 +9,7 @@
 import UIKit
 
 /// An object conforming to `UITableViewDataSource` that acts as the data souce for a `FeedbackViewController`.
-class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
+final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     
     private let sections: [Section]
     
