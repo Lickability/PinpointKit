@@ -13,38 +13,6 @@ import UIKit
  */
 public struct Feedback {
     
-    init(screenshot: ScreenshotType,
-        screenshotFilename: String = "Screenshot.png",
-        title: String? = "Bug Report",
-        body: String? = nil,
-        additionalInformation: [String: AnyObject]? = nil,
-        applicationInformation: ApplicationInformation? = nil) {
-            self.screenshot = screenshot
-            self.screenshotFilename = screenshotFilename
-            self.title = title
-            self.body = body
-            self.additionalInformation = additionalInformation
-            self.applicationInformation = applicationInformation
-    }
-    
-    /// A screenshot of the screen the feedback relates to.
-    let screenshot: ScreenshotType
-    
-    /// A filename without an extension for the screenshot or annotated screenshot.
-    let screenshotFilename: String
-    
-    /// A short, optional title of the feedback submission. Suitable for an email subject.
-    let title: String?
-    
-    /// An optional plain-text body of the feedback submission. Suitable for an email body.
-    let body: String?
-    
-    /// A dictionary of additional information provided by the application developer.
-    let additionalInformation: [String: AnyObject]?
-    
-    /// A struct containing information about the application and its environment.
-    let applicationInformation: ApplicationInformation?
-    
     /// An enum with assocated values that represents the screenshot.
     enum ScreenshotType {
         /// The original, un-annotated screenshot.
@@ -89,4 +57,36 @@ public struct Feedback {
         let operatingSystemVersion: NSOperatingSystemVersion?
     }
     
+    /// A screenshot of the screen the feedback relates to.
+    let screenshot: ScreenshotType
+    
+    /// A filename without an extension for the screenshot or annotated screenshot.
+    let screenshotFilename: String
+    
+    /// A short, optional title of the feedback submission. Suitable for an email subject.
+    let title: String?
+    
+    /// An optional plain-text body of the feedback submission. Suitable for an email body.
+    let body: String?
+    
+    /// A dictionary of additional information provided by the application developer.
+    let additionalInformation: [String: AnyObject]?
+    
+    /// A struct containing information about the application and its environment.
+    let applicationInformation: ApplicationInformation?
+    
+    /// Initializes a `Feedback` with optional default values.
+    init(screenshot: ScreenshotType,
+        screenshotFilename: String = "Screenshot.png",
+        title: String? = "Bug Report",
+        body: String? = nil,
+        additionalInformation: [String: AnyObject]? = nil,
+        applicationInformation: ApplicationInformation? = nil) {
+            self.screenshot = screenshot
+            self.screenshotFilename = screenshotFilename
+            self.title = title
+            self.body = body
+            self.additionalInformation = additionalInformation
+            self.applicationInformation = applicationInformation
+    }
 }
