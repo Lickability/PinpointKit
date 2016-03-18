@@ -8,10 +8,12 @@
 
 import UIKit
 
+/// A `UINavigationController` subclass that has a `FeedbackViewController` as its root view controller. Use this class as a `FeedbackCollector`.
 public class FeedbackNavigationController: UINavigationController, FeedbackCollector {
     /// The root view controller used to collect feedback.
     let feedbackViewController: FeedbackViewController
     
+    /// The configuration the feedback view controller uses to set itself up.
     public var configuration: Configuration? {
         get {
             return feedbackViewController.configuration
@@ -22,6 +24,7 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
         }
     }
 
+    /// A delegate that is informed of significant events in feedback collection.
     public var feedbackDelegate: FeedbackCollectorDelegate? {
         get {
             return feedbackViewController.feedbackDelegate
@@ -62,7 +65,7 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
     
     // MARK: - FeedbackNavigationController
     
-    func commonInitialization() {
+    private func commonInitialization() {
         viewControllers = [feedbackViewController]
     }
 
