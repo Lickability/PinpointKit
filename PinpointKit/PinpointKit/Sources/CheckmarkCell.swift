@@ -11,7 +11,7 @@ import UIKit
 final class CheckmarkCell: UITableViewCell {
     var isChecked: Bool = false {
         didSet {
-            imageView?.image = isChecked ? UIImage(named: "checkmark") : nil
+            imageView?.image = isChecked ? UIImage(named: "Checkmark") : nil
         }
     }
 }
