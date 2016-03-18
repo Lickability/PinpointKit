@@ -8,8 +8,8 @@
 
 import UIKit
 
-class FeedbackViewController: UITableViewController, FeedbackCollector {
-    weak var feedbackDelegate: FeedbackCollectorDelegate?
+public class FeedbackViewController: UITableViewController, FeedbackCollector {
+    public weak var feedbackDelegate: FeedbackCollectorDelegate?
     
     var screenshot: UIImage? {
         didSet {
@@ -19,7 +19,7 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
         }
     }
     
-    var configuration: Configuration? {
+    public var configuration: Configuration? {
         didSet {
             title = configuration?.interfaceText.feedbackCollectorTitle
             
@@ -55,7 +55,7 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
         }
     }
     
-    required init() {
+    public required init() {
         super.init(style: .Grouped)
     }
     
@@ -65,20 +65,20 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     }
     
     @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - UIViewController
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         updateDataSource()
         updateTableHeaderView()
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         
         coordinator.animateAlongsideTransition({ context in
             // Layout and adjust the height of the table header view by setting the property once more to alert the table view of a layout change.
@@ -109,6 +109,8 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
         guard let screenshot = screenshot else { assertionFailure(); return }
         
         // TODO: Handle annotated screenshot.
+        // TODO: Only send logs if `userEnabledLogCollection` is `true.
+        
         let feedback = Feedback(screenshot: Feedback.ScreenshotType.Original(image: screenshot))
         feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedback)
     }
@@ -121,7 +123,7 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     
     // MARK: - FeedbackCollector
     
-    func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
+    public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         self.screenshot = screenshot
         viewController.showDetailViewController(self, sender: viewController)
     }
@@ -129,7 +131,7 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
 
 // MARK: - UITableViewDelegate
 extension FeedbackViewController {
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+    public override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         guard let logCollector = configuration?.logCollector else {
             assertionFailure("No log collector exists.")
             return
@@ -138,7 +140,7 @@ extension FeedbackViewController {
         configuration?.logViewer?.viewLog(logCollector, fromViewController: self)
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         userEnabledLogCollection = !userEnabledLogCollection
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
