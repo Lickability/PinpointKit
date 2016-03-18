@@ -34,7 +34,7 @@ class ScreenshotHeaderView: UIView {
     /// Set the `viewData` in order to update the receiver’s content.
     var viewData: ViewData? {
         didSet {
-            screenshotButton.setImage(viewData?.screenshot, forState: .Normal)
+            screenshotButton.setImage(viewData?.screenshot.imageWithRenderingMode(.AlwaysOriginal), forState: .Normal)
             
             if let screenshot = viewData?.screenshot {
                 screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraintEqualToAnchor(screenshotButton.widthAnchor, multiplier: 1.0 / screenshot.aspectRatio)
