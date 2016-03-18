@@ -43,9 +43,8 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     
     private var dataSource: FeedbackTableViewDataSource? {
         didSet {
-            if isViewLoaded() {
-                tableView.dataSource = dataSource
-            }
+            guard isViewLoaded() else { return }
+            tableView.dataSource = dataSource
         }
     }
     
@@ -70,10 +69,10 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     }
     
     // MARK: - UIViewController
-
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         updateDataSource()
         updateTableHeaderView()
     }
@@ -84,7 +83,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
             // Layout and adjust the height of the table header view by setting the property once more to alert the table view of a layout change.
             self.tableView.tableHeaderView?.layoutIfNeeded()
             self.tableView.tableHeaderView = self.tableView.tableHeaderView
-        }, completion: nil)
+            }, completion: nil)
     }
     
     // MARK: - FeedbackViewController
@@ -100,6 +99,9 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         
         let header = ScreenshotHeaderView()
         header.viewData = ScreenshotHeaderView.ViewData(screenshot: screenshot, hintText: configuration?.interfaceText.feedbackEditHint)
+        header.screenshotButtonTapHandler = { button in
+            // TODO: Present the editing UI.
+        }
         
         tableView.tableHeaderView = header
         tableView.enableTableHeaderViewDynamicHeight()
@@ -147,7 +149,7 @@ extension FeedbackViewController {
 }
 
 extension UITableView {
-
+    
     /**
      A workaround to make table header views created in nibs able to use their intrinsic content size to size the header. Removes the autoresizing constraints that constrain the height, and instead adds width contraints to the table header view.
      */
