@@ -8,15 +8,24 @@
 
 import UIKit
 
+/// An object conforming to `UITableViewDataSource` that acts as the data souce for a `FeedbackViewController`.
 class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     
     private let sections: [Section]
     
+    /**
+     Initializes the data source with a configuration and a boolean value indicating whether the user has enabled log collection.
+     
+     - parameter configuration:            The configuration used to set up the data source.
+     - parameter userEnabledLogCollection:  A boolean value indicating whether the user has enabled log collection.
+     
+     - returns: A fully initialized object.
+     */
     init(configuration: Configuration, userEnabledLogCollection: Bool) {
         sections = self.dynamicType.sectionsFromConfiguration(configuration, userEnabledLogCollection: userEnabledLogCollection)
     }
     
-    enum Section {
+    private enum Section {
         case Feedback(rows: [Row])
         
         var numberOfRows: Int {
@@ -27,7 +36,7 @@ class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
         }
     }
     
-    enum Row {
+    private enum Row {
         case CollectLogs(enabled: Bool, title: String, canView: Bool)
     }
     
@@ -70,6 +79,4 @@ class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
         
         return cell
     }
-    
-    
 }
