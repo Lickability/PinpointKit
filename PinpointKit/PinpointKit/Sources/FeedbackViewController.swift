@@ -8,10 +8,14 @@
 
 import UIKit
 
+/// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
 public class FeedbackViewController: UITableViewController, FeedbackCollector {
+    
+    /// A delegate that is informed of significant events in feedback collection.
     public weak var feedbackDelegate: FeedbackCollectorDelegate?
     
-    var screenshot: UIImage? {
+    /// The screenshot the feedback describes.
+    public var screenshot: UIImage? {
         didSet {
             guard isViewLoaded() else { return }
             
@@ -19,6 +23,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         }
     }
     
+    /// The configuration used to set up the receiver.
     public var configuration: Configuration? {
         didSet {
             title = configuration?.interfaceText.feedbackCollectorTitle
@@ -88,13 +93,13 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     
     // MARK: - FeedbackViewController
     
-    func updateDataSource() {
+    private func updateDataSource() {
         guard let configuration = configuration else { assertionFailure(); return }
         
         dataSource = FeedbackTableViewDataSource(configuration: configuration, userEnabledLogCollection: userEnabledLogCollection)
     }
     
-    func updateTableHeaderView() {
+    private func updateTableHeaderView() {
         guard let screenshot = screenshot else { return }
         
         let header = ScreenshotHeaderView()
@@ -107,7 +112,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         tableView.enableTableHeaderViewDynamicHeight()
     }
     
-    func sendButtonTapped() {
+    private func sendButtonTapped() {
         guard let screenshot = screenshot else { assertionFailure(); return }
         
         // TODO: Handle annotated screenshot.
@@ -117,7 +122,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedback)
     }
     
-    func cancelButtonTapped() {
+    private func cancelButtonTapped() {
         // TODO: http://stackoverflow.com/questions/25742944/whats-the-programmatic-opposite-of-showviewcontrollersender
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -148,7 +153,7 @@ extension FeedbackViewController {
     }
 }
 
-extension UITableView {
+private extension UITableView {
     
     /**
      A workaround to make table header views created in nibs able to use their intrinsic content size to size the header. Removes the autoresizing constraints that constrain the height, and instead adds width contraints to the table header view.
