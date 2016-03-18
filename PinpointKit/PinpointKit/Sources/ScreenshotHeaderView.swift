@@ -58,7 +58,13 @@ class ScreenshotHeaderView: UIView {
         return stackView
     }()
     
-    private let screenshotButton = UIButton()
+    private lazy var screenshotButton: UIButton = {
+        let button = UIButton()
+        button.layer.borderColor = self.tintColor.CGColor
+        button.layer.borderWidth = 1
+        
+        return button
+    }()
     
     private let hintLabel: UILabel = {
         let label = UILabel()
@@ -82,6 +88,14 @@ class ScreenshotHeaderView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - UIView
+    
+    override func tintColorDidChange() {
+        super.tintColorDidChange()
+        
+        screenshotButton.layer.borderColor = self.tintColor.CGColor
     }
     
     // MARK: - ScreenshotHeaderView
