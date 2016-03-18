@@ -95,7 +95,7 @@ class ScreenshotHeaderView: UIView {
     override func tintColorDidChange() {
         super.tintColorDidChange()
         
-        screenshotButton.layer.borderColor = self.tintColor.CGColor
+        screenshotButton.layer.borderColor = tintColor.CGColor
     }
     
     // MARK: - ScreenshotHeaderView
