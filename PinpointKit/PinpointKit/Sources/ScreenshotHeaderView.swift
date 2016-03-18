@@ -37,6 +37,7 @@ class ScreenshotHeaderView: UIView {
             }
             
             hintLabel.text = viewData?.hintText
+            hintLabel.hidden = viewData?.hintText == nil || viewData?.hintText?.isEmpty == true
         }
     }
     
