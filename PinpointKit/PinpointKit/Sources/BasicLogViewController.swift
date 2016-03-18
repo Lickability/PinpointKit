@@ -20,4 +20,3 @@ public class BasicLogViewController: UIViewController, LogViewer {
         viewController.showViewController(self, sender: viewController)
     }
 }
-
