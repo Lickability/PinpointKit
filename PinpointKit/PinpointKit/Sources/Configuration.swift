@@ -79,11 +79,13 @@ public struct Configuration {
     /// A struct containing information about the appearance of displayed components.
     let appearance: Appearance
     
+    ///  A struct containing user-facing strings displayed in the interface.
     let interfaceText: InterfaceText
     
     /// An optional type that collects logs to be displayed and sent with feedback.
     let logCollector: LogCollector?
     
+    /// An optional type that allows the user to view logs before sending feedback.
     let logViewer: LogViewer?
     
     /// A feedback collector that obtains the feedback to send.
