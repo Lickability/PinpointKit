@@ -8,10 +8,14 @@
 
 import UIKit
 
+/// A view that displays a screenshot and hint text about how to edit it.
 class ScreenshotHeaderView: UIView {
     
     typealias TapHandler = (button: UIButton) -> Void
     
+    /**
+     *  A struct encapsulating the data necessary for this view to be displayed.
+     */
     struct ViewData {
         let screenshot: UIImage
         let hintText: String?
@@ -22,6 +26,7 @@ class ScreenshotHeaderView: UIView {
         case MinimumScreenshotPadding = 50
     }
     
+    /// Set the `viewData` in order to update the receiver’s content.
     var viewData: ViewData? {
         didSet {
             screenshotButton.setImage(viewData?.screenshot, forState: .Normal)
@@ -34,6 +39,7 @@ class ScreenshotHeaderView: UIView {
         }
     }
     
+    /// A closure that is invoked when the user taps on the screenshot.
     var screenshotButtonTapHandler: TapHandler?
     
     private let stackView: UIStackView = {
