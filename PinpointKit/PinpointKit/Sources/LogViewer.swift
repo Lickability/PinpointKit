@@ -7,5 +7,5 @@
 //
 
 public protocol LogViewer {
-    
+    func viewLog(collector: LogCollector, fromViewController viewController: UIViewController)
 }

@@ -122,6 +122,18 @@ class FeedbackViewController: UITableViewController, FeedbackCollector {
     
 }
 
+// MARK: - UITableViewDelegate
+extension FeedbackViewController {
+    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+        guard let logCollector = configuration?.logCollector else {
+            assertionFailure("No log collector exists.")
+            return
+        }
+        
+        configuration?.logViewer?.viewLog(logCollector, fromViewController: self)
+    }
+}
+
 extension UITableView {
 
     /**

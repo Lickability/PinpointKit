@@ -10,4 +10,14 @@ import UIKit
 
 public class BasicLogViewController: UIViewController, LogViewer {
     
+    override public func viewDidLoad() {
+        view.backgroundColor = .lightGrayColor()
+    }
+    
+    // MARK: - LogViewer
+    
+    public func viewLog(collector: LogCollector, fromViewController viewController: UIViewController) {
+        viewController.showViewController(self, sender: viewController)
+    }
 }
+
