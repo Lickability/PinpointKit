@@ -11,7 +11,10 @@ import UIKit
 final class CheckmarkCell: UITableViewCell {
     var isChecked: Bool = false {
         didSet {
-            imageView?.image = isChecked ? UIImage(named: "Checkmark") : nil
+            let bundle = NSBundle(forClass: self.dynamicType)
+            let image = UIImage(named: "Checkmark", inBundle: bundle, compatibleWithTraitCollection: nil)
+            
+            imageView?.image = isChecked ? image : nil
         }
     }
 }
