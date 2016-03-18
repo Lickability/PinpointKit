@@ -11,10 +11,6 @@ import UIKit
 /// A view that displays a screenshot and hint text about how to edit it.
 class ScreenshotHeaderView: UIView {
     
-    deinit {
-        print("")
-    }
-    
     /// A type of closure that is invoked when a button is tapped.
     typealias TapHandler = (button: UIButton) -> Void
     
