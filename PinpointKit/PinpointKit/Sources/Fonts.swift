@@ -23,21 +23,18 @@ public enum FontWeight: Int {
 
 public extension UIFont {
     
-    // TODO: Figure out if we can even ship with this font - I doubt it but for now, lets just do this.
     public static func applicationFontOfSize(fontSize: CGFloat, weight: FontWeight) -> UIFont {
-        return UIFont.systemFontOfSize(fontSize)
+        let fontName: String = {
+            switch weight {
+            case .Regular:
+                return "SourceSansPro-Regular"
+            case .Semibold:
+                return "SourceSansPro-Semibold"
+            case .Bold:
+                return "SourceSansPro-Bold"
+            }
+        }()
         
-//        let fontName: String = {
-//            switch weight {
-//            case .Regular:
-//                return "SourceSansPro-Regular"
-//            case .Semibold:
-//                return "SourceSansPro-Semibold"
-//            case .Bold:
-//                return "SourceSansPro-Bold"
-//            }
-//        }()
-//        
-//        return UIFont(name: fontName, size: fontSize)!
+        return UIFont(name: fontName, size: fontSize)!
     }
 }
