@@ -35,15 +35,15 @@ public extension UIFont {
             }
         }()
         
-        let bundle = NSBundle(forClass: PinpointKit.self).URLForResource(fontName, withExtension: "ttf")!
-        
-        let data = NSData(contentsOfURL: bundle)!
-        
-        let dataProvider = CGDataProviderCreateWithCFData(data)
-        
-        let fontRef = CGFontCreateWithDataProvider(dataProvider)!
-        
-        CTFontManagerRegisterGraphicsFont(fontRef, nil)
+        if let font = (NSBundle(forClass: PinpointKit.self).URLForResource(fontName, withExtension: "ttf").flatMap {
+            return NSData(contentsOfURL: $0)
+        }.flatMap {
+            return CGDataProviderCreateWithCFData($0)
+        }.flatMap {
+            return CGFontCreateWithDataProvider($0)
+        }) {
+            CTFontManagerRegisterGraphicsFont(font, nil)
+        }
         
         return UIFont(name: fontName, size: fontSize)!
     }
