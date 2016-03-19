@@ -44,6 +44,7 @@
 		DA0DA6121C53049B0012ADBE /* PinpointKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */; };
 		DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */; };
 		DA0DA61F1C5306E80012ADBE /* PinpointKitMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA0DA61E1C5306E80012ADBE /* PinpointKitMedia.xcassets */; };
+		DA3B16661C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3B16651C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		DA0DA6131C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinpointKit.swift; sourceTree = "<group>"; };
 		DA0DA61E1C5306E80012ADBE /* PinpointKitMedia.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = PinpointKitMedia.xcassets; path = PinpointKit/PinpointKitMedia.xcassets; sourceTree = "<group>"; };
+		DA3B16651C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +252,7 @@
 				12580A4D1C654B7E00ADC01C /* Feedback */,
 				12580A4E1C654B9700ADC01C /* Log Viewing */,
 				2C5C41101C655B7D0033ED3D /* Screenshot Detection */,
+				DA3B16641C9CD26F00DBFDE6 /* Shake Detection */,
 				B92901821C556383007CCA5E /* Helpers */,
 			);
 			name = PinpointKit;
@@ -263,6 +266,14 @@
 				DA0DA6131C53049B0012ADBE /* Info.plist */,
 			);
 			path = PinpointKitTests;
+			sourceTree = "<group>";
+		};
+		DA3B16641C9CD26F00DBFDE6 /* Shake Detection */ = {
+			isa = PBXGroup;
+			children = (
+				DA3B16651C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift */,
+			);
+			name = "Shake Detection";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,6 +393,7 @@
 				2CB6C1F21C652D6400022CEB /* Feedback.swift in Sources */,
 				B92901861C55648A007CCA5E /* KeyboardAvoider.swift in Sources */,
 				B929019C1C556774007CCA5E /* ArrowAnnotationView.swift in Sources */,
+				DA3B16661C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift in Sources */,
 				12580A391C65307300ADC01C /* Sender.swift in Sources */,
 				B92901B91C557406007CCA5E /* StrokeLayoutManager.swift in Sources */,
 				B92901A11C55677C007CCA5E /* BoxAnnotationView.swift in Sources */,
