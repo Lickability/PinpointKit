@@ -23,7 +23,7 @@ public enum FontWeight: Int {
 
 public extension UIFont {
     
-    public static func applicationFontOfSize(fontSize: CGFloat, weight: FontWeight) -> UIFont {
+    public static func sourceSansProFontOfSize(fontSize: CGFloat, weight: FontWeight) -> UIFont {
         let fontName: String = {
             switch weight {
             case .Regular:

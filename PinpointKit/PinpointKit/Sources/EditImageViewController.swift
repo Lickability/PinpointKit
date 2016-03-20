@@ -74,7 +74,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         let segment = view.subviews[textToolIndex!]
         segment.accessibilityLabel = "Text Tool"
         
-        view.setTitleTextAttributes([NSFontAttributeName: UIFont.applicationFontOfSize(18, weight: .Regular)], forState: UIControlState.Normal)
+        view.setTitleTextAttributes([NSFontAttributeName: UIFont.sourceSansProFontOfSize(18, weight: .Regular)], forState: UIControlState.Normal)
         
         for i in 0..<view.numberOfSegments {
             view.setWidth(54, forSegmentAtIndex: i)
