@@ -35,7 +35,7 @@ public extension UIFont {
             }
         }()
         
-        if let font = (NSBundle(forClass: PinpointKit.self).URLForResource(fontName, withExtension: "ttf").flatMap {
+        if let font = (NSBundle.pinpointKitBundle().URLForResource(fontName, withExtension: "ttf").flatMap {
             return NSData(contentsOfURL: $0)
         }.flatMap {
             return CGDataProviderCreateWithCFData($0)
