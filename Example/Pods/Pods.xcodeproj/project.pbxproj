@@ -40,6 +40,7 @@
 		9A08C6EC8AA796968574CD2868ACDD88 /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0118A5A8D73D9A4C83AE857EDFFF172B /* ScreenshotDetector.swift */; };
 		9E7AD41CAD3CF3503D08C6F01AF38E8A /* BlurAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0B1B86E9692EC12C324D8974C9FEA0 /* BlurAnnotationView.swift */; };
 		B58551ACC862542127ABCD1DF65CD29E /* SystemLogCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CAA5A49AB8265643DED19451EAF432 /* SystemLogCollector.swift */; };
+		B935A8181C9F16DA0062E8D3 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B935A8171C9F16DA0062E8D3 /* Media.xcassets */; };
 		C9D6608F196583D50D515E506666150B /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 894E5DA93A9F359521A89826BE6DA777 /* Pods-dummy.m */; };
 		D251D61E11169105BB4E9019D06C7D4B /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5A5A92257F0B569359D5E9D8A7E2BB /* Editor.swift */; };
 		D6D6F363A1A9D8CFDA5353D87BA35460 /* LogCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE255A10421398CF15A1578ACA4EF5 /* LogCollector.swift */; };
@@ -102,6 +103,7 @@
 		A46D90233C7AA0C8834D3A2AD77EC7BA /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		A8BE255A10421398CF15A1578ACA4EF5 /* LogCollector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogCollector.swift; sourceTree = "<group>"; };
 		A9F10FBE2040BB8CF67B11E2618C8510 /* BoxAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BoxAnnotationView.swift; sourceTree = "<group>"; };
+		B935A8171C9F16DA0062E8D3 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BD2949630A0ABA78B6B512071A650AE7 /* TextAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextAnnotationView.swift; sourceTree = "<group>"; };
 		C08FA5D0951F3E2F528EE8E20ED8400D /* StrokeLayoutManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StrokeLayoutManager.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				A46D90233C7AA0C8834D3A2AD77EC7BA /* SourceSansPro-Bold.ttf */,
 				352AB27322762524328883A1A9395515 /* SourceSansPro-Regular.ttf */,
 				1D7ADFC36853EC586A33B463B127514C /* SourceSansPro-Semibold.ttf */,
+				B935A8171C9F16DA0062E8D3 /* Media.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 			files = (
 				0570059B5DB00BE92078D8B86883BDA0 /* SourceSansPro-Bold.ttf in Resources */,
 				186C1ECB82663E7D5BDB41C870036B10 /* SourceSansPro-Regular.ttf in Resources */,
+				B935A8181C9F16DA0062E8D3 /* Media.xcassets in Resources */,
 				4628913FF895EEDE14115E016544F0DE /* SourceSansPro-Semibold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
