@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIColor {
     
-    /// The signature Pinpoint orange color. Use responsibly.
+    /// The signature Pinpoint orange color.
     class func pinpointOrangeColor() -> UIColor {
         return UIColor(red: 1, green: 0.2196, blue: 0.0392, alpha: 1)
     }
