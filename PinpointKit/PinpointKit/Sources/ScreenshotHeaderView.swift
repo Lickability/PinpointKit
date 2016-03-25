@@ -28,16 +28,16 @@ class ScreenshotHeaderView: UIView {
     }
     
     /// Set the `viewData` in order to update the receiver’s content.
-    var viewData: ViewData? {
+    var viewModel: ViewModel? {
         didSet {
-            screenshotButton.setImage(viewData?.screenshot.imageWithRenderingMode(.AlwaysOriginal), forState: .Normal)
+            screenshotButton.setImage(viewModel?.screenshot.imageWithRenderingMode(.AlwaysOriginal), forState: .Normal)
             
-            if let screenshot = viewData?.screenshot {
+            if let screenshot = viewModel?.screenshot {
                 screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraintEqualToAnchor(screenshotButton.widthAnchor, multiplier: 1.0 / screenshot.aspectRatio)
             }
             
-            hintLabel.text = viewData?.hintText
-            hintLabel.hidden = viewData?.hintText == nil || viewData?.hintText?.isEmpty == true
+            hintLabel.text = viewModel?.hintText
+            hintLabel.hidden = viewModel?.hintText == nil || viewModel?.hintText?.isEmpty == true
         }
     }
     
@@ -130,6 +130,8 @@ class ScreenshotHeaderView: UIView {
 
 private extension UIImage {
     var aspectRatio: CGFloat {
+        guard size.height > 0 else { return 0 }
+        
         return size.width / size.height
     }
 }

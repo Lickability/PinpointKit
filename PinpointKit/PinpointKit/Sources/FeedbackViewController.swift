@@ -103,7 +103,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         guard let screenshot = screenshot else { return }
         
         let header = ScreenshotHeaderView()
-        header.viewData = ScreenshotHeaderView.ViewData(screenshot: screenshot, hintText: configuration?.interfaceText.feedbackEditHint)
+        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: configuration?.interfaceText.feedbackEditHint)
         header.screenshotButtonTapHandler = { button in
             // TODO: Present the editing UI.
         }
