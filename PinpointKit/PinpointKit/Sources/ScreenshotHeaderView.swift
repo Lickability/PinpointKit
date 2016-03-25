@@ -15,9 +15,9 @@ class ScreenshotHeaderView: UIView {
     typealias TapHandler = (button: UIButton) -> Void
     
     /**
-     *  A struct encapsulating the data necessary for this view to be displayed.
+     *  A struct encapsulating the information necessary for this view to be displayed.
      */
-    struct ViewData {
+    struct ViewModel {
         let screenshot: UIImage
         let hintText: String?
     }
