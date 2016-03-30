@@ -12,6 +12,6 @@ extension UIBarButtonItem {
     convenience init(doneButtonWithTarget target: AnyObject?, action: Selector) {
         self.init(barButtonSystemItem: .Done, target: target, action: action)
         
-        setTitleTextAttributes([NSFontAttributeName : UIFont.applicationFontOfSize(19, weight: .Semibold)], forState: .Normal)
+        setTitleTextAttributes([NSFontAttributeName : UIFont.sourceSansProFontOfSize(19, weight: .Semibold)], forState: .Normal)
     }
 }
