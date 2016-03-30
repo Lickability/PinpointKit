@@ -34,16 +34,21 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         var image: UIImage {
             let bundle = NSBundle.pinpointKitBundle()
-            switch self {
-            case .Arrow:
-                return UIImage(named: "ArrowIcon", inBundle: bundle, compatibleWithTraitCollection: nil)!
-            case .Box:
-                return UIImage(named: "BoxIcon", inBundle: bundle, compatibleWithTraitCollection: nil)!
-            case .Text:
-                return UIImage()
-            case .Blur:
-                return UIImage(named: "BlurIcon", inBundle: bundle, compatibleWithTraitCollection: nil)!
+            
+            func loadImage() -> UIImage? {
+                switch self {
+                case .Arrow:
+                    return UIImage(named: "ArrowIcon", inBundle: bundle, compatibleWithTraitCollection: nil)
+                case .Box:
+                    return UIImage(named: "BoxIcon", inBundle: bundle, compatibleWithTraitCollection: nil)
+                case .Text:
+                    return UIImage()
+                case .Blur:
+                    return UIImage(named: "BlurIcon", inBundle: bundle, compatibleWithTraitCollection: nil)
+                }
             }
+            
+            return loadImage() ?? UIImage()
         }
         
         var segmentedControlItem: AnyObject {
