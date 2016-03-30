@@ -35,16 +35,10 @@ public extension UIFont {
             }
         }()
         
-        if let font = (NSBundle.pinpointKitBundle().URLForResource(fontName, withExtension: "ttf").flatMap {
-            return NSData(contentsOfURL: $0)
-        }.flatMap {
-            return CGDataProviderCreateWithCFData($0)
-        }.flatMap {
-            return CGFontCreateWithDataProvider($0)
-        }) {
-            CTFontManagerRegisterGraphicsFont(font, nil)
+        if let fontURL = NSBundle.pinpointKitBundle().URLForResource(fontName, withExtension: "ttf") {
+            CTFontManagerRegisterFontsForURL(fontURL, .Process, nil)
         }
         
-        return UIFont(name: fontName, size: fontSize)!
+        return UIFont(name: fontName, size: fontSize) ?? UIFont.systemFontOfSize(fontSize)
     }
 }
