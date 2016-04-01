@@ -83,7 +83,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             view.setWidth(54, forSegmentAtIndex: i)
         }
         
-        view.addTarget(self, action: "toolChanged:", forControlEvents: .ValueChanged)
+        view.addTarget(self, action: #selector(EditImageViewController.toolChanged(_:)), forControlEvents: .ValueChanged)
         
         return view
         }()
@@ -115,11 +115,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private let keyboardAvoider: KeyboardAvoider = KeyboardAvoider(window: UIApplication.sharedApplication().keyWindow)
     private lazy var shareBarButtonItem: UIBarButtonItem = { [unowned self] in
-        UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: "shareImage:")
+        UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(EditImageViewController.shareImage(_:)))
         }()
     
     private lazy var closeBarButtonItem: UIBarButtonItem = { [unowned self] in
-        UIBarButtonItem(image: UIImage(named: "CloseButtonX"), landscapeImagePhone: nil, style: .Plain, target: self, action: "closeButtonTapped:")
+        UIBarButtonItem(image: UIImage(named: "CloseButtonX"), landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(EditImageViewController.closeButtonTapped(_:)))
         }()
     
     private var currentTool: Tool {
@@ -135,7 +135,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             if let currentTextAnnotationView = currentTextAnnotationView {
                 keyboardAvoider.triggerViews = [currentTextAnnotationView.textView]
                 
-                NSNotificationCenter.defaultCenter().addObserver(self, selector: "forceEndEditingTextView", name: UITextViewTextDidEndEditingNotification, object: currentTextAnnotationView.textView)
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditImageViewController.forceEndEditingTextView), name: UITextViewTextDidEndEditingNotification, object: currentTextAnnotationView.textView)
             }
         }
     }
@@ -170,22 +170,22 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         navigationItem.rightBarButtonItem = shareBarButtonItem
         navigationItem.titleView = segmentedControl
         
-        touchDownGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "handleTouchDownGestureRecognizer:")
+        touchDownGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditImageViewController.handleTouchDownGestureRecognizer(_:)))
         touchDownGestureRecognizer.minimumPressDuration = 0.0;
         touchDownGestureRecognizer.delegate = self
         
-        createAnnotationPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handleCreateAnnotationGestureRecognizer:")
+        createAnnotationPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(EditImageViewController.handleCreateAnnotationGestureRecognizer(_:)))
         createAnnotationPanGestureRecognizer.maximumNumberOfTouches = 1
         createAnnotationPanGestureRecognizer.delegate = self
         
-        updateAnnotationPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handleUpdateAnnotationGestureRecognizer:")
+        updateAnnotationPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(EditImageViewController.handleUpdateAnnotationGestureRecognizer(_:)))
         updateAnnotationPanGestureRecognizer.maximumNumberOfTouches = 1
         updateAnnotationPanGestureRecognizer.delegate = self
         
-        createOrUpdateAnnotationTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleUpdateAnnotationTapGestureRecognizer:")
+        createOrUpdateAnnotationTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditImageViewController.handleUpdateAnnotationTapGestureRecognizer(_:)))
         createOrUpdateAnnotationTapGestureRecognizer.delegate = self
         
-        updateAnnotationPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: "handleUpdateAnnotationPinchGestureRecognizer:")
+        updateAnnotationPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(EditImageViewController.handleUpdateAnnotationPinchGestureRecognizer(_:)))
         updateAnnotationPinchGestureRecognizer.delegate = self
         
         imageView.image = image
@@ -223,7 +223,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     public override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
         let textViewIsEditing = currentTextAnnotationView?.textView.isFirstResponder() ?? false
-        return action == "deleteSelectedAnnotationView" && !textViewIsEditing
+        return action == #selector(EditImageViewController.deleteSelectedAnnotationView) && !textViewIsEditing
     }
     
     // MARK: - UIViewController
@@ -237,7 +237,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         keyboardAvoider.viewsToAvoidKeyboard = [imageView, annotationsView]
         
-        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleDoubleTapGestureRecognizer:")
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditImageViewController.handleDoubleTapGestureRecognizer(_:)))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
         doubleTapGestureRecognizer.delegate = self
         
@@ -248,7 +248,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         view.addGestureRecognizer(createOrUpdateAnnotationTapGestureRecognizer)
         view.addGestureRecognizer(updateAnnotationPinchGestureRecognizer)
         
-        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "handleLongPressGestureRecognizer:")
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditImageViewController.handleLongPressGestureRecognizer(_:)))
         longPressGestureRecognizer.minimumPressDuration = 1
         longPressGestureRecognizer.delegate = self
         view.addGestureRecognizer(longPressGestureRecognizer)
@@ -330,7 +330,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     // TODO - turns sharing off - this seems like a Pinpoint app only need - also it pulls in a ton of other types.
 
-//    @objc private func shareImage(button: UIBarButtonItem) {
+    @objc private func shareImage(button: UIBarButtonItem) {
 //        var activityItems: [AnyObject] = [ ImageActivityItemProvider(placeholderItem: view.pinpoint_screenshot) ]
 //        
 //        if let asset = currentViewModel?.asset {
@@ -374,7 +374,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
 //                hasSavedOrSharedAnyComposion = true
 //            }
 //        }
-//    }
+    }
     
     private func setupConstraints() {
         let views = [
@@ -505,7 +505,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         if currentTextAnnotationView != nil {
             currentTextAnnotationView?.beginEditing()
             
-            let doneButton = UIBarButtonItem(doneButtonWithTarget: self, action: "endEditingTextViewIfFirstResponder")
+            let doneButton = UIBarButtonItem(doneButtonWithTarget: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
             navigationItem.setRightBarButtonItem(doneButton, animated: true)
             navigationItem.setLeftBarButtonItem(nil, animated: true)
         }
@@ -708,7 +708,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         let controller = UIMenuController.sharedMenuController()
         controller.setTargetRect(targetRect, inView: view!)
         controller.menuItems = [
-            UIMenuItem(title: "Delete", action: "deleteSelectedAnnotationView")
+            UIMenuItem(title: "Delete", action: #selector(EditImageViewController.deleteSelectedAnnotationView))
         ]
         controller.update()
         controller.setMenuVisible(true, animated: true)
