@@ -30,6 +30,7 @@
 		2CE6D3FF1C6E5D8D00DD8189 /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6D3FE1C6E5D8D00DD8189 /* MIMEType.swift */; };
 		2CE6D4011C6E5DA400DD8189 /* SuccessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6D4001C6E5DA400DD8189 /* SuccessType.swift */; };
 		2CEAF65C1C779C8D009368B8 /* FeedbackNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEAF65B1C779C8D009368B8 /* FeedbackNavigationController.swift */; };
+		2CF3B9321CAF142400C8B29B /* NSBundle+PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF3B9311CAF142400C8B29B /* NSBundle+PinpointKit.swift */; };
 		B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B929017D1C555F86007CCA5E /* EditImageViewController.swift */; };
 		B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */; };
 		B92901841C55639B007CCA5E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901831C55639B007CCA5E /* Fonts.swift */; };
@@ -84,6 +85,7 @@
 		2CE6D3FE1C6E5D8D00DD8189 /* MIMEType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIMEType.swift; sourceTree = "<group>"; };
 		2CE6D4001C6E5DA400DD8189 /* SuccessType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessType.swift; sourceTree = "<group>"; };
 		2CEAF65B1C779C8D009368B8 /* FeedbackNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackNavigationController.swift; sourceTree = "<group>"; };
+		2CF3B9311CAF142400C8B29B /* NSBundle+PinpointKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+PinpointKit.swift"; sourceTree = "<group>"; };
 		B929017D1C555F86007CCA5E /* EditImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditImageViewController.swift; sourceTree = "<group>"; };
 		B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+FailRecognizing.swift"; sourceTree = "<group>"; };
 		B92901831C55639B007CCA5E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		B92901821C556383007CCA5E /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				2CF3B9311CAF142400C8B29B /* NSBundle+PinpointKit.swift */,
 				2CE6D3FE1C6E5D8D00DD8189 /* MIMEType.swift */,
 				B92901831C55639B007CCA5E /* Fonts.swift */,
 				B92901851C55648A007CCA5E /* KeyboardAvoider.swift */,
@@ -428,6 +431,7 @@
 				B929019E1C556778007CCA5E /* BlurAnnotationView.swift in Sources */,
 				B92901A51C556791007CCA5E /* Annotations.swift in Sources */,
 				2C5C41141C6568D60033ED3D /* (null) in Sources */,
+				2CF3B9321CAF142400C8B29B /* NSBundle+PinpointKit.swift in Sources */,
 				12580A471C65339F00ADC01C /* FeedbackViewController.swift in Sources */,
 				DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */,
 				B92901B31C557401007CCA5E /* AssetViewModel.swift in Sources */,
