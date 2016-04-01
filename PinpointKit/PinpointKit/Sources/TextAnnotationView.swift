@@ -103,7 +103,7 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
     }
     
     class func font() -> UIFont {
-        return UIFont.applicationFontOfSize(32, weight: .Semibold)
+        return UIFont.sourceSansProFontOfSize(32, weight: .Semibold)
     }
     
     class func minimumTextSize() -> CGSize {
