@@ -120,7 +120,7 @@ class ScreenshotHeaderView: UIView {
         
         screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraintEqualToAnchor(screenshotButton.widthAnchor, multiplier: 1.0)
         
-        screenshotButton.addTarget(self, action: "screenshotButtonTapped:", forControlEvents: .TouchUpInside)
+        screenshotButton.addTarget(self, action: #selector(ScreenshotHeaderView.screenshotButtonTapped(_:)), forControlEvents: .TouchUpInside)
     }
     
     @objc private func screenshotButtonTapped(sender: UIButton) {

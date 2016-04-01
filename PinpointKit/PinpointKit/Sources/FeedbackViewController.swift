@@ -28,10 +28,10 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         didSet {
             title = configuration?.interfaceText.feedbackCollectorTitle
             
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: configuration?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: "sendButtonTapped")
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: configuration?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
             
             let cancelBarButtonItem: UIBarButtonItem
-            let cancelAction: Selector = "cancelButtonTapped"
+            let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
             if let cancelButtonTitle = configuration?.interfaceText.feedbackCancelButtonTitle {
                 cancelBarButtonItem = UIBarButtonItem(title: cancelButtonTitle, style: .Plain, target: self, action: cancelAction)
             }
