@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ASL
 
 /**
 *  `PinpointKit` is an object that can be used to collect feedback from application users.
@@ -34,6 +33,17 @@ public class PinpointKit {
     public init(configuration: Configuration = Configuration(), delegate: PinpointKitDelegate? = nil) {
         self.configuration = configuration
         self.delegate = delegate
+    }
+    
+    /**
+     Shows PinpointKit’s feedback collection UI from a given view controller.
+     
+     - parameter viewController: The view controller from which to present.
+     */
+    public func show(fromViewController viewController: UIViewController) {
+        let screenshot = Screenshotter.takeScreenshot()
+
+        configuration.feedbackCollector.collectFeedbackWithScreenshot(screenshot, fromViewController: viewController)
     }
 }
 
