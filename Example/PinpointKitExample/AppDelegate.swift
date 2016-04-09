@@ -13,9 +13,12 @@ import PinpointKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let logger = SystemLogCollector()
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        logger.initializeLogging()
+        
+        NSLog("I am the first log. The only log. The primary log!")
         
         return true
     }

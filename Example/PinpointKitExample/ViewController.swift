@@ -16,12 +16,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("I am a sneaky log. Primary log knows nothing of me.")
+        
         view.backgroundColor = UIColor.lightGrayColor()
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
                 
+        print("Hei")
+        
+        NSLog("YO")
+        
         pinpointKit.show(fromViewController: self)
     }
 }
