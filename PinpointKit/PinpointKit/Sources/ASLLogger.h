@@ -10,4 +10,7 @@
 
 @interface ASLLogger : NSObject
 
+@property (nonatomic, readonly) NSMutableArray *logs;
+- (void)updateLogs;
+
 @end

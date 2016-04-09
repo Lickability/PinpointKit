@@ -13,13 +13,19 @@ import PinpointKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let logger = SystemLogCollector()
+    let logger = ASLLogger()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        logger.initializeLogging()
         
         NSLog("I am the first log. The only log. The primary log!")
+        print("KOOL")
         
+        
+        NSLog("I am the second log. Death to the primary log!")
+        print("no way bro")
+        logger.updateLogs()
+        NSLog(logger.logs.description)
+
         return true
     }
 }
