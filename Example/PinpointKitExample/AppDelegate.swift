@@ -13,17 +13,10 @@ import PinpointKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let logger = SystemLogCollector()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        NSLog("I am the first log. The only log. The primary log!")
-        print("KOOL")
-        
-        
-        NSLog("I am the second log. Death to the primary log!")
-        print("no way bro")
-        NSLog("\n\nLogger's logs: \n\(logger.retrieveLogs())")
+        NSLog("Initial test log for the system logger.")
         
         return true
     }
