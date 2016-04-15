@@ -12,7 +12,9 @@ public protocol LogCollector {
     /**
      Retrieves and returns logs as an ordered list of strings.
      
+     - parameter fromOffsetSinceNow: The offset, in seconds, from the current date to retrieve logs. Pass `nil` to retrieve all logs.
+     
      - returns: Logs as an ordered list of strings.
      */
-    func retrieveLogs() -> [String]
+    func retrieveLogs(fromOffsetSinceNow offset: NSInteger?) -> [String]
 }

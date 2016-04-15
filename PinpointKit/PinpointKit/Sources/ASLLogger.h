@@ -17,9 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Using the Apple System Logger API, retrieves and returns logs as an ordered list of strings.
  
+ @param offset The offset, in seconds, from the current date to retrieve logs. Pass `NSNotFound` to retrieve all logs.
+ 
  @returns Logs as an ordered list of strings.
 */
-- (NSArray<NSString *> *)retrieveLogs;
+- (NSArray<NSString *> *)retrieveLogsFromOffsetSinceNow:(NSInteger)offset;
 
 @end
 
