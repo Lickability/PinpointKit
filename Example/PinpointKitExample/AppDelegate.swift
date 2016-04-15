@@ -13,7 +13,7 @@ import PinpointKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let logger = ASLLogger()
+    let logger = SystemLogCollector()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
