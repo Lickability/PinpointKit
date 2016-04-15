@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param offset The offset, in seconds, from the current date to retrieve logs. Pass `NSNotFound` to retrieve all logs.
  
- @returns Logs as an ordered list of strings.
+ @returns Logs as an ordered list of strings, sorted by descending recency.
 */
 - (NSArray<NSString *> *)retrieveLogsFromOffsetSinceNow:(NSInteger)offset;
 
