@@ -6,9 +6,9 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   PinpointKit:
-    :path: "../PinpointKit"
+    :path: ../PinpointKit
 
 SPEC CHECKSUMS:
-  PinpointKit: 6c605cbe8231700406f449066b65354e7eab24a0
+  PinpointKit: 23f780b2d31deb2493e89ecfb4f767fded246b75
 
 COCOAPODS: 0.39.0
