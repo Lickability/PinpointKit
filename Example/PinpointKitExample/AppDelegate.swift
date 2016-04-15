@@ -23,9 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NSLog("I am the second log. Death to the primary log!")
         print("no way bro")
-        logger.updateLogs()
-        NSLog(logger.logs.description)
-
+        NSLog("\n\nLogger's logs: \n\(logger.retrieveLogs())")
+        
         return true
     }
 }
