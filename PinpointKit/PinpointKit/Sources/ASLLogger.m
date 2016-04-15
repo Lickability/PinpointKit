@@ -29,7 +29,7 @@
     asl_set_query(query, ASL_KEY_FACILITY, [[[NSBundle mainBundle] bundleIdentifier] UTF8String], ASL_QUERY_OP_EQUAL);
     
     response = asl_search(NULL, query);
-    while (NULL != (message = asl_next(response))) {
+    while ((message = asl_next(response)) != NULL) {
         const char *content = asl_get(message, ASL_KEY_MSG);
         const char *time = asl_get(message, ASL_KEY_TIME);
         lastTime = atoi(time);
