@@ -1,5 +1,5 @@
 //
-//  PinpointPresentingShakeDetectingWindowDelegate.swift
+//  PinpointKit+ShakePresentation.swift
 //  PinpointKit
 //
 //  Created by Paul Rehkugler on 4/16/16.
@@ -8,12 +8,7 @@
 
 import Foundation
 
-public final class PinpointPresentingShakeDetectingWindowDelegate: ShakeDetectingWindowDelegate {
-
-    private let pinpointKit: PinpointKit
-    public init(pinpointKit: PinpointKit) {
-        self.pinpointKit = pinpointKit
-    }
+extension PinpointKit: ShakeDetectingWindowDelegate {
 
     // MARK: - ShakeDetectingWindowDelegate
 
@@ -23,6 +18,6 @@ public final class PinpointPresentingShakeDetectingWindowDelegate: ShakeDetectin
             return
         }
 
-        pinpointKit.show(fromViewController: rootViewController)
+        self.show(fromViewController: rootViewController)
     }
 }

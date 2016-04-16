@@ -12,17 +12,8 @@ import PinpointKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var shakeDetectingWindowDelegate: ShakeDetectingWindowDelegate?
-
     lazy var window: UIWindow? = {
-        let window = ShakeDetectingWindow(frame: UIScreen.mainScreen().bounds)
-
-        let shakeDetectingWindowDelegate = PinpointPresentingShakeDetectingWindowDelegate(pinpointKit: PinpointKit.defaultPinpointKit)
-        window.delegate = shakeDetectingWindowDelegate
-
-        self.shakeDetectingWindowDelegate = shakeDetectingWindowDelegate
-
-        return window
+        return ShakeDetectingWindow(frame: UIScreen.mainScreen().bounds)
     }()
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
