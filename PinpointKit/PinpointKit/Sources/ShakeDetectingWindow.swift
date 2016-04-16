@@ -8,10 +8,23 @@
 
 import UIKit
 
+/**
+ *  `ShakeDetectingWindow` is a `UIWindow` subclass that notifies a `ShakeDetectingWindowDelegate` any time
+ *  a shake motion event occurs.
+ */
 public class ShakeDetectingWindow: UIWindow {
 
+    /// A `ShakeDetectingWindowDelegate` to notify when a shake motion event occurs.
 	public weak var delegate: ShakeDetectingWindowDelegate?
-	
+
+    /**
+     Initializes a `ShakeDetectingWindow`.
+
+     - parameter frame:    The frame rectangle for the view.
+     - parameter delegate: An object to notify when a shake motion event occurs. Defaults to `PinpointKit.defaultPinpointKit`.
+
+     - returns: An initialized `ShakeDetectingWindow`.
+     */
 	required public init(
         frame: CGRect,
         delegate: ShakeDetectingWindowDelegate = PinpointKit.defaultPinpointKit)
@@ -35,6 +48,7 @@ public class ShakeDetectingWindow: UIWindow {
                 print("ShakeDetectingWindow - There is no ShakeDetectingWindowDelegate registered to handle this shake.")
                 return
             }
+
             delegate.shakeDetectingWindowDidDetectShake(self)
 		}
 	}

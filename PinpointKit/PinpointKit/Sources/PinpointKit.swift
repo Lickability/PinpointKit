@@ -9,8 +9,8 @@
 import Foundation
 
 /**
-*  `PinpointKit` is an object that can be used to collect feedback from application users.
-*/
+ *  `PinpointKit` is an object that can be used to collect feedback from application users.
+ */
 public class PinpointKit {
 
     /// Returns a `PinpointKit` instance with a default configuration.
