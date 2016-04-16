@@ -27,29 +27,28 @@ public class ShakeDetectingWindow: UIWindow {
      */
 	required public init(
         frame: CGRect,
-        delegate: ShakeDetectingWindowDelegate = PinpointKit.defaultPinpointKit)
-    {
+        delegate: ShakeDetectingWindowDelegate = PinpointKit.defaultPinpointKit) {
         self.delegate = delegate
         super.init(frame: frame)
 	}
 
 	// MARK: - UIWindow
-	
-	@available(*, unavailable)
+    
 	required public init?(coder aDecoder: NSCoder) {
-	    fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+	    delegate = PinpointKit.defaultPinpointKit
 	}
 	
 	// MARK: - UIResponder
-	
-	override public func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-		if motion == .MotionShake {
+    
+    override public func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        if motion == .MotionShake {
             guard let delegate = delegate else {
                 print("ShakeDetectingWindow - There is no ShakeDetectingWindowDelegate registered to handle this shake.")
                 return
             }
-
+            
             delegate.shakeDetectingWindowDidDetectShake(self)
-		}
-	}
+        }
+    }
 }
