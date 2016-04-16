@@ -44,7 +44,7 @@ public class ShakeDetectingWindow: UIWindow {
     override public func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
         if motion == .MotionShake {
             guard let delegate = delegate else {
-                print("ShakeDetectingWindow - There is no ShakeDetectingWindowDelegate registered to handle this shake.")
+                print(#file + "- There is no ShakeDetectingWindowDelegate registered to handle this shake.")
                 return
             }
             
