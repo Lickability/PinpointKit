@@ -9,12 +9,12 @@
 import Foundation
 
 /**
-*  `PinpointKit` is an object that can be used to collect feedback from application users.
-*/
+ *  `PinpointKit` is an object that can be used to collect feedback from application users.
+ */
 public class PinpointKit {
 
     /// Returns a `PinpointKit` instance with a default configuration.
-    static let defaultPinpointKit = PinpointKit()
+    public static let defaultPinpointKit = PinpointKit()
 
     /// The configuration struct that specifies how PinpointKit should be configured.
     private let configuration: Configuration

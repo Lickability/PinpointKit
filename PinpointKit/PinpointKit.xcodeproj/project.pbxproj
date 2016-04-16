@@ -51,6 +51,9 @@
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
 		DA0DA6121C53049B0012ADBE /* PinpointKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */; };
 		DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */; };
+		DA3B16661C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3B16651C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift */; };
+		DA7B94F01CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7B94EF1CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift */; };
+		DA7B94F21CC28F0D00242E49 /* PinpointPresentingShakeDetectingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7B94F11CC28F0D00242E49 /* PinpointPresentingShakeDetectingWindowDelegate.swift */; };
 		F2BF24051CB9A69200867E01 /* ASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = F2BF24031CB9A69200867E01 /* ASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2BF24061CB9A69200867E01 /* ASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BF24041CB9A69200867E01 /* ASLLogger.m */; };
 /* End PBXBuildFile section */
@@ -111,6 +114,9 @@
 		DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinpointKitTests.swift; sourceTree = "<group>"; };
 		DA0DA6131C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinpointKit.swift; sourceTree = "<group>"; };
+		DA3B16651C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindow.swift; sourceTree = "<group>"; };
+		DA7B94EF1CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindowDelegate.swift; sourceTree = "<group>"; };
+		DA7B94F11CC28F0D00242E49 /* PinpointPresentingShakeDetectingWindowDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinpointPresentingShakeDetectingWindowDelegate.swift; sourceTree = "<group>"; };
 		F2BF24031CB9A69200867E01 /* ASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASLLogger.h; sourceTree = "<group>"; };
 		F2BF24041CB9A69200867E01 /* ASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASLLogger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -275,6 +281,7 @@
 				12580A4D1C654B7E00ADC01C /* Feedback */,
 				12580A4E1C654B9700ADC01C /* Log Viewing */,
 				2C5C41101C655B7D0033ED3D /* Screenshot Detection */,
+				DA3B16641C9CD26F00DBFDE6 /* Shake Detection */,
 				B92901821C556383007CCA5E /* Helpers */,
 				F2BF24031CB9A69200867E01 /* ASLLogger.h */,
 				F2BF24041CB9A69200867E01 /* ASLLogger.m */,
@@ -290,6 +297,16 @@
 				DA0DA6131C53049B0012ADBE /* Info.plist */,
 			);
 			path = PinpointKitTests;
+			sourceTree = "<group>";
+		};
+		DA3B16641C9CD26F00DBFDE6 /* Shake Detection */ = {
+			isa = PBXGroup;
+			children = (
+				DA3B16651C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift */,
+				DA7B94EF1CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift */,
+				DA7B94F11CC28F0D00242E49 /* PinpointPresentingShakeDetectingWindowDelegate.swift */,
+			);
+			name = "Shake Detection";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -404,6 +421,7 @@
 			files = (
 				2CB63F1F1C77C38B000CEFC6 /* ScreenshotHeaderView.swift in Sources */,
 				12580A431C65332C00ADC01C /* MailSender.swift in Sources */,
+				DA7B94F01CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift in Sources */,
 				B92901A21C55677C007CCA5E /* TextAnnotationView.swift in Sources */,
 				2CB6C1F61C65361900022CEB /* ScreenshotDetector.swift in Sources */,
 				12580A411C65330600ADC01C /* SystemLogCollector.swift in Sources */,
@@ -412,6 +430,7 @@
 				2CB63F211C77CBE9000CEFC6 /* FeedbackTableViewDataSource.swift in Sources */,
 				B92901861C55648A007CCA5E /* KeyboardAvoider.swift in Sources */,
 				B929019C1C556774007CCA5E /* ArrowAnnotationView.swift in Sources */,
+				DA3B16661C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift in Sources */,
 				2CEAF65C1C779C8D009368B8 /* FeedbackNavigationController.swift in Sources */,
 				12580A391C65307300ADC01C /* Sender.swift in Sources */,
 				B92901B91C557406007CCA5E /* StrokeLayoutManager.swift in Sources */,
@@ -425,6 +444,7 @@
 				B92901B81C557406007CCA5E /* Screen.swift in Sources */,
 				B92901841C55639B007CCA5E /* Fonts.swift in Sources */,
 				B92901A71C5567EC007CCA5E /* BarButtonItem.swift in Sources */,
+				DA7B94F21CC28F0D00242E49 /* PinpointPresentingShakeDetectingWindowDelegate.swift in Sources */,
 				2CE6D4011C6E5DA400DD8189 /* SuccessType.swift in Sources */,
 				2CE6D3FF1C6E5D8D00DD8189 /* MIMEType.swift in Sources */,
 				B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */,
