@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '872078B1FC9FE76BCEB10AD0'
+               BlueprintIdentifier = '7301CCC4F1281579A55872A2'
                BlueprintName = 'PinpointKit'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'PinpointKit.framework'>

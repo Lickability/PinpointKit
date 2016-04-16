@@ -52,6 +52,8 @@
 		DA0DA6121C53049B0012ADBE /* PinpointKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */; };
 		DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */; };
 		DA3B16661C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3B16651C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift */; };
+		F2BF24051CB9A69200867E01 /* ASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = F2BF24031CB9A69200867E01 /* ASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F2BF24061CB9A69200867E01 /* ASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BF24041CB9A69200867E01 /* ASLLogger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +113,8 @@
 		DA0DA6131C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinpointKit.swift; sourceTree = "<group>"; };
 		DA3B16651C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindow.swift; sourceTree = "<group>"; };
+		F2BF24031CB9A69200867E01 /* ASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASLLogger.h; sourceTree = "<group>"; };
+		F2BF24041CB9A69200867E01 /* ASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASLLogger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +279,8 @@
 				2C5C41101C655B7D0033ED3D /* Screenshot Detection */,
 				DA3B16641C9CD26F00DBFDE6 /* Shake Detection */,
 				B92901821C556383007CCA5E /* Helpers */,
+				F2BF24031CB9A69200867E01 /* ASLLogger.h */,
+				F2BF24041CB9A69200867E01 /* ASLLogger.m */,
 			);
 			name = PinpointKit;
 			path = PinpointKit/Sources;
@@ -305,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA0DA6061C53049B0012ADBE /* PinpointKit.h in Headers */,
+				F2BF24051CB9A69200867E01 /* ASLLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,7 +360,7 @@
 		DA0DA5F91C53049B0012ADBE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Lickability;
 				TargetAttributes = {
@@ -442,6 +449,7 @@
 				B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */,
 				B929019E1C556778007CCA5E /* BlurAnnotationView.swift in Sources */,
 				B92901A51C556791007CCA5E /* Annotations.swift in Sources */,
+				F2BF24061CB9A69200867E01 /* ASLLogger.m in Sources */,
 				2C5C41141C6568D60033ED3D /* (null) in Sources */,
 				2CF3B9321CAF142400C8B29B /* NSBundle+PinpointKit.swift in Sources */,
 				12580A471C65339F00ADC01C /* FeedbackViewController.swift in Sources */,
