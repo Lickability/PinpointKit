@@ -9,11 +9,14 @@
 import UIKit
 import PinpointKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.lightGrayColor()
+        dispatch_async(dispatch_get_main_queue()) {
+        PinpointKit.defaultPinpointKit.show(fromViewController: self)
+        }
     }
 }
 
