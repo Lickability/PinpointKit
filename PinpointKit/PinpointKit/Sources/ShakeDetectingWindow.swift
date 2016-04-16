@@ -10,11 +10,14 @@ import UIKit
 
 class ShakeDetectingWindow: UIWindow {
 	
-	let pinpointKit: PinpointKit
+	weak var delegate: ShakeDetectingWindowDelegate?
 	
-	required init(frame: CGRect, pinpointKit: PinpointKit = PinpointKit.defaultPinpointKit) {
-		self.pinpointKit = pinpointKit
-		super.init(frame: frame)
+	required init(
+        frame: CGRect,
+        delegate: ShakeDetectingWindowDelegate = PinpointPresentingShakeDetectingWindowDelegate(pinpointKit: PinpointKit.defaultPinpointKit))
+    {
+        self.delegate = delegate
+        super.init(frame: frame)
 	}
 
 	// MARK: - UIWindow
@@ -28,9 +31,7 @@ class ShakeDetectingWindow: UIWindow {
 	
 	override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
 		if motion == .MotionShake {
-			// TODO: find topmost view controller
-			// TODO: uncomment this when #33 is merged
-			// pinpointKit.show(fromViewController: self)
+            delegate?.shakeDetectingWindowDidDetectShake(self)
 		}
 	}
 }
