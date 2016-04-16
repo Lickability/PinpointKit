@@ -14,7 +14,7 @@ import Foundation
 public class PinpointKit {
 
     /// Returns a `PinpointKit` instance with a default configuration.
-    static let defaultPinpointKit = PinpointKit()
+    public static let defaultPinpointKit = PinpointKit()
 
     /// The configuration struct that specifies how PinpointKit should be configured.
     private let configuration: Configuration

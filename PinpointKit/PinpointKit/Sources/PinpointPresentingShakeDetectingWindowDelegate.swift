@@ -8,14 +8,16 @@
 
 import Foundation
 
-final class PinpointPresentingShakeDetectingWindowDelegate: ShakeDetectingWindowDelegate {
+public final class PinpointPresentingShakeDetectingWindowDelegate: ShakeDetectingWindowDelegate {
 
     private let pinpointKit: PinpointKit
-    init(pinpointKit: PinpointKit) {
+    public init(pinpointKit: PinpointKit) {
         self.pinpointKit = pinpointKit
     }
 
-    func shakeDetectingWindowDidDetectShake(shakeDetectingWindow: ShakeDetectingWindow) {
+    // MARK: - ShakeDetectingWindowDelegate
+
+    public func shakeDetectingWindowDidDetectShake(shakeDetectingWindow: ShakeDetectingWindow) {
         guard let rootViewController = shakeDetectingWindow.rootViewController else {
             print("PinpointPresentingShakeDetectingWindowDelegate couldn't find a root view controller to present on.")
             return

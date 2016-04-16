@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ShakeDetectingWindowDelegate: class {
+public protocol ShakeDetectingWindowDelegate: class {
     func shakeDetectingWindowDidDetectShake(shakeDetectingWindow: ShakeDetectingWindow)
 }
