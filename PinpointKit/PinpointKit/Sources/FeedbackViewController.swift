@@ -105,7 +105,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         let header = ScreenshotHeaderView()
         header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: configuration?.interfaceText.feedbackEditHint)
         header.screenshotButtonTapHandler = { [weak self] button in
-            let editImageViewController = EditImageViewController(image: screenshot, currentViewModel: nil)
+            let editImageViewController = NavigationController(rootViewController: EditImageViewController(image: screenshot, currentViewModel: nil))
             self?.presentViewController(editImageViewController, animated: true, completion: nil)
         }
         
