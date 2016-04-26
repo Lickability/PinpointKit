@@ -119,7 +119,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }()
     
     private lazy var closeBarButtonItem: UIBarButtonItem = { [unowned self] in
-        UIBarButtonItem(image: UIImage(named: "CloseButtonX"), landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(EditImageViewController.closeButtonTapped(_:)))
+        UIBarButtonItem(image: UIImage(named: "CloseButtonX", inBundle: NSBundle.pinpointKitBundle(), compatibleWithTraitCollection: nil), landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(EditImageViewController.closeButtonTapped(_:)))
         }()
     
     private var currentTool: Tool {
