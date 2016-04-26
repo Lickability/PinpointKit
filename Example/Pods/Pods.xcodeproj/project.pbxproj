@@ -51,6 +51,7 @@
 		AA5A0FE708257CA1A7D4C883E66C9798 /* BlurAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC16055E49C366ED7A3828C3F5F2D84 /* BlurAnnotationView.swift */; };
 		B171040DF70E330442D89F59FF72DE5F /* LogCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7F2F0553847F51B5D83374AB95FC9 /* LogCollector.swift */; };
 		B467AED667465ECF74F9C6B83834E692 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF57ECE3585BED81B2D82B25192CE41 /* AnnotationView.swift */; };
+		B94AFA011CCEEDF600B10ADB /* UIView+PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B94AFA001CCEEDF600B10ADB /* UIView+PinpointKit.swift */; };
 		BDC695B9F1C9705D63755FB69D92B968 /* KeyboardAvoider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F238AA990185193E5727FD851FF3DF6E /* KeyboardAvoider.swift */; };
 		C24BB5D967296413EA6BD36E601C0C01 /* BoxAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7BA263018B4E9B64D9E0044714EC964 /* BoxAnnotationView.swift */; };
 		C2C8CB4FA5D9C9A1A654527DF5B12ABC /* UIGestureRecognizer+FailRecognizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD467D2F0C514A158945A049F19A4C9 /* UIGestureRecognizer+FailRecognizing.swift */; };
@@ -129,6 +130,7 @@
 		A7BA263018B4E9B64D9E0044714EC964 /* BoxAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BoxAnnotationView.swift; sourceTree = "<group>"; };
 		A96FAA5BF29BED434CD65238A8599698 /* AnnotationsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnnotationsView.swift; sourceTree = "<group>"; };
 		AF091F40184E2C7CB0FCE223F50B6407 /* PinpointKit.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = PinpointKit.xcassets; sourceTree = "<group>"; };
+		B94AFA001CCEEDF600B10ADB /* UIView+PinpointKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+PinpointKit.swift"; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C5566164C797956B1F76FCB1DC7D88A5 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = "SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
 		C5593F48A9396F3D83234C6BE6DE6CF5 /* LogViewer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogViewer.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 				A562DA168095D2BD6185DC02E13744BF /* TextAnnotationView.swift */,
 				5A66109B0C45306FB6377A52FDC16DC0 /* UIColor+Palette.swift */,
 				9BD467D2F0C514A158945A049F19A4C9 /* UIGestureRecognizer+FailRecognizing.swift */,
+				B94AFA001CCEEDF600B10ADB /* UIView+PinpointKit.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				DE078E6E1E44BD25C8BEF291F1942B3A /* CheckmarkCell.swift in Sources */,
 				15BF84A47F5F95C99543160474DAC6F8 /* Configuration.swift in Sources */,
 				D6EFFB3363A539B159D0A84AABCE44A5 /* EditImageViewController.swift in Sources */,
+				B94AFA011CCEEDF600B10ADB /* UIView+PinpointKit.swift in Sources */,
 				531D2F6A7CB914E185A7125F454332EE /* Editor.swift in Sources */,
 				D2B6FBD84A9BF12ECA8CE118A94FF9D3 /* Feedback.swift in Sources */,
 				4A067C824ED67C0830311ABE985CC1F3 /* FeedbackCollector.swift in Sources */,
