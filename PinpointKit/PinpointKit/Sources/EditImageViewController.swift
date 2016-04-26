@@ -114,9 +114,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private var previousUpdateAnnotationPanGestureRecognizerLocation: CGPoint!
     
     private let keyboardAvoider: KeyboardAvoider = KeyboardAvoider(window: UIApplication.sharedApplication().keyWindow)
-    private lazy var shareBarButtonItem: UIBarButtonItem = { [unowned self] in
-        UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(EditImageViewController.shareImage(_:)))
-        }()
+
     
     private lazy var closeBarButtonItem: UIBarButtonItem = { [unowned self] in
         UIBarButtonItem(image: UIImage(named: "CloseButtonX", inBundle: NSBundle.pinpointKitBundle(), compatibleWithTraitCollection: nil), landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(EditImageViewController.closeButtonTapped(_:)))
@@ -167,7 +165,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         navigationItem.leftBarButtonItem = closeBarButtonItem
         
-        navigationItem.rightBarButtonItem = shareBarButtonItem
         navigationItem.titleView = segmentedControl
         
         touchDownGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditImageViewController.handleTouchDownGestureRecognizer(_:)))
@@ -328,54 +325,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     // MARK: - Private
     
-    // TODO - turns sharing off - this seems like a Pinpoint app only need - also it pulls in a ton of other types.
-
-    @objc private func shareImage(button: UIBarButtonItem) {
-//        var activityItems: [AnyObject] = [ ImageActivityItemProvider(placeholderItem: view.pinpoint_screenshot) ]
-//        
-//        if let asset = currentViewModel?.asset {
-//            activityItems.append(asset)
-//        }
-//        
-//        let promotionTextProvider = AppPromotionTextItemProvider(placeholderItem: "")
-//        activityItems.append(promotionTextProvider)
-//        
-//        let itunesURLProvider = iTunesURLItemProvider(withiTunesID: String(App.iTunesIdentifier))
-//        activityItems.append(itunesURLProvider)
-//        
-//        let deleteActivity = DeleteOriginalAssetActivity()
-//        let facebookMessenger = FacebookMessengerActivity()
-//        let openInAppActivity = TTOpenInAppActivity(view: view, andBarButtonItem: button)
-//        
-//        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: [openInAppActivity, deleteActivity, facebookMessenger])
-//        controller.completionWithItemsHandler = finishedSharing
-//        
-//        openInAppActivity.superViewController = controller
-//        
-//        controller.popoverPresentationController?.barButtonItem = button
-//        controller.excludedActivityTypes = [ UIActivityTypeAssignToContact ]
-//        presentViewController(controller, animated: true, completion: nil)
-//    }
-//    
-//    private func finishedSharing(activityType: String?, completed: Bool, items: [AnyObject]?, error: NSError?) {
-//        let finished = completed && error == nil
-//        
-//        if finished {
-//            if activityType == DeleteOriginalAssetActivity.ActivityType {
-//                // Adds a delay for the screenshots view controller to receive the change notification.
-//                let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-//                    Int64(0.1 * Double(NSEC_PER_SEC)))
-//                dispatch_after(delayTime, dispatch_get_main_queue()) {
-//                    self.dismissViewControllerAnimated(true, completion: nil)
-//                }
-//            }
-//            else {
-//                hasACopyOfCurrentComposition = true
-//                hasSavedOrSharedAnyComposion = true
-//            }
-//        }
-    }
-    
     private func setupConstraints() {
         let views = [
             "imageView": imageView,
@@ -395,23 +344,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             self.dismissViewControllerAnimated(true, completion: nil)
         }))
         
-// TODO - are we going to support saving like this?
-//        alert.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: "Alert button title to save a copy of a composition."), style: .Default, handler: { (action) in
-//            let URL = writeImageToTemporaryLocation(image: self.view.pinpoint_screenshot, fileName: "Screenshot.png")
-//            
-//            if let URL = URL {
-//                do {
-//                    try PHPhotoLibrary.sharedPhotoLibrary().performChangesAndWait({
-//                        let creationRequest = PHAssetChangeRequest.creationRequestForAssetFromImageAtFileURL(URL)
-//                        creationRequest?.creationDate = NSDate()
-//                    })
-//                } catch _ {
-//                }
-//            }
-//            
-//            self.dismissViewControllerAnimated(true, completion: nil)
-//        }))
-        
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert button title to cancel the alert."), style: .Cancel, handler: nil))
         return alert
     }
@@ -423,12 +355,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             presentViewController(alert, animated: true, completion: nil)
         }
         else {
-            dismissViewControllerAnimated(true, completion: {
-                // TODO I don't THINK this is needed
-//                if self.hasSavedOrSharedAnyComposion && Preferences().deleteAfterSharing {
-//                    self.currentViewModel?.asset.delete()
-//                }
-            })
+            dismissViewControllerAnimated(true, completion: { })
         }
     }
     
@@ -528,7 +455,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             }
             
             navigationItem.setLeftBarButtonItem(closeBarButtonItem, animated: true)
-            navigationItem.setRightBarButtonItem(shareBarButtonItem, animated: true)
             
             currentAnnotationView = nil
         }
