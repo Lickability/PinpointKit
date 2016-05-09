@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "NYTPhotoViewerCloseButtonX.png"
+      "filename" : "CloseButtonX.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "NYTPhotoViewerCloseButtonX@2x.png"
+      "filename" : "CloseButtonX@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "NYTPhotoViewerCloseButtonX@3x.png"
+      "filename" : "CloseButtonX@3x.png"
     }
   ],
   "info" : {

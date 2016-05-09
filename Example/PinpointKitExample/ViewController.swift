@@ -14,7 +14,6 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.lightGrayColor()
-
     }
     
     override func viewDidAppear(animated: Bool) {
