@@ -59,9 +59,7 @@ final class NavigationController: UINavigationController, UINavigationController
     func setNavigationBarBackgroundImageColor(color: UIColor, separatorAlpha: CGFloat) {
         var alpha: CGFloat = 0
         color.getRed(nil, green: nil, blue: nil, alpha: &alpha)
-        
-       // navigationBar.separatorView?.alpha = separatorAlpha
-        
+                
         if alpha >= 1.0 {
             navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
         } else {
