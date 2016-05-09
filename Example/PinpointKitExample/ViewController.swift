@@ -14,9 +14,12 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.lightGrayColor()
-        dispatch_async(dispatch_get_main_queue()) {
+
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         PinpointKit.defaultPinpointKit.show(fromViewController: self)
-        }
     }
 }
 
