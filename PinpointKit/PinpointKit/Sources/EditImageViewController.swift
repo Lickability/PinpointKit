@@ -2,6 +2,10 @@ import UIKit
 import Photos
 import CoreImage
 
+public protocol EditImageViewControllerDelegate: class {
+    func didTapCloseButton(screenshot: UIImage)
+}
+
 public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate, Editor {
     static let TextViewEditingBarAnimationDuration = 0.25
     static let MinimumAnnotationsNeededToPromptBeforeDismissal = 3
@@ -10,6 +14,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private var hasACopyOfCurrentComposition: Bool = true
     
     private var hasSavedOrSharedAnyComposion: Bool = false
+    
+    private weak var delegate: EditImageViewControllerDelegate?
     
     // MARK: - Types
     
@@ -153,17 +159,18 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     // MARK: - Initializers
     convenience init() {
-        self.init(image: nil, currentViewModel: nil)
+        self.init(image: nil, currentViewModel: nil, delegate: nil)
     }
     
     override convenience init(nibName: String?, bundle nibBundle: NSBundle?) {
-        self.init(image: nil, currentViewModel: nil)
+        self.init(image: nil, currentViewModel: nil, delegate: nil)
     }
     
-    public init(image: UIImage?, currentViewModel: AssetViewModel?) {
+    public init(image: UIImage?, currentViewModel: AssetViewModel?, delegate: EditImageViewControllerDelegate?) {
         super.init(nibName: nil, bundle: nil)
         
         navigationItem.leftBarButtonItem = closeBarButtonItem
+        self.delegate = delegate
         
         navigationItem.titleView = segmentedControl
         
@@ -349,6 +356,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     @objc private func closeButtonTapped(button: UIBarButtonItem) {
+        
+        defer {
+            self.delegate?.didTapCloseButton(self.view.pinpoint_screenshot)
+        }
+        
         if shouldPromptBeforeDismissal {
             let alert = newCloseSreenshotAlert()
             alert.popoverPresentationController?.barButtonItem = button

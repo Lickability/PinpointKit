@@ -9,7 +9,7 @@
 import UIKit
 
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
-public class FeedbackViewController: UITableViewController, FeedbackCollector {
+public class FeedbackViewController: UITableViewController, FeedbackCollector, EditImageViewControllerDelegate {
     
     /// A delegate that is informed of significant events in feedback collection.
     public weak var feedbackDelegate: FeedbackCollectorDelegate?
@@ -105,7 +105,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         let header = ScreenshotHeaderView()
         header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: configuration?.interfaceText.feedbackEditHint)
         header.screenshotButtonTapHandler = { [weak self] button in
-            let editImageViewController = NavigationController(rootViewController: EditImageViewController(image: screenshot, currentViewModel: nil))
+            let editImageViewController = NavigationController(rootViewController: EditImageViewController(image: screenshot, currentViewModel: nil, delegate: self))
             self?.presentViewController(editImageViewController, animated: true, completion: nil)
         }
         
@@ -135,6 +135,11 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         self.screenshot = screenshot
         viewController.showDetailViewController(self, sender: viewController)
     }
+    
+    public func didTapCloseButton(screenshot: UIImage) {
+        self.screenshot = screenshot
+    }
+    
 }
 
 // MARK: - UITableViewDelegate
