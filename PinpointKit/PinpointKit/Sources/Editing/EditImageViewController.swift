@@ -13,59 +13,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private weak var delegate: EditImageViewControllerDelegate?
     
-    // MARK: - Types
-    
-    private enum Tool: Int {
-        case Arrow
-        case Box
-        case Text
-        case Blur
-        
-        var name: String {
-            switch self {
-            case .Arrow:
-                return "Arrow Tool"
-            case .Box:
-                return "Box Tool"
-            case .Text:
-                return "Text Tool"
-            case .Blur:
-                return "Blur Tool"
-            }
-        }
-        
-        var image: UIImage {
-            let bundle = NSBundle.pinpointKitBundle()
-            
-            func loadImage() -> UIImage? {
-                switch self {
-                case .Arrow:
-                    return UIImage(named: "ArrowIcon", inBundle: bundle, compatibleWithTraitCollection: nil)
-                case .Box:
-                    return UIImage(named: "BoxIcon", inBundle: bundle, compatibleWithTraitCollection: nil)
-                case .Text:
-                    return UIImage()
-                case .Blur:
-                    return UIImage(named: "BlurIcon", inBundle: bundle, compatibleWithTraitCollection: nil)
-                }
-            }
-            
-            return loadImage() ?? UIImage()
-        }
-        
-        var segmentedControlItem: AnyObject {
-            switch self {
-            case .Arrow, .Box, .Blur:
-                let image = self.image
-                image.accessibilityLabel = self.name
-                return image
-            case .Text:
-                return NSLocalizedString("Aa", comment: "The text tool’s button label.")
-            }
-        }
-    }
-    
-    
     // MARK: - Properties
     
     private lazy var segmentedControl: UISegmentedControl = { [unowned self] in
@@ -502,31 +449,10 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private func handleCreateAnnotationGestureRecognizerBegan(gestureRecognizer: UIGestureRecognizer) {
         let currentLocation = gestureRecognizer.locationInView(annotationsView)
-        let view: AnnotationView = {
-            switch self.currentTool {
-            case .Arrow:
-                let view = ArrowAnnotationView()
-                view.annotation = ArrowAnnotation(startLocation: currentLocation, endLocation: currentLocation)
-                return view
-            case .Box:
-                let view = BoxAnnotationView()
-                view.annotation = BoxAnnotation(startLocation: currentLocation, endLocation: currentLocation)
-                return view
-            case .Text:
-                let view = TextAnnotationView()
-                let minimumSize = TextAnnotationView.minimumTextSize()
-                let endLocation = CGPoint(x: currentLocation.x + minimumSize.width, y: currentLocation.y + minimumSize.height)
-                view.annotation = Annotation(startLocation: currentLocation, endLocation: endLocation)
-                return view
-            case .Blur:
-                let CGImage: QuartzCore.CGImage? = self.imageView.image?.CGImage
-                let CIImage = CGImage.map({ CoreImage.CIImage(CGImage: $0) })
-                let view = BlurAnnotationView()
-                view.drawsBorder = true
-                view.annotation = CIImage.map({ BlurAnnotation(startLocation: currentLocation, endLocation: currentLocation, image: $0) })
-                return view
-            }
-        }()
+        
+        let factory = AnnotationViewFactory(image: self.imageView.image?.CGImage, currentLocation: currentLocation, tool: currentTool)
+        
+        let view: AnnotationView = factory.annotationView()
         
         view.frame = annotationsView.bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
@@ -539,7 +465,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         let currentLocation = gestureRecognizer.locationInView(annotationsView)
         currentAnnotationView?.setSecondControlPoint(currentLocation)
     }
-    
     
     // MARK: - Update annotations
     

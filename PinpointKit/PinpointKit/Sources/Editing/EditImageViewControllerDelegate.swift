@@ -1,11 +1,3 @@
-//
-//  EditImageViewControllerDelegate.swift
-//  Pods
-//
-//  Created by Kenneth Parker Ackerson on 5/9/16.
-//
-//
-
 /// A delegate for the EditImageViewController.
 public protocol EditImageViewControllerDelegate: class {
     
