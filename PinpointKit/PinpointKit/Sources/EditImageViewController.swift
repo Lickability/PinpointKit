@@ -2,10 +2,6 @@ import UIKit
 import Photos
 import CoreImage
 
-public protocol EditImageViewControllerDelegate: class {
-    func didTapCloseButton(screenshot: UIImage)
-}
-
 public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate, Editor {
     static let TextViewEditingBarAnimationDuration = 0.25
     static let MinimumAnnotationsNeededToPromptBeforeDismissal = 3
