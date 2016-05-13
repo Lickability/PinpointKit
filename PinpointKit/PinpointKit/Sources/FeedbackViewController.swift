@@ -110,6 +110,10 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: interfaceCustomization?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
         
+        if let backButtonTitle = interfaceCustomization?.interfaceText.feedbackBackButtonTitle {
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: backButtonTitle, style: .Plain, target: nil, action: nil)
+        }
+        
         let cancelBarButtonItem: UIBarButtonItem
         let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
         if let cancelButtonTitle = interfaceCustomization?.interfaceText.feedbackCancelButtonTitle {
