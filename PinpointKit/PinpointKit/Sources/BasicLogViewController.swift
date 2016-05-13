@@ -10,7 +10,11 @@ import UIKit
 
 public class BasicLogViewController: UIViewController, LogViewer {
     
-    var interfaceCustomization: InterfaceCustomization?
+    // MARK: - InterfaceCustomizable
+    
+    public var interfaceCustomization: InterfaceCustomization?
+    
+    // MARK: - BasicLogViewController
     
     private let textView: UITextView = {
         let textView = UITextView()
@@ -22,12 +26,16 @@ public class BasicLogViewController: UIViewController, LogViewer {
         return textView
     }()
     
+    // MARK: - UIViewController
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Console Log"
+        title = interfaceCustomization?.interfaceText.logCollectorTitle
+        setUpTextView()
     }
+    
+    // MARK: - BasicLogViewController
     
     private func setUpTextView() {
         view.addSubview(textView)

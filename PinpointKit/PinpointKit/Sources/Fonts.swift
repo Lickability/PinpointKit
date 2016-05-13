@@ -41,4 +41,8 @@ public extension UIFont {
         
         return UIFont(name: fontName, size: fontSize) ?? UIFont.systemFontOfSize(fontSize)
     }
+    
+    public static func monospacedFontOfSize(fontSize: CGFloat) -> UIFont {
+        return UIFont(name: "Menlo-Regular", size: fontSize) ?? UIFont.systemFontOfSize(fontSize)
+    }
 }

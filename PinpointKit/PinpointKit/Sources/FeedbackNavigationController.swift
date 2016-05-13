@@ -11,7 +11,7 @@ import UIKit
 /// A `UINavigationController` subclass that has a `FeedbackViewController` as its root view controller. Use this class as a `FeedbackCollector`.
 public class FeedbackNavigationController: UINavigationController, FeedbackCollector {
     
-    // MARK: - InterfaceCustomization
+    // MARK: - InterfaceCustomizability
     
     public var interfaceCustomization: InterfaceCustomization? {
         get {

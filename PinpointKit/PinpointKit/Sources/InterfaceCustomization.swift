@@ -30,6 +30,9 @@ public struct InterfaceCustomization {
         /// The stroke color for annotations.
         let annotationStrokeColor: UIColor
         
+        /// The font used for displaying logs
+        let logFont: UIFont
+        
         /**
          Initializes an `Appearance` object with a optional annotation color properties.
          
@@ -38,10 +41,11 @@ public struct InterfaceCustomization {
          
          - returns: A fully initialized `Appearance` object.
          */
-        public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(), annotationFillColor: UIColor? = nil, annotationStrokeColor: UIColor = .whiteColor()) {
+        public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(), annotationFillColor: UIColor? = nil, annotationStrokeColor: UIColor = .whiteColor(), logFont: UIFont = .monospacedFontOfSize(12)) {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor
+            self.logFont = logFont
         }
     }
     
