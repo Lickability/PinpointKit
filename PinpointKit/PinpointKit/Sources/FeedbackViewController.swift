@@ -11,6 +11,23 @@ import UIKit
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
 public class FeedbackViewController: UITableViewController, FeedbackCollector {
     
+    // MARK: - InterfaceCustomization
+    
+    public var interfaceCustomization: InterfaceCustomization? {
+        didSet {
+            guard isViewLoaded() else { return }
+            
+            updateInterfaceCustomization()
+        }
+    }
+    
+    // MARK: - LogSupporting
+    
+    public var logViewer: LogViewer?
+    public var logCollector: LogCollector?
+    
+    // MARK: - FeedbackViewController
+    
     /// A delegate that is informed of significant events in feedback collection.
     public weak var feedbackDelegate: FeedbackCollectorDelegate?
     
@@ -130,21 +147,6 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         self.screenshot = screenshot
         viewController.showDetailViewController(self, sender: viewController)
     }
-    
-    // MARK: - InterfaceCustomization
-    
-    public var interfaceCustomization: InterfaceCustomization? {
-        didSet {
-            guard isViewLoaded() else { return }
-            
-            updateInterfaceCustomization()
-        }
-    }
-    
-    // MARK: - LogSupporting
-    
-    public var logViewer: LogViewer?
-    public var logCollector: LogCollector?
 }
 
 // MARK: - UITableViewDelegate
