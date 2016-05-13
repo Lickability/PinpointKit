@@ -15,22 +15,22 @@ public struct Configuration {
     
     /// A struct containing information about the appearance of displayed components.
     var appearance: InterfaceCustomization.Appearance? {
-        return self.feedbackCollector.interfaceCustomization?.appearance
+        return feedbackCollector.interfaceCustomization?.appearance
     }
     
     ///  A struct containing user-facing strings displayed in the interface.
     var interfaceText: InterfaceCustomization.InterfaceText? {
-        return self.feedbackCollector.interfaceCustomization?.interfaceText
+        return feedbackCollector.interfaceCustomization?.interfaceText
     }
 
     /// An optional type that collects logs to be displayed and sent with feedback.
     var logCollector: LogCollector? {
-        return self.feedbackCollector.logCollector
+        return feedbackCollector.logCollector
     }
     
     /// An optional type that allows the user to view logs before sending feedback.
     var logViewer: LogViewer? {
-        return self.feedbackCollector.logViewer
+        return feedbackCollector.logViewer
     }
     
     /// A feedback collector that obtains the feedback to send.
