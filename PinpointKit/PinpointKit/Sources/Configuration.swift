@@ -46,12 +46,12 @@ public struct Configuration {
      Initializes a `Configuration` object with optionally customizable appearance and behaviors.
      
      - parameter appearance:        A struct containing information about the appearance of displayed components.
+     - parameter interfaceText:     The text to be displayed in the interface.
      - parameter logCollector:      An optional type that collects logs to be displayed and sent with feedback.
+     - parameter logViewer:         An optional type the shows logs.
      - parameter feedbackCollector: A feedback collector that obtains the feedback, by default in the form of annotated screenshots, to send.
      - parameter editor:            An editor that allows annotation of images.
      - parameter sender:            A sender that allows sending the feedback outside the framework.
-     
-     - returns: A fully initialized `Configuration` object.
      */
     public init(appearance: InterfaceCustomization.Appearance = InterfaceCustomization.Appearance(),
         interfaceText: InterfaceCustomization.InterfaceText = InterfaceCustomization.InterfaceText(),

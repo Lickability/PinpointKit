@@ -27,8 +27,6 @@ public class PinpointKit {
      
      - parameter configuration: The configuration struct that specifies how PinpointKit should be configured.
      - parameter delegate:      A delegate that is notified of significant events.
-     
-     - returns: A fully initialized `PinpointKit` object.
      */
     public init(configuration: Configuration = Configuration(), delegate: PinpointKitDelegate? = nil) {
         self.configuration = configuration

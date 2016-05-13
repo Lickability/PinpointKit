@@ -38,15 +38,15 @@ public final class KeyboardAvoider {
             var difference: CGFloat = 0
             
             for triggerView in triggerViews {
-                let triggerViewFrameInWindow = triggerView.superview?.convertRect(triggerView.frame, toView: window) ?? CGRectZero
-                let intersectsKeyboard = CGRectIntersectsRect(triggerViewFrameInWindow, keyboardEndFrame)
+                let triggerViewFrameInWindow = triggerView.superview?.convertRect(triggerView.frame, toView: window) ?? CGRect.zero
+                let intersectsKeyboard = triggerViewFrameInWindow.intersects(keyboardEndFrame)
                 
-                let triggerKeyboardDifference = intersectsKeyboard ? CGRectGetMaxY(triggerViewFrameInWindow) - CGRectGetMinY(keyboardEndFrame) : 0
+                let triggerKeyboardDifference = intersectsKeyboard ? triggerViewFrameInWindow.maxY - keyboardEndFrame.minY : 0
                 difference = max(difference, triggerKeyboardDifference)
             }
             
             // If the keyboard is going to or below 0, we're dismissing.
-            let isDismissing = window.map { CGRectGetMinY(keyboardEndFrame) >= CGRectGetMaxY($0.bounds) } ?? false
+            let isDismissing = window.map { keyboardEndFrame.minY >= $0.bounds.maxY } ?? false
             
             // This will be animated because this notification is called from within an animation block.
             for avoidingView in self.viewsToAvoidKeyboard {
@@ -66,7 +66,7 @@ public final class KeyboardAvoider {
     }
     
     private func updateAndStoreConstraints(constraints: [AnyObject], onView view: UIView, withDifference difference: CGFloat, isDismissing: Bool) {
-        let typedContraints = constraints.filter { $0 is NSLayoutConstraint }.map { $0 as! NSLayoutConstraint }
+        let typedContraints = constraints.filter { $0 is NSLayoutConstraint }.map { $0 as! NSLayoutConstraint } // swiftlint:disable:this force_cast
         
         for constraint in typedContraints {
             let originalConstant = self.originalConstraintConstants[constraint]

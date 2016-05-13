@@ -24,7 +24,7 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
         manager.addTextContainer(container)
         storage.addLayoutManager(manager)
         
-        let textView = UITextView(frame: CGRectZero, textContainer: container)
+        let textView = UITextView(frame: CGRect.zero, textContainer: container)
         
         textView.spellCheckingType = .No
         textView.scrollEnabled = false
@@ -43,7 +43,7 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
     
     var annotation: Annotation? {
         didSet {
-            textView.frame = annotation.map { $0.frame } ?? CGRectZero
+            textView.frame = annotation.map { $0.frame } ?? CGRect.zero
             originalTextViewFrame = textView.frame
         }
     }
@@ -72,7 +72,7 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
     }
     
     override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        let value = annotationFrame.map { CGRectContainsPoint($0, point) } ?? false
+        let value = annotationFrame.map { $0.contains(point) } ?? false
         return value
     }
         
@@ -81,7 +81,7 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
     override func moveControlPoints(translation: CGPoint) {
         textView.frame = {
             var textViewFrame = self.textView.frame
-            textViewFrame.origin = CGPoint(x: CGRectGetMinX(textViewFrame) + translation.x, y: CGRectGetMinY(textViewFrame) + translation.y)
+            textViewFrame.origin = CGPoint(x: textViewFrame.minX + translation.x, y: textViewFrame.minY + translation.y)
             return textViewFrame
         }()
     }
@@ -92,7 +92,7 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
         let shadow = NSShadow()
         shadow.shadowBlurRadius = 5
         shadow.shadowColor = UIColor(white: 0.0, alpha: 1.0)
-        shadow.shadowOffset = CGSizeZero
+        shadow.shadowOffset = CGSize.zero
         
         return [
             NSFontAttributeName: self.dynamicType.font(),
@@ -118,19 +118,19 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
             var textViewFrame = self.textView.frame
             textViewFrame.size = self.textView.intrinsicContentSize()
             
-            let distanceToEdgeOfView = CGRectGetMaxX(self.bounds) - CGRectGetMinX(textViewFrame)
-            textViewFrame.size.width = min(CGRectGetWidth(textViewFrame), distanceToEdgeOfView)
+            let distanceToEdgeOfView = self.bounds.maxX - textViewFrame.minX
+            textViewFrame.size.width = min(textViewFrame.width, distanceToEdgeOfView)
             
             let minHeight: CGFloat
             
             if let originalTextViewFrame = self.originalTextViewFrame {
-                textViewFrame.size.width = max(CGRectGetWidth(textViewFrame), CGRectGetWidth(originalTextViewFrame))
-                minHeight = CGRectGetHeight(originalTextViewFrame)
+                textViewFrame.size.width = max(textViewFrame.width, originalTextViewFrame.width)
+                minHeight = originalTextViewFrame.height
             } else {
                 minHeight = self.dynamicType.minimumTextSize().height
             }
             
-            let size = CGSize(width: CGRectGetWidth(textViewFrame), height: CGFloat.max)
+            let size = CGSize(width: textViewFrame.width, height: CGFloat.max)
             
             textViewFrame.size.height = max(self.textView.sizeThatFits(size).height, minHeight)
             

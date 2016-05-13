@@ -76,6 +76,17 @@ public struct Feedback {
     let applicationInformation: ApplicationInformation?
     
     /// Initializes a `Feedback` with optional default values.
+    
+    /**
+     Initializes a `Feedback` with optional default values.
+     
+     - parameter screenshot:             The type of screenshot in the feedback.
+     - parameter screenshotFilename:     The file name of the screenshot.
+     - parameter title:                  The title of the feedback.
+     - parameter body:                   The default body text.
+     - parameter additionalInformation:  Any additional information you want to capture.
+     - parameter applicationInformation: Information about the application to be captured.
+     */
     init(screenshot: ScreenshotType,
         screenshotFilename: String = "Screenshot.png",
         title: String? = "Bug Report",

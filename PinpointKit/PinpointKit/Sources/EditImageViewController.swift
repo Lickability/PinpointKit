@@ -74,8 +74,10 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         let textToolIndex = segmentArray.indexOf(Tool.Text)
         
-        let segment = view.subviews[textToolIndex!]
-        segment.accessibilityLabel = "Text Tool"
+        if let index = textToolIndex {
+            let segment = view.subviews[index]
+            segment.accessibilityLabel = "Text Tool"
+        }
         
         view.setTitleTextAttributes([NSFontAttributeName: UIFont.sourceSansProFontOfSize(18, weight: .Regular)], forState: UIControlState.Normal)
         
@@ -122,8 +124,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         UIBarButtonItem(image: UIImage(named: "CloseButtonX"), landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(EditImageViewController.closeButtonTapped(_:)))
         }()
     
-    private var currentTool: Tool {
-        return Tool(rawValue: segmentedControl.selectedSegmentIndex)!
+    private var currentTool: Tool? {
+        return Tool(rawValue: segmentedControl.selectedSegmentIndex)
     }
     
     private var currentAnnotationView: AnnotationView? {
@@ -171,7 +173,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         navigationItem.titleView = segmentedControl
         
         touchDownGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditImageViewController.handleTouchDownGestureRecognizer(_:)))
-        touchDownGestureRecognizer.minimumPressDuration = 0.0;
+        touchDownGestureRecognizer.minimumPressDuration = 0.0
         touchDownGestureRecognizer.delegate = self
         
         createAnnotationPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(EditImageViewController.handleCreateAnnotationGestureRecognizer(_:)))
@@ -191,7 +193,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         imageView.image = image
         
         annotationsView.isAccessibilityElement = true
-        annotationsView.accessibilityTraits = annotationsView.accessibilityTraits | UIAccessibilityTraitAllowsDirectInteraction;
+        annotationsView.accessibilityTraits = annotationsView.accessibilityTraits | UIAccessibilityTraitAllowsDirectInteraction
         
         closeBarButtonItem.accessibilityLabel = "Close"
         
@@ -317,7 +319,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         var landscapeOrientation = UIInterfaceOrientation.LandscapeRight
         var portraitOrientation = UIInterfaceOrientation.Portrait
         
-        if (traitCollection.userInterfaceIdiom == .Pad) {
+        if traitCollection.userInterfaceIdiom == .Pad {
             let deviceOrientation = UIDevice.currentDevice().orientation
             landscapeOrientation = (deviceOrientation == .LandscapeRight ? .LandscapeLeft : .LandscapeRight)
             portraitOrientation = (deviceOrientation == .PortraitUpsideDown ? .PortraitUpsideDown : .Portrait)
@@ -421,8 +423,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             let alert = newCloseSreenshotAlert()
             alert.popoverPresentationController?.barButtonItem = button
             presentViewController(alert, animated: true, completion: nil)
-        }
-        else {
+        } else {
             dismissViewControllerAnimated(true, completion: {
                 // TODO I don't THINK this is needed
 //                if self.hasSavedOrSharedAnyComposion && Preferences().deleteAfterSharing {
@@ -437,7 +438,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             let possibleAnnotationView = annotationViewWithGestureRecognizer(gestureRecognizer)
             let annotationViewIsNotBlurView = !(possibleAnnotationView is BlurAnnotationView)
             
-            if let annotationView = possibleAnnotationView  {
+            if let annotationView = possibleAnnotationView {
                 annotationsView.bringSubviewToFront(annotationView)
                 
                 if annotationViewIsNotBlurView {
@@ -567,9 +568,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func handleCreateAnnotationGestureRecognizerBegan(gestureRecognizer: UIGestureRecognizer) {
+        guard let currentTool = self.currentTool else { return }
+        
         let currentLocation = gestureRecognizer.locationInView(annotationsView)
         let view: AnnotationView = {
-            switch self.currentTool {
+            switch currentTool {
             case .Arrow:
                 let view = ArrowAnnotationView()
                 view.annotation = ArrowAnnotation(startLocation: currentLocation, endLocation: currentLocation)
@@ -693,11 +696,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             return
         }
         
-        let view = annotationViewWithGestureRecognizer(gestureRecognizer)
-        let frame = view?.annotationFrame
-        if view == nil || frame == nil {
-            return
-        }
+        guard let view = annotationViewWithGestureRecognizer(gestureRecognizer) else { return }
         
         selectedAnnotationView = view
         becomeFirstResponder()
@@ -706,7 +705,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         let targetRect = CGRect(origin: point, size: CGSize())
         
         let controller = UIMenuController.sharedMenuController()
-        controller.setTargetRect(targetRect, inView: view!)
+        controller.setTargetRect(targetRect, inView: view)
         controller.menuItems = [
             UIMenuItem(title: "Delete", action: #selector(EditImageViewController.deleteSelectedAnnotationView))
         ]
@@ -714,7 +713,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         controller.setMenuVisible(true, animated: true)
     }
     
-    private func deleteAnnotationView(annotationView: UIView, animated:Bool) {
+    private func deleteAnnotationView(annotationView: UIView, animated: Bool) {
         let removeAnnotationView = { () -> Void in
             self.endEditingTextView()
             annotationView.removeFromSuperview()
@@ -728,8 +727,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
                 removeAnnotationView()
             })
             
-        }
-        else {
+        } else {
             removeAnnotationView()
         }
     }

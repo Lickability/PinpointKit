@@ -51,7 +51,7 @@ class ArrowAnnotationView: AnnotationView {
     // MARK: - Initializers
 
     convenience init() {
-        self.init(frame: CGRectZero)
+        self.init(frame: CGRect.zero)
     }
 
     override init(frame: CGRect) {
@@ -60,7 +60,7 @@ class ArrowAnnotationView: AnnotationView {
         opaque = false
         contentMode = .Redraw
 
-        layer.shadowOffset = CGSizeZero
+        layer.shadowOffset = CGSize.zero
         layer.shadowColor = UIColor.blackColor().CGColor
         layer.shadowOpacity = 1
         layer.shadowRadius = 4

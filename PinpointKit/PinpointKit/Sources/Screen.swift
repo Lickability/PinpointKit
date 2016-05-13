@@ -20,6 +20,6 @@ extension UIScreen {
         let coordinateSpaceBounds = UIScreen.mainScreen().fixedCoordinateSpace.bounds
         let scale = UIScreen.mainScreen().scale
         
-        return CGSize(width: CGRectGetWidth(coordinateSpaceBounds) * scale, height: CGRectGetHeight(coordinateSpaceBounds) * scale)
+        return CGSize(width: coordinateSpaceBounds.width * scale, height: coordinateSpaceBounds.height * scale)
     }
 }
