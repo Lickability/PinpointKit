@@ -9,7 +9,7 @@
 import UIKit
 
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
-public class FeedbackViewController: UITableViewController, FeedbackCollector, FeedbackLogging {
+public class FeedbackViewController: UITableViewController, FeedbackCollector {
     
     /// A delegate that is informed of significant events in feedback collection.
     public weak var feedbackDelegate: FeedbackCollectorDelegate?

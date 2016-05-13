@@ -9,7 +9,7 @@
 import UIKit
 
 /// A `UINavigationController` subclass that has a `FeedbackViewController` as its root view controller. Use this class as a `FeedbackCollector`.
-public class FeedbackNavigationController: UINavigationController, FeedbackCollector, FeedbackLogging {
+public class FeedbackNavigationController: UINavigationController, FeedbackCollector {
     /// The root view controller used to collect feedback.
     let feedbackViewController: FeedbackViewController
     

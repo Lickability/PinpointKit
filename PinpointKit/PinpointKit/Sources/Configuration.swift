@@ -24,10 +24,14 @@ public struct Configuration {
     }
 
     /// An optional type that collects logs to be displayed and sent with feedback.
-    let logCollector: LogCollector?
+    var logCollector: LogCollector? {
+        return self.feedbackCollector.logCollector
+    }
     
     /// An optional type that allows the user to view logs before sending feedback.
-    let logViewer: LogViewer?
+    var logViewer: LogViewer? {
+        return self.feedbackCollector.logViewer
+    }
     
     /// A feedback collector that obtains the feedback to send.
     let feedbackCollector: FeedbackCollector
@@ -56,12 +60,12 @@ public struct Configuration {
         feedbackCollector: FeedbackCollector = FeedbackNavigationController(),
         editor: Editor = EditImageViewController(),
         sender: Sender = MailSender()) {
-            self.logCollector = logCollector
-            self.logViewer = logViewer
             self.feedbackCollector = feedbackCollector
             self.editor = editor
             self.sender = sender
             
             self.feedbackCollector.feedbackDisplay = FeedbackDisplay(interfaceText: interfaceText, appearance: appearance)
+            self.feedbackCollector.logCollector = logCollector
+            self.feedbackCollector.logViewer = logViewer
     }
 }
