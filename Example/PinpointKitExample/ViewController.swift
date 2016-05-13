@@ -16,4 +16,3 @@ class ViewController: UIViewController {
         view.backgroundColor = UIColor.lightGrayColor()
     }
 }
-
