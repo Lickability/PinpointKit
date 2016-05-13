@@ -15,4 +15,10 @@ class ViewController: UIViewController {
         
         view.backgroundColor = UIColor.lightGrayColor()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        PinpointKit.defaultPinpointKit.show(fromViewController: self)
+    }
 }

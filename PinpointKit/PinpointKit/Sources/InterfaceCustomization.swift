@@ -62,6 +62,9 @@ public struct InterfaceCustomization {
         /// A hint to the user on how to edit the screenshot from the feedback screen.
         let feedbackEditHint: String?
         
+        /// The title of the log collection screen.
+        let logCollectorTitle: String?
+        
         /// The title of a cell that allows the user to toggle log collection.
         let logCollectionPermissionTitle: String
         
@@ -70,11 +73,13 @@ public struct InterfaceCustomization {
                     feedbackSendButtonTitle: String = NSLocalizedString("Send", comment: "A button that sends feedback."),
                     feedbackCancelButtonTitle: String? = nil,
                     feedbackEditHint: String? = NSLocalizedString("Tap the screenshot to annotate.", comment: "A hint on how to edit the screenshot"),
+                    logCollectorTitle: String? = NSLocalizedString("Console Log", comment: "Title of a view that collects logs"),
                     logCollectionPermissionTitle: String = NSLocalizedString("Include Console Log", comment: "Title of a button asking the user to include system logs")) {
             self.feedbackCollectorTitle = feedbackCollectorTitle
             self.feedbackSendButtonTitle = feedbackSendButtonTitle
             self.feedbackCancelButtonTitle = feedbackCancelButtonTitle
             self.feedbackEditHint = feedbackEditHint
+            self.logCollectorTitle = logCollectorTitle
             self.logCollectionPermissionTitle = logCollectionPermissionTitle
         }
     }
