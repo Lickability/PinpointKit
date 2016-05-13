@@ -132,6 +132,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     }
     
     // MARK: - InterfaceCustomization
+    
     public var interfaceCustomization: InterfaceCustomization? {
         didSet {
             guard isViewLoaded() else { return }
@@ -141,11 +142,13 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     }
     
     // MARK: - LogSupporting
+    
     public var logViewer: LogViewer?
     public var logCollector: LogCollector?
 }
 
 // MARK: - UITableViewDelegate
+
 extension FeedbackViewController {
     public override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         guard let logCollector = logCollector else {
