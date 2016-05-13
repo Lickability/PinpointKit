@@ -11,14 +11,10 @@
 
 @implementation ASLLogger
 
-- (NSArray<NSString *> *)retrieveLogsFromOffsetSinceNow:(NSInteger)offset {
+- (NSArray<NSString *> *)retrieveLogs {
     NSMutableArray<NSString *> *logs = [NSMutableArray array];
     
     long lastTime = 0;
-    
-    if (offset != NSNotFound) {
-        lastTime = (long)[NSDate date].timeIntervalSince1970 - offset;
-    }
     
     aslmsg query = NULL, message = NULL;
     aslresponse response = NULL;

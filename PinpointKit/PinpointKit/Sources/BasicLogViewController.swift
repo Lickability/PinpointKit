@@ -50,7 +50,7 @@ public class BasicLogViewController: UIViewController, LogViewer {
     // MARK: - LogViewer
     
     public func viewLog(collector: LogCollector, fromViewController viewController: UIViewController) {
-        textView.text = collector.retrieveLogs(fromOffsetSinceNow: nil).joinWithSeparator("\n")
+        textView.text = collector.retrieveLogs().joinWithSeparator("\n")
         
         viewController.showViewController(self, sender: viewController)
     }
