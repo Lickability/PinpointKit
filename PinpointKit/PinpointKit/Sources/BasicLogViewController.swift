@@ -25,6 +25,7 @@ public class BasicLogViewController: UIViewController, LogViewer {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.editable = false
+        textView.dataDetectorTypes = .None
 
         return textView
     }()
@@ -34,25 +35,29 @@ public class BasicLogViewController: UIViewController, LogViewer {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        func setUpTextView() {
+            view.addSubview(textView)
+            
+            textView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor, constant: 0).active = true
+            textView.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor, constant: 0).active = true
+            textView.widthAnchor.constraintEqualToAnchor(view.widthAnchor, constant: 0).active = true
+            textView.heightAnchor.constraintEqualToAnchor(view.heightAnchor, constant: 0).active = true
+        }
+        
         setUpTextView()
     }
     
-    // MARK: - BasicLogViewController
-    
-    private func setUpTextView() {
-        view.addSubview(textView)
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        textView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor, constant: 0).active = true
-        textView.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor, constant: 0).active = true
-        textView.widthAnchor.constraintEqualToAnchor(view.widthAnchor, constant: 0).active = true
-        textView.heightAnchor.constraintEqualToAnchor(view.heightAnchor, constant: 0).active = true
-
+        textView.scrollRangeToVisible(NSRange(location: (textView.text as NSString).length, length: 0))
     }
     
     // MARK: - LogViewer
     
     public func viewLog(collector: LogCollector, fromViewController viewController: UIViewController) {
-        textView.text = collector.retrieveLogs().joinWithSeparator("\n")
+        let logText = collector.retrieveLogs().joinWithSeparator("\n")
+        textView.text = logText
         
         viewController.showViewController(self, sender: viewController)
     }
