@@ -9,18 +9,36 @@
 import UIKit
 
 /// A `UINavigationController` subclass that has a `FeedbackViewController` as its root view controller. Use this class as a `FeedbackCollector`.
-public class FeedbackNavigationController: UINavigationController, FeedbackCollector {
+public class FeedbackNavigationController: UINavigationController, FeedbackCollector, FeedbackLogging {
     /// The root view controller used to collect feedback.
     let feedbackViewController: FeedbackViewController
     
     /// The configuration the feedback view controller uses to set itself up.
-    public var configuration: Configuration? {
+    public var feedbackDisplay: FeedbackDisplay? {
         get {
-            return feedbackViewController.configuration
+            return feedbackViewController.feedbackDisplay
         }
         set {
-            feedbackViewController.configuration = newValue
-            view.tintColor = configuration?.appearance.tintColor
+            feedbackViewController.feedbackDisplay = newValue
+            view.tintColor = feedbackDisplay?.appearance.tintColor
+        }
+    }
+    
+    public var logViewer: LogViewer? {
+        get {
+            return feedbackViewController.logViewer
+        }
+        set {
+            feedbackViewController.logViewer = newValue
+        }
+    }
+    
+    public var logCollector: LogCollector? {
+        get {
+            return feedbackViewController.logCollector
+        }
+        set {
+            feedbackViewController.logCollector = newValue
         }
     }
 

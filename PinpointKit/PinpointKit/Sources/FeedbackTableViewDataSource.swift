@@ -21,8 +21,8 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
      
      - returns: A fully initialized object.
      */
-    init(configuration: Configuration, userEnabledLogCollection: Bool) {
-        sections = self.dynamicType.sectionsFromConfiguration(configuration, userEnabledLogCollection: userEnabledLogCollection)
+    init(feedbackDisplay: FeedbackDisplay, feedbackLogging: FeedbackLogging, userEnabledLogCollection: Bool) {
+        sections = self.dynamicType.sectionsFromConfiguration(feedbackDisplay, feedbackLogging: feedbackLogging, userEnabledLogCollection: userEnabledLogCollection)
     }
     
     private enum Section {
@@ -42,10 +42,10 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     
     // MARK: - FeedbackTableViewDataSource
     
-    private static func sectionsFromConfiguration(configuration: Configuration, userEnabledLogCollection: Bool) -> [Section] {
-        guard configuration.logCollector != nil else { return [] }
+    private static func sectionsFromConfiguration(feedbackDisplay: FeedbackDisplay, feedbackLogging: FeedbackLogging, userEnabledLogCollection: Bool) -> [Section] {
+        guard feedbackLogging.logCollector != nil else { return [] }
         
-        let collectLogsRow = Row.CollectLogs(enabled: userEnabledLogCollection, title: configuration.interfaceText.logCollectionPermissionTitle, canView: configuration.logViewer != nil)
+        let collectLogsRow = Row.CollectLogs(enabled: userEnabledLogCollection, title: feedbackDisplay.interfaceText.logCollectionPermissionTitle, canView: feedbackLogging.logViewer != nil)
         let feedbackSection = Section.Feedback(rows: [collectLogsRow])
         
         return [feedbackSection]
