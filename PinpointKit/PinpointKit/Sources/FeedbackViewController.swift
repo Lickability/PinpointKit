@@ -23,32 +23,6 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         }
     }
     
-    /// The configuration used to set up the receiver.
-    public var feedbackDisplay: FeedbackDisplay? {
-        didSet {
-            title = feedbackDisplay?.interfaceText.feedbackCollectorTitle
-            
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: feedbackDisplay?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
-            
-            let cancelBarButtonItem: UIBarButtonItem
-            let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
-            if let cancelButtonTitle = feedbackDisplay?.interfaceText.feedbackCancelButtonTitle {
-                cancelBarButtonItem = UIBarButtonItem(title: cancelButtonTitle, style: .Plain, target: self, action: cancelAction)
-            }
-            else {
-                cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelAction)
-            }
-            navigationItem.leftBarButtonItem = cancelBarButtonItem
-            
-            view.tintColor = feedbackDisplay?.appearance.tintColor
-            updateTableHeaderView()
-            updateDataSource()
-        }
-    }
-    
-    public var logViewer: LogViewer?
-    public var logCollector: LogCollector?
-    
     private var dataSource: FeedbackTableViewDataSource? {
         didSet {
             guard isViewLoaded() else { return }
@@ -137,6 +111,33 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         self.screenshot = screenshot
         viewController.showDetailViewController(self, sender: viewController)
     }
+    
+    // MARK: - FeedbackDisplay
+    public var feedbackDisplay: FeedbackDisplay? {
+        didSet {
+            title = feedbackDisplay?.interfaceText.feedbackCollectorTitle
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: feedbackDisplay?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
+            
+            let cancelBarButtonItem: UIBarButtonItem
+            let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
+            if let cancelButtonTitle = feedbackDisplay?.interfaceText.feedbackCancelButtonTitle {
+                cancelBarButtonItem = UIBarButtonItem(title: cancelButtonTitle, style: .Plain, target: self, action: cancelAction)
+            }
+            else {
+                cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelAction)
+            }
+            navigationItem.leftBarButtonItem = cancelBarButtonItem
+            
+            view.tintColor = feedbackDisplay?.appearance.tintColor
+            updateTableHeaderView()
+            updateDataSource()
+        }
+    }
+    
+    // MARK: - FeedbackLogging
+    public var logViewer: LogViewer?
+    public var logCollector: LogCollector?
 }
 
 // MARK: - UITableViewDelegate

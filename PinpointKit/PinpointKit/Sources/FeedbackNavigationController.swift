@@ -13,35 +13,6 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
     /// The root view controller used to collect feedback.
     let feedbackViewController: FeedbackViewController
     
-    /// The configuration the feedback view controller uses to set itself up.
-    public var feedbackDisplay: FeedbackDisplay? {
-        get {
-            return feedbackViewController.feedbackDisplay
-        }
-        set {
-            feedbackViewController.feedbackDisplay = newValue
-            view.tintColor = feedbackDisplay?.appearance.tintColor
-        }
-    }
-    
-    public var logViewer: LogViewer? {
-        get {
-            return feedbackViewController.logViewer
-        }
-        set {
-            feedbackViewController.logViewer = newValue
-        }
-    }
-    
-    public var logCollector: LogCollector? {
-        get {
-            return feedbackViewController.logCollector
-        }
-        set {
-            feedbackViewController.logCollector = newValue
-        }
-    }
-
     /// A delegate that is informed of significant events in feedback collection.
     public var feedbackDelegate: FeedbackCollectorDelegate? {
         get {
@@ -92,5 +63,37 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         feedbackViewController.screenshot = screenshot
         viewController.presentViewController(self, animated: true, completion: nil)
+    }
+    
+    // MARK: - FeedbackDisplay
+
+    public var feedbackDisplay: FeedbackDisplay? {
+        get {
+            return feedbackViewController.feedbackDisplay
+        }
+        set {
+            feedbackViewController.feedbackDisplay = newValue
+            view.tintColor = feedbackDisplay?.appearance.tintColor
+        }
+    }
+    
+    // MARK: - FeedbackLogging
+    
+    public var logViewer: LogViewer? {
+        get {
+            return feedbackViewController.logViewer
+        }
+        set {
+            feedbackViewController.logViewer = newValue
+        }
+    }
+    
+    public var logCollector: LogCollector? {
+        get {
+            return feedbackViewController.logCollector
+        }
+        set {
+            feedbackViewController.logCollector = newValue
+        }
     }
 }
