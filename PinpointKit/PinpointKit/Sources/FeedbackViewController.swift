@@ -73,7 +73,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     private func updateDataSource() {
         guard let interfaceCustomization = interfaceCustomization else { assertionFailure(); return }
         
-        dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, feedbackLogging:self, userEnabledLogCollection: userEnabledLogCollection)
+        dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, logSupporting:self, userEnabledLogCollection: userEnabledLogCollection)
     }
     
     private func updateTableHeaderView() {
@@ -135,7 +135,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         }
     }
     
-    // MARK: - FeedbackLogging
+    // MARK: - LogSupporting
     public var logViewer: LogViewer?
     public var logCollector: LogCollector?
 }

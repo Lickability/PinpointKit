@@ -7,7 +7,7 @@
 //
 
 /// A protocol describing an object that can collect feedback about a screenshot.
-public protocol FeedbackCollector: FeedbackLogging {
+public protocol FeedbackCollector: LogSupporting {
     
     /// A delegate that is informed of significant events in feedback collection.
     var feedbackDelegate: FeedbackCollectorDelegate? { get set }

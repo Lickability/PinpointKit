@@ -77,7 +77,7 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
         }
     }
     
-    // MARK: - FeedbackLogging
+    // MARK: - LogSupporting
     
     public var logViewer: LogViewer? {
         get {
