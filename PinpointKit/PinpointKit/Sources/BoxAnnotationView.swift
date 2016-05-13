@@ -14,8 +14,8 @@ private func PathForDrawingBoxAnnotation(annotation: BoxAnnotation) -> UIBezierP
     let borderWidth = annotation.borderWidth
     let cornerRadius = annotation.cornerRadius
 
-    let outerBox = CGRectInset(frame, strokeWidth, strokeWidth)
-    let innerBox = CGRectInset(outerBox, borderWidth + strokeWidth, borderWidth + strokeWidth)
+    let outerBox = frame.insetBy(dx: strokeWidth, dy: strokeWidth)
+    let innerBox = outerBox.insetBy(dx: borderWidth + strokeWidth, dy: borderWidth + strokeWidth)
 
     if min(innerBox.size.height, innerBox.size.width) < (borderWidth + strokeWidth) * 2.0 {
         return nil
@@ -67,7 +67,7 @@ class BoxAnnotationView: AnnotationView {
     // MARK: - Initializers
 
     convenience init() {
-        self.init(frame: CGRectZero)
+        self.init(frame: CGRect.zero)
     }
 
     override init(frame: CGRect) {
@@ -76,7 +76,7 @@ class BoxAnnotationView: AnnotationView {
         opaque = false
         contentMode = .Redraw
 
-        layer.shadowOffset = CGSizeZero
+        layer.shadowOffset = CGSize.zero
         layer.shadowColor = UIColor.blackColor().CGColor
         layer.shadowOpacity = 1
         layer.shadowRadius = 4

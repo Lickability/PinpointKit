@@ -53,11 +53,11 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     // MARK: - Initializers
 
     public convenience init() {
-        self.init(frame: CGRectZero)
+        self.init(frame: CGRect.zero)
     }
 
     public override init(frame: CGRect) {
-        let bounds = CGRect(origin: CGPointZero, size: frame.size)
+        let bounds = CGRect(origin: CGPoint.zero, size: frame.size)
 
         EAGLContext = OpenGLES.EAGLContext(API: .OpenGLES2)
         GLKView = GLKit.GLKView(frame: bounds, context: EAGLContext)
@@ -89,21 +89,22 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
 
     override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
         let frame = touchTargetFrame
-        return frame.map({ CGRectContainsPoint($0, point) }) ?? false
+        
+        return frame.map({ $0.contains(point) }) ?? false
     }
     
     override public func drawRect(rect: CGRect) {
         super.drawRect(rect)
         
         if drawsBorder {
-            let context = UIGraphicsGetCurrentContext();
+            let context = UIGraphicsGetCurrentContext()
             tintColor?.colorWithAlphaComponent(self.dynamicType.BorderAlpha).setStroke()
             
             // Since this draws under the GLKView, and strokes extend both inside and outside, we have to double the intended width.
             let strokeWidth: CGFloat = 1.0
             CGContextSetLineWidth(context, strokeWidth * 2.0)
             
-            let rect = annotationFrame ?? CGRectZero
+            let rect = annotationFrame ?? CGRect.zero
             CGContextStrokeRect(context, rect)
         }
     }

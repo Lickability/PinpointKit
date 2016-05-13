@@ -16,26 +16,26 @@ extension UIBezierPath {
 
         // Shape 267x120 from PaintCode. 0 is the mid Y of the arrow to match the original arrow Y.
         let bezierPath = UIBezierPath()
-        bezierPath.moveToPoint(CGPointMake(197.29, -57.56))
-        bezierPath.addLineToPoint(CGPointMake(194.32, -54.58))
-        bezierPath.addCurveToPoint(CGPointMake(193.82, -43.36), controlPoint1: CGPointMake(191.31, -51.53), controlPoint2: CGPointMake(191.09, -46.67))
-        bezierPath.addLineToPoint(CGPointMake(215.25, -17.45))
-        bezierPath.addCurveToPoint(CGPointMake(213.11, -12.74), controlPoint1: CGPointMake(216.79, -15.59), controlPoint2: CGPointMake(215.5, -12.77))
-        bezierPath.addLineToPoint(CGPointMake(8.15, -10.22))
-        bezierPath.addCurveToPoint(CGPointMake(0, -1.9), controlPoint1: CGPointMake(3.63, -10.17), controlPoint2: CGPointMake(0, -6.46))
-        bezierPath.addLineToPoint(CGPointMake(0, 1.81))
-        bezierPath.addCurveToPoint(CGPointMake(8.15, 10.13), controlPoint1: CGPointMake(0, 6.37), controlPoint2: CGPointMake(3.63, 10.08))
-        bezierPath.addLineToPoint(CGPointMake(213.18, 12.65))
-        bezierPath.addCurveToPoint(CGPointMake(215.33, 17.36), controlPoint1: CGPointMake(215.58, 12.68), controlPoint2: CGPointMake(216.86, 15.5))
-        bezierPath.addLineToPoint(CGPointMake(193.82, 43.36))
-        bezierPath.addCurveToPoint(CGPointMake(194.32, 54.58), controlPoint1: CGPointMake(191.09, 46.67), controlPoint2: CGPointMake(191.31, 51.53))
-        bezierPath.addLineToPoint(CGPointMake(197.29, 57.56))
-        bezierPath.addCurveToPoint(CGPointMake(208.95, 57.56), controlPoint1: CGPointMake(200.51, 60.81), controlPoint2: CGPointMake(205.73, 60.81))
-        bezierPath.addLineToPoint(CGPointMake(266, -0))
-        bezierPath.addLineToPoint(CGPointMake(208.95, -57.56))
-        bezierPath.addCurveToPoint(CGPointMake(197.29, -57.56), controlPoint1: CGPointMake(205.73, -60.81), controlPoint2: CGPointMake(200.51, -60.81))
+        bezierPath.moveToPoint(CGPoint(x: 197.29, y: -57.56))
+        bezierPath.addLineToPoint(CGPoint(x: 194.32, y: -54.58))
+        bezierPath.addCurveToPoint(CGPoint(x: 193.82, y: -43.36), controlPoint1: CGPoint(x: 191.31, y: -51.53), controlPoint2: CGPoint(x: 191.09, y: -46.67))
+        bezierPath.addLineToPoint(CGPoint(x: 215.25, y: -17.45))
+        bezierPath.addCurveToPoint(CGPoint(x: 213.11, y: -12.74), controlPoint1: CGPoint(x: 216.79, y: -15.59), controlPoint2: CGPoint(x: 215.5, y: -12.77))
+        bezierPath.addLineToPoint(CGPoint(x: 8.15, y: -10.22))
+        bezierPath.addCurveToPoint(CGPoint(x: 0, y: -1.9), controlPoint1: CGPoint(x: 3.63, y: -10.17), controlPoint2: CGPoint(x: 0, y: -6.46))
+        bezierPath.addLineToPoint(CGPoint(x: 0, y: 1.81))
+        bezierPath.addCurveToPoint(CGPoint(x: 8.15, y: 10.13), controlPoint1: CGPoint(x: 0, y: 6.37), controlPoint2: CGPoint(x: 3.63, y: 10.08))
+        bezierPath.addLineToPoint(CGPoint(x: 213.18, y: 12.65))
+        bezierPath.addCurveToPoint(CGPoint(x: 215.33, y: 17.36), controlPoint1: CGPoint(x: 215.58, y: 12.68), controlPoint2: CGPoint(x: 216.86, y: 15.5))
+        bezierPath.addLineToPoint(CGPoint(x: 193.82, y: 43.36))
+        bezierPath.addCurveToPoint(CGPoint(x: 194.32, y: 54.58), controlPoint1: CGPoint(x: 191.09, y: 46.67), controlPoint2: CGPoint(x: 191.31, y: 51.53))
+        bezierPath.addLineToPoint(CGPoint(x: 197.29, y: 57.56))
+        bezierPath.addCurveToPoint(CGPoint(x: 208.95, y: 57.56), controlPoint1: CGPoint(x: 200.51, y: 60.81), controlPoint2: CGPoint(x: 205.73, y: 60.81))
+        bezierPath.addLineToPoint(CGPoint(x: 266, y: -0))
+        bezierPath.addLineToPoint(CGPoint(x: 208.95, y: -57.56))
+        bezierPath.addCurveToPoint(CGPoint(x: 197.29, y: -57.56), controlPoint1: CGPoint(x: 205.73, y: -60.81), controlPoint2: CGPoint(x: 200.51, y: -60.81))
         bezierPath.closePath()
-        bezierPath.usesEvenOddFillRule = true;
+        bezierPath.usesEvenOddFillRule = true
         
         bezierPath.applyTransform(transformForStartPoint(startPoint, endPoint: endPoint, length: length))
         
@@ -53,4 +53,3 @@ extension UIBezierPath {
         return CGAffineTransformConcat(scaleTransform, rotationAndSizeTransform)
     }
 }
-
