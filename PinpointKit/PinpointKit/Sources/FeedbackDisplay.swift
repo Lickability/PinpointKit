@@ -6,7 +6,7 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
-public struct FeedbackDisplay {
+public struct InterfaceCustomization {
     let interfaceText: InterfaceText
     let appearance: Appearance
     

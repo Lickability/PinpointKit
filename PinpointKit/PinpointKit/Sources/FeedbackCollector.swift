@@ -13,7 +13,7 @@ public protocol FeedbackCollector: FeedbackLogging {
     var feedbackDelegate: FeedbackCollectorDelegate? { get set }
     
     /// The configuration that the collector should use to set itself up.
-    var feedbackDisplay: FeedbackDisplay? { get set }
+    var interfaceCustomization: InterfaceCustomization? { get set }
     
     /**
      Begins feedback collection about a screenshot from a view controller.

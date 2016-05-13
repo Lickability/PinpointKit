@@ -65,15 +65,15 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
         viewController.presentViewController(self, animated: true, completion: nil)
     }
     
-    // MARK: - FeedbackDisplay
+    // MARK: - InterfaceCustomization
 
-    public var feedbackDisplay: FeedbackDisplay? {
+    public var interfaceCustomization: InterfaceCustomization? {
         get {
-            return feedbackViewController.feedbackDisplay
+            return feedbackViewController.interfaceCustomization
         }
         set {
-            feedbackViewController.feedbackDisplay = newValue
-            view.tintColor = feedbackDisplay?.appearance.tintColor
+            feedbackViewController.interfaceCustomization = newValue
+            view.tintColor = interfaceCustomization?.appearance.tintColor
         }
     }
     

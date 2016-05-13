@@ -14,13 +14,13 @@ import UIKit
 public struct Configuration {
     
     /// A struct containing information about the appearance of displayed components.
-    var appearance: FeedbackDisplay.Appearance? {
-        return self.feedbackCollector.feedbackDisplay?.appearance
+    var appearance: InterfaceCustomization.Appearance? {
+        return self.feedbackCollector.interfaceCustomization?.appearance
     }
     
     ///  A struct containing user-facing strings displayed in the interface.
-    var interfaceText: FeedbackDisplay.InterfaceText? {
-        return self.feedbackCollector.feedbackDisplay?.interfaceText
+    var interfaceText: InterfaceCustomization.InterfaceText? {
+        return self.feedbackCollector.interfaceCustomization?.interfaceText
     }
 
     /// An optional type that collects logs to be displayed and sent with feedback.
@@ -53,8 +53,8 @@ public struct Configuration {
      
      - returns: A fully initialized `Configuration` object.
      */
-    public init(appearance: FeedbackDisplay.Appearance = FeedbackDisplay.Appearance(),
-        interfaceText: FeedbackDisplay.InterfaceText = FeedbackDisplay.InterfaceText(),
+    public init(appearance: InterfaceCustomization.Appearance = InterfaceCustomization.Appearance(),
+        interfaceText: InterfaceCustomization.InterfaceText = InterfaceCustomization.InterfaceText(),
         logCollector: LogCollector? = SystemLogCollector(),
         logViewer: LogViewer? = BasicLogViewController(),
         feedbackCollector: FeedbackCollector = FeedbackNavigationController(),
@@ -64,7 +64,7 @@ public struct Configuration {
             self.editor = editor
             self.sender = sender
             
-            self.feedbackCollector.feedbackDisplay = FeedbackDisplay(interfaceText: interfaceText, appearance: appearance)
+            self.feedbackCollector.interfaceCustomization = InterfaceCustomization(interfaceText: interfaceText, appearance: appearance)
             self.feedbackCollector.logCollector = logCollector
             self.feedbackCollector.logViewer = logViewer
     }

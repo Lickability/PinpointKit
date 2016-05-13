@@ -71,16 +71,16 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     // MARK: - FeedbackViewController
     
     private func updateDataSource() {
-        guard let feedbackDisplay = feedbackDisplay else { assertionFailure(); return }
+        guard let interfaceCustomization = interfaceCustomization else { assertionFailure(); return }
         
-        dataSource = FeedbackTableViewDataSource(feedbackDisplay: feedbackDisplay, feedbackLogging:self, userEnabledLogCollection: userEnabledLogCollection)
+        dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, feedbackLogging:self, userEnabledLogCollection: userEnabledLogCollection)
     }
     
     private func updateTableHeaderView() {
         guard let screenshot = screenshot else { return }
         
         let header = ScreenshotHeaderView()
-        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: feedbackDisplay?.interfaceText.feedbackEditHint)
+        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: interfaceCustomization?.interfaceText.feedbackEditHint)
         header.screenshotButtonTapHandler = { button in
             // TODO: Present the editing UI.
         }
@@ -112,16 +112,16 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         viewController.showDetailViewController(self, sender: viewController)
     }
     
-    // MARK: - FeedbackDisplay
-    public var feedbackDisplay: FeedbackDisplay? {
+    // MARK: - InterfaceCustomization
+    public var interfaceCustomization: InterfaceCustomization? {
         didSet {
-            title = feedbackDisplay?.interfaceText.feedbackCollectorTitle
+            title = interfaceCustomization?.interfaceText.feedbackCollectorTitle
             
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: feedbackDisplay?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: interfaceCustomization?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
             
             let cancelBarButtonItem: UIBarButtonItem
             let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
-            if let cancelButtonTitle = feedbackDisplay?.interfaceText.feedbackCancelButtonTitle {
+            if let cancelButtonTitle = interfaceCustomization?.interfaceText.feedbackCancelButtonTitle {
                 cancelBarButtonItem = UIBarButtonItem(title: cancelButtonTitle, style: .Plain, target: self, action: cancelAction)
             }
             else {
@@ -129,7 +129,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
             }
             navigationItem.leftBarButtonItem = cancelBarButtonItem
             
-            view.tintColor = feedbackDisplay?.appearance.tintColor
+            view.tintColor = interfaceCustomization?.appearance.tintColor
             updateTableHeaderView()
             updateDataSource()
         }
