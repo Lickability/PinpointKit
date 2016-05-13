@@ -11,7 +11,22 @@ import UIKit
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
 public class FeedbackViewController: UITableViewController, FeedbackCollector, EditImageViewControllerDelegate {
     
-    /// A delegate that is informed of significant events in feedback collection.
+    // MARK: - InterfaceCustomization
+    
+    public var interfaceCustomization: InterfaceCustomization? {
+        didSet {
+            guard isViewLoaded() else { return }
+            
+            updateInterfaceCustomization()
+        }
+    }
+    
+    // MARK: - LogSupporting
+    
+    public var logViewer: LogViewer?
+    public var logCollector: LogCollector?
+    
+    // MARK: - FeedbackViewControllevar configurationdelegate that is informed of significant events in feedback collection.
     public weak var feedbackDelegate: FeedbackCollectorDelegate?
     
     /// The screenshot the feedback describes.
@@ -20,29 +35,6 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
             guard isViewLoaded() else { return }
             
             updateTableHeaderView()
-        }
-    }
-    
-    /// The configuration used to set up the receiver.
-    public var configuration: Configuration? {
-        didSet {
-            title = configuration?.interfaceText.feedbackCollectorTitle
-            
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: configuration?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
-            
-            let cancelBarButtonItem: UIBarButtonItem
-            let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
-            if let cancelButtonTitle = configuration?.interfaceText.feedbackCancelButtonTitle {
-                cancelBarButtonItem = UIBarButtonItem(title: cancelButtonTitle, style: .Plain, target: self, action: cancelAction)
-            }
-            else {
-                cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelAction)
-            }
-            navigationItem.leftBarButtonItem = cancelBarButtonItem
-            
-            view.tintColor = configuration?.appearance.tintColor
-            updateTableHeaderView()
-            updateDataSource()
         }
     }
     
@@ -78,8 +70,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateDataSource()
-        updateTableHeaderView()
+        updateInterfaceCustomization()
     }
     
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -94,16 +85,17 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
     // MARK: - FeedbackViewController
     
     private func updateDataSource() {
-        guard let configuration = configuration else { assertionFailure(); return }
+        guard let interfaceCustomization = interfaceCustomization else { assertionFailure(); return }
         
-        dataSource = FeedbackTableViewDataSource(configuration: configuration, userEnabledLogCollection: userEnabledLogCollection)
+        dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, logSupporting:self, userEnabledLogCollection: userEnabledLogCollection)
     }
     
     private func updateTableHeaderView() {
         guard let screenshot = screenshot else { return }
         
         let header = ScreenshotHeaderView()
-        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: configuration?.interfaceText.feedbackEditHint)
+
+        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: interfaceCustomization?.interfaceText.feedbackEditHint)
         header.screenshotButtonTapHandler = { [weak self] button in
             let editImageViewController = NavigationController(rootViewController: EditImageViewController(image: screenshot, currentViewModel: nil, delegate: self))
             self?.presentViewController(editImageViewController, animated: true, completion: nil)
@@ -111,6 +103,26 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
         
         tableView.tableHeaderView = header
         tableView.enableTableHeaderViewDynamicHeight()
+    }
+    
+    private func updateInterfaceCustomization() {
+        title = interfaceCustomization?.interfaceText.feedbackCollectorTitle
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: interfaceCustomization?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
+        
+        let cancelBarButtonItem: UIBarButtonItem
+        let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
+        if let cancelButtonTitle = interfaceCustomization?.interfaceText.feedbackCancelButtonTitle {
+            cancelBarButtonItem = UIBarButtonItem(title: cancelButtonTitle, style: .Plain, target: self, action: cancelAction)
+        }
+        else {
+            cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelAction)
+        }
+        navigationItem.leftBarButtonItem = cancelBarButtonItem
+        
+        view.tintColor = interfaceCustomization?.appearance.tintColor
+        updateTableHeaderView()
+        updateDataSource()
     }
     
     @objc private func sendButtonTapped() {
@@ -143,14 +155,15 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
 }
 
 // MARK: - UITableViewDelegate
+
 extension FeedbackViewController {
     public override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        guard let logCollector = configuration?.logCollector else {
+        guard let logCollector = logCollector else {
             assertionFailure("No log collector exists.")
             return
         }
         
-        configuration?.logViewer?.viewLog(logCollector, fromViewController: self)
+        logViewer?.viewLog(logCollector, fromViewController: self)
     }
     
     public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

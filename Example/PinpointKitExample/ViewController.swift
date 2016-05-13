@@ -21,4 +21,3 @@ final class ViewController: UIViewController {
         PinpointKit.defaultPinpointKit.show(fromViewController: self)
     }
 }
-

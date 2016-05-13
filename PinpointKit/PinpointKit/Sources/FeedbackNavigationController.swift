@@ -10,20 +10,44 @@ import UIKit
 
 /// A `UINavigationController` subclass that has a `FeedbackViewController` as its root view controller. Use this class as a `FeedbackCollector`.
 public class FeedbackNavigationController: UINavigationController, FeedbackCollector {
+    
+    // MARK: - InterfaceCustomization
+    
+    public var interfaceCustomization: InterfaceCustomization? {
+        get {
+            return feedbackViewController.interfaceCustomization
+        }
+        set {
+            feedbackViewController.interfaceCustomization = newValue
+            view.tintColor = interfaceCustomization?.appearance.tintColor
+        }
+    }
+    
+    // MARK: - LogSupporting
+    
+    public var logViewer: LogViewer? {
+        get {
+            return feedbackViewController.logViewer
+        }
+        set {
+            feedbackViewController.logViewer = newValue
+        }
+    }
+    
+    public var logCollector: LogCollector? {
+        get {
+            return feedbackViewController.logCollector
+        }
+        set {
+            feedbackViewController.logCollector = newValue
+        }
+    }
+    
+    // MARK: - FeedbackNavigationController
+
     /// The root view controller used to collect feedback.
     let feedbackViewController: FeedbackViewController
     
-    /// The configuration the feedback view controller uses to set itself up.
-    public var configuration: Configuration? {
-        get {
-            return feedbackViewController.configuration
-        }
-        set {
-            feedbackViewController.configuration = newValue
-            view.tintColor = configuration?.appearance.tintColor
-        }
-    }
-
     /// A delegate that is informed of significant events in feedback collection.
     public var feedbackDelegate: FeedbackCollectorDelegate? {
         get {
