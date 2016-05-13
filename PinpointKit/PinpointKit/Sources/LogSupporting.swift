@@ -6,6 +6,7 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
+/// A model protocol that encapsulates the collection and viewing of logs.
 public protocol LogSupporting {
     
     /// An optional type that collects logs to be displayed and sent with feedback.

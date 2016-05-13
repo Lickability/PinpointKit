@@ -6,6 +6,7 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
+/// A struct that supplies customized interface text and appearance values.
 public struct InterfaceCustomization {
     let interfaceText: InterfaceText
     let appearance: Appearance
