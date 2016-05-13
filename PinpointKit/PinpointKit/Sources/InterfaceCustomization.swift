@@ -40,7 +40,7 @@ public struct InterfaceCustomization {
          - parameter annotationFillColor:   The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
          - parameter annotationStrokeColor: The stroke color for annotations.
          */
-        public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(), annotationFillColor: UIColor? = nil, annotationStrokeColor: UIColor = .whiteColor(), logFont: UIFont = .monospacedFontOfSize(12)) {
+        public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(), annotationFillColor: UIColor? = nil, annotationStrokeColor: UIColor = .whiteColor(), logFont: UIFont = .menloRegularFontOfSize(12)) {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor

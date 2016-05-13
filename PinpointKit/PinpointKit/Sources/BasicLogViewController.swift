@@ -12,7 +12,12 @@ public class BasicLogViewController: UIViewController, LogViewer {
     
     // MARK: - InterfaceCustomizable
     
-    public var interfaceCustomization: InterfaceCustomization?
+    public var interfaceCustomization: InterfaceCustomization? {
+        didSet {
+            title = interfaceCustomization?.interfaceText.logCollectorTitle
+            textView.font = interfaceCustomization?.appearance.logFont
+        }
+    }
     
     // MARK: - BasicLogViewController
     
@@ -20,9 +25,7 @@ public class BasicLogViewController: UIViewController, LogViewer {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.editable = false
-        
-        textView.font = UIFont(name: "Menlo-Regular", size: 12)
-        
+
         return textView
     }()
     
@@ -31,7 +34,6 @@ public class BasicLogViewController: UIViewController, LogViewer {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        title = interfaceCustomization?.interfaceText.logCollectorTitle
         setUpTextView()
     }
     
