@@ -14,17 +14,17 @@
 - (NSArray<NSString *> *)retrieveLogsFromOffsetSinceNow:(NSInteger)offset {
     NSMutableArray<NSString *> *logs = [NSMutableArray array];
     
-    int lastTime = 0;
+    long lastTime = 0;
     
     if (offset != NSNotFound) {
-        lastTime = (int)[NSDate date].timeIntervalSince1970 - offset;
+        lastTime = (long)[NSDate date].timeIntervalSince1970 - offset;
     }
     
     aslmsg query = NULL, message = NULL;
     aslresponse response = NULL;
     
     query = asl_new(ASL_TYPE_QUERY);
-    const char *time = [[NSString stringWithFormat:@"%d", lastTime] UTF8String];
+    const char *time = [[NSString stringWithFormat:@"%ld", lastTime] UTF8String];
     asl_set_query(query, ASL_KEY_TIME, time, ASL_QUERY_OP_GREATER | ASL_QUERY_OP_NUMERIC);
     asl_set_query(query, ASL_KEY_FACILITY, [[[NSBundle mainBundle] bundleIdentifier] UTF8String], ASL_QUERY_OP_EQUAL);
     
