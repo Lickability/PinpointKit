@@ -41,8 +41,6 @@ public class ScreenshotDetector: NSObject {
      - parameter notificationCenter: A notification center that will listen for screenshot notifications.
      - parameter application:        An application that will be the `object` of the notification observer.
      - parameter imageManager:       An image manager used to fetch the image data of the screenshot.
-     
-     - returns: A fully initialized `ScreenshotDetector`.
      */
     init(delegate: ScreenshotDetectorDelegate, notificationCenter: NSNotificationCenter = .defaultCenter(), application: UIApplication = .sharedApplication(), imageManager: PHImageManager = .defaultManager()) {
         self.delegate = delegate

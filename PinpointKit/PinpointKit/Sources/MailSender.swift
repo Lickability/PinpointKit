@@ -68,11 +68,9 @@ public class MailSender: NSObject, Sender {
         
         do {
             try mailComposer.attachFeedback(feedback)
-        }
-        catch let error as Error {
+        } catch let error as Error {
             fail(error)
-        }
-        catch {
+        } catch {
             fail(.Unknown)
         }
         
@@ -128,8 +126,7 @@ private extension MFMailComposeViewController {
         
         if let data = data {
             addAttachmentData(data, mimeType: MIMEType.JSON.rawValue, fileName: "info.json")
-        }
-        else {
+        } else {
             print("PinpointKit could not attach Feedback.additionalInformation because it was not valid JSON.")
         }
     }

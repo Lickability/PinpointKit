@@ -33,10 +33,9 @@ public struct InterfaceCustomization {
         /**
          Initializes an `Appearance` object with a optional annotation color properties.
          
+         - parameter tintColor: The tint color of the interface.
          - parameter annotationFillColor:   The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
          - parameter annotationStrokeColor: The stroke color for annotations.
-         
-         - returns: A fully initialized `Appearance` object.
          */
         public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(), annotationFillColor: UIColor? = nil, annotationStrokeColor: UIColor = .whiteColor()) {
             self.tintColor = tintColor
@@ -65,7 +64,15 @@ public struct InterfaceCustomization {
         /// The title of a cell that allows the user to toggle log collection.
         let logCollectionPermissionTitle: String
         
-        /// Initializes an `InterfaceText` with custom values, using a default if a particular property is unspecified.
+        /**
+         Initializes an `InterfaceText` with custom values, using a default if a particular property is unspecified.
+         
+         - parameter feedbackCollectorTitle:       The title of the feedback collector.
+         - parameter feedbackSendButtonTitle:      The title of the send button.
+         - parameter feedbackCancelButtonTitle:    The title of the cancel button.
+         - parameter feedbackEditHint:             The hint to show during editing.
+         - parameter logCollectionPermissionTitle: The title of the permission button.
+         */
         public init(feedbackCollectorTitle: String? = NSLocalizedString("Report a Bug", comment: "Title of a view that reports a bug"),
                     feedbackSendButtonTitle: String = NSLocalizedString("Send", comment: "A button that sends feedback."),
                     feedbackCancelButtonTitle: String? = nil,

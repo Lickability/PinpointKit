@@ -33,24 +33,22 @@ class Annotation {
     func scaledPoint(point: CGPoint, scale: CGFloat) -> CGPoint {
         var scaledRect = CGRectApplyAffineTransform(frame, CGAffineTransformMakeScale(scale, scale))
         
-        let centeredXDistance = CGRectGetWidth(scaledRect) / 2.0 - CGRectGetWidth(frame) / 2.0
-        let centeredYDistance = CGRectGetHeight(scaledRect) / 2.0 - CGRectGetHeight(frame) / 2.0
+        let centeredXDistance = scaledRect.width / 2.0 - frame.width / 2.0
+        let centeredYDistance = scaledRect.height / 2.0 - frame.height / 2.0
 
         scaledRect.origin = CGPoint(x: frame.origin.x - centeredXDistance, y: frame.origin.y - centeredYDistance)
         
-        var newPoint: CGPoint = CGPointZero
-        if point.x == CGRectGetMinX(frame) {
-            newPoint.x = CGRectGetMinX(scaledRect)
-        }
-        else if point.x == CGRectGetMaxX(frame) {
-            newPoint.x = CGRectGetMaxX(scaledRect)
+        var newPoint: CGPoint = CGPoint.zero
+        if point.x == frame.minX {
+            newPoint.x = scaledRect.minX
+        } else if point.x == frame.maxX {
+            newPoint.x = scaledRect.maxX
         }
         
-        if point.y == CGRectGetMinY(frame) {
-            newPoint.y = CGRectGetMinY(scaledRect)
-        }
-        else if point.y == CGRectGetMaxY(frame) {
-            newPoint.y = CGRectGetMaxY(scaledRect)
+        if point.y == frame.minY {
+            newPoint.y = scaledRect.minY
+        } else if point.y == frame.maxY {
+            newPoint.y = scaledRect.maxY
         }
         
         return newPoint
@@ -58,7 +56,7 @@ class Annotation {
 
     // MARK: - Initializers
 
-    init(startLocation: CGPoint = CGPointZero, endLocation: CGPoint = CGPointZero) {
+    init(startLocation: CGPoint = CGPoint.zero, endLocation: CGPoint = CGPoint.zero) {
         self.startLocation = startLocation
         self.endLocation = endLocation
     }
@@ -139,7 +137,7 @@ class BlurAnnotation: Annotation {
             return filter?.valueForKey("outputImage") as? CIImage
         })
 
-        if let imageValue = image, let extentValue = extent {
+        if let imageValue = image, extentValue = extent {
             let vector = CIVector(CGRect: extentValue)
             let filter: CIFilter? = CIFilter(name: "CICrop")
             filter?.setValue(imageValue, forKey: "inputImage")
