@@ -310,7 +310,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             presentViewController(alert, animated: true, completion: nil)
         }
         else {
-            dismissViewControllerAnimated(true, completion: { })
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
