@@ -49,7 +49,8 @@ public struct Configuration {
      
      - returns: A fully initialized `Configuration` object.
      */
-    public init(feedbackDisplay: FeedbackDisplay = FeedbackDisplay(),
+    public init(appearance: FeedbackDisplay.Appearance = FeedbackDisplay.Appearance(),
+        interfaceText: FeedbackDisplay.InterfaceText = FeedbackDisplay.InterfaceText(),
         logCollector: LogCollector? = SystemLogCollector(),
         logViewer: LogViewer? = BasicLogViewController(),
         feedbackCollector: FeedbackCollector = FeedbackNavigationController(),
@@ -61,6 +62,6 @@ public struct Configuration {
             self.editor = editor
             self.sender = sender
             
-            self.feedbackCollector.feedbackDisplay = feedbackDisplay
+            self.feedbackCollector.feedbackDisplay = FeedbackDisplay(interfaceText: interfaceText, appearance: appearance)
     }
 }
