@@ -6,8 +6,6 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
-import Foundation
-
 public protocol FeedbackLogging {
     
     /// An optional type that collects logs to be displayed and sent with feedback.
