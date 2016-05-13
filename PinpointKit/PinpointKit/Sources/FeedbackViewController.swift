@@ -55,8 +55,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        updateDataSource()
-        updateTableHeaderView()
+        updateInterfaceCustomization()
     }
     
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -89,6 +88,26 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         tableView.enableTableHeaderViewDynamicHeight()
     }
     
+    private func updateInterfaceCustomization() {
+        title = interfaceCustomization?.interfaceText.feedbackCollectorTitle
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: interfaceCustomization?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
+        
+        let cancelBarButtonItem: UIBarButtonItem
+        let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
+        if let cancelButtonTitle = interfaceCustomization?.interfaceText.feedbackCancelButtonTitle {
+            cancelBarButtonItem = UIBarButtonItem(title: cancelButtonTitle, style: .Plain, target: self, action: cancelAction)
+        }
+        else {
+            cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelAction)
+        }
+        navigationItem.leftBarButtonItem = cancelBarButtonItem
+        
+        view.tintColor = interfaceCustomization?.appearance.tintColor
+        updateTableHeaderView()
+        updateDataSource()
+    }
+    
     @objc private func sendButtonTapped() {
         guard let screenshot = screenshot else { assertionFailure(); return }
         
@@ -115,23 +134,9 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     // MARK: - InterfaceCustomization
     public var interfaceCustomization: InterfaceCustomization? {
         didSet {
-            title = interfaceCustomization?.interfaceText.feedbackCollectorTitle
+            guard isViewLoaded() else { return }
             
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: interfaceCustomization?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
-            
-            let cancelBarButtonItem: UIBarButtonItem
-            let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
-            if let cancelButtonTitle = interfaceCustomization?.interfaceText.feedbackCancelButtonTitle {
-                cancelBarButtonItem = UIBarButtonItem(title: cancelButtonTitle, style: .Plain, target: self, action: cancelAction)
-            }
-            else {
-                cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelAction)
-            }
-            navigationItem.leftBarButtonItem = cancelBarButtonItem
-            
-            view.tintColor = interfaceCustomization?.appearance.tintColor
-            updateTableHeaderView()
-            updateDataSource()
+            updateInterfaceCustomization()
         }
     }
     
