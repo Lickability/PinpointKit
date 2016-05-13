@@ -32,7 +32,7 @@
         
         const char *content = asl_get(message, ASL_KEY_MSG);
         NSTimeInterval msgTime = (NSTimeInterval) atol(asl_get(message, ASL_KEY_TIME)) + ((NSTimeInterval) atol(asl_get(message, ASL_KEY_TIME_NSEC)) / 1000000000.0);
-        
+
         NSString *contentString = [[NSString alloc] initWithUTF8String:content];
         NSString *timeString = [self stringFromTimeInterval:msgTime];
         NSString *loggedText = [NSString stringWithFormat:@"%@ %@", timeString, contentString];
@@ -47,11 +47,12 @@
 }
 
 - (NSString *)stringFromTimeInterval:(NSTimeInterval)interval {
-    NSInteger ti = (NSInteger)interval;
-    NSInteger seconds = ti % 60;
-    NSInteger minutes = (ti / 60) % 60;
-    NSInteger hours = (ti / 3600);
-    return [NSString stringWithFormat:@"%02ld:%02ld:%02ld", (long)hours, (long)minutes, (long)seconds];
+    char fdate[24];
+    time_t timestamp = (time_t)interval;
+    struct tm *lt = localtime(&timestamp);
+    strftime(fdate, 24, "%B %d %T", lt);
+    
+    return [NSString stringWithFormat:@"%s", fdate];
 }
 
 @end
