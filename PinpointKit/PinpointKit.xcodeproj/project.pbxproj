@@ -59,6 +59,8 @@
 		DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */; };
 		DA3B16661C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3B16651C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift */; };
 		DA7B94F01CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7B94EF1CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift */; };
+		F2ACE95F1CE6532000A461E5 /* LogSupporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ACE95E1CE6532000A461E5 /* LogSupporting.swift */; };
+		F2ACE9611CE6539200A461E5 /* InterfaceCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ACE9601CE6539200A461E5 /* InterfaceCustomization.swift */; };
 		F2BF24051CB9A69200867E01 /* ASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = F2BF24031CB9A69200867E01 /* ASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2BF24061CB9A69200867E01 /* ASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BF24041CB9A69200867E01 /* ASLLogger.m */; };
 /* End PBXBuildFile section */
@@ -127,6 +129,8 @@
 		DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinpointKit.swift; sourceTree = "<group>"; };
 		DA3B16651C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindow.swift; sourceTree = "<group>"; };
 		DA7B94EF1CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindowDelegate.swift; sourceTree = "<group>"; };
+		F2ACE95E1CE6532000A461E5 /* LogSupporting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogSupporting.swift; sourceTree = "<group>"; };
+		F2ACE9601CE6539200A461E5 /* InterfaceCustomization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceCustomization.swift; sourceTree = "<group>"; };
 		F2BF24031CB9A69200867E01 /* ASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASLLogger.h; sourceTree = "<group>"; };
 		F2BF24041CB9A69200867E01 /* ASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASLLogger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -154,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				12580A361C65304800ADC01C /* LogCollector.swift */,
+				F2ACE95E1CE6532000A461E5 /* LogSupporting.swift */,
 				12580A401C65330600ADC01C /* SystemLogCollector.swift */,
 			);
 			name = Logging;
@@ -290,6 +295,7 @@
 			children = (
 				DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */,
 				12580A341C652FA000ADC01C /* Configuration.swift */,
+				F2ACE9601CE6539200A461E5 /* InterfaceCustomization.swift */,
 				12580A4A1C654B3E00ADC01C /* Logging */,
 				12580A4B1C654B4700ADC01C /* Sending */,
 				12580A4C1C654B6500ADC01C /* Editing */,
@@ -347,6 +353,7 @@
 				DA0DA5FE1C53049B0012ADBE /* Frameworks */,
 				DA0DA5FF1C53049B0012ADBE /* Headers */,
 				DA0DA6001C53049B0012ADBE /* Resources */,
+				F2ACE9621CE6546100A461E5 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -429,6 +436,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F2ACE9621CE6546100A461E5 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DA0DA5FD1C53049B0012ADBE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -471,11 +495,13 @@
 				12580A3D1C6530CC00ADC01C /* FeedbackCollector.swift in Sources */,
 				2CB63F1D1C77B50D000CEFC6 /* Screenshotter.swift in Sources */,
 				2C9CB2121CE622CD006567E2 /* AnnotationViewFactory.swift in Sources */,
+				F2ACE9611CE6539200A461E5 /* InterfaceCustomization.swift in Sources */,
 				2C5C41121C6560AD0033ED3D /* (null) in Sources */,
 				B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */,
 				B929019E1C556778007CCA5E /* BlurAnnotationView.swift in Sources */,
 				B92901A51C556791007CCA5E /* Annotations.swift in Sources */,
 				F2BF24061CB9A69200867E01 /* ASLLogger.m in Sources */,
+				F2ACE95F1CE6532000A461E5 /* LogSupporting.swift in Sources */,
 				2C5C41141C6568D60033ED3D /* (null) in Sources */,
 				2CF3B9321CAF142400C8B29B /* NSBundle+PinpointKit.swift in Sources */,
 				12580A471C65339F00ADC01C /* FeedbackViewController.swift in Sources */,

@@ -23,13 +23,13 @@ public final class StrokeLayoutManager: NSLayoutManager {
         if let shadow = shadow where shouldRenderTransparencyLayer {
             // Applies the shadow to the entire stroke as one layer, insead of overlapping per-character.
             CGContextSetShadowWithColor(context, shadow.shadowOffset, shadow.shadowBlurRadius, shadow.shadowColor?.CGColor)
-            CGContextBeginTransparencyLayer(context, nil);
+            CGContextBeginTransparencyLayer(context, nil)
         }
         
         super.drawGlyphsForGlyphRange(glyphsToShow, atPoint: origin)
         
         if shouldRenderTransparencyLayer {
-            CGContextEndTransparencyLayer(context);
+            CGContextEndTransparencyLayer(context)
         }
     }
     
@@ -39,7 +39,7 @@ public final class StrokeLayoutManager: NSLayoutManager {
         if let strokeColor = strokeColor, strokeWidth = strokeWidth {
             // Remove the shadow. It'll all be drawn at once afterwards.
             textAttributes[NSShadowAttributeName] = nil
-            CGContextSetShadowWithColor(graphicsContext, CGSizeZero, 0, nil)
+            CGContextSetShadowWithColor(graphicsContext, CGSize.zero, 0, nil)
             
             CGContextSaveGState(graphicsContext)
             
@@ -54,7 +54,7 @@ public final class StrokeLayoutManager: NSLayoutManager {
             
             // Due to a bug in iOS 7, kCGTextFillStroke will never have the correct fill color, so we must draw the string twice: once for stroke and once for fill. http://stackoverflow.com/questions/18894907/why-cgcontextsetrgbstrokecolor-isnt-working-on-ios7
             
-            CGContextRestoreGState(graphicsContext);
+            CGContextRestoreGState(graphicsContext)
             CGContextSetTextDrawingMode(graphicsContext, .Fill)
         }
         

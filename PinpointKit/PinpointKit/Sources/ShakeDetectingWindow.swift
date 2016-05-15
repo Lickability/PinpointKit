@@ -22,8 +22,6 @@ public class ShakeDetectingWindow: UIWindow {
 
      - parameter frame:    The frame rectangle for the view.
      - parameter delegate: An object to notify when a shake motion event occurs. Defaults to `PinpointKit.defaultPinpointKit`.
-
-     - returns: An initialized `ShakeDetectingWindow`.
      */
 	required public init(
         frame: CGRect,
