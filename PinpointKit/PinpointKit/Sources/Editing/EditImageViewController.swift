@@ -181,6 +181,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         super.viewDidLoad()
         
         assert(imageView.image != nil);
+        assert(delegate != nil);
         
         view.backgroundColor = UIColor.whiteColor()
         view.addSubview(imageView)
