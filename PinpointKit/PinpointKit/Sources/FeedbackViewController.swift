@@ -34,7 +34,6 @@ public final class FeedbackViewController: UITableViewController, FeedbackCollec
     public var screenshot: UIImage? {
         didSet {
             guard isViewLoaded() else { return }
-            print(screenshot)
             updateTableHeaderView()
         }
     }

@@ -19,7 +19,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     public func setScreenshot(screenshot: UIImage) {
         self.imageView.image = screenshot
-        print("hit")
     }
     
     // MARK: - Properties
