@@ -38,6 +38,21 @@ public final class FeedbackViewController: UITableViewController, FeedbackCollec
         }
     }
     
+    /**
+     This is storage for after a user annotates an image and we get a callback for this.
+     
+     The reason we can not just use the `screenshot` property to do so is because:
+     
+     1. Editors have to have the same backing image for the whole time they are in memory
+     2. Semantically the `screenshot` property is the original screenshot and could be confusing
+     
+     For #1, we could just set the editing image back on the editor every time (since we reset the 
+     editor's screenshot everytime `updateTableHeaderView` is called) - however this would mean the annotations
+     would not be editable (movable or scalable). 
+     
+     This is the best solution I could think of considering we have to keep the `Editor` in
+     memory for the lifetime that PinpointKit is alive (for now).
+    */
     private var editedScreenshot: UIImage?
     
     private var dataSource: FeedbackTableViewDataSource? {
