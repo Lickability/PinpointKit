@@ -107,6 +107,14 @@ public final class FeedbackViewController: UITableViewController, FeedbackCollec
         dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, logSupporting:self, userEnabledLogCollection: userEnabledLogCollection)
     }
     
+    /**
+     Determines the correct screenshot for 
+     
+     1. Display in the feedback header
+     2. To _actually send_ when we want to send the feedback.
+     
+     - returns: An optional image that is the most appropriate for use.
+     */
     private func usableScreenShot() -> UIImage? {
         guard let screenshot = screenshot else { return nil }
         
@@ -151,7 +159,7 @@ public final class FeedbackViewController: UITableViewController, FeedbackCollec
     }
     
     @objc private func sendButtonTapped() {
-        guard let screenshot = screenshot else { assertionFailure(); return }
+        guard let screenshot = usableScreenShot() else { assertionFailure(); return }
         
         // TODO: Handle annotated screenshot.
         // TODO: Only send logs if `userEnabledLogCollection` is `true.
