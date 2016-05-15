@@ -159,7 +159,7 @@ public final class FeedbackViewController: UITableViewController, FeedbackCollec
     }
     
     @objc private func sendButtonTapped() {
-        guard let screenshot = usableScreenShot() else { assertionFailure(); return }
+        guard let screenshot = usableScreenShot() else { assertionFailure("We must have either a screenshot or an edited screenshot!"); return }
         
         // TODO: Handle annotated screenshot.
         // TODO: Only send logs if `userEnabledLogCollection` is `true.
