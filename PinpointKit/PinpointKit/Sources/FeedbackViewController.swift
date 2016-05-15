@@ -9,7 +9,7 @@
 import UIKit
 
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
-public class FeedbackViewController: UITableViewController, FeedbackCollector, EditImageViewControllerDelegate {
+public final class FeedbackViewController: UITableViewController, FeedbackCollector, EditImageViewControllerDelegate {
     
     // MARK: - InterfaceCustomization
     
@@ -25,6 +25,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
     
     public var logViewer: LogViewer?
     public var logCollector: LogCollector?
+    public var editor: Editor?
     
     // MARK: - FeedbackViewControllevar configurationdelegate that is informed of significant events in feedback collection.
     public weak var feedbackDelegate: FeedbackCollectorDelegate?
@@ -33,10 +34,12 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
     public var screenshot: UIImage? {
         didSet {
             guard isViewLoaded() else { return }
-            
+            print(screenshot)
             updateTableHeaderView()
         }
     }
+    
+    private var editedScreenshot: UIImage?
     
     private var dataSource: FeedbackTableViewDataSource? {
         didSet {
@@ -69,7 +72,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+        editor?.setDelegate(self)
         updateInterfaceCustomization()
     }
     
@@ -90,14 +93,23 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
         dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, logSupporting:self, userEnabledLogCollection: userEnabledLogCollection)
     }
     
-    private func updateTableHeaderView() {
-        guard let screenshot = screenshot else { return }
+    private func usableScreenShot() -> UIImage? {
+        guard let screenshot = screenshot else { return nil }
         
+        return editedScreenshot ?? screenshot
+    }
+    
+    private func updateTableHeaderView() {
+        guard let screenshot = screenshot, editor = editor else { return }
+        
+        // We must set the screenshot before showing the view controller.
+        editor.setScreenshot(screenshot)
+        let screenshotToDisplay = usableScreenShot()
         let header = ScreenshotHeaderView()
 
-        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: interfaceCustomization?.interfaceText.feedbackEditHint)
+        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshotToDisplay!, hintText: interfaceCustomization?.interfaceText.feedbackEditHint)
         header.screenshotButtonTapHandler = { [weak self] button in
-            let editImageViewController = NavigationController(rootViewController: EditImageViewController(image: screenshot, currentViewModel: nil, delegate: self))
+            let editImageViewController = NavigationController(rootViewController: editor.viewController())
             self?.presentViewController(editImageViewController, animated: true, completion: nil)
         }
         
@@ -148,7 +160,8 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
     }
     
     public func didTapCloseButton(screenshot: UIImage) {
-        self.screenshot = screenshot
+        self.editedScreenshot = screenshot
+        updateTableHeaderView()
     }
     
 }

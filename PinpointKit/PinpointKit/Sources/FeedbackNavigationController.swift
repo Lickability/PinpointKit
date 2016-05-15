@@ -34,6 +34,15 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
         }
     }
     
+    public var editor: Editor? {
+        get {
+            return feedbackViewController.editor
+        }
+        set {
+            feedbackViewController.editor = newValue
+        }
+    }
+    
     public var logCollector: LogCollector? {
         get {
             return feedbackViewController.logCollector
@@ -97,6 +106,7 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
     
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         feedbackViewController.screenshot = screenshot
+
         viewController.presentViewController(self, animated: true, completion: nil)
     }
 }
