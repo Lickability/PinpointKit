@@ -9,7 +9,7 @@
 public protocol Editor {
     weak var delegate: EditImageViewControllerDelegate? { get set }
     
-    func setScreenshot(screenshot: UIImage)
+    var viewController: UIViewController { get }
     
-    func viewController() -> UIViewController
+    func setScreenshot(screenshot: UIImage)
 }

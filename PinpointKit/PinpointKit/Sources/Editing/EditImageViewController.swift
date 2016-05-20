@@ -626,8 +626,8 @@ extension EditImageViewController: Editor {
     public func setScreenshot(screenshot: UIImage) {
         self.imageView.image = screenshot
     }
-
-    public func viewController() -> UIViewController {
+    
+    public var viewController: UIViewController {
         return self
     }
 }
