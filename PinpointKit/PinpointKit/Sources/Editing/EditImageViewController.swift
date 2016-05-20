@@ -13,7 +13,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private weak var delegate: EditImageViewControllerDelegate?
     
-    public func setDelegate(delegate: EditImageViewControllerDelegate) {
+    public func setDelegate(delegate: EditImageViewControllerDelegate?) {
         self.delegate = delegate
     }
     
@@ -181,7 +181,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         super.viewDidLoad()
         
         assert(imageView.image != nil);
-        assert(delegate != nil);
         
         view.backgroundColor = UIColor.whiteColor()
         view.addSubview(imageView)
