@@ -13,6 +13,14 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private weak var delegate: EditImageViewControllerDelegate?
     
+    public func setDelegate(delegate: EditImageViewControllerDelegate) {
+        self.delegate = delegate
+    }
+    
+    public func setScreenshot(screenshot: UIImage) {
+        self.imageView.image = screenshot
+    }
+    
     // MARK: - Properties
     
     private lazy var segmentedControl: UISegmentedControl = { [unowned self] in
@@ -102,20 +110,14 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private(set) public var currentViewModel: AssetViewModel?
     
     
-    // MARK: - Initializers
-    convenience init() {
-        self.init(image: nil, currentViewModel: nil, delegate: nil)
+    public func viewController() -> UIViewController {
+        return self
     }
     
-    override convenience init(nibName: String?, bundle nibBundle: NSBundle?) {
-        self.init(image: nil, currentViewModel: nil, delegate: nil)
-    }
-    
-    public init(image: UIImage?, currentViewModel: AssetViewModel?, delegate: EditImageViewControllerDelegate?) {
+    public init() {
         super.init(nibName: nil, bundle: nil)
         
         navigationItem.leftBarButtonItem = closeBarButtonItem
-        self.delegate = delegate
         
         navigationItem.titleView = segmentedControl
         
@@ -136,8 +138,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         updateAnnotationPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(EditImageViewController.handleUpdateAnnotationPinchGestureRecognizer(_:)))
         updateAnnotationPinchGestureRecognizer.delegate = self
-        
-        imageView.image = image
         
         annotationsView.isAccessibilityElement = true
         annotationsView.accessibilityTraits = annotationsView.accessibilityTraits | UIAccessibilityTraitAllowsDirectInteraction
@@ -179,6 +179,9 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        assert(imageView.image != nil);
+        assert(delegate != nil);
         
         view.backgroundColor = UIColor.whiteColor()
         view.addSubview(imageView)

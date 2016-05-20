@@ -9,7 +9,7 @@
 import UIKit
 
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
-public class FeedbackViewController: UITableViewController {
+public final class FeedbackViewController: UITableViewController {
     
     // MARK: - InterfaceCustomizable
     
@@ -25,6 +25,7 @@ public class FeedbackViewController: UITableViewController {
     
     public var logViewer: LogViewer?
     public var logCollector: LogCollector?
+    public var editor: Editor?
     
     // MARK: - FeedbackCollector
     
@@ -36,10 +37,26 @@ public class FeedbackViewController: UITableViewController {
     public var screenshot: UIImage? {
         didSet {
             guard isViewLoaded() else { return }
-            
             updateTableHeaderView()
         }
     }
+    
+    /**
+     This is storage for after a user annotates an image and we get a callback for this.
+     
+     The reason we can not just use the `screenshot` property to do so is because:
+     
+     1. Editors have to have the same backing image for the whole time they are in memory
+     2. Semantically the `screenshot` property is the original screenshot and could be confusing
+     
+     For #1, we could just set the editing image back on the editor every time (since we reset the 
+     editor's screenshot everytime `updateTableHeaderView` is called) - however this would mean the annotations
+     would not be editable (movable or scalable). 
+     
+     This is the best solution I could think of considering we have to keep the `Editor` in
+     memory for the lifetime that PinpointKit is alive (for now).
+    */
+    private var editedScreenshot: UIImage?
     
     private var dataSource: FeedbackTableViewDataSource? {
         didSet {
@@ -72,7 +89,7 @@ public class FeedbackViewController: UITableViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+        editor?.setDelegate(self)
         updateInterfaceCustomization()
     }
     
@@ -93,14 +110,31 @@ public class FeedbackViewController: UITableViewController {
         dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, logSupporting:self, userEnabledLogCollection: userEnabledLogCollection)
     }
     
-    private func updateTableHeaderView() {
-        guard let screenshot = screenshot else { return }
+    /**
+     Determines the correct screenshot for 
+     
+     1. Display in the feedback header
+     2. To _actually send_ when we want to send the feedback.
+     
+     - returns: An optional image that is the most appropriate for use.
+     */
+    private func usableScreenShot() -> UIImage? {
+        guard let screenshot = screenshot else { return nil }
         
+        return editedScreenshot ?? screenshot
+    }
+    
+    private func updateTableHeaderView() {
+        guard let screenshot = screenshot, editor = editor else { return }
+        
+        // We must set the screenshot before showing the view controller.
+        editor.setScreenshot(screenshot)
+        let screenshotToDisplay = usableScreenShot()
         let header = ScreenshotHeaderView()
 
-        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: interfaceCustomization?.interfaceText.feedbackEditHint)
+        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshotToDisplay!, hintText: interfaceCustomization?.interfaceText.feedbackEditHint)
         header.screenshotButtonTapHandler = { [weak self] button in
-            let editImageViewController = NavigationController(rootViewController: EditImageViewController(image: screenshot, currentViewModel: nil, delegate: self))
+            let editImageViewController = NavigationController(rootViewController: editor.viewController())
             self?.presentViewController(editImageViewController, animated: true, completion: nil)
         }
         
@@ -132,7 +166,7 @@ public class FeedbackViewController: UITableViewController {
     }
     
     @objc private func sendButtonTapped() {
-        guard let screenshot = screenshot else { assertionFailure(); return }
+        guard let screenshot = usableScreenShot() else { assertionFailure("We must have either a screenshot or an edited screenshot!"); return }
         
         // TODO: Handle annotated screenshot.
         // TODO: Only send logs if `userEnabledLogCollection` is `true.
@@ -161,7 +195,8 @@ extension FeedbackViewController: FeedbackCollector {
 
 extension FeedbackViewController: EditImageViewControllerDelegate {
     public func didTapCloseButton(screenshot: UIImage) {
-        self.screenshot = screenshot
+        self.editedScreenshot = screenshot
+        updateTableHeaderView()
     }
 }
 

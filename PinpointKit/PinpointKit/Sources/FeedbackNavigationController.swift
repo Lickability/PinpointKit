@@ -9,7 +9,7 @@
 import UIKit
 
 /// A `UINavigationController` subclass that has a `FeedbackViewController` as its root view controller. Use this class as a `FeedbackCollector`.
-public class FeedbackNavigationController: UINavigationController, FeedbackCollector {
+public final class FeedbackNavigationController: UINavigationController, FeedbackCollector {
     
     // MARK: - InterfaceCustomizable
     
@@ -31,6 +31,15 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
         }
         set {
             feedbackViewController.logViewer = newValue
+        }
+    }
+    
+    public var editor: Editor? {
+        get {
+            return feedbackViewController.editor
+        }
+        set {
+            feedbackViewController.editor = newValue
         }
     }
     
@@ -97,6 +106,7 @@ public class FeedbackNavigationController: UINavigationController, FeedbackColle
     
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         feedbackViewController.screenshot = screenshot
+
         viewController.presentViewController(self, animated: true, completion: nil)
     }
 }

@@ -7,5 +7,9 @@
 //
 
 public protocol Editor {
+    func setDelegate(delegate: EditImageViewControllerDelegate)
     
+    func setScreenshot(screenshot: UIImage)
+    
+    func viewController() -> UIViewController
 }
