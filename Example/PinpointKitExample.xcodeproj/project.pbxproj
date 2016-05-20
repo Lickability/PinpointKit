@@ -103,7 +103,7 @@
 				DA19C3E21C67D4420016861F /* Resources */,
 				E9FAB3019A9E163A9B828A51 /* 📦 Embed Pods Frameworks */,
 				8B1639EE38352A1103B1DD1B /* 📦 Copy Pods Resources */,
-				F2ACE9C71CEF90FD00A461E5 /* ShellScript */,
+				F2ACE9C71CEF90FD00A461E5 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -206,18 +206,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PinpointKitExample/Pods-PinpointKitExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F2ACE9C71CEF90FD00A461E5 /* ShellScript */ = {
+		F2ACE9C71CEF90FD00A461E5 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = Swiftlint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../PinpointKit\n../swiftlint/bin/swiftlint";
+			shellScript = "../swiftlint/bin/swiftlint lint --config ../swiftlint/bin/.swiftlint.yml\n\ncd ../PinpointKit\n../swiftlint/bin/swiftlint lint --config ../swiftlint/bin/.swiftlint.yml";
 		};
 /* End PBXShellScriptBuildPhase section */
 
