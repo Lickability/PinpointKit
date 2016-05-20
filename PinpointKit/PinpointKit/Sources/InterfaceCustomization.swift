@@ -1,5 +1,5 @@
 //
-//  FeedbackCollector.swift
+//  InterfaceCustomization.swift
 //  PinpointKit
 //
 //  Created by Andrew Harrison on 5/13/16.
