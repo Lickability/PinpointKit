@@ -63,7 +63,10 @@ To integrate PinpointKit into your Xcode project using Carthage, specify it in y
 github "Lickability/PinpointKit" ~> 1.0
 ```
 
-Run `carthage update` to build the framework and drag the built `PinpointKit.framework` into your Xcode project.
+- Run `carthage update` to build the framework 
+- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
+- In the tab bar at the top of that window, open the "General" panel.
+- Drag the built `PinpointKit.framework` from the Carthage build folder into the "Embedded Binaries" section.
 
 ### Manually
 
