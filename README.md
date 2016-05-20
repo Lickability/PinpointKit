@@ -60,7 +60,7 @@ $ brew install carthage
 To integrate PinpointKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "Alamofire/Alamofire" ~> 1.0
+github "Lickability/PinpointKit" ~> 1.0
 ```
 
 Run `carthage update` to build the framework and drag the built `PinpointKit.framework` into your Xcode project.
@@ -83,7 +83,7 @@ $ git init
 $ git submodule add https://github.com/Lickability/PinpointKit.git
 ```
 
-- Open the new `PinpointKit` folder, and drag the `PinpointKit.xcodeproj` into the Project Navigator of your application's Xcode project.
+- Open the new `PinpointKit/PinpointKit` folder, and drag the `PinpointKit.xcodeproj` into the Project Navigator of your application's Xcode project.
 
     > It should appear nested underneath your application's blue project icon. Whether it is above or below all the other Xcode groups does not matter.
 
@@ -91,13 +91,12 @@ $ git submodule add https://github.com/Lickability/PinpointKit.git
 - Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
 - In the tab bar at the top of that window, open the "General" panel.
 - Click on the `+` button under the "Embedded Binaries" section.    
-- Select the top `PinpointKit.xcodeproj` for iOS and the bottom one for OS X.
-
-    > You can verify which one you selected by inspecting the build log for your project. The build target for `Alamofire` will be listed as either `Alamofire iOS` or `Alamofire OSX`.
+- You will see two different PinpointKit.xcodeproj folders each with two different versions of the PinpointKit.framework nested inside a Products folder.
+- Select the top `PinpointKit.framework` for iOS.
 
 - And that's it!
 
-> The `PinpointKit.xcodeproj` is automatically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
+> The `PinpointKit.framework` is automatically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
 
 
 
