@@ -103,4 +103,19 @@ The `PinpointKit.framework` is automatically added as a target dependency, linke
 
 ## Usage
 
-Once PinpointKit is installed, it’s simple to use
+Once PinpointKit is installed, it’s simple to use.
+
+To display a feedback view, simply add the following code where you want the feedback to display:
+
+```swift
+PinpointKit.defaultPinpointKit.show(fromViewController: self)
+```
+
+If you want to have the feedback view display from a shake gesture, simply do the following:
+
+```swift
+```
+
+If you don't want to use the [`defaultPinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L17) you can specify both a [`configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) and a [`delegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L49).
+
+The [`configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) will allow you to specify how the feedback view looks and behaves, while the [`delegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L49) will give you hooks into the state of the feedback being sent.
