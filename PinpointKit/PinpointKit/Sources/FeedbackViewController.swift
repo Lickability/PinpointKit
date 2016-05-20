@@ -99,21 +99,21 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     /**
-     Determines the correct screenshot for 
+     Determines the correct screenshot to
      
      1. Display in the feedback header
-     2. To _actually send_ when we want to send the feedback.
+     2. Submit when sending feedback
      
      - returns: An optional image that is the most appropriate for use.
      */
-    private func usableScreenShot() -> UIImage? {
+    private func usableScreenshot() -> UIImage? {
         guard let screenshot = screenshot else { return nil }
         
         return editedScreenshot ?? screenshot
     }
     
     private func updateTableHeaderView() {
-        guard let screenshot = screenshot, editor = editor, screenshotToDisplay = usableScreenShot() else { return }
+        guard let screenshot = screenshot, editor = editor, screenshotToDisplay = usableScreenshot() else { return }
         
         // We must set the screenshot before showing the view controller.
         editor.setScreenshot(screenshot)
@@ -153,7 +153,7 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     @objc private func sendButtonTapped() {
-        guard let screenshot = usableScreenShot() else { assertionFailure("We must have either a screenshot or an edited screenshot!"); return }
+        guard let screenshot = usableScreenshot() else { assertionFailure("We must have either a screenshot or an edited screenshot!"); return }
         
         // TODO: Handle annotated screenshot.
         // TODO: Only send logs if `userEnabledLogCollection` is `true.
