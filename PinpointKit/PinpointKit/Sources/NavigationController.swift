@@ -64,17 +64,17 @@ final class NavigationController: UINavigationController, UINavigationController
             navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
         } else {
             func imageFromColor(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
-                let rect = CGRectMake(0.0, 0.0, size.width, size.height);
-                UIGraphicsBeginImageContext(rect.size);
-                let context = UIGraphicsGetCurrentContext();
+                let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+                UIGraphicsBeginImageContext(rect.size)
+                let context = UIGraphicsGetCurrentContext()
                 
-                CGContextSetFillColorWithColor(context, color.CGColor);
-                CGContextFillRect(context, rect);
+                CGContextSetFillColorWithColor(context, color.CGColor)
+                CGContextFillRect(context, rect)
                 
-                let image = UIGraphicsGetImageFromCurrentImageContext();
-                UIGraphicsEndImageContext();
+                let image = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
                 
-                return image;
+                return image
             }
             navigationBar.setBackgroundImage(imageFromColor(color), forBarMetrics: .Default)
         }

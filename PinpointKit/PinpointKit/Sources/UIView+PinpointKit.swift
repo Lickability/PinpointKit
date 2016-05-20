@@ -8,7 +8,7 @@
 
 extension UIView {
     var pinpoint_screenshot: UIImage {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0);
+        UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0)
         drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
