@@ -22,9 +22,7 @@ public class SystemLogCollector: LogCollector {
      
      - returns: Logs as an ordered list of strings, sorted by descending recency.
      */
-    public func retrieveLogs(fromOffsetSinceNow offset: NSInteger? = nil) -> [String] {
-        let loggerOffset = offset ?? NSNotFound
-        
-        return logger.retrieveLogsFromOffsetSinceNow(loggerOffset)
+    public func retrieveLogs() -> [String] {
+        return logger.retrieveLogs()
     }
 }
