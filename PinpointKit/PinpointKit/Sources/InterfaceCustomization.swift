@@ -1,5 +1,5 @@
 //
-//  FeedbackCollector.swift
+//  InterfaceCustomization.swift
 //  PinpointKit
 //
 //  Created by Andrew Harrison on 5/13/16.
@@ -24,7 +24,7 @@ public struct InterfaceCustomization {
         /// The tint color of PinpointKit views used to style interactive and selected elements.
         let tintColor: UIColor?
         
-        // The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
+        /// The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
         let annotationFillColor: UIColor?
         
         /// The stroke color for annotations.

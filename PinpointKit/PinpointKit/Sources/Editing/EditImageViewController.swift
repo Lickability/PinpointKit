@@ -11,58 +11,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private var hasSavedOrSharedAnyComposion: Bool = false
     
-    // MARK: - Types
-    
-    private enum Tool: Int {
-        case Arrow
-        case Box
-        case Text
-        case Blur
-        
-        var name: String {
-            switch self {
-            case .Arrow:
-                return "Arrow Tool"
-            case .Box:
-                return "Box Tool"
-            case .Text:
-                return "Text Tool"
-            case .Blur:
-                return "Blur Tool"
-            }
-        }
-        
-        var image: UIImage {
-            let bundle = NSBundle.pinpointKitBundle()
-            
-            func loadImage() -> UIImage? {
-                switch self {
-                case .Arrow:
-                    return UIImage(named: "ArrowIcon", inBundle: bundle, compatibleWithTraitCollection: nil)
-                case .Box:
-                    return UIImage(named: "BoxIcon", inBundle: bundle, compatibleWithTraitCollection: nil)
-                case .Text:
-                    return UIImage()
-                case .Blur:
-                    return UIImage(named: "BlurIcon", inBundle: bundle, compatibleWithTraitCollection: nil)
-                }
-            }
-            
-            return loadImage() ?? UIImage()
-        }
-        
-        var segmentedControlItem: AnyObject {
-            switch self {
-            case .Arrow, .Box, .Blur:
-                let image = self.image
-                image.accessibilityLabel = self.name
-                return image
-            case .Text:
-                return NSLocalizedString("Aa", comment: "The text tool’s button label.")
-            }
-        }
-    }
-    
+    private weak var delegate: EditImageViewControllerDelegate?
     
     // MARK: - Properties
     
@@ -116,12 +65,10 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private var previousUpdateAnnotationPanGestureRecognizerLocation: CGPoint!
     
     private let keyboardAvoider: KeyboardAvoider = KeyboardAvoider(window: UIApplication.sharedApplication().keyWindow)
-    private lazy var shareBarButtonItem: UIBarButtonItem = { [unowned self] in
-        UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(EditImageViewController.shareImage(_:)))
-        }()
+
     
     private lazy var closeBarButtonItem: UIBarButtonItem = { [unowned self] in
-        UIBarButtonItem(image: UIImage(named: "CloseButtonX"), landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(EditImageViewController.closeButtonTapped(_:)))
+        UIBarButtonItem(image: UIImage(named: "CloseButtonX", inBundle: .pinpointKitBundle(), compatibleWithTraitCollection: nil), landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(EditImageViewController.closeButtonTapped(_:)))
         }()
     
     private var currentTool: Tool? {
@@ -157,19 +104,19 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     // MARK: - Initializers
     convenience init() {
-        self.init(image: nil, currentViewModel: nil)
+        self.init(image: nil, currentViewModel: nil, delegate: nil)
     }
     
     override convenience init(nibName: String?, bundle nibBundle: NSBundle?) {
-        self.init(image: nil, currentViewModel: nil)
+        self.init(image: nil, currentViewModel: nil, delegate: nil)
     }
     
-    public init(image: UIImage?, currentViewModel: AssetViewModel?) {
+    public init(image: UIImage?, currentViewModel: AssetViewModel?, delegate: EditImageViewControllerDelegate?) {
         super.init(nibName: nil, bundle: nil)
         
         navigationItem.leftBarButtonItem = closeBarButtonItem
+        self.delegate = delegate
         
-        navigationItem.rightBarButtonItem = shareBarButtonItem
         navigationItem.titleView = segmentedControl
         
         touchDownGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(EditImageViewController.handleTouchDownGestureRecognizer(_:)))
@@ -330,54 +277,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     // MARK: - Private
     
-    // TODO - turns sharing off - this seems like a Pinpoint app only need - also it pulls in a ton of other types.
-
-    @objc private func shareImage(button: UIBarButtonItem) {
-//        var activityItems: [AnyObject] = [ ImageActivityItemProvider(placeholderItem: view.pinpoint_screenshot) ]
-//        
-//        if let asset = currentViewModel?.asset {
-//            activityItems.append(asset)
-//        }
-//        
-//        let promotionTextProvider = AppPromotionTextItemProvider(placeholderItem: "")
-//        activityItems.append(promotionTextProvider)
-//        
-//        let itunesURLProvider = iTunesURLItemProvider(withiTunesID: String(App.iTunesIdentifier))
-//        activityItems.append(itunesURLProvider)
-//        
-//        let deleteActivity = DeleteOriginalAssetActivity()
-//        let facebookMessenger = FacebookMessengerActivity()
-//        let openInAppActivity = TTOpenInAppActivity(view: view, andBarButtonItem: button)
-//        
-//        let controller = UIActivityViewController(activityItems: activityItems, applicationActivities: [openInAppActivity, deleteActivity, facebookMessenger])
-//        controller.completionWithItemsHandler = finishedSharing
-//        
-//        openInAppActivity.superViewController = controller
-//        
-//        controller.popoverPresentationController?.barButtonItem = button
-//        controller.excludedActivityTypes = [ UIActivityTypeAssignToContact ]
-//        presentViewController(controller, animated: true, completion: nil)
-//    }
-//    
-//    private func finishedSharing(activityType: String?, completed: Bool, items: [AnyObject]?, error: NSError?) {
-//        let finished = completed && error == nil
-//        
-//        if finished {
-//            if activityType == DeleteOriginalAssetActivity.ActivityType {
-//                // Adds a delay for the screenshots view controller to receive the change notification.
-//                let delayTime = dispatch_time(DISPATCH_TIME_NOW,
-//                    Int64(0.1 * Double(NSEC_PER_SEC)))
-//                dispatch_after(delayTime, dispatch_get_main_queue()) {
-//                    self.dismissViewControllerAnimated(true, completion: nil)
-//                }
-//            }
-//            else {
-//                hasACopyOfCurrentComposition = true
-//                hasSavedOrSharedAnyComposion = true
-//            }
-//        }
-    }
-    
     private func setupConstraints() {
         let views = [
             "imageView": imageView,
@@ -397,39 +296,24 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             self.dismissViewControllerAnimated(true, completion: nil)
         }))
         
-// TODO - are we going to support saving like this?
-//        alert.addAction(UIAlertAction(title: NSLocalizedString("Save", comment: "Alert button title to save a copy of a composition."), style: .Default, handler: { (action) in
-//            let URL = writeImageToTemporaryLocation(image: self.view.pinpoint_screenshot, fileName: "Screenshot.png")
-//            
-//            if let URL = URL {
-//                do {
-//                    try PHPhotoLibrary.sharedPhotoLibrary().performChangesAndWait({
-//                        let creationRequest = PHAssetChangeRequest.creationRequestForAssetFromImageAtFileURL(URL)
-//                        creationRequest?.creationDate = NSDate()
-//                    })
-//                } catch _ {
-//                }
-//            }
-//            
-//            self.dismissViewControllerAnimated(true, completion: nil)
-//        }))
-        
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert button title to cancel the alert."), style: .Cancel, handler: nil))
         return alert
     }
     
     @objc private func closeButtonTapped(button: UIBarButtonItem) {
+        
+        defer {
+            self.delegate?.didTapCloseButton(self.view.pinpoint_screenshot)
+        }
+        
         if shouldPromptBeforeDismissal {
             let alert = newCloseSreenshotAlert()
             alert.popoverPresentationController?.barButtonItem = button
             presentViewController(alert, animated: true, completion: nil)
-        } else {
-            dismissViewControllerAnimated(true, completion: {
-                // TODO I don't THINK this is needed
-//                if self.hasSavedOrSharedAnyComposion && Preferences().deleteAfterSharing {
-//                    self.currentViewModel?.asset.delete()
-//                }
-            })
+        }
+        else {
+            dismissViewControllerAnimated(true, completion: nil)
+
         }
     }
     
@@ -529,7 +413,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             }
             
             navigationItem.setLeftBarButtonItem(closeBarButtonItem, animated: true)
-            navigationItem.setRightBarButtonItem(shareBarButtonItem, animated: true)
+            navigationItem.setRightBarButtonItem(nil, animated: true)
             
             currentAnnotationView = nil
         }
@@ -571,31 +455,10 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         guard let currentTool = self.currentTool else { return }
         
         let currentLocation = gestureRecognizer.locationInView(annotationsView)
-        let view: AnnotationView = {
-            switch currentTool {
-            case .Arrow:
-                let view = ArrowAnnotationView()
-                view.annotation = ArrowAnnotation(startLocation: currentLocation, endLocation: currentLocation)
-                return view
-            case .Box:
-                let view = BoxAnnotationView()
-                view.annotation = BoxAnnotation(startLocation: currentLocation, endLocation: currentLocation)
-                return view
-            case .Text:
-                let view = TextAnnotationView()
-                let minimumSize = TextAnnotationView.minimumTextSize()
-                let endLocation = CGPoint(x: currentLocation.x + minimumSize.width, y: currentLocation.y + minimumSize.height)
-                view.annotation = Annotation(startLocation: currentLocation, endLocation: endLocation)
-                return view
-            case .Blur:
-                let CGImage: QuartzCore.CGImage? = self.imageView.image?.CGImage
-                let CIImage = CGImage.map({ CoreImage.CIImage(CGImage: $0) })
-                let view = BlurAnnotationView()
-                view.drawsBorder = true
-                view.annotation = CIImage.map({ BlurAnnotation(startLocation: currentLocation, endLocation: currentLocation, image: $0) })
-                return view
-            }
-        }()
+        
+        let factory = AnnotationViewFactory(image: self.imageView.image?.CGImage, currentLocation: currentLocation, tool: currentTool)
+        
+        let view: AnnotationView = factory.annotationView()
         
         view.frame = annotationsView.bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
@@ -608,7 +471,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         let currentLocation = gestureRecognizer.locationInView(annotationsView)
         currentAnnotationView?.setSecondControlPoint(currentLocation)
     }
-    
     
     // MARK: - Update annotations
     

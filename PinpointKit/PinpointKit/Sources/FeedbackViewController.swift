@@ -9,7 +9,7 @@
 import UIKit
 
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
-public class FeedbackViewController: UITableViewController, FeedbackCollector {
+public class FeedbackViewController: UITableViewController {
     
     // MARK: - InterfaceCustomizable
     
@@ -26,10 +26,11 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     public var logViewer: LogViewer?
     public var logCollector: LogCollector?
     
-    // MARK: - FeedbackViewController
+    // MARK: - FeedbackCollector
     
-    /// A delegate that is informed of significant events in feedback collection.
     public weak var feedbackDelegate: FeedbackCollectorDelegate?
+    
+    // MARK: - FeedbackViewController
     
     /// The screenshot the feedback describes.
     public var screenshot: UIImage? {
@@ -96,9 +97,11 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         guard let screenshot = screenshot else { return }
         
         let header = ScreenshotHeaderView()
+
         header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: interfaceCustomization?.interfaceText.feedbackEditHint)
-        header.screenshotButtonTapHandler = { button in
-            // TODO: Present the editing UI.
+        header.screenshotButtonTapHandler = { [weak self] button in
+            let editImageViewController = NavigationController(rootViewController: EditImageViewController(image: screenshot, currentViewModel: nil, delegate: self))
+            self?.presentViewController(editImageViewController, animated: true, completion: nil)
         }
         
         tableView.tableHeaderView = header
@@ -143,12 +146,22 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    // MARK: - FeedbackCollector
-    
+}
+
+// MARK: - FeedbackCollector
+
+extension FeedbackViewController: FeedbackCollector {
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         self.screenshot = screenshot
         viewController.showDetailViewController(self, sender: viewController)
+    }
+}
+
+// MARK: - EditImageViewControllerDelegate
+
+extension FeedbackViewController: EditImageViewControllerDelegate {
+    public func didTapCloseButton(screenshot: UIImage) {
+        self.screenshot = screenshot
     }
 }
 
