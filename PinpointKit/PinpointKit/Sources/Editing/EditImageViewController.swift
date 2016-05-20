@@ -167,7 +167,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        assert(imageView.image != nil);
+        assert(imageView.image != nil, "A screenshot must be set using `setScreenshot(_:)` before loading the view.");
         
         view.backgroundColor = UIColor.whiteColor()
         view.addSubview(imageView)
