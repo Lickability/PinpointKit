@@ -98,22 +98,9 @@ public final class FeedbackViewController: UITableViewController {
         dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, logSupporting:self, userEnabledLogCollection: userEnabledLogCollection)
     }
     
-    /**
-     Determines the correct screenshot to
-     
-     1. Display in the feedback header
-     2. Submit when sending feedback
-     
-     - returns: An optional image that is the most appropriate for use.
-     */
-    private func usableScreenshot() -> UIImage? {
-        guard let screenshot = screenshot else { return nil }
-        
-        return editedScreenshot ?? screenshot
-    }
-    
     private func updateTableHeaderView() {
-        guard let screenshot = screenshot, editor = editor, screenshotToDisplay = usableScreenshot() else { return }
+        guard let screenshot = screenshot, editor = editor else { return }
+        let screenshotToDisplay = editedScreenshot ?? screenshot
         
         // We must set the screenshot before showing the view controller.
         editor.setScreenshot(screenshot)
@@ -153,13 +140,21 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     @objc private func sendButtonTapped() {
-        guard let screenshot = usableScreenshot() else { assertionFailure("We must have either a screenshot or an edited screenshot!"); return }
+        let feedback: Feedback?
         
-        // TODO: Handle annotated screenshot.
+        if let screenshot = editedScreenshot {
+            feedback = Feedback(screenshot: .Annotated(image: screenshot))
+        } else if let screenshot = screenshot {
+            feedback = Feedback(screenshot: .Original(image: screenshot))
+        } else {
+            feedback = nil
+        }
+        
+        guard let feedbackToSend = feedback else { return assertionFailure("We must have either a screenshot or an edited screenshot!") }
+
         // TODO: Only send logs if `userEnabledLogCollection` is `true.
         
-        let feedback = Feedback(screenshot: Feedback.ScreenshotType.Original(image: screenshot))
-        feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedback)
+        feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedbackToSend)
     }
     
     @objc private func cancelButtonTapped() {
