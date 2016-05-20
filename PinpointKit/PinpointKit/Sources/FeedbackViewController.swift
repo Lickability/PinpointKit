@@ -111,10 +111,10 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     /**
-     Determines the correct screenshot for 
+     Determines the correct screenshot to
      
      1. Display in the feedback header
-     2. To _actually send_ when we want to send the feedback.
+     2. Submit when sending feedback
      
      - returns: An optional image that is the most appropriate for use.
      */
