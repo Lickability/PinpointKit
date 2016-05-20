@@ -74,7 +74,7 @@ If you prefer not to use either of the aforementioned dependency managers, you c
 
 #### Embedded Framework
 
-- Open up Terminal, `cd` into your top-level project directory, and run the following command "if" your project is not initialized as a git repository:
+- Open up Terminal, `cd` into your top-level project directory, and run the following command if your project is not initialized as a git repository:
 
 ```bash
 $ git init
