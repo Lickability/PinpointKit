@@ -26,8 +26,11 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
     public var logViewer: LogViewer?
     public var logCollector: LogCollector?
     
-    // MARK: - FeedbackViewControllevar configurationdelegate that is informed of significant events in feedback collection.
+    // MARK: - FeedbackCollector
+    
     public weak var feedbackDelegate: FeedbackCollectorDelegate?
+    
+    // MARK: - FeedbackViewController
     
     /// The screenshot the feedback describes.
     public var screenshot: UIImage? {
