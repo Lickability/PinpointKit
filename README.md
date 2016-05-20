@@ -111,9 +111,12 @@ To display a feedback view, simply add the following code where you want the fee
 PinpointKit.defaultPinpointKit.show(fromViewController: self)
 ```
 
-If you want to have the feedback view display from a shake gesture, simply do the following:
+If you want to have the feedback view display from a shake gesture, simply do the following in your [`UIApplicationDelegate`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/index.html) class:
 
 ```swift
+    lazy var window: UIWindow? = {
+        return ShakeDetectingWindow(frame: UIScreen.mainScreen().bounds)
+    }()
 ```
 
 If you don't want to use the [`defaultPinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L17) you can specify both a [`configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) and a [`delegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L49).
