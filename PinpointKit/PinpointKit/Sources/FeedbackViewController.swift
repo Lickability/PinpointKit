@@ -191,10 +191,10 @@ extension FeedbackViewController: FeedbackCollector {
     }
 }
 
-// MARK: - EditImageViewControllerDelegate
+// MARK: - EditorDelegate
 
-extension FeedbackViewController: EditImageViewControllerDelegate {
-    public func didTapCloseButton(screenshot: UIImage) {
+extension FeedbackViewController: EditorDelegate {
+    public func editorWillDismiss(editor: Editor, screenshot: UIImage) {
         self.editedScreenshot = screenshot
         updateTableHeaderView()
     }
