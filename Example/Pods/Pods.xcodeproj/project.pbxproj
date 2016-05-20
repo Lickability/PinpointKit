@@ -40,7 +40,6 @@
 		7D70379CE8F2F84B68629DBD86522F38 /* PinpointKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF091F40184E2C7CB0FCE223F50B6407 /* PinpointKit.xcassets */; };
 		842E4DBBBE50EBEB183F8AAAFAA7F85F /* NSBundle+PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB340D273AB4D4E2E7EB3A84C6013A0 /* NSBundle+PinpointKit.swift */; };
 		85E713DC0E74AD5789ABFBFB0C8ADF55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E4C26A72D50DB44D17501848286B727 /* Foundation.framework */; };
-		8AE595A221939D83B0EED5A7C430F3BD /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FC6B35BE5C992DCA32977409A3ECE0A /* Media.xcassets */; };
 		94063C803BB44AC05930212E18677EEB /* InterfaceCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56B5B3BC1F20C8239B3ACF2C02B1072 /* InterfaceCustomizable.swift */; };
 		961BDFD06951F6401911875B0FDBF5B8 /* LogSupporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD6CC1A0536321E475C803FC92F9BC6 /* LogSupporting.swift */; };
 		A1DE2D49E2C90B6591335B4E5934AF4A /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D07DD6355300CAEF30D31535431C42D /* Tool.swift */; };
@@ -111,7 +110,6 @@
 		63CB56BD873C4BB171888105C6F1B545 /* Pods-PinpointKitExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PinpointKitExample-dummy.m"; sourceTree = "<group>"; };
 		682BE89147E0C714BFBA89CFDD07B249 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		6832A713195B5704CF66B5D9D4AB441E /* ASLLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ASLLogger.m; sourceTree = "<group>"; };
-		6FC6B35BE5C992DCA32977409A3ECE0A /* Media.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		70C65AA65F77BEC4C0F59BE7B5BDD25D /* PinpointKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PinpointKit.xcconfig; sourceTree = "<group>"; };
 		7203702A3822ED47393005A0F9FE7501 /* ArrowAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArrowAnnotationView.swift; sourceTree = "<group>"; };
 		725219F0821E54AAA703CDB0B5011ED2 /* PinpointKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PinpointKit-umbrella.h"; sourceTree = "<group>"; };
@@ -379,7 +377,6 @@
 		F9FB150F6B6574A85F2CC76A711619F2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6FC6B35BE5C992DCA32977409A3ECE0A /* Media.xcassets */,
 				AF091F40184E2C7CB0FCE223F50B6407 /* PinpointKit.xcassets */,
 				682BE89147E0C714BFBA89CFDD07B249 /* SourceSansPro-Bold.ttf */,
 				90A0F5A3540822809DCFD0115EFE53A0 /* SourceSansPro-Regular.ttf */,
@@ -480,7 +477,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AE595A221939D83B0EED5A7C430F3BD /* Media.xcassets in Resources */,
 				7D70379CE8F2F84B68629DBD86522F38 /* PinpointKit.xcassets in Resources */,
 				AB498FE2FC317FE42AE22F6A58CD80DF /* SourceSansPro-Bold.ttf in Resources */,
 				BCEE975C2BD66273F7ACC86774C7F348 /* SourceSansPro-Regular.ttf in Resources */,
