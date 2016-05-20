@@ -91,7 +91,7 @@ $ git submodule add https://github.com/Lickability/PinpointKit.git
 - Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the "Targets" heading in the sidebar.
 - In the tab bar at the top of that window, open the "General" panel.
 - Click on the `+` button under the "Embedded Binaries" section.    
-- You will see two different PinpointKit.xcodeproj folders each with two different versions of the PinpointKit.framework nested inside a Products folder.
+- You will see two different `PinpointKit.xcodeproj` folders each with two different versions of the `PinpointKit.framework` nested inside a Products folder.
 - Select the top `PinpointKit.framework` for iOS.
 
 - And that's it!
