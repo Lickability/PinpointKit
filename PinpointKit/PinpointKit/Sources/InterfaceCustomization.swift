@@ -30,6 +30,9 @@ public struct InterfaceCustomization {
         /// The stroke color for annotations.
         let annotationStrokeColor: UIColor
         
+        /// The font used for displaying logs
+        let logFont: UIFont
+        
         /**
          Initializes an `Appearance` object with a optional annotation color properties.
          
@@ -37,10 +40,11 @@ public struct InterfaceCustomization {
          - parameter annotationFillColor:   The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
          - parameter annotationStrokeColor: The stroke color for annotations.
          */
-        public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(), annotationFillColor: UIColor? = nil, annotationStrokeColor: UIColor = .whiteColor()) {
+        public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(), annotationFillColor: UIColor? = nil, annotationStrokeColor: UIColor = .whiteColor(), logFont: UIFont = .menloRegularFontOfSize(10)) {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor
+            self.logFont = logFont
         }
     }
     
@@ -58,8 +62,14 @@ public struct InterfaceCustomization {
         /// The title of a button that cancels feedback collection. Setting this property to `nil` uses a default value.
         let feedbackCancelButtonTitle: String?
         
+        /// The title of a back button that takes the user back to the initial feedback collection screen. Setting this property to `nil` uses a default value.
+        let feedbackBackButtonTitle: String?
+        
         /// A hint to the user on how to edit the screenshot from the feedback screen.
         let feedbackEditHint: String?
+        
+        /// The title of the log collection screen.
+        let logCollectorTitle: String?
         
         /// The title of a cell that allows the user to toggle log collection.
         let logCollectionPermissionTitle: String
@@ -76,12 +86,16 @@ public struct InterfaceCustomization {
         public init(feedbackCollectorTitle: String? = NSLocalizedString("Report a Bug", comment: "Title of a view that reports a bug"),
                     feedbackSendButtonTitle: String = NSLocalizedString("Send", comment: "A button that sends feedback."),
                     feedbackCancelButtonTitle: String? = nil,
+                    feedbackBackButtonTitle: String? = NSLocalizedString("Report", comment: "Back button title of a view that reports a bug"),
                     feedbackEditHint: String? = NSLocalizedString("Tap the screenshot to annotate.", comment: "A hint on how to edit the screenshot"),
+                    logCollectorTitle: String? = NSLocalizedString("Console Log", comment: "Title of a view that collects logs"),
                     logCollectionPermissionTitle: String = NSLocalizedString("Include Console Log", comment: "Title of a button asking the user to include system logs")) {
             self.feedbackCollectorTitle = feedbackCollectorTitle
             self.feedbackSendButtonTitle = feedbackSendButtonTitle
             self.feedbackCancelButtonTitle = feedbackCancelButtonTitle
+            self.feedbackBackButtonTitle = feedbackBackButtonTitle
             self.feedbackEditHint = feedbackEditHint
+            self.logCollectorTitle = logCollectorTitle
             self.logCollectionPermissionTitle = logCollectionPermissionTitle
         }
     }

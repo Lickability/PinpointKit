@@ -11,7 +11,7 @@ import UIKit
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
 public class FeedbackViewController: UITableViewController, FeedbackCollector {
     
-    // MARK: - InterfaceCustomization
+    // MARK: - InterfaceCustomizable
     
     public var interfaceCustomization: InterfaceCustomization? {
         didSet {
@@ -109,6 +109,10 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         title = interfaceCustomization?.interfaceText.feedbackCollectorTitle
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: interfaceCustomization?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
+        
+        if let backButtonTitle = interfaceCustomization?.interfaceText.feedbackBackButtonTitle {
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: backButtonTitle, style: .Plain, target: nil, action: nil)
+        }
         
         let cancelBarButtonItem: UIBarButtonItem
         let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
