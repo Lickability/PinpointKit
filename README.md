@@ -64,9 +64,9 @@ github "Lickability/PinpointKit" ~> 1.0
 ```
 
 - Run `carthage update` to build the framework.
-- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the ”Targets” heading in the sidebar.
-- In the tab bar at the top of that window, open the ”General” panel.
-- Drag the built `PinpointKit.framework` from the Carthage build folder into the ”Embedded Binaries” section.
+- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the “Targets” heading in the sidebar.
+- In the tab bar at the top of that window, open the “General” panel.
+- Drag the built `PinpointKit.framework` from the Carthage build folder into the “Embedded Binaries” section.
 
 ### Manually
 
@@ -91,15 +91,15 @@ $ git submodule add https://github.com/Lickability/PinpointKit.git
     > It should appear nested underneath your application’s blue project icon. Whether it is above or below all the other Xcode groups does not matter.
 
 - Select the `PinpointKit.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
-- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the ”Targets” heading in the sidebar.
-- In the tab bar at the top of that window, open the ”General” panel.
-- Click on the `+` button under the ”Embedded Binaries” section.    
+- Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the “Targets” heading in the sidebar.
+- In the tab bar at the top of that window, open the “General” panel.
+- Click on the `+` button under the “Embedded Binaries” section.    
 - You will see two different `PinpointKit.xcodeproj` folders each with two different versions of the `PinpointKit.framework` nested inside a Products folder.
 - Select the top `PinpointKit.framework` for iOS.
 
 - And that’s it!
 
-The `PinpointKit.framework` is automatically added as a target dependency, linked framework and embedded framework in a ”Copy Files” build phase which is all you need to build on the simulator and a device.
+The `PinpointKit.framework` is automatically added as a target dependency, linked framework and embedded framework in a “Copy Files” build phase which is all you need to build on the simulator and a device.
 
 
 
