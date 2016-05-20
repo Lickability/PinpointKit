@@ -142,18 +142,23 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
         
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    // MARK: - FeedbackCollector
-    
+}
+
+// MARK: - FeedbackCollector
+
+extension FeedbackViewController {
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         self.screenshot = screenshot
         viewController.showDetailViewController(self, sender: viewController)
     }
-    
+}
+
+// MARK: - EditImageViewControllerDelegate
+
+extension FeedbackViewController {
     public func didTapCloseButton(screenshot: UIImage) {
         self.screenshot = screenshot
     }
-    
 }
 
 // MARK: - UITableViewDelegate
