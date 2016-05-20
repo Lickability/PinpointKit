@@ -62,6 +62,7 @@
 		DA7B94F01CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7B94EF1CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift */; };
 		F2ACE95F1CE6532000A461E5 /* LogSupporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ACE95E1CE6532000A461E5 /* LogSupporting.swift */; };
 		F2ACE9611CE6539200A461E5 /* InterfaceCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ACE9601CE6539200A461E5 /* InterfaceCustomization.swift */; };
+		F2ACE9C91CEF9BEB00A461E5 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F2ACE9C81CEF9BEB00A461E5 /* Media.xcassets */; };
 		F2BF24051CB9A69200867E01 /* ASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = F2BF24031CB9A69200867E01 /* ASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2BF24061CB9A69200867E01 /* ASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BF24041CB9A69200867E01 /* ASLLogger.m */; };
 /* End PBXBuildFile section */
@@ -133,6 +134,7 @@
 		DA7B94EF1CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindowDelegate.swift; sourceTree = "<group>"; };
 		F2ACE95E1CE6532000A461E5 /* LogSupporting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogSupporting.swift; sourceTree = "<group>"; };
 		F2ACE9601CE6539200A461E5 /* InterfaceCustomization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceCustomization.swift; sourceTree = "<group>"; };
+		F2ACE9C81CEF9BEB00A461E5 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = PinpointKit/Resources/Media.xcassets; sourceTree = "<group>"; };
 		F2BF24031CB9A69200867E01 /* ASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASLLogger.h; sourceTree = "<group>"; };
 		F2BF24041CB9A69200867E01 /* ASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASLLogger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -276,6 +278,7 @@
 			children = (
 				DA0DA6041C53049B0012ADBE /* PinpointKit */,
 				2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */,
+				F2ACE9C81CEF9BEB00A461E5 /* Media.xcassets */,
 				DA0DA6071C53049B0012ADBE /* Info.plist */,
 				DA0DA6051C53049B0012ADBE /* PinpointKit.h */,
 				DA0DA6101C53049B0012ADBE /* PinpointKitTests */,
@@ -425,6 +428,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2ACE9C91CEF9BEB00A461E5 /* Media.xcassets in Resources */,
 				2CACDFCF1C9C8AFB0002ECBF /* PinpointKit.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
