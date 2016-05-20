@@ -67,8 +67,11 @@ public struct Configuration {
         
         self.sender = sender
         
-        self.feedbackCollector.interfaceCustomization = InterfaceCustomization(interfaceText: interfaceText, appearance: appearance)
+        let interfaceCustomization = InterfaceCustomization(interfaceText: interfaceText, appearance: appearance)
+        
+        self.feedbackCollector.interfaceCustomization = interfaceCustomization
         self.feedbackCollector.logCollector = logCollector
         self.feedbackCollector.logViewer = logViewer
+        self.feedbackCollector.logViewer?.interfaceCustomization = interfaceCustomization
     }
 }

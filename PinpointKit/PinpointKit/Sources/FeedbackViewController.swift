@@ -9,9 +9,9 @@
 import UIKit
 
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
-public final class FeedbackViewController: UITableViewController, FeedbackCollector, EditImageViewControllerDelegate {
+public final class FeedbackViewController: UITableViewController {
     
-    // MARK: - InterfaceCustomization
+    // MARK: - InterfaceCustomizable
     
     public var interfaceCustomization: InterfaceCustomization? {
         didSet {
@@ -27,8 +27,11 @@ public final class FeedbackViewController: UITableViewController, FeedbackCollec
     public var logCollector: LogCollector?
     public var editor: Editor?
     
-    // MARK: - FeedbackViewControllevar configurationdelegate that is informed of significant events in feedback collection.
+    // MARK: - FeedbackCollector
+    
     public weak var feedbackDelegate: FeedbackCollectorDelegate?
+    
+    // MARK: - FeedbackViewController
     
     /// The screenshot the feedback describes.
     public var screenshot: UIImage? {
@@ -144,6 +147,10 @@ public final class FeedbackViewController: UITableViewController, FeedbackCollec
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: interfaceCustomization?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
         
+        if let backButtonTitle = interfaceCustomization?.interfaceText.feedbackBackButtonTitle {
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: backButtonTitle, style: .Plain, target: nil, action: nil)
+        }
+        
         let cancelBarButtonItem: UIBarButtonItem
         let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
         if let cancelButtonTitle = interfaceCustomization?.interfaceText.feedbackCancelButtonTitle {
@@ -173,19 +180,24 @@ public final class FeedbackViewController: UITableViewController, FeedbackCollec
         
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    // MARK: - FeedbackCollector
-    
+}
+
+// MARK: - FeedbackCollector
+
+extension FeedbackViewController: FeedbackCollector {
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         self.screenshot = screenshot
         viewController.showDetailViewController(self, sender: viewController)
     }
-    
+}
+
+// MARK: - EditImageViewControllerDelegate
+
+extension FeedbackViewController: EditImageViewControllerDelegate {
     public func didTapCloseButton(screenshot: UIImage) {
         self.editedScreenshot = screenshot
         updateTableHeaderView()
     }
-    
 }
 
 // MARK: - UITableViewDelegate

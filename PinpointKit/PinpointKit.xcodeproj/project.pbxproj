@@ -25,6 +25,7 @@
 		2C9CB2101CE622BC006567E2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB20F1CE622BC006567E2 /* NavigationController.swift */; };
 		2C9CB2121CE622CD006567E2 /* AnnotationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB2111CE622CD006567E2 /* AnnotationViewFactory.swift */; };
 		2C9CB2141CE622EB006567E2 /* UIView+PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB2131CE622EB006567E2 /* UIView+PinpointKit.swift */; };
+		2C9CB2161CE65895006567E2 /* InterfaceCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB2151CE65895006567E2 /* InterfaceCustomizable.swift */; };
 		2CACDFCD1C9C83CE0002ECBF /* CheckmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CACDFCC1C9C83CE0002ECBF /* CheckmarkCell.swift */; };
 		2CACDFCF1C9C8AFB0002ECBF /* PinpointKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */; };
 		2CB63F1B1C77B1B6000CEFC6 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */; };
@@ -92,6 +93,7 @@
 		2C9CB20F1CE622BC006567E2 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		2C9CB2111CE622CD006567E2 /* AnnotationViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationViewFactory.swift; path = Editing/AnnotationViewFactory.swift; sourceTree = "<group>"; };
 		2C9CB2131CE622EB006567E2 /* UIView+PinpointKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+PinpointKit.swift"; sourceTree = "<group>"; };
+		2C9CB2151CE65895006567E2 /* InterfaceCustomizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceCustomizable.swift; sourceTree = "<group>"; };
 		2CACDFCC1C9C83CE0002ECBF /* CheckmarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckmarkCell.swift; sourceTree = "<group>"; };
 		2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = PinpointKit.xcassets; path = PinpointKit/Resources/PinpointKit.xcassets; sourceTree = "<group>"; };
 		2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */,
 				12580A341C652FA000ADC01C /* Configuration.swift */,
 				F2ACE9601CE6539200A461E5 /* InterfaceCustomization.swift */,
+				2C9CB2151CE65895006567E2 /* InterfaceCustomizable.swift */,
 				12580A4A1C654B3E00ADC01C /* Logging */,
 				12580A4B1C654B4700ADC01C /* Sending */,
 				12580A4C1C654B6500ADC01C /* Editing */,
@@ -464,6 +467,7 @@
 				B92901A21C55677C007CCA5E /* TextAnnotationView.swift in Sources */,
 				2CB6C1F61C65361900022CEB /* ScreenshotDetector.swift in Sources */,
 				12580A411C65330600ADC01C /* SystemLogCollector.swift in Sources */,
+				2C9CB2161CE65895006567E2 /* InterfaceCustomizable.swift in Sources */,
 				B92901B71C557406007CCA5E /* BezierPath.swift in Sources */,
 				2CB6C1F21C652D6400022CEB /* Feedback.swift in Sources */,
 				2CB63F211C77CBE9000CEFC6 /* FeedbackTableViewDataSource.swift in Sources */,

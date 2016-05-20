@@ -416,6 +416,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             }
             
             navigationItem.setLeftBarButtonItem(closeBarButtonItem, animated: true)
+            navigationItem.setRightBarButtonItem(nil, animated: true)
             
             currentAnnotationView = nil
         }

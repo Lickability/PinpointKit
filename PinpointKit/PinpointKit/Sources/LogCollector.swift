@@ -16,5 +16,5 @@ public protocol LogCollector {
      
      - returns: Logs as an ordered list of strings, sorted by descending recency.
      */
-    func retrieveLogs(fromOffsetSinceNow offset: NSInteger?) -> [String]
+    func retrieveLogs() -> [String]
 }
