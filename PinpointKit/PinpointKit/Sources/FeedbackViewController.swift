@@ -41,10 +41,7 @@ public final class FeedbackViewController: UITableViewController {
         }
     }
     
-    /**
-     This is storage for after a user annotates an image and we get a callback for this.
-    */
-    private var editedScreenshot: UIImage?
+    private var annotatedScreenshot: UIImage?
     
     private var dataSource: FeedbackTableViewDataSource? {
         didSet {
@@ -100,7 +97,7 @@ public final class FeedbackViewController: UITableViewController {
     
     private func updateTableHeaderView() {
         guard let screenshot = screenshot, editor = editor else { return }
-        let screenshotToDisplay = editedScreenshot ?? screenshot
+        let screenshotToDisplay = annotatedScreenshot ?? screenshot
         
         // We must set the screenshot before showing the view controller.
         editor.setScreenshot(screenshot)
@@ -142,7 +139,7 @@ public final class FeedbackViewController: UITableViewController {
     @objc private func sendButtonTapped() {
         let feedback: Feedback?
         
-        if let screenshot = editedScreenshot {
+        if let screenshot = annotatedScreenshot {
             feedback = Feedback(screenshot: .Annotated(image: screenshot))
         } else if let screenshot = screenshot {
             feedback = Feedback(screenshot: .Original(image: screenshot))
@@ -177,7 +174,7 @@ extension FeedbackViewController: FeedbackCollector {
 
 extension FeedbackViewController: EditorDelegate {
     public func editorWillDismiss(editor: Editor, screenshot: UIImage) {
-        self.editedScreenshot = screenshot
+        self.annotatedScreenshot = screenshot
         updateTableHeaderView()
     }
 }
