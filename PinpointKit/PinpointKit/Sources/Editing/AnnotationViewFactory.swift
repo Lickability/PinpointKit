@@ -1,4 +1,3 @@
-
 // A factory that constructs `AnnotationView`s.
 struct AnnotationViewFactory {
     let image: QuartzCore.CGImage?

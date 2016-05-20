@@ -167,7 +167,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        assert(imageView.image != nil, "A screenshot must be set using `setScreenshot(_:)` before loading the view.");
+        assert(imageView.image != nil, "A screenshot must be set using `setScreenshot(_:)` before loading the view.")
         
         view.backgroundColor = UIColor.whiteColor()
         view.addSubview(imageView)
@@ -296,8 +296,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             let alert = newCloseScreenshotAlert()
             alert.popoverPresentationController?.barButtonItem = button
             presentViewController(alert, animated: true, completion: nil)
-        }
-        else {
+        } else {
             self.delegate?.editorWillDismiss(self, screenshot: self.view.pinpoint_screenshot)
 
             dismissViewControllerAnimated(true, completion: nil)

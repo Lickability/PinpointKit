@@ -39,6 +39,7 @@ public struct InterfaceCustomization {
          - parameter tintColor: The tint color of the interface.
          - parameter annotationFillColor:   The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
          - parameter annotationStrokeColor: The stroke color for annotations.
+         - parameter logFont: The font to use for the log.
          */
         public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(), annotationFillColor: UIColor? = nil, annotationStrokeColor: UIColor = .whiteColor(), logFont: UIFont = .menloRegularFontOfSize(10)) {
             self.tintColor = tintColor
@@ -80,7 +81,9 @@ public struct InterfaceCustomization {
          - parameter feedbackCollectorTitle:       The title of the feedback collector.
          - parameter feedbackSendButtonTitle:      The title of the send button.
          - parameter feedbackCancelButtonTitle:    The title of the cancel button.
+         - parameter feedbackBackButtonTitle:      The title of the back button.
          - parameter feedbackEditHint:             The hint to show during editing.
+         - parameter logCollectorTitle:            The title of the log collector.
          - parameter logCollectionPermissionTitle: The title of the permission button.
          */
         public init(feedbackCollectorTitle: String? = NSLocalizedString("Report a Bug", comment: "Title of a view that reports a bug"),
