@@ -99,7 +99,7 @@ $ git submodule add https://github.com/Lickability/PinpointKit.git
 
 - And that's it!
 
-> The `PinpointKit.framework` is automatically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
+The `PinpointKit.framework` is automatically added as a target dependency, linked framework and embedded framework in a copy files build phase which is all you need to build on the simulator and a device.
 
 
 
