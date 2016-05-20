@@ -22,7 +22,7 @@ public struct Configuration {
     var interfaceText: InterfaceCustomization.InterfaceText? {
         return feedbackCollector.interfaceCustomization?.interfaceText
     }
-
+    
     /// An optional type that collects logs to be displayed and sent with feedback.
     var logCollector: LogCollector? {
         return feedbackCollector.logCollector
@@ -54,18 +54,24 @@ public struct Configuration {
      - parameter sender:            A sender that allows sending the feedback outside the framework.
      */
     public init(appearance: InterfaceCustomization.Appearance = InterfaceCustomization.Appearance(),
-        interfaceText: InterfaceCustomization.InterfaceText = InterfaceCustomization.InterfaceText(),
-        logCollector: LogCollector? = SystemLogCollector(),
-        logViewer: LogViewer? = BasicLogViewController(),
-        feedbackCollector: FeedbackCollector = FeedbackNavigationController(),
-        editor: Editor = EditImageViewController(),
-        sender: Sender = MailSender()) {
-            self.feedbackCollector = feedbackCollector
-            self.editor = editor
-            self.sender = sender
-            
-            self.feedbackCollector.interfaceCustomization = InterfaceCustomization(interfaceText: interfaceText, appearance: appearance)
-            self.feedbackCollector.logCollector = logCollector
-            self.feedbackCollector.logViewer = logViewer
+                interfaceText: InterfaceCustomization.InterfaceText = InterfaceCustomization.InterfaceText(),
+                logCollector: LogCollector? = SystemLogCollector(),
+                logViewer: LogViewer? = BasicLogViewController(),
+                feedbackCollector: FeedbackCollector = FeedbackNavigationController(),
+                editor: Editor = EditImageViewController(),
+                sender: Sender = MailSender()) {
+        self.feedbackCollector = feedbackCollector
+        self.editor = editor
+        
+        self.feedbackCollector.editor = editor
+        
+        self.sender = sender
+        
+        let interfaceCustomization = InterfaceCustomization(interfaceText: interfaceText, appearance: appearance)
+        
+        self.feedbackCollector.interfaceCustomization = interfaceCustomization
+        self.feedbackCollector.logCollector = logCollector
+        self.feedbackCollector.logViewer = logViewer
+        self.feedbackCollector.logViewer?.interfaceCustomization = interfaceCustomization
     }
 }

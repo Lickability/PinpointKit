@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../PinpointKit"
 
 SPEC CHECKSUMS:
-  PinpointKit: 02fb3128262ad6a1c591db31e585d4ea8021eaf7
+  PinpointKit: 4fb66c11fe0ec108773e22a15ca0b39a19ce5e75
 
 PODFILE CHECKSUM: 4b326719eaf8bc8bd2b6f6391daec947f383b538
 

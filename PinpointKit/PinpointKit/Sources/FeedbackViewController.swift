@@ -9,9 +9,9 @@
 import UIKit
 
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
-public class FeedbackViewController: UITableViewController, FeedbackCollector {
+public final class FeedbackViewController: UITableViewController {
     
-    // MARK: - InterfaceCustomization
+    // MARK: - InterfaceCustomizable
     
     public var interfaceCustomization: InterfaceCustomization? {
         didSet {
@@ -25,20 +25,23 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     
     public var logViewer: LogViewer?
     public var logCollector: LogCollector?
+    public var editor: Editor?
+    
+    // MARK: - FeedbackCollector
+    
+    public weak var feedbackDelegate: FeedbackCollectorDelegate?
     
     // MARK: - FeedbackViewController
-    
-    /// A delegate that is informed of significant events in feedback collection.
-    public weak var feedbackDelegate: FeedbackCollectorDelegate?
     
     /// The screenshot the feedback describes.
     public var screenshot: UIImage? {
         didSet {
             guard isViewLoaded() else { return }
-            
             updateTableHeaderView()
         }
     }
+    
+    private var annotatedScreenshot: UIImage?
     
     private var dataSource: FeedbackTableViewDataSource? {
         didSet {
@@ -71,7 +74,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+        editor?.delegate = self
         updateInterfaceCustomization()
     }
     
@@ -93,12 +96,17 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     }
     
     private func updateTableHeaderView() {
-        guard let screenshot = screenshot else { return }
+        guard let screenshot = screenshot, editor = editor else { return }
+        let screenshotToDisplay = annotatedScreenshot ?? screenshot
         
+        // We must set the screenshot before showing the view controller.
+        editor.setScreenshot(screenshot)
         let header = ScreenshotHeaderView()
-        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: interfaceCustomization?.interfaceText.feedbackEditHint)
-        header.screenshotButtonTapHandler = { button in
-            // TODO: Present the editing UI.
+
+        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshotToDisplay, hintText: interfaceCustomization?.interfaceText.feedbackEditHint)
+        header.screenshotButtonTapHandler = { [weak self] button in
+            let editImageViewController = NavigationController(rootViewController: editor.viewController)
+            self?.presentViewController(editImageViewController, animated: true, completion: nil)
         }
         
         tableView.tableHeaderView = header
@@ -109,6 +117,10 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         title = interfaceCustomization?.interfaceText.feedbackCollectorTitle
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: interfaceCustomization?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
+        
+        if let backButtonTitle = interfaceCustomization?.interfaceText.feedbackBackButtonTitle {
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: backButtonTitle, style: .Plain, target: nil, action: nil)
+        }
         
         let cancelBarButtonItem: UIBarButtonItem
         let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
@@ -125,13 +137,21 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
     }
     
     @objc private func sendButtonTapped() {
-        guard let screenshot = screenshot else { assertionFailure(); return }
+        let feedback: Feedback?
         
-        // TODO: Handle annotated screenshot.
+        if let screenshot = annotatedScreenshot {
+            feedback = Feedback(screenshot: .Annotated(image: screenshot))
+        } else if let screenshot = screenshot {
+            feedback = Feedback(screenshot: .Original(image: screenshot))
+        } else {
+            feedback = nil
+        }
+        
+        guard let feedbackToSend = feedback else { return assertionFailure("We must have either a screenshot or an edited screenshot!") }
+
         // TODO: Only send logs if `userEnabledLogCollection` is `true.
         
-        let feedback = Feedback(screenshot: Feedback.ScreenshotType.Original(image: screenshot))
-        feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedback)
+        feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedbackToSend)
     }
     
     @objc private func cancelButtonTapped() {
@@ -139,12 +159,23 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector {
         
         dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    // MARK: - FeedbackCollector
-    
+}
+
+// MARK: - FeedbackCollector
+
+extension FeedbackViewController: FeedbackCollector {
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         self.screenshot = screenshot
         viewController.showDetailViewController(self, sender: viewController)
+    }
+}
+
+// MARK: - EditorDelegate
+
+extension FeedbackViewController: EditorDelegate {
+    public func editorWillDismiss(editor: Editor, screenshot: UIImage) {
+        self.annotatedScreenshot = screenshot
+        updateTableHeaderView()
     }
 }
 

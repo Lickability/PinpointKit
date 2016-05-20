@@ -41,4 +41,15 @@ public extension UIFont {
         
         return UIFont(name: fontName, size: fontSize) ?? UIFont.systemFontOfSize(fontSize)
     }
+    
+    /**
+     Returns the Menlo font at regular weight and the given size.
+     
+     - parameter fontSize: The size font to be returned
+     
+     - returns: A `UIFont` object representing Menlo Regular at the provided size.
+     */
+    public static func menloRegularFontOfSize(fontSize: CGFloat) -> UIFont {
+        return UIFont(name: "Menlo-Regular", size: fontSize) ?? UIFont.systemFontOfSize(fontSize)
+    }
 }
