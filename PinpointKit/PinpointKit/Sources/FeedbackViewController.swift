@@ -89,7 +89,7 @@ public final class FeedbackViewController: UITableViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        editor?.setDelegate(self)
+        editor?.delegate = self
         updateInterfaceCustomization()
     }
     

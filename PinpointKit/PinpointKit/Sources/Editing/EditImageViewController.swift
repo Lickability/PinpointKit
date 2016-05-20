@@ -11,11 +11,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private var hasSavedOrSharedAnyComposion: Bool = false
     
-    private weak var delegate: EditImageViewControllerDelegate?
-    
-    public func setDelegate(delegate: EditImageViewControllerDelegate?) {
-        self.delegate = delegate
-    }
+    public weak var delegate: EditImageViewControllerDelegate?
     
     public func setScreenshot(screenshot: UIImage) {
         self.imageView.image = screenshot
