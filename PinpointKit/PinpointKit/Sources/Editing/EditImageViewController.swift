@@ -85,9 +85,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             }
             
             if let currentTextAnnotationView = currentTextAnnotationView {
-                if let keyboardAvoider = keyboardAvoider {
-                    keyboardAvoider.triggerViews = [currentTextAnnotationView.textView]
-                }
+                keyboardAvoider?.triggerViews = [currentTextAnnotationView.textView]
                 
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditImageViewController.forceEndEditingTextView), name: UITextViewTextDidEndEditingNotification, object: currentTextAnnotationView.textView)
             }
@@ -178,9 +176,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         view.addSubview(imageView)
         view.addSubview(annotationsView)
         
-        if let keyboardAvoider = keyboardAvoider {
-            keyboardAvoider.viewsToAvoidKeyboard = [imageView, annotationsView]
-        }
+        keyboardAvoider?.viewsToAvoidKeyboard = [imageView, annotationsView]
         
         let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditImageViewController.handleDoubleTapGestureRecognizer(_:)))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
