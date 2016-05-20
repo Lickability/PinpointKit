@@ -62,6 +62,9 @@
 		DA7B94F01CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7B94EF1CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift */; };
 		F2ACE95F1CE6532000A461E5 /* LogSupporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ACE95E1CE6532000A461E5 /* LogSupporting.swift */; };
 		F2ACE9611CE6539200A461E5 /* InterfaceCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ACE9601CE6539200A461E5 /* InterfaceCustomization.swift */; };
+		F2ACE9E11CEF9E2100A461E5 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2ACE9DE1CEF9E2100A461E5 /* SourceSansPro-Bold.ttf */; };
+		F2ACE9E21CEF9E2100A461E5 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2ACE9DF1CEF9E2100A461E5 /* SourceSansPro-Regular.ttf */; };
+		F2ACE9E31CEF9E2100A461E5 /* SourceSansPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2ACE9E01CEF9E2100A461E5 /* SourceSansPro-Semibold.ttf */; };
 		F2BF24051CB9A69200867E01 /* ASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = F2BF24031CB9A69200867E01 /* ASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F2BF24061CB9A69200867E01 /* ASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BF24041CB9A69200867E01 /* ASLLogger.m */; };
 /* End PBXBuildFile section */
@@ -95,7 +98,7 @@
 		2C9CB2131CE622EB006567E2 /* UIView+PinpointKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+PinpointKit.swift"; sourceTree = "<group>"; };
 		2C9CB2151CE65895006567E2 /* InterfaceCustomizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceCustomizable.swift; sourceTree = "<group>"; };
 		2CACDFCC1C9C83CE0002ECBF /* CheckmarkCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckmarkCell.swift; sourceTree = "<group>"; };
-		2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = PinpointKit.xcassets; path = PinpointKit/Resources/PinpointKit.xcassets; sourceTree = "<group>"; };
+		2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = PinpointKit.xcassets; path = ../Resources/PinpointKit.xcassets; sourceTree = "<group>"; };
 		2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screenshotter.swift; sourceTree = "<group>"; };
 		2CB63F1E1C77C38B000CEFC6 /* ScreenshotHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotHeaderView.swift; sourceTree = "<group>"; };
@@ -133,6 +136,9 @@
 		DA7B94EF1CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindowDelegate.swift; sourceTree = "<group>"; };
 		F2ACE95E1CE6532000A461E5 /* LogSupporting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogSupporting.swift; sourceTree = "<group>"; };
 		F2ACE9601CE6539200A461E5 /* InterfaceCustomization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceCustomization.swift; sourceTree = "<group>"; };
+		F2ACE9DE1CEF9E2100A461E5 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
+		F2ACE9DF1CEF9E2100A461E5 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		F2ACE9E01CEF9E2100A461E5 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
 		F2BF24031CB9A69200867E01 /* ASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASLLogger.h; sourceTree = "<group>"; };
 		F2BF24041CB9A69200867E01 /* ASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASLLogger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -275,7 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				DA0DA6041C53049B0012ADBE /* PinpointKit */,
-				2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */,
+				F2ACE9DD1CEF9E0B00A461E5 /* PinpointKitResources */,
 				DA0DA6071C53049B0012ADBE /* Info.plist */,
 				DA0DA6051C53049B0012ADBE /* PinpointKit.h */,
 				DA0DA6101C53049B0012ADBE /* PinpointKitTests */,
@@ -331,6 +337,18 @@
 				2C9CB2091CE61F37006567E2 /* PinpointKit+ShakePresentation.swift */,
 			);
 			name = "Shake Detection";
+			sourceTree = "<group>";
+		};
+		F2ACE9DD1CEF9E0B00A461E5 /* PinpointKitResources */ = {
+			isa = PBXGroup;
+			children = (
+				F2ACE9DE1CEF9E2100A461E5 /* SourceSansPro-Bold.ttf */,
+				F2ACE9DF1CEF9E2100A461E5 /* SourceSansPro-Regular.ttf */,
+				F2ACE9E01CEF9E2100A461E5 /* SourceSansPro-Semibold.ttf */,
+				2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */,
+			);
+			name = PinpointKitResources;
+			path = PinpointKit/Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,6 +444,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CACDFCF1C9C8AFB0002ECBF /* PinpointKit.xcassets in Resources */,
+				F2ACE9E31CEF9E2100A461E5 /* SourceSansPro-Semibold.ttf in Resources */,
+				F2ACE9E11CEF9E2100A461E5 /* SourceSansPro-Bold.ttf in Resources */,
+				F2ACE9E21CEF9E2100A461E5 /* SourceSansPro-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
