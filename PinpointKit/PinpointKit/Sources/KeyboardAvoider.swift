@@ -15,7 +15,7 @@ public final class KeyboardAvoider {
     
     private var originalConstraintConstants: [NSLayoutConstraint: CGFloat] = [:]
     
-    public init(window: UIWindow?) {
+    public init(window: UIWindow) {
         self.window = window
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(KeyboardAvoider.keyboardWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)

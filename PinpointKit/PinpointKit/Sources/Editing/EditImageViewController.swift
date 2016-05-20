@@ -64,8 +64,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private var previousUpdateAnnotationPinchScale: CGFloat = 1
     private var previousUpdateAnnotationPanGestureRecognizerLocation: CGPoint!
     
-    private let keyboardAvoider: KeyboardAvoider = KeyboardAvoider(window: UIApplication.sharedApplication().keyWindow)
-
+    private lazy var keyboardAvoider: KeyboardAvoider? = {
+        guard let window = UIApplication.sharedApplication().keyWindow else { assertionFailure("PinpointKit did not find a keyWindow."); return nil }
+        
+        return KeyboardAvoider(window: window)
+    }()
     
     private lazy var closeBarButtonItem: UIBarButtonItem = { [unowned self] in
         UIBarButtonItem(image: UIImage(named: "CloseButtonX", inBundle: .pinpointKitBundle(), compatibleWithTraitCollection: nil), landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(EditImageViewController.closeButtonTapped(_:)))
@@ -82,7 +85,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             }
             
             if let currentTextAnnotationView = currentTextAnnotationView {
-                keyboardAvoider.triggerViews = [currentTextAnnotationView.textView]
+                keyboardAvoider?.triggerViews = [currentTextAnnotationView.textView]
                 
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditImageViewController.forceEndEditingTextView), name: UITextViewTextDidEndEditingNotification, object: currentTextAnnotationView.textView)
             }
@@ -173,7 +176,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         view.addSubview(imageView)
         view.addSubview(annotationsView)
         
-        keyboardAvoider.viewsToAvoidKeyboard = [imageView, annotationsView]
+        keyboardAvoider?.viewsToAvoidKeyboard = [imageView, annotationsView]
         
         let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditImageViewController.handleDoubleTapGestureRecognizer(_:)))
         doubleTapGestureRecognizer.numberOfTapsRequired = 2
