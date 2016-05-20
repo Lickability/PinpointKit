@@ -2,7 +2,7 @@ import UIKit
 import Photos
 import CoreImage
 
-public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate, Editor {
+public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
     static let TextViewEditingBarAnimationDuration = 0.25
     static let MinimumAnnotationsNeededToPromptBeforeDismissal = 3
     
@@ -12,10 +12,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private var hasSavedOrSharedAnyComposion: Bool = false
     
     public weak var delegate: EditImageViewControllerDelegate?
-    
-    public func setScreenshot(screenshot: UIImage) {
-        self.imageView.image = screenshot
-    }
     
     // MARK: - Properties
     
@@ -104,11 +100,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private var selectedAnnotationView: AnnotationView?
     
     private(set) public var currentViewModel: AssetViewModel?
-    
-    
-    public func viewController() -> UIViewController {
-        return self
-    }
     
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -628,5 +619,15 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         let isPinch = gestureRecognizer == updateAnnotationPinchGestureRecognizer || otherGestureRecognizer == updateAnnotationPinchGestureRecognizer
         
         return isTouchDown || isPinch
+    }
+}
+
+extension EditImageViewController: Editor {
+    public func setScreenshot(screenshot: UIImage) {
+        self.imageView.image = screenshot
+    }
+
+    public func viewController() -> UIViewController {
+        return self
     }
 }
