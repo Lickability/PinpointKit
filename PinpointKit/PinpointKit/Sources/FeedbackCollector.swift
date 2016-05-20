@@ -11,7 +11,12 @@ public protocol FeedbackCollector: LogSupporting, InterfaceCustomizable {
     
     /// A delegate that is informed of significant events in feedback collection.
     var feedbackDelegate: FeedbackCollectorDelegate? { get set }
-        
+    
+    /// The configuration that the collector should use to set itself up.
+    var interfaceCustomization: InterfaceCustomization? { get set }
+    
+    var editor: Editor? { get set }
+    
     /**
      Begins feedback collection about a screenshot from a view controller.
      

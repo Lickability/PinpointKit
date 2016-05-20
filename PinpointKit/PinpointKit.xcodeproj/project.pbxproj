@@ -20,7 +20,7 @@
 		2C5C41121C6560AD0033ED3D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2C5C41141C6568D60033ED3D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2C9CB20A1CE61F37006567E2 /* PinpointKit+ShakePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB2091CE61F37006567E2 /* PinpointKit+ShakePresentation.swift */; };
-		2C9CB20C1CE62297006567E2 /* EditImageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB20B1CE62297006567E2 /* EditImageViewControllerDelegate.swift */; };
+		2C9CB20C1CE62297006567E2 /* EditorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB20B1CE62297006567E2 /* EditorDelegate.swift */; };
 		2C9CB20E1CE622A3006567E2 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB20D1CE622A3006567E2 /* Tool.swift */; };
 		2C9CB2101CE622BC006567E2 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB20F1CE622BC006567E2 /* NavigationController.swift */; };
 		2C9CB2121CE622CD006567E2 /* AnnotationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB2111CE622CD006567E2 /* AnnotationViewFactory.swift */; };
@@ -88,7 +88,7 @@
 		12580A461C65339F00ADC01C /* FeedbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		12580A481C6533DC00ADC01C /* BasicLogViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicLogViewController.swift; sourceTree = "<group>"; };
 		2C9CB2091CE61F37006567E2 /* PinpointKit+ShakePresentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PinpointKit+ShakePresentation.swift"; sourceTree = "<group>"; };
-		2C9CB20B1CE62297006567E2 /* EditImageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditImageViewControllerDelegate.swift; path = Editing/EditImageViewControllerDelegate.swift; sourceTree = "<group>"; };
+		2C9CB20B1CE62297006567E2 /* EditorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorDelegate.swift; path = Editing/EditorDelegate.swift; sourceTree = "<group>"; };
 		2C9CB20D1CE622A3006567E2 /* Tool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tool.swift; path = Editing/Tool.swift; sourceTree = "<group>"; };
 		2C9CB20F1CE622BC006567E2 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		2C9CB2111CE622CD006567E2 /* AnnotationViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationViewFactory.swift; path = Editing/AnnotationViewFactory.swift; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				12580A3A1C65309000ADC01C /* Editor.swift */,
-				2C9CB20B1CE62297006567E2 /* EditImageViewControllerDelegate.swift */,
+				2C9CB20B1CE62297006567E2 /* EditorDelegate.swift */,
 				2C9CB20D1CE622A3006567E2 /* Tool.swift */,
 				B929017F1C555FDB007CCA5E /* EditImageViewController */,
 			);
@@ -476,7 +476,7 @@
 				B929019C1C556774007CCA5E /* ArrowAnnotationView.swift in Sources */,
 				DA3B16661C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift in Sources */,
 				2CEAF65C1C779C8D009368B8 /* FeedbackNavigationController.swift in Sources */,
-				2C9CB20C1CE62297006567E2 /* EditImageViewControllerDelegate.swift in Sources */,
+				2C9CB20C1CE62297006567E2 /* EditorDelegate.swift in Sources */,
 				12580A391C65307300ADC01C /* Sender.swift in Sources */,
 				2C9CB20E1CE622A3006567E2 /* Tool.swift in Sources */,
 				B92901B91C557406007CCA5E /* StrokeLayoutManager.swift in Sources */,

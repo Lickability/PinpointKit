@@ -2,7 +2,7 @@ import UIKit
 import Photos
 import CoreImage
 
-public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate, Editor {
+public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
     static let TextViewEditingBarAnimationDuration = 0.25
     static let MinimumAnnotationsNeededToPromptBeforeDismissal = 3
     
@@ -11,7 +11,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private var hasSavedOrSharedAnyComposion: Bool = false
     
-    private weak var delegate: EditImageViewControllerDelegate?
+    public weak var delegate: EditorDelegate?
     
     // MARK: - Properties
     
@@ -101,21 +101,10 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private(set) public var currentViewModel: AssetViewModel?
     
-    
-    // MARK: - Initializers
-    convenience init() {
-        self.init(image: nil, currentViewModel: nil, delegate: nil)
-    }
-    
-    override convenience init(nibName: String?, bundle nibBundle: NSBundle?) {
-        self.init(image: nil, currentViewModel: nil, delegate: nil)
-    }
-    
-    public init(image: UIImage?, currentViewModel: AssetViewModel?, delegate: EditImageViewControllerDelegate?) {
+    public init() {
         super.init(nibName: nil, bundle: nil)
         
         navigationItem.leftBarButtonItem = closeBarButtonItem
-        self.delegate = delegate
         
         navigationItem.titleView = segmentedControl
         
@@ -136,8 +125,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         updateAnnotationPinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(EditImageViewController.handleUpdateAnnotationPinchGestureRecognizer(_:)))
         updateAnnotationPinchGestureRecognizer.delegate = self
-        
-        imageView.image = image
         
         annotationsView.isAccessibilityElement = true
         annotationsView.accessibilityTraits = annotationsView.accessibilityTraits | UIAccessibilityTraitAllowsDirectInteraction
@@ -179,6 +166,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        assert(imageView.image != nil, "A screenshot must be set using `setScreenshot(_:)` before loading the view.");
         
         view.backgroundColor = UIColor.whiteColor()
         view.addSubview(imageView)
@@ -290,9 +279,10 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[annotationsView]|", options: [], metrics: nil, views: views))
     }
     
-    private func newCloseSreenshotAlert() -> UIAlertController {
+    private func newCloseScreenshotAlert() -> UIAlertController {
         let alert = UIAlertController(title: nil, message: NSLocalizedString("Your edits to this screenshot will be lost unless you share it or save a copy.", comment: "Alert title for closing a screenshot that has annotations that hasn’t been shared."), preferredStyle: .ActionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Discard", comment: "Alert button title to close a screenshot and discard edits"), style: .Destructive, handler: { (action) in
+            self.delegate?.editorWillDismiss(self, screenshot: self.view.pinpoint_screenshot)
             self.dismissViewControllerAnimated(true, completion: nil)
         }))
         
@@ -302,18 +292,15 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     @objc private func closeButtonTapped(button: UIBarButtonItem) {
         
-        defer {
-            self.delegate?.didTapCloseButton(self.view.pinpoint_screenshot)
-        }
-        
         if shouldPromptBeforeDismissal {
-            let alert = newCloseSreenshotAlert()
+            let alert = newCloseScreenshotAlert()
             alert.popoverPresentationController?.barButtonItem = button
             presentViewController(alert, animated: true, completion: nil)
         }
         else {
-            dismissViewControllerAnimated(true, completion: nil)
+            self.delegate?.editorWillDismiss(self, screenshot: self.view.pinpoint_screenshot)
 
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
@@ -630,5 +617,15 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         let isPinch = gestureRecognizer == updateAnnotationPinchGestureRecognizer || otherGestureRecognizer == updateAnnotationPinchGestureRecognizer
         
         return isTouchDown || isPinch
+    }
+}
+
+extension EditImageViewController: Editor {
+    public func setScreenshot(screenshot: UIImage) {
+        self.imageView.image = screenshot
+    }
+    
+    public var viewController: UIViewController {
+        return self
     }
 }
