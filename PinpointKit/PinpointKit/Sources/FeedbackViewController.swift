@@ -9,7 +9,7 @@
 import UIKit
 
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
-public class FeedbackViewController: UITableViewController, FeedbackCollector, EditImageViewControllerDelegate {
+public class FeedbackViewController: UITableViewController {
     
     // MARK: - InterfaceCustomizable
     
@@ -150,7 +150,7 @@ public class FeedbackViewController: UITableViewController, FeedbackCollector, E
 
 // MARK: - FeedbackCollector
 
-extension FeedbackViewController {
+extension FeedbackViewController: FeedbackCollector {
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         self.screenshot = screenshot
         viewController.showDetailViewController(self, sender: viewController)
@@ -159,7 +159,7 @@ extension FeedbackViewController {
 
 // MARK: - EditImageViewControllerDelegate
 
-extension FeedbackViewController {
+extension FeedbackViewController: EditImageViewControllerDelegate {
     public func didTapCloseButton(screenshot: UIImage) {
         self.screenshot = screenshot
     }
