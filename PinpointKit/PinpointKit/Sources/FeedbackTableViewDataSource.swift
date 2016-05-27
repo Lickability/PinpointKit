@@ -36,7 +36,7 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     private enum Row {
-        case CollectLogs(enabled: Bool, title: String, font: UIFont, canView: Bool)
+        case CollectLogs(enabled: Bool, title: String, canView: Bool)
     }
     
     // MARK: - FeedbackTableViewDataSource
@@ -44,7 +44,7 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     private static func sectionsFromConfiguration(interfaceCustomization: InterfaceCustomization, logSupporting: LogSupporting, userEnabledLogCollection: Bool) -> [Section] {
         guard logSupporting.logCollector != nil else { return [] }
         
-        let collectLogsRow = Row.CollectLogs(enabled: userEnabledLogCollection, title: interfaceCustomization.interfaceText.logCollectionPermissionTitle, font: interfaceCustomization.appearance.logCollectionPermissionFont, canView: logSupporting.logViewer != nil)
+        let collectLogsRow = Row.CollectLogs(enabled: userEnabledLogCollection, title: interfaceCustomization.interfaceText.logCollectionPermissionTitle, canView: logSupporting.logViewer != nil)
         let feedbackSection = Section.Feedback(rows: [collectLogsRow])
         
         return [feedbackSection]
@@ -69,9 +69,8 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
             let row = rows[indexPath.row]
             
             switch row {
-            case let .CollectLogs(enabled, title, font, canView):
+            case let .CollectLogs(enabled, title, canView):
                 cell.textLabel?.text = title
-                cell.textLabel?.font = font
                 cell.accessoryType = canView ? .DetailButton : .None
                 cell.isChecked = enabled
             }
