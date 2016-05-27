@@ -31,6 +31,8 @@ public class PinpointKit {
     public init(configuration: Configuration = Configuration(), delegate: PinpointKitDelegate? = nil) {
         self.configuration = configuration
         self.delegate = delegate
+        
+        self.configuration.feedbackCollector.feedbackDelegate = self
     }
     
     /**
@@ -42,6 +44,13 @@ public class PinpointKit {
         let screenshot = Screenshotter.takeScreenshot()
 
         configuration.feedbackCollector.collectFeedbackWithScreenshot(screenshot, fromViewController: viewController)
+    }
+}
+
+extension PinpointKit: FeedbackCollectorDelegate {
+    
+    public func feedbackCollector(feedbackCollector: FeedbackCollector, didCollectFeedback feedback: Feedback) {
+        configuration.sender.sendFeedback(feedback, fromViewController: feedbackCollector as? UIViewController)
     }
 }
 
