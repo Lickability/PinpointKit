@@ -56,6 +56,7 @@ public class PinpointKit {
 extension PinpointKit: FeedbackCollectorDelegate {
     
     public func feedbackCollector(feedbackCollector: FeedbackCollector, didCollectFeedback feedback: Feedback) {
+        delegate?.pinpointKit(self, willSendFeedback: feedback)
         configuration.sender.sendFeedback(feedback, fromViewController: feedbackCollector as? UIViewController)
     }
 }
@@ -65,6 +66,9 @@ extension PinpointKit: FeedbackCollectorDelegate {
 extension PinpointKit: SenderDelegate {
     
     public func sender(sender: Sender, didSendFeedback feedback: Feedback?, success: SuccessType?) {
+        guard let feedback = feedback else { return }
+        
+        delegate?.pinpointKit(self, didSendFeedback: feedback)
         displayingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
