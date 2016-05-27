@@ -106,6 +106,7 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
     
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         feedbackViewController.screenshot = screenshot
+        feedbackViewController.annotatedScreenshot = screenshot
 
         viewController.presentViewController(self, animated: true, completion: nil)
     }

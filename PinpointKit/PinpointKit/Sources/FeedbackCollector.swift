@@ -7,13 +7,16 @@
 //
 
 /// A protocol describing an object that can collect feedback about a screenshot.
-public protocol FeedbackCollector: LogSupporting, InterfaceCustomizable {
+public protocol FeedbackCollector: class, LogSupporting, InterfaceCustomizable {
     
     /// A delegate that is informed of significant events in feedback collection.
     var feedbackDelegate: FeedbackCollectorDelegate? { get set }
     
     /// The configuration that the collector should use to set itself up.
     var interfaceCustomization: InterfaceCustomization? { get set }
+    
+    /// The view controller that displays the feedback to collect.
+    var viewController: UIViewController { get }
     
     var editor: Editor? { get set }
     
@@ -24,6 +27,12 @@ public protocol FeedbackCollector: LogSupporting, InterfaceCustomizable {
      - parameter viewController: The view controller from which to present.
      */
     func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController)
+}
+
+extension FeedbackCollector where Self: UIViewController {
+    public var viewController: UIViewController {
+        return self
+    }
 }
 
 /// A delegate protocol that `FeedbackCollector`s use to communicate significant events in feedback collection.
