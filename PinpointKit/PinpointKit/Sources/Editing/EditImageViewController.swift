@@ -435,8 +435,9 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func updateInterfaceCustomization() {
-        guard let interfaceCustomization = interfaceCustomization else { assertionFailure(); return }
-        segmentedControl.setTitleTextAttributes([NSFontAttributeName: interfaceCustomization.appearance.editorTextAnnotationSegmentFont], forState: UIControlState.Normal)
+        guard let appearance = interfaceCustomization?.appearance else { assertionFailure(); return }
+        segmentedControl.setTitleTextAttributes([NSFontAttributeName: appearance.editorTextAnnotationSegmentFont], forState: UIControlState.Normal)
+        UITextView.appearanceWhenContainedInInstancesOfClasses([TextAnnotationView.self]).font = appearance.editorTextAnnotationFont
     }
     
     // MARK: - Create annotations

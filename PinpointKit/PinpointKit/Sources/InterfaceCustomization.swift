@@ -88,7 +88,7 @@ public struct InterfaceCustomization {
                     logCollectionPermissionFont: UIFont = .sourceSansProFontOfSize(19),
                     logFont: UIFont = .menloRegularFontOfSize(10),
                     editorTextAnnotationSegmentFont: UIFont = .sourceSansProFontOfSize(18),
-                    editorTextAnnotationFont: UIFont = .sourceSansProFontOfSize(12),
+                    editorTextAnnotationFont: UIFont = .sourceSansProFontOfSize(32, weight: .Semibold),
                     editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold)) {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
