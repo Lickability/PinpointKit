@@ -60,8 +60,8 @@ public struct Feedback {
     /// A screenshot of the screen the feedback relates to.
     let screenshot: ScreenshotType
     
-    /// A filename without an extension for the screenshot or annotated screenshot.
-    let screenshotFilename: String
+    /// A filen ame without an extension for the screenshot or annotated screenshot.
+    let screenshotFileName: String
     
     /// A short, optional title of the feedback submission. Suitable for an email subject.
     let title: String?
@@ -72,8 +72,8 @@ public struct Feedback {
     /// An optional collection of log strings.
     let logs: [String]?
     
-    /// A filename without an extension for the logs text file.
-    let logsFilename: String
+    /// A file name without an extension for the logs text file.
+    let logsFileName: String
     
     /// A dictionary of additional information provided by the application developer.
     let additionalInformation: [String: AnyObject]?
@@ -96,19 +96,19 @@ public struct Feedback {
      - parameter applicationInformation: Information about the application to be captured.
      */
     init(screenshot: ScreenshotType,
-        screenshotFilename: String = "Screenshot",
+        screenshotFileName: String = "Screenshot",
         title: String? = "Bug Report",
         body: String? = nil,
         logs: [String]? = nil,
-        logsFilename: String = "logs",
+        logsFileName: String = "logs",
         additionalInformation: [String: AnyObject]? = nil,
         applicationInformation: ApplicationInformation? = nil) {
             self.screenshot = screenshot
-            self.screenshotFilename = screenshotFilename
+            self.screenshotFileName = screenshotFileName
             self.title = title
             self.body = body
             self.logs = logs
-            self.logsFilename = logsFilename
+            self.logsFileName = logsFileName
             self.additionalInformation = additionalInformation
             self.applicationInformation = applicationInformation
     }
