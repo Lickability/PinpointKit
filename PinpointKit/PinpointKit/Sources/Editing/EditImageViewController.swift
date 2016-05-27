@@ -13,6 +13,16 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     public weak var delegate: EditorDelegate?
     
+    // MARK: - InterfaceCustomizable
+    
+    public var interfaceCustomization: InterfaceCustomization? {
+        didSet {
+            guard isViewLoaded() else { return }
+            
+            updateInterfaceCustomization()
+        }
+    }
+    
     // MARK: - Properties
     
     private lazy var segmentedControl: UISegmentedControl = { [unowned self] in
@@ -27,8 +37,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             let segment = view.subviews[index]
             segment.accessibilityLabel = "Text Tool"
         }
-        
-        view.setTitleTextAttributes([NSFontAttributeName: UIFont.sourceSansProFontOfSize(18, weight: .Regular)], forState: UIControlState.Normal)
         
         for i in 0..<view.numberOfSegments {
             view.setWidth(54, forSegmentAtIndex: i)
@@ -202,6 +210,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             view.addGestureRecognizer(gestureRecognizer)
         }
         
+        updateInterfaceCustomization()
         setupConstraints()
     }
     
@@ -376,13 +385,13 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func beginEditingTextView() {
-        if currentTextAnnotationView != nil {
-            currentTextAnnotationView?.beginEditing()
-            
-            let doneButton = UIBarButtonItem(doneButtonWithTarget: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
-            navigationItem.setRightBarButtonItem(doneButton, animated: true)
-            navigationItem.setLeftBarButtonItem(nil, animated: true)
-        }
+        guard let currentTextAnnotationView = currentTextAnnotationView else { return }
+        currentTextAnnotationView.beginEditing()
+        
+        guard let doneButtonFont = interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return }
+        let doneButton = UIBarButtonItem(doneButtonWithTarget: self, font: doneButtonFont, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
+        navigationItem.setRightBarButtonItem(doneButton, animated: true)
+        navigationItem.setLeftBarButtonItem(nil, animated: true)
     }
     
     @objc private func forceEndEditingTextView() {
@@ -423,6 +432,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         // Disable the bar hiding behavior when selecting the text tool. Enable for all others.
         navigationController?.barHideOnTapGestureRecognizer.enabled = currentTool != .Text
+    }
+    
+    private func updateInterfaceCustomization() {
+        guard let interfaceCustomization = interfaceCustomization else { assertionFailure(); return }
+        segmentedControl.setTitleTextAttributes([NSFontAttributeName: interfaceCustomization.appearance.editorTextAnnotationSegmentFont], forState: UIControlState.Normal)
     }
     
     // MARK: - Create annotations

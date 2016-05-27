@@ -51,6 +51,15 @@ public struct InterfaceCustomization {
         /// The font used for the title of the cell that allows the user to toggle log collection.
         let logCollectionPermissionFont: UIFont
         
+        /// The font used for the text annotation tool segment in the editor.
+        let editorTextAnnotationSegmentFont: UIFont
+        
+        /// The font used for text annotations in the editor.
+        let editorTextAnnotationFont: UIFont
+        
+        /// The font used for the done button in the editor displayed while editing a text annotation.
+        let editorTextAnnotationDoneButtonFont: UIFont
+        
         /**
          Initializes an `Appearance` object with a optional annotation color properties.
          
@@ -68,7 +77,10 @@ public struct InterfaceCustomization {
                     feedbackCancelButtonFont: UIFont = .sourceSansProFontOfSize(19),
                     feedbackEditHintFont: UIFont = .sourceSansProFontOfSize(14),
                     feedbackBackButtonFont: UIFont = .sourceSansProFontOfSize(19),
-                    logCollectionPermissionFont: UIFont = .sourceSansProFontOfSize(19)) {
+                    logCollectionPermissionFont: UIFont = .sourceSansProFontOfSize(19),
+                    editorTextAnnotationSegmentFont: UIFont = .sourceSansProFontOfSize(18),
+                    editorTextAnnotationFont: UIFont = .sourceSansProFontOfSize(12),
+                    editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold)) {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor
@@ -79,6 +91,9 @@ public struct InterfaceCustomization {
             self.feedbackEditHintFont = feedbackEditHintFont
             self.feedbackBackButtonFont = feedbackBackButtonFont
             self.logCollectionPermissionFont = logCollectionPermissionFont
+            self.editorTextAnnotationSegmentFont = editorTextAnnotationSegmentFont
+            self.editorTextAnnotationFont = editorTextAnnotationFont
+            self.editorTextAnnotationDoneButtonFont = editorTextAnnotationDoneButtonFont
         }
     }
     

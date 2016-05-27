@@ -9,9 +9,9 @@
 import UIKit
 
 extension UIBarButtonItem {
-    convenience init(doneButtonWithTarget target: AnyObject?, action: Selector) {
+    convenience init(doneButtonWithTarget target: AnyObject?, font: UIFont, action: Selector) {
         self.init(barButtonSystemItem: .Done, target: target, action: action)
         
-        setTitleTextAttributes([NSFontAttributeName : UIFont.sourceSansProFontOfSize(19, weight: .Semibold)], forState: .Normal)
+        setTitleTextAttributes([NSFontAttributeName: font], forState: .Normal)
     }
 }
