@@ -96,7 +96,7 @@ public struct Feedback {
      - parameter applicationInformation: Information about the application to be captured.
      */
     init(screenshot: ScreenshotType,
-        screenshotFilename: String = "Screenshot.png",
+        screenshotFilename: String = "Screenshot",
         title: String? = "Bug Report",
         body: String? = nil,
         logs: [String]? = nil,
