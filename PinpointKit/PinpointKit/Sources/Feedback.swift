@@ -87,11 +87,11 @@ public struct Feedback {
      Initializes a `Feedback` with optional default values.
      
      - parameter screenshot:             The type of screenshot in the feedback.
-     - parameter screenshotFilename:     The file name of the screenshot.
+     - parameter screenshotFileName:     The file name of the screenshot.
      - parameter title:                  The title of the feedback.
      - parameter body:                   The default body text.
      - parameter logs:                   The logs to include in the feedback, if any.
-     - parameter logsFilename:           The file name of the logs text file.
+     - parameter logsFileName:           The file name of the logs text file.
      - parameter additionalInformation:  Any additional information you want to capture.
      - parameter applicationInformation: Information about the application to be captured.
      */
