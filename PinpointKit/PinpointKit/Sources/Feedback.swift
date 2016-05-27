@@ -63,6 +63,9 @@ public struct Feedback {
     /// A file name without an extension for the screenshot or annotated screenshot.
     let screenshotFileName: String
     
+    /// The recipients of the feedback submission. Suitable for email recipients in the "To:" field.
+    let recipients: [String]?
+    
     /// A short, optional title of the feedback submission. Suitable for an email subject.
     let title: String?
     
@@ -88,6 +91,7 @@ public struct Feedback {
      
      - parameter screenshot:             The type of screenshot in the feedback.
      - parameter screenshotFileName:     The file name of the screenshot.
+     - parameter recipients:             The recipients of the feedback submission.
      - parameter title:                  The title of the feedback.
      - parameter body:                   The default body text.
      - parameter logs:                   The logs to include in the feedback, if any.
@@ -97,6 +101,7 @@ public struct Feedback {
      */
     init(screenshot: ScreenshotType,
         screenshotFileName: String = "Screenshot",
+        recipients: [String]? = nil,
         title: String? = "Bug Report",
         body: String? = nil,
         logs: [String]? = nil,
@@ -105,6 +110,7 @@ public struct Feedback {
         applicationInformation: ApplicationInformation? = nil) {
             self.screenshot = screenshot
             self.screenshotFileName = screenshotFileName
+            self.recipients = recipients
             self.title = title
             self.body = body
             self.logs = logs
