@@ -15,6 +15,9 @@ public protocol FeedbackCollector: class, LogSupporting, InterfaceCustomizable {
     /// The configuration that the collector should use to set itself up.
     var interfaceCustomization: InterfaceCustomization? { get set }
     
+    /// The view controller that displays the feedback to collect.
+    var viewController: UIViewController { get }
+    
     var editor: Editor? { get set }
     
     /**
@@ -24,6 +27,12 @@ public protocol FeedbackCollector: class, LogSupporting, InterfaceCustomizable {
      - parameter viewController: The view controller from which to present.
      */
     func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController)
+}
+
+extension FeedbackCollector where Self: UIViewController {
+    public var viewController: UIViewController {
+        return self
+    }
 }
 
 /// A delegate protocol that `FeedbackCollector`s use to communicate significant events in feedback collection.
