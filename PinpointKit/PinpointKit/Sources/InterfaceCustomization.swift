@@ -30,16 +30,13 @@ public struct InterfaceCustomization {
         /// The stroke color for annotations.
         let annotationStrokeColor: UIColor
         
-        /// The font used for displaying logs.
-        let logFont: UIFont
-        
         /// The font used for navigation titles.
         let navigationTitleFont: UIFont
         
         /// The font used for the button that sends feedback.
         let feedbackSendButtonFont: UIFont
         
-        /// The font used for the button that cancels feedback collection
+        /// The font used for the button that cancels feedback collection.
         let feedbackCancelButtonFont: UIFont
         
         /// The font used for the hint to the user on how to edit the screenshot from the feedback screen.
@@ -50,6 +47,9 @@ public struct InterfaceCustomization {
 
         /// The font used for the title of the cell that allows the user to toggle log collection.
         let logCollectionPermissionFont: UIFont
+        
+        /// The font used for displaying logs.
+        let logFont: UIFont
         
         /// The font used for the text annotation tool segment in the editor.
         let editorTextAnnotationSegmentFont: UIFont
@@ -63,21 +63,30 @@ public struct InterfaceCustomization {
         /**
          Initializes an `Appearance` object with a optional annotation color properties.
          
-         - parameter tintColor: The tint color of the interface.
-         - parameter annotationFillColor:   The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
-         - parameter annotationStrokeColor: The stroke color for annotations.
-         - parameter logFont: The font to use for the log.
+         - parameter tintColor:                          The tint color of the interface.
+         - parameter annotationFillColor:                The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
+         - parameter annotationStrokeColor:              The stroke color for annotations.
+         - parameter navigationTitleFont:                The font used for navigation titles.
+         - parameter feedbackSendButtonFont:             The font used for the button that sends feedback.
+         - parameter feedbackCancelButtonFont:           The font used for the button that cancels feedback collection.
+         - parameter feedbackEditHintFont:               The font used for the hint to the user on how to edit the screenshot from the feedback screen.
+         - parameter feedbackBackButtonFont:             The font used for the back button that takes the user back to the initial feedback collection screen.
+         - parameter logCollectionPermissionFont:        The font used for the title of the cell that allows the user to toggle log collection.
+         - parameter logFont:                            The font used for displaying logs.
+         - parameter editorTextAnnotationSegmentFont:    The font used for the text annotation tool segment in the editor.
+         - parameter editorTextAnnotationFont:           The font used for text annotations in the editor.
+         - parameter editorTextAnnotationDoneButtonFont: The font used for the done button in the editor displayed while editing a text annotation.
          */
         public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(),
                     annotationFillColor: UIColor? = nil,
                     annotationStrokeColor: UIColor = .whiteColor(),
-                    logFont: UIFont = .menloRegularFontOfSize(10),
                     navigationTitleFont: UIFont = .sourceSansProFontOfSize(19),
                     feedbackSendButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold),
                     feedbackCancelButtonFont: UIFont = .sourceSansProFontOfSize(19),
                     feedbackEditHintFont: UIFont = .sourceSansProFontOfSize(14),
                     feedbackBackButtonFont: UIFont = .sourceSansProFontOfSize(19),
                     logCollectionPermissionFont: UIFont = .sourceSansProFontOfSize(19),
+                    logFont: UIFont = .menloRegularFontOfSize(10),
                     editorTextAnnotationSegmentFont: UIFont = .sourceSansProFontOfSize(18),
                     editorTextAnnotationFont: UIFont = .sourceSansProFontOfSize(12),
                     editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold)) {
