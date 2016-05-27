@@ -137,19 +137,20 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     @objc private func sendButtonTapped() {
+        
+        let logs = userEnabledLogCollection ? logCollector?.retrieveLogs() : nil
+        
         let feedback: Feedback?
         
         if let screenshot = annotatedScreenshot {
-            feedback = Feedback(screenshot: .Annotated(image: screenshot))
+            feedback = Feedback(screenshot: .Annotated(image: screenshot), logs: logs)
         } else if let screenshot = screenshot {
-            feedback = Feedback(screenshot: .Original(image: screenshot))
+            feedback = Feedback(screenshot: .Original(image: screenshot), logs: logs)
         } else {
             feedback = nil
         }
         
         guard let feedbackToSend = feedback else { return assertionFailure("We must have either a screenshot or an edited screenshot!") }
-
-        // TODO: Only send logs if `userEnabledLogCollection` is `true.
         
         feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedbackToSend)
     }
