@@ -23,6 +23,9 @@ public class MailSender: NSObject, Sender {
         /// The screenshot failed to encode.
         case ImageEncoding
         
+        /// The text failed to encode.
+        case TextEncoding
+        
         /// `MFMailComposeViewController.canSendMail()` returned `false`.
         case MailCannotSend
         
@@ -103,22 +106,34 @@ private extension MFMailComposeViewController {
         
         try attachScreenshot(feedback.screenshot, screenshotFilename: feedback.screenshotFilename)
         
-        // TODO: Encode log once it exists.
+        if let logs = feedback.logs {
+            try attachLogs(logs, logsFileName: feedback.logsFilename)
+        }
         
         if let additionalInformation = feedback.additionalInformation {
             attachAdditionalInformation(additionalInformation)
         }
     }
     
-    func attachScreenshot(screenshot: Feedback.ScreenshotType, screenshotFilename: String?) throws {
-        let fileName = screenshotFilename ?? NSLocalizedString("Screenshot", comment: "The default name of a screenshot file.")
-        try attachImage(screenshot.preferredImage, filename: fileName + MIMEType.PNG.fileExtension)
+    func attachScreenshot(screenshot: Feedback.ScreenshotType, screenshotFilename: String) throws {
+        try attachImage(screenshot.preferredImage, filename: screenshotFilename + MIMEType.PNG.fileExtension)
+    }
+    
+    func attachLogs(logs: [String], logsFileName: String) throws {
+        let logsText = logs.joinWithSeparator("\n\n")
+        try attachText(logsText, filename: logsFileName + MIMEType.PlainText.fileExtension)
     }
     
     func attachImage(image: UIImage, filename: String) throws {
         guard let PNGData = UIImagePNGRepresentation(image) else { throw MailSender.Error.ImageEncoding }
         
         addAttachmentData(PNGData, mimeType: MIMEType.PNG.rawValue, fileName: filename)
+    }
+    
+    func attachText(text: String, filename: String) throws {
+        guard let textData = text.dataUsingEncoding(NSUTF8StringEncoding) else { throw MailSender.Error.TextEncoding }
+        
+        addAttachmentData(textData, mimeType: MIMEType.PlainText.rawValue, fileName: filename)
     }
     
     func attachAdditionalInformation(additionalInformation: [String: AnyObject]) {
