@@ -624,12 +624,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
 
 extension EditImageViewController: Editor {
     public func setScreenshot(screenshot: UIImage) {
-        imageView.image = screenshot
-        
-        // Clear all current annotations.
-        for annotationView in annotationsView.subviews where annotationView is AnnotationView {
-            annotationView.removeFromSuperview()
-        }
+        self.imageView.image = screenshot
     }
     
     public var viewController: UIViewController {

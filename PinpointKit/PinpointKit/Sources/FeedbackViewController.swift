@@ -105,13 +105,12 @@ public final class FeedbackViewController: UITableViewController {
         guard let screenshot = screenshot, editor = editor else { return }
         let screenshotToDisplay = annotatedScreenshot ?? screenshot
         
+        // We must set the screenshot before showing the view controller.
+        editor.setScreenshot(screenshot)
         let header = ScreenshotHeaderView()
 
         header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshotToDisplay, hintText: interfaceCustomization?.interfaceText.feedbackEditHint)
         header.screenshotButtonTapHandler = { [weak self] button in
-            // We must set the screenshot before showing the view controller.
-            editor.setScreenshot(screenshotToDisplay)
-            
             let editImageViewController = NavigationController(rootViewController: editor.viewController)
             self?.presentViewController(editImageViewController, animated: true, completion: nil)
         }
