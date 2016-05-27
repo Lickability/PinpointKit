@@ -41,7 +41,13 @@ public final class FeedbackViewController: UITableViewController {
         }
     }
     
-    private var annotatedScreenshot: UIImage?
+    /// The annotated screenshot the feedback describes.
+    var annotatedScreenshot: UIImage? {
+        didSet {
+            guard isViewLoaded() else { return }
+            updateTableHeaderView()
+        }
+    }
     
     private var dataSource: FeedbackTableViewDataSource? {
         didSet {
@@ -167,6 +173,7 @@ public final class FeedbackViewController: UITableViewController {
 extension FeedbackViewController: FeedbackCollector {
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         self.screenshot = screenshot
+        annotatedScreenshot = nil
         viewController.showDetailViewController(self, sender: viewController)
     }
 }
