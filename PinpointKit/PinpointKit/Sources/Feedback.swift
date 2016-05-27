@@ -69,6 +69,12 @@ public struct Feedback {
     /// An optional plain-text body of the feedback submission. Suitable for an email body.
     let body: String?
     
+    /// An optional collection of log strings.
+    let logs: [String]?
+    
+    /// A filename without an extension for the logs text file.
+    let logsFilename: String
+    
     /// A dictionary of additional information provided by the application developer.
     let additionalInformation: [String: AnyObject]?
     
@@ -84,6 +90,8 @@ public struct Feedback {
      - parameter screenshotFilename:     The file name of the screenshot.
      - parameter title:                  The title of the feedback.
      - parameter body:                   The default body text.
+     - parameter logs:                   The logs to include in the feedback, if any.
+     - parameter logsFilename:           The file name of the logs text file.
      - parameter additionalInformation:  Any additional information you want to capture.
      - parameter applicationInformation: Information about the application to be captured.
      */
@@ -91,12 +99,16 @@ public struct Feedback {
         screenshotFilename: String = "Screenshot.png",
         title: String? = "Bug Report",
         body: String? = nil,
+        logs: [String]? = nil,
+        logsFilename: String = "logs",
         additionalInformation: [String: AnyObject]? = nil,
         applicationInformation: ApplicationInformation? = nil) {
             self.screenshot = screenshot
             self.screenshotFilename = screenshotFilename
             self.title = title
             self.body = body
+            self.logs = logs
+            self.logsFilename = logsFilename
             self.additionalInformation = additionalInformation
             self.applicationInformation = applicationInformation
     }
