@@ -60,7 +60,7 @@ public struct Feedback {
     /// A screenshot of the screen the feedback relates to.
     let screenshot: ScreenshotType
     
-    /// A filen ame without an extension for the screenshot or annotated screenshot.
+    /// A file name without an extension for the screenshot or annotated screenshot.
     let screenshotFileName: String
     
     /// A short, optional title of the feedback submission. Suitable for an email subject.
