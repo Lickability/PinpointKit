@@ -208,9 +208,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // TODO
-        // reportEventNameAsScreenView(AnalyticsEvent(name: "Edit Image"))
-        
         navigationController?.hidesBarsOnTap = true
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
@@ -219,9 +216,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         super.viewDidAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-        
-        // TODO
-        // BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("navbarSlideIn", fileExtension: "aif")
     }
     
     public override func viewWillDisappear(animated: Bool) {
@@ -416,9 +410,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     @objc private func toolChanged(segmentedControl: UISegmentedControl) {
-        // TODO
-        // BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("annotationSegmentTap", fileExtension: "aif")
-        
         endEditingTextView()
         
         // Disable the bar hiding behavior when selecting the text tool. Enable for all others.
@@ -571,9 +562,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }
         
         if animated {
-            // TODO
-            // BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("annotationDelete", fileExtension: "aif")
-            
             UIView.performSystemAnimation(.Delete, onViews: [annotationView], options: [], animations: nil, completion: { (finished: Bool) -> Void in
                 removeAnnotationView()
             })
