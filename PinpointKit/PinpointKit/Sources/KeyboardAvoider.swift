@@ -33,7 +33,7 @@ public final class KeyboardAvoider {
         guard let keyboardEndFrame = frameEndValue?.CGRectValue() else { return }
         
         let animationDurationNumber = animationDurationValue as? NSNumber
-        let animationDuration = animationDurationNumber.map { $0.doubleValue } ?? 0.0
+        let animationDuration = animationDurationNumber?.doubleValue ?? 0.0
         
         var difference: CGFloat = 0
         
