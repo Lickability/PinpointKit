@@ -52,6 +52,7 @@ public struct Configuration {
      - parameter feedbackCollector: A feedback collector that obtains the feedback, by default in the form of annotated screenshots, to send.
      - parameter editor:            An editor that allows annotation of images.
      - parameter sender:            A sender that allows sending the feedback outside the framework.
+     - parameter feedbackRecipients: The recipients of the feedback submission. Suitable for email recipients in the "To:" field.
      */
     public init(appearance: InterfaceCustomization.Appearance = InterfaceCustomization.Appearance(),
                 interfaceText: InterfaceCustomization.InterfaceText = InterfaceCustomization.InterfaceText(),
@@ -59,7 +60,8 @@ public struct Configuration {
                 logViewer: LogViewer? = BasicLogViewController(),
                 feedbackCollector: FeedbackCollector = FeedbackNavigationController(),
                 editor: Editor = EditImageViewController(),
-                sender: Sender = MailSender()) {
+                sender: Sender = MailSender(),
+                feedbackRecipients: [String]? = nil) {
         self.feedbackCollector = feedbackCollector
         self.editor = editor
         
@@ -73,5 +75,6 @@ public struct Configuration {
         self.feedbackCollector.logCollector = logCollector
         self.feedbackCollector.logViewer = logViewer
         self.feedbackCollector.logViewer?.interfaceCustomization = interfaceCustomization
+        self.feedbackCollector.feedbackRecipients = feedbackRecipients
     }
 }
