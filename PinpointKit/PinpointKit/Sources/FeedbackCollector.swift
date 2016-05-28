@@ -10,7 +10,7 @@
 public protocol FeedbackCollector: class, LogSupporting, InterfaceCustomizable {
     
     /// A delegate that is informed of significant events in feedback collection.
-    var feedbackDelegate: FeedbackCollectorDelegate? { get set }
+    weak var feedbackDelegate: FeedbackCollectorDelegate? { get set }
     
     /// The configuration that the collector should use to set itself up.
     var interfaceCustomization: InterfaceCustomization? { get set }
