@@ -638,8 +638,4 @@ extension EditImageViewController: Editor {
             annotationView.removeFromSuperview()
         }
     }
-    
-    public var viewController: UIViewController {
-        return self
-    }
 }
