@@ -224,7 +224,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     public override func viewDidLayoutSubviews() {
-        if let height = self.navigationController?.navigationBar.frame.size.height {
+        if let height = navigationController?.navigationBar.frame.height {
             var rect = annotationsView.frame
             rect.origin.y += height
             rect.size.height -= height
