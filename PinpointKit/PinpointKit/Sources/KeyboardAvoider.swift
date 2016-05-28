@@ -67,7 +67,7 @@ public final class KeyboardAvoider {
     private func updateAndStoreConstraints(constraints: [NSLayoutConstraint], onView view: UIView, withDifference difference: CGFloat, isDismissing: Bool) {
         
         for constraint in constraints {
-            let originalConstant = self.originalConstraintConstants[constraint]
+            let originalConstant = originalConstraintConstants[constraint]
             
             if let originalConstant = originalConstant where isDismissing {
                 constraint.constant = originalConstant
@@ -76,7 +76,7 @@ public final class KeyboardAvoider {
             } else if !isDismissing && firstOrSecondItemForConstraint(constraint, isEqualToView: view) {
                 // Only replace contraints that don't already exist.
                 if originalConstant == nil {
-                    self.originalConstraintConstants[constraint] = constraint.constant
+                    originalConstraintConstants[constraint] = constraint.constant
                 }
                 
                 if constraint.secondAttribute == .Bottom {
