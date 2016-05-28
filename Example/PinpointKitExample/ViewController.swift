@@ -10,9 +10,6 @@ import UIKit
 import PinpointKit
 
 final class ViewController: UIViewController {
-    
-    let pinpointKit = PinpointKit(configuration: Configuration(feedbackRecipients: ["hello@lickability.com"]), delegate: nil)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +19,6 @@ final class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        pinpointKit.show(fromViewController: self)
+        PinpointKit.defaultPinpointKit.show(fromViewController: self)
     }
 }
