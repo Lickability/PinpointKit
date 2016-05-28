@@ -52,7 +52,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }()
     
     private var shouldPromptBeforeDismissal: Bool {
-        return !hasACopyOfCurrentComposition && self.annotationsView.subviews.count >= self.dynamicType.MinimumAnnotationsNeededToPromptBeforeDismissal
+        return !hasACopyOfCurrentComposition && annotationsView.subviews.count >= self.dynamicType.MinimumAnnotationsNeededToPromptBeforeDismissal
     }
     
     private var createAnnotationPanGestureRecognizer: UIPanGestureRecognizer! = nil
@@ -300,7 +300,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             alert.popoverPresentationController?.barButtonItem = button
             presentViewController(alert, animated: true, completion: nil)
         } else {
-            self.delegate?.editorWillDismiss(self, screenshot: self.view.pinpoint_screenshot)
+            delegate?.editorWillDismiss(self, screenshot: view.pinpoint_screenshot)
 
             dismissViewControllerAnimated(true, completion: nil)
         }
@@ -441,11 +441,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func handleCreateAnnotationGestureRecognizerBegan(gestureRecognizer: UIGestureRecognizer) {
-        guard let currentTool = self.currentTool else { return }
+        guard let currentTool = currentTool else { return }
         
         let currentLocation = gestureRecognizer.locationInView(annotationsView)
         
-        let factory = AnnotationViewFactory(image: self.imageView.image?.CGImage, currentLocation: currentLocation, tool: currentTool)
+        let factory = AnnotationViewFactory(image: imageView.image?.CGImage, currentLocation: currentLocation, tool: currentTool)
         
         let view: AnnotationView = factory.annotationView()
         
@@ -565,7 +565,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func deleteAnnotationView(annotationView: UIView, animated: Bool) {
-        let removeAnnotationView = { () -> Void in
+        let removeAnnotationView = {
             self.endEditingTextView()
             annotationView.removeFromSuperview()
         }
