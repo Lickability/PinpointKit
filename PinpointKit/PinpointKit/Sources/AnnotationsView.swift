@@ -36,4 +36,12 @@ class AnnotationsView: UIView {
         let index = lastBlurViewIndex.map { $0 + 1 } ?? 0
         insertSubview(blurView, atIndex: index)
     }
+    
+    override func tintColorDidChange() {
+        super.tintColorDidChange()
+        
+        for subview in subviews {
+            subview.tintColor = tintColor
+        }
+    }
 }
