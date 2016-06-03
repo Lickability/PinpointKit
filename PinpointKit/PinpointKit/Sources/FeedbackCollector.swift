@@ -12,12 +12,16 @@ public protocol FeedbackCollector: class, LogSupporting, InterfaceCustomizable {
     /// A delegate that is informed of significant events in feedback collection.
     weak var feedbackDelegate: FeedbackCollectorDelegate? { get set }
     
+    /// The recipients of the feedback submission. Suitable for email recipients in the "To:" field.
+    var feedbackRecipients: [String]? { get set }
+    
     /// The configuration that the collector should use to set itself up.
     var interfaceCustomization: InterfaceCustomization? { get set }
     
     /// The view controller that displays the feedback to collect.
     var viewController: UIViewController { get }
     
+    /// The object that is responsible for editing a screenshot.
     var editor: Editor? { get set }
     
     /**

@@ -30,6 +30,7 @@ public final class FeedbackViewController: UITableViewController {
     // MARK: - FeedbackCollector
     
     public weak var feedbackDelegate: FeedbackCollectorDelegate?
+    public var feedbackRecipients: [String]?
     
     // MARK: - FeedbackViewController
     
@@ -98,7 +99,7 @@ public final class FeedbackViewController: UITableViewController {
     private func updateDataSource() {
         guard let interfaceCustomization = interfaceCustomization else { assertionFailure(); return }
         
-        dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, logSupporting:self, userEnabledLogCollection: userEnabledLogCollection)
+        dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, logSupporting: self, userEnabledLogCollection: userEnabledLogCollection)
     }
     
     private func updateTableHeaderView() {
@@ -109,7 +110,7 @@ public final class FeedbackViewController: UITableViewController {
         editor.setScreenshot(screenshot)
         let header = ScreenshotHeaderView()
 
-        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshotToDisplay, hintText: interfaceCustomization?.interfaceText.feedbackEditHint)
+        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshotToDisplay, hintText: interfaceCustomization?.interfaceText.feedbackEditHint, hintFont: interfaceCustomization?.appearance.feedbackEditHintFont)
         header.screenshotButtonTapHandler = { [weak self] button in
             let editImageViewController = NavigationController(rootViewController: editor.viewController)
             self?.presentViewController(editImageViewController, animated: true, completion: nil)
@@ -120,24 +121,33 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     private func updateInterfaceCustomization() {
-        title = interfaceCustomization?.interfaceText.feedbackCollectorTitle
+        guard let interfaceCustomization = interfaceCustomization else { assertionFailure(); return }
+        let interfaceText = interfaceCustomization.interfaceText
+        let appearance = interfaceCustomization.appearance
+
+        title = interfaceText.feedbackCollectorTitle
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: appearance.navigationTitleFont]
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: interfaceCustomization?.interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
+        let sendBarButtonItem = UIBarButtonItem(title: interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
+        sendBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackSendButtonFont], forState: .Normal)
+        navigationItem.rightBarButtonItem = sendBarButtonItem
         
-        if let backButtonTitle = interfaceCustomization?.interfaceText.feedbackBackButtonTitle {
-            navigationItem.backBarButtonItem = UIBarButtonItem(title: backButtonTitle, style: .Plain, target: nil, action: nil)
-        }
+        let backBarButtonItem = UIBarButtonItem(title: interfaceText.feedbackBackButtonTitle, style: .Plain, target: nil, action: nil)
+        backBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackBackButtonFont], forState: .Normal)
+        navigationItem.backBarButtonItem = backBarButtonItem
         
         let cancelBarButtonItem: UIBarButtonItem
         let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
-        if let cancelButtonTitle = interfaceCustomization?.interfaceText.feedbackCancelButtonTitle {
+        if let cancelButtonTitle = interfaceText.feedbackCancelButtonTitle {
             cancelBarButtonItem = UIBarButtonItem(title: cancelButtonTitle, style: .Plain, target: self, action: cancelAction)
         } else {
             cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelAction)
         }
+        
+        cancelBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackCancelButtonFont], forState: .Normal)
         navigationItem.leftBarButtonItem = cancelBarButtonItem
         
-        view.tintColor = interfaceCustomization?.appearance.tintColor
+        view.tintColor = appearance.tintColor
         updateTableHeaderView()
         updateDataSource()
     }
@@ -149,9 +159,9 @@ public final class FeedbackViewController: UITableViewController {
         let feedback: Feedback?
         
         if let screenshot = annotatedScreenshot {
-            feedback = Feedback(screenshot: .Annotated(image: screenshot), logs: logs)
+            feedback = Feedback(screenshot: .Annotated(image: screenshot), recipients: feedbackRecipients, logs: logs)
         } else if let screenshot = screenshot {
-            feedback = Feedback(screenshot: .Original(image: screenshot), logs: logs)
+            feedback = Feedback(screenshot: .Original(image: screenshot), recipients: feedbackRecipients, logs: logs)
         } else {
             feedback = nil
         }

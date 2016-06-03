@@ -7,7 +7,7 @@
 //
 
 /// A protocol describing an object that is responsible for editing a screenshot.
-public protocol Editor: class {
+public protocol Editor: class, InterfaceCustomizable {
     
     /// A delegate for the editor.
     weak var delegate: EditorDelegate? { get set }
