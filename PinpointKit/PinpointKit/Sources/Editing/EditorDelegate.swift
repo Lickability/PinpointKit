@@ -19,3 +19,10 @@ public protocol EditorDelegate: class {
      */
     func editorShouldDismiss(editor: Editor, screenshot: UIImage) -> Bool
 }
+
+/// Extends editor delegate with base implementation for functions.
+extension EditorDelegate {
+    public func editorShouldDismiss(editor: Editor, screenshot: UIImage) -> Bool {
+        return true
+    }
+}

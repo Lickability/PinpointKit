@@ -78,11 +78,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         return KeyboardAvoider(window: window)
     }()
     
-    private lazy var closeBarButtonItem: UIBarButtonItem = { [unowned self] in
+    private lazy var closeBarButtonItem: UIBarButtonItem = {
         UIBarButtonItem(image: UIImage(named: "CloseButtonX", inBundle: .pinpointKitBundle(), compatibleWithTraitCollection: nil), landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(EditImageViewController.closeButtonTapped(_:)))
-        }()
+    }()
     
-    private lazy var doneBarButtonItem: UIBarButtonItem = { [unowned self] in
+    private lazy var doneBarButtonItem: UIBarButtonItem = {
         guard let doneButtonFont = self.interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return UIBarButtonItem() }
         return UIBarButtonItem(doneButtonWithTarget: self, font: doneButtonFont, action: #selector(EditImageViewController.doneButtonTapped(_:)))
     }()
@@ -294,11 +294,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     @objc private func closeButtonTapped(button: UIBarButtonItem) {
-        let image = imageView.image ?? UIImage()
+        guard let image = imageView.image else { assertionFailure(); return }
         
         if let delegate = self.delegate {
             if delegate.editorShouldDismiss(self, screenshot: image) {
-                delegate.editorWillDismiss(self, screenshot: imageView.image ?? UIImage())
+                delegate.editorWillDismiss(self, screenshot: image)
                 
                 dismissViewControllerAnimated(true, completion: nil)
             }
@@ -394,7 +394,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         currentTextAnnotationView.beginEditing()
         
         guard let doneButtonFont = interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return }
-        let dismissButton = UIBarButtonItem(title: "Dismiss", style: .Done, target: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
+        let dismissButton = UIBarButtonItem(title: interfaceCustomization?.interfaceText.textEditingDismissButtonTitle, style: .Done, target: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
         navigationItem.setRightBarButtonItem(dismissButton, animated: true)
         navigationItem.setLeftBarButtonItem(nil, animated: true)
     }
