@@ -12,7 +12,7 @@ public final class KeyboardAvoider {
     public var viewsToAvoidKeyboard: [UIView] = []
     public var triggerViews: [UIView] = []
     
-    private let window: UIWindow?
+    private let window: UIWindow
     
     private var originalConstraintConstants: [NSLayoutConstraint: CGFloat] = [:]
     
@@ -46,7 +46,7 @@ public final class KeyboardAvoider {
         }
         
         // If the keyboard is going to or below 0, we're dismissing.
-        let isDismissing = window.map { keyboardEndFrame.minY >= $0.bounds.maxY } ?? false
+        let isDismissing = keyboardEndFrame.minY >= window.bounds.maxY
         
         // This will be animated because this notification is called from within an animation block.
         for avoidingView in viewsToAvoidKeyboard {
