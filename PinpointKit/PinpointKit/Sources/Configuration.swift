@@ -75,6 +75,7 @@ public struct Configuration {
         self.feedbackCollector.logCollector = logCollector
         self.feedbackCollector.logViewer = logViewer
         self.feedbackCollector.logViewer?.interfaceCustomization = interfaceCustomization
+        self.feedbackCollector.editor?.interfaceCustomization = interfaceCustomization
         self.feedbackCollector.feedbackRecipients = feedbackRecipients
     }
 }

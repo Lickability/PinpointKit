@@ -21,6 +21,7 @@ public protocol FeedbackCollector: class, LogSupporting, InterfaceCustomizable {
     /// The view controller that displays the feedback to collect.
     var viewController: UIViewController { get }
     
+    /// The object that is responsible for editing a screenshot.
     var editor: Editor? { get set }
     
     /**

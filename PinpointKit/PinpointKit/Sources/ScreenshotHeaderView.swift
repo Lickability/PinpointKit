@@ -20,6 +20,7 @@ class ScreenshotHeaderView: UIView {
     struct ViewModel {
         let screenshot: UIImage
         let hintText: String?
+        let hintFont: UIFont?
     }
     
     private enum DesignConstants: CGFloat {
@@ -38,6 +39,7 @@ class ScreenshotHeaderView: UIView {
             
             hintLabel.text = viewModel?.hintText
             hintLabel.hidden = viewModel?.hintText == nil || viewModel?.hintText?.isEmpty == true
+            hintLabel.font = viewModel?.hintFont
         }
     }
     
@@ -69,7 +71,6 @@ class ScreenshotHeaderView: UIView {
     private let hintLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.lightGrayColor()
-        label.font = UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote)
         return label
     }()
     
