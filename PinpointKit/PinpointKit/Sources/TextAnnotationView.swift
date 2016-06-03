@@ -42,7 +42,7 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
     
     var annotation: Annotation? {
         didSet {
-            textView.frame = annotationFrame ?? CGRect.zero
+            textView.frame = annotation?.frame ?? CGRect.zero
             originalTextViewFrame = textView.frame
             (textView.layoutManager as? StrokeLayoutManager)?.strokeColor = annotation?.strokeColor
         }
