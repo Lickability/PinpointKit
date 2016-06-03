@@ -13,7 +13,6 @@ public class BasicLogViewController: UIViewController, LogViewer {
     
     // MARK: - InterfaceCustomizable
     
-    /// The interface customization of the log.
     public var interfaceCustomization: InterfaceCustomization? {
         didSet {
             title = interfaceCustomization?.interfaceText.logCollectorTitle
