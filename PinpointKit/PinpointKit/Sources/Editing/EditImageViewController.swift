@@ -2,7 +2,7 @@ import UIKit
 import Photos
 import CoreImage
 
-/// The view controller responsible for editing an image.
+/// The default view controller responsible for editing an image.
 public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
     static let TextViewEditingBarAnimationDuration = 0.25
     static let MinimumAnnotationsNeededToPromptBeforeDismissal = 3
@@ -12,7 +12,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private var hasSavedOrSharedAnyComposion: Bool = false
     
-    /// The `EditorDelegate` of the `EditImageViewController`.
     public weak var delegate: EditorDelegate?
     
     // MARK: - InterfaceCustomizable
@@ -111,8 +110,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private var selectedAnnotationView: AnnotationView?
-    
-    private(set) var currentViewModel: AssetViewModel?
     
     public init() {
         super.init(nibName: nil, bundle: nil)
