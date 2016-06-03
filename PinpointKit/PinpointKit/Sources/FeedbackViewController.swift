@@ -179,9 +179,7 @@ public final class FeedbackViewController: UITableViewController {
         feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedbackToSend)
     }
     
-    @objc private func cancelButtonTapped() {
-        // TODO: http://stackoverflow.com/questions/25742944/whats-the-programmatic-opposite-of-showviewcontrollersender
-        
+    @objc private func cancelButtonTapped() {        
         dismissViewControllerAnimated(true, completion: nil)
     }
 }

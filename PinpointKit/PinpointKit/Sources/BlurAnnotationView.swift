@@ -10,6 +10,7 @@ import UIKit
 import GLKit
 import CoreImage
 
+/// The default blur annotation view.
 public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
 
     // MARK: - Properties
@@ -56,7 +57,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     }
     
     // MARK: - Initializers
-
+    
     public convenience init() {
         self.init(frame: CGRect.zero)
     }

@@ -8,7 +8,8 @@
 
 import UIKit
 
-class TextAnnotationView: AnnotationView, UITextViewDelegate {
+/// The default text annotation view.
+public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     static let TextViewInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
     static let TextViewLineFragmentPadding: CGFloat = 5.0
     
@@ -57,13 +58,14 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
         textView.typingAttributes = textAttributes()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    @available(*, unavailable)
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - UIView
     
-    override func tintColorDidChange() {
+    override public func tintColorDidChange() {
         textView.typingAttributes = {
             var attributes = self.textView.typingAttributes
             attributes[NSForegroundColorAttributeName] = self.tintColor
@@ -71,7 +73,7 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
         }()
     }
     
-    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+    override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
         return annotationFrame?.contains(point) ?? false
     }
         
@@ -145,17 +147,17 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
     
     // MARK: - UITextViewDelegate
     
-    func textViewDidChange(textView: UITextView) {
+    public func textViewDidChange(textView: UITextView) {
         updateTextViewFrame()
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {        
+    public func textViewDidBeginEditing(textView: UITextView) {
         textView.backgroundColor = UIColor(white: 1.0, alpha: 0.3)
         textView.layer.borderWidth = 1
         textView.layer.borderColor = tintColor.colorWithAlphaComponent(self.dynamicType.BorderAlpha).CGColor
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    public func textViewDidEndEditing(textView: UITextView) {
         textView.selectable = false
         textView.editable = false
         
