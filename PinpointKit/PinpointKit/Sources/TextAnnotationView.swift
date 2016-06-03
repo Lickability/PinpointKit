@@ -43,7 +43,7 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
     
     var annotation: Annotation? {
         didSet {
-            textView.frame = annotation.map { $0.frame } ?? CGRect.zero
+            textView.frame = annotationFrame ?? CGRect.zero
             originalTextViewFrame = textView.frame
         }
     }
@@ -72,8 +72,7 @@ class TextAnnotationView: AnnotationView, UITextViewDelegate {
     }
     
     override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        let value = annotationFrame.map { $0.contains(point) } ?? false
-        return value
+        return annotationFrame?.contains(point) ?? false
     }
         
     // MARK: - AnnotationView

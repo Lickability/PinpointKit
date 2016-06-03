@@ -21,10 +21,13 @@ struct AnnotationViewFactory {
             view.annotation = Annotation(startLocation: currentLocation, endLocation: endLocation)
             return view
         case .Blur:
-            let CIImage = image.map { CoreImage.CIImage(CGImage: $0) }
             let view = BlurAnnotationView()
             view.drawsBorder = true
-            view.annotation = CIImage.map { BlurAnnotation(startLocation: currentLocation, endLocation: currentLocation, image: $0) }
+            
+            guard let image = image else { return view }
+            let CIImage = CoreImage.CIImage(CGImage: image)
+            view.annotation = BlurAnnotation(startLocation: currentLocation, endLocation: currentLocation, image: CIImage)
+            
             return view
         }
     }

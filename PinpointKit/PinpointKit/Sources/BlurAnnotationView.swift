@@ -25,7 +25,10 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
             setNeedsDisplay()
             
             let layer = CAShapeLayer()
-            layer.path = annotation.map { UIBezierPath(rect: $0.frame) }?.CGPath
+            if let annotationFrame = annotationFrame {
+                layer.path = UIBezierPath(rect: annotationFrame).CGPath
+            }
+            
             GLKView.layer.mask = layer
         }
     }
@@ -43,11 +46,13 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     }
     
     var touchTargetFrame: CGRect? {
+        guard let annotationFrame = annotationFrame else { return nil }
+        
         let size = frame.size
         let maximumWidth = max(4.0, min(size.width, size.height) * 0.075)
         let outsideStrokeWidth = min(maximumWidth, 14.0) * 1.5
         
-        return annotationFrame.map { UIEdgeInsetsInsetRect($0, UIEdgeInsets(top: -outsideStrokeWidth, left: -outsideStrokeWidth, bottom: -outsideStrokeWidth, right: -outsideStrokeWidth)) }
+        return UIEdgeInsetsInsetRect(annotationFrame, UIEdgeInsets(top: -outsideStrokeWidth, left: -outsideStrokeWidth, bottom: -outsideStrokeWidth, right: -outsideStrokeWidth))
     }
     
     // MARK: - Initializers
@@ -88,9 +93,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     }
 
     override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        let frame = touchTargetFrame
-        
-        return frame.map { $0.contains(point) } ?? false
+        return touchTargetFrame?.contains(point) ?? false
     }
     
     override public func drawRect(rect: CGRect) {
@@ -112,25 +115,25 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     // MARK: - AnnotationView
 
     override func setSecondControlPoint(point: CGPoint) {
-        annotation = annotation.map {
-            BlurAnnotation(startLocation: $0.startLocation, endLocation: point, image: $0.image)
-        }
+        guard let annotation = annotation else { return }
+        
+        BlurAnnotation(startLocation: annotation.startLocation, endLocation: point, image: annotation.image)
     }
 
     override func moveControlPoints(translation: CGPoint) {
-        annotation = annotation.map {
-            let startLocation = CGPoint(x: $0.startLocation.x + translation.x, y: $0.startLocation.y + translation.y)
-            let endLocation = CGPoint(x: $0.endLocation.x + translation.x, y: $0.endLocation.y + translation.y)
-            return BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: $0.image)
-        }
+        guard let annotation = annotation else { return }
+        let startLocation = CGPoint(x: annotation.startLocation.x + translation.x, y: annotation.startLocation.y + translation.y)
+        let endLocation = CGPoint(x: annotation.endLocation.x + translation.x, y: annotation.endLocation.y + translation.y)
+        
+        BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: annotation.image)
     }
 
     override func scaleControlPoints(scale: CGFloat) {
-        annotation = annotation.map {
-            let startLocation = $0.scaledPoint($0.startLocation, scale: scale)
-            let endLocation = $0.scaledPoint($0.endLocation, scale: scale)
-            return BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: $0.image)
-        }
+        guard let annotation = annotation else { return }
+        let startLocation = annotation.scaledPoint(annotation.startLocation, scale: scale)
+        let endLocation = annotation.scaledPoint(annotation.endLocation, scale: scale)
+        
+        BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: annotation.image)
     }
 
     // MARK: - GLKViewDelegate

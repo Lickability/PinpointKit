@@ -122,20 +122,16 @@ class BlurAnnotation: Annotation {
         var image: CIImage? = self.image
         let extent = image?.extent
 
-        image = image.flatMap {
-            let transform = NSValue(CGAffineTransform: CGAffineTransformIdentity)
-            let filter: CIFilter? = CIFilter(name: "CIAffineClamp")
-            filter?.setValue($0, forKey: "inputImage")
-            filter?.setValue(transform, forKey: "inputTransform")
-            return filter?.valueForKey("outputImage") as? CIImage
-        }
+        let transform = NSValue(CGAffineTransform: CGAffineTransformIdentity)
+        let affineClampFilter = CIFilter(name: "CIAffineClamp")
+        affineClampFilter?.setValue(image, forKey: "inputImage")
+        affineClampFilter?.setValue(transform, forKey: "inputTransform")
+        image = affineClampFilter?.valueForKey("outputImage") as? CIImage
 
-        image = image.flatMap {
-            let filter: CIFilter? = CIFilter(name: "CIPixellate")
-            filter?.setValue($0, forKey: "inputImage")
-            filter?.setValue(16, forKey: "inputScale")
-            return filter?.valueForKey("outputImage") as? CIImage
-        }
+        let pixellateFilter = CIFilter(name: "CIPixellate")
+        pixellateFilter?.setValue(image, forKey: "inputImage")
+        pixellateFilter?.setValue(16, forKey: "inputScale")
+        image = pixellateFilter?.valueForKey("outputImage") as? CIImage
 
         if let imageValue = image, extentValue = extent {
             let vector = CIVector(CGRect: extentValue)
