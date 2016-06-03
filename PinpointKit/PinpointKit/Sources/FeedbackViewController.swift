@@ -30,6 +30,7 @@ public final class FeedbackViewController: UITableViewController {
     // MARK: - FeedbackCollector
     
     public weak var feedbackDelegate: FeedbackCollectorDelegate?
+    public var feedbackRecipients: [String]?
     
     // MARK: - FeedbackViewController
     
@@ -41,7 +42,13 @@ public final class FeedbackViewController: UITableViewController {
         }
     }
     
-    private var annotatedScreenshot: UIImage?
+    /// The annotated screenshot the feedback describes.
+    var annotatedScreenshot: UIImage? {
+        didSet {
+            guard isViewLoaded() else { return }
+            updateTableHeaderView()
+        }
+    }
     
     private var dataSource: FeedbackTableViewDataSource? {
         didSet {
@@ -146,19 +153,20 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     @objc private func sendButtonTapped() {
+        
+        let logs = userEnabledLogCollection ? logCollector?.retrieveLogs() : nil
+        
         let feedback: Feedback?
         
         if let screenshot = annotatedScreenshot {
-            feedback = Feedback(screenshot: .Annotated(image: screenshot))
+            feedback = Feedback(screenshot: .Annotated(image: screenshot), recipients: feedbackRecipients, logs: logs)
         } else if let screenshot = screenshot {
-            feedback = Feedback(screenshot: .Original(image: screenshot))
+            feedback = Feedback(screenshot: .Original(image: screenshot), recipients: feedbackRecipients, logs: logs)
         } else {
             feedback = nil
         }
         
         guard let feedbackToSend = feedback else { return assertionFailure("We must have either a screenshot or an edited screenshot!") }
-
-        // TODO: Only send logs if `userEnabledLogCollection` is `true.
         
         feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedbackToSend)
     }
@@ -175,6 +183,7 @@ public final class FeedbackViewController: UITableViewController {
 extension FeedbackViewController: FeedbackCollector {
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         self.screenshot = screenshot
+        annotatedScreenshot = nil
         viewController.showDetailViewController(self, sender: viewController)
     }
 }

@@ -639,7 +639,19 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
 
 extension EditImageViewController: Editor {
     public func setScreenshot(screenshot: UIImage) {
-        self.imageView.image = screenshot
+        let oldScreenshot = imageView.image
+        
+        imageView.image = screenshot
+        
+        if screenshot != oldScreenshot {
+            clearAllAnnotations()
+        }
+    }
+    
+    private func clearAllAnnotations() {
+        for annotationView in annotationsView.subviews where annotationView is AnnotationView {
+            annotationView.removeFromSuperview()
+        }
     }
     
     public var viewController: UIViewController {

@@ -22,6 +22,8 @@ public class PinpointKit {
     /// A delegate that is notified of significant events.
     private weak var delegate: PinpointKitDelegate?
     
+    private weak var displayingViewController: UIViewController?
+    
     /**
      Initializes a `PinpointKit` object with a configuration and an optional delegate.
      
@@ -31,6 +33,9 @@ public class PinpointKit {
     public init(configuration: Configuration = Configuration(), delegate: PinpointKitDelegate? = nil) {
         self.configuration = configuration
         self.delegate = delegate
+        
+        self.configuration.feedbackCollector.feedbackDelegate = self
+        self.configuration.sender.delegate = self
     }
     
     /**
@@ -40,8 +45,37 @@ public class PinpointKit {
      */
     public func show(fromViewController viewController: UIViewController) {
         let screenshot = Screenshotter.takeScreenshot()
-
+        displayingViewController = viewController
+        
         configuration.feedbackCollector.collectFeedbackWithScreenshot(screenshot, fromViewController: viewController)
+    }
+}
+
+// MARK: - FeedbackCollectorDelegate
+
+extension PinpointKit: FeedbackCollectorDelegate {
+    
+    public func feedbackCollector(feedbackCollector: FeedbackCollector, didCollectFeedback feedback: Feedback) {
+        delegate?.pinpointKit(self, willSendFeedback: feedback)
+        configuration.sender.sendFeedback(feedback, fromViewController: feedbackCollector.viewController)
+    }
+}
+
+// MARK: - SenderDelegate
+
+extension PinpointKit: SenderDelegate {
+    
+    public func sender(sender: Sender, didSendFeedback feedback: Feedback?, success: SuccessType?) {
+        guard let feedback = feedback else { return }
+        
+        delegate?.pinpointKit(self, didSendFeedback: feedback)
+        displayingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    public func sender(sender: Sender, didFailToSendFeedback feedback: Feedback?, error: ErrorType) {
+        if case MailSender.Error.MailCanceled = error { return }
+        
+        print("An error occurred sending mail: \(error)")
     }
 }
 

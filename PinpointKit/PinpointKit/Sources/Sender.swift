@@ -9,7 +9,7 @@
 import UIKit
 
 /// A behavior protocol that describes an object that sends feedback.
-public protocol Sender {
+public protocol Sender: class {
     
     /// A delegate that is informed of successful or failed feedback sending.
     var delegate: SenderDelegate? { get set }

@@ -66,6 +66,15 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
             feedbackViewController.feedbackDelegate = newValue
         }
     }
+    
+    public var feedbackRecipients: [String]? {
+        get {
+            return feedbackViewController.feedbackRecipients
+        }
+        set {
+            feedbackViewController.feedbackRecipients = newValue
+        }
+    }
         
     override init(navigationBarClass: AnyClass?, toolbarClass: AnyClass?) {
         feedbackViewController = FeedbackViewController()
@@ -106,6 +115,7 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
     
     public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
         feedbackViewController.screenshot = screenshot
+        feedbackViewController.annotatedScreenshot = screenshot
 
         viewController.presentViewController(self, animated: true, completion: nil)
     }
