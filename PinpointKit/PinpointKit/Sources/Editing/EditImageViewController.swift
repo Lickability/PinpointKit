@@ -314,8 +314,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
                 
                 dismissViewControllerAnimated(true, completion: nil)
             }
-        }
-        else {
+        } else {
             dismissViewControllerAnimated(true, completion: nil)
         }
     }
