@@ -367,12 +367,13 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func currentModelAssetIsLandscape() -> Bool {
-        return currentViewModel.map {
-            let asset = $0.asset
-            
-            let portraitPixelSize = UIScreen.mainScreen().portraitPixelSize()
-            return CGFloat(asset.pixelWidth) == portraitPixelSize.height && CGFloat(asset.pixelHeight) == portraitPixelSize.width
-            } ?? false
+        guard let imageSize = imageView.image?.size else { return false }
+        guard let imageScale = imageView.image?.scale else { return false }
+
+        let imagePixelSize = CGSize(width: imageSize.width * imageScale, height: imageSize.height * imageScale)
+        
+        let portraitPixelSize = UIScreen.mainScreen().portraitPixelSize()
+        return CGFloat(imagePixelSize.width) == portraitPixelSize.height && CGFloat(imagePixelSize.height) == portraitPixelSize.width
     }
     
     private func beginEditingTextView() {
