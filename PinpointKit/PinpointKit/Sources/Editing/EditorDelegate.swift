@@ -8,4 +8,14 @@ public protocol EditorDelegate: class {
      - parameter screenshot: The edited image of a screenshot, after editing is complete.
      */
     func editorWillDismiss(editor: Editor, screenshot: UIImage)
+    
+    /**
+     A function that is called with an image to ask if the editor should be dismissed.
+ 
+    - parameter editor: The editor resonsible for editing the image.
+    - parameter screenshot: The edited image of a screenshot, after editing is complete.
+    
+    - returns: A bool value that defines if the editor dismisses or not.
+     */
+    func editorShouldDismiss(editor: Editor, screenshot: UIImage) -> Bool
 }

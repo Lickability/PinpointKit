@@ -82,6 +82,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         UIBarButtonItem(image: UIImage(named: "CloseButtonX", inBundle: .pinpointKitBundle(), compatibleWithTraitCollection: nil), landscapeImagePhone: nil, style: .Plain, target: self, action: #selector(EditImageViewController.closeButtonTapped(_:)))
         }()
     
+    private lazy var doneBarButtonItem: UIBarButtonItem = { [unowned self] in
+        guard let doneButtonFont = self.interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return UIBarButtonItem() }
+        return UIBarButtonItem(doneButtonWithTarget: self, font: doneButtonFont, action: #selector(EditImageViewController.doneButtonTapped(_:)))
+    }()
+    
     private var currentTool: Tool? {
         return Tool(rawValue: segmentedControl.selectedSegmentIndex)
     }
@@ -112,8 +117,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     public init() {
         super.init(nibName: nil, bundle: nil)
-        
-        navigationItem.leftBarButtonItem = closeBarButtonItem
         
         navigationItem.titleView = segmentedControl
         
@@ -171,6 +174,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         super.viewDidLoad()
         
         assert(imageView.image != nil, "A screenshot must be set using `setScreenshot(_:)` before loading the view.")
+        
+        navigationItem.rightBarButtonItem = doneBarButtonItem
         
         view.backgroundColor = UIColor.whiteColor()
         view.addSubview(imageView)
@@ -289,14 +294,28 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     @objc private func closeButtonTapped(button: UIBarButtonItem) {
+        let image = imageView.image ?? UIImage()
         
-        if shouldPromptBeforeDismissal {
-            let alert = newCloseScreenshotAlert()
-            alert.popoverPresentationController?.barButtonItem = button
-            presentViewController(alert, animated: true, completion: nil)
+        if let delegate = self.delegate {
+            if delegate.editorShouldDismiss(self, screenshot: image) {
+                delegate.editorWillDismiss(self, screenshot: imageView.image ?? UIImage())
+                
+                dismissViewControllerAnimated(true, completion: nil)
+            }
         } else {
-            delegate?.editorWillDismiss(self, screenshot: view.pinpoint_screenshot)
-
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+    
+    @objc private func doneButtonTapped(button: UIBarButtonItem) {
+        if let delegate = self.delegate {
+            if delegate.editorShouldDismiss(self, screenshot: self.view.pinpoint_screenshot) {
+                self.delegate?.editorWillDismiss(self, screenshot: self.view.pinpoint_screenshot)
+                
+                dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+        else {
             dismissViewControllerAnimated(true, completion: nil)
         }
     }
@@ -376,8 +395,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         currentTextAnnotationView.beginEditing()
         
         guard let doneButtonFont = interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return }
-        let doneButton = UIBarButtonItem(doneButtonWithTarget: self, font: doneButtonFont, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
-        navigationItem.setRightBarButtonItem(doneButton, animated: true)
+        let dismissButton = UIBarButtonItem(title: "Dismiss", style: .Done, target: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
+        navigationItem.setRightBarButtonItem(dismissButton, animated: true)
         navigationItem.setLeftBarButtonItem(nil, animated: true)
     }
     
@@ -397,8 +416,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
                 currentTextAnnotationView?.removeFromSuperview()
             }
             
-            navigationItem.setLeftBarButtonItem(closeBarButtonItem, animated: true)
-            navigationItem.setRightBarButtonItem(nil, animated: true)
+            navigationItem.setRightBarButtonItem(doneBarButtonItem, animated: true)
             
             currentAnnotationView = nil
         }

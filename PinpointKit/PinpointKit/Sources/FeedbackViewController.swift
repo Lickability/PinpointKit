@@ -202,6 +202,10 @@ extension FeedbackViewController: EditorDelegate {
         annotatedScreenshot = screenshot
         updateTableHeaderView()
     }
+    
+    public func editorShouldDismiss(editor: Editor, screenshot: UIImage) -> Bool {
+        return true
+    }
 }
 
 // MARK: - UITableViewDelegate
