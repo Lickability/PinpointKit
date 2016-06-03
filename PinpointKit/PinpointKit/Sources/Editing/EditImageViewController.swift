@@ -15,6 +15,16 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     /// The `EditorDelegate` of the `EditImageViewController`.
     public weak var delegate: EditorDelegate?
     
+    // MARK: - InterfaceCustomizable
+    
+    public var interfaceCustomization: InterfaceCustomization? {
+        didSet {
+            guard isViewLoaded() else { return }
+            
+            updateInterfaceCustomization()
+        }
+    }
+    
     // MARK: - Properties
     
     private lazy var segmentedControl: UISegmentedControl = { [unowned self] in
@@ -29,8 +39,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             let segment = view.subviews[index]
             segment.accessibilityLabel = "Text Tool"
         }
-        
-        view.setTitleTextAttributes([NSFontAttributeName: UIFont.sourceSansProFontOfSize(18, weight: .Regular)], forState: UIControlState.Normal)
         
         for i in 0..<view.numberOfSegments {
             view.setWidth(54, forSegmentAtIndex: i)
@@ -205,6 +213,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             view.addGestureRecognizer(gestureRecognizer)
         }
         
+        updateInterfaceCustomization()
         setupConstraints()
     }
     
@@ -379,13 +388,13 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func beginEditingTextView() {
-        if currentTextAnnotationView != nil {
-            currentTextAnnotationView?.beginEditing()
-            
-            let doneButton = UIBarButtonItem(doneButtonWithTarget: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
-            navigationItem.setRightBarButtonItem(doneButton, animated: true)
-            navigationItem.setLeftBarButtonItem(nil, animated: true)
-        }
+        guard let currentTextAnnotationView = currentTextAnnotationView else { return }
+        currentTextAnnotationView.beginEditing()
+        
+        guard let doneButtonFont = interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return }
+        let doneButton = UIBarButtonItem(doneButtonWithTarget: self, font: doneButtonFont, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
+        navigationItem.setRightBarButtonItem(doneButton, animated: true)
+        navigationItem.setLeftBarButtonItem(nil, animated: true)
     }
     
     @objc private func forceEndEditingTextView() {
@@ -426,6 +435,12 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         // Disable the bar hiding behavior when selecting the text tool. Enable for all others.
         navigationController?.barHideOnTapGestureRecognizer.enabled = currentTool != .Text
+    }
+    
+    private func updateInterfaceCustomization() {
+        guard let appearance = interfaceCustomization?.appearance else { assertionFailure(); return }
+        segmentedControl.setTitleTextAttributes([NSFontAttributeName: appearance.editorTextAnnotationSegmentFont], forState: UIControlState.Normal)
+        UITextView.appearanceWhenContainedInInstancesOfClasses([TextAnnotationView.self]).font = appearance.editorTextAnnotationFont
     }
     
     // MARK: - Create annotations
@@ -627,7 +642,19 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
 
 extension EditImageViewController: Editor {
     public func setScreenshot(screenshot: UIImage) {
-        self.imageView.image = screenshot
+        let oldScreenshot = imageView.image
+        
+        imageView.image = screenshot
+        
+        if screenshot != oldScreenshot {
+            clearAllAnnotations()
+        }
+    }
+    
+    private func clearAllAnnotations() {
+        for annotationView in annotationsView.subviews where annotationView is AnnotationView {
+            annotationView.removeFromSuperview()
+        }
     }
     
     public var viewController: UIViewController {
