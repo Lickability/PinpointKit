@@ -66,6 +66,15 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
             feedbackViewController.feedbackDelegate = newValue
         }
     }
+    
+    public var feedbackRecipients: [String]? {
+        get {
+            return feedbackViewController.feedbackRecipients
+        }
+        set {
+            feedbackViewController.feedbackRecipients = newValue
+        }
+    }
         
     override init(navigationBarClass: AnyClass?, toolbarClass: AnyClass?) {
         feedbackViewController = FeedbackViewController()

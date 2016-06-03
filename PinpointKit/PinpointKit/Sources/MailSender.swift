@@ -96,6 +96,8 @@ public class MailSender: NSObject, Sender {
 private extension MFMailComposeViewController {
     
     func attachFeedback(feedback: Feedback) throws {
+        setToRecipients(feedback.recipients)
+        
         if let subject = feedback.title {
             setSubject(subject)
         }

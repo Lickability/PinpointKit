@@ -30,6 +30,7 @@ public final class FeedbackViewController: UITableViewController {
     // MARK: - FeedbackCollector
     
     public weak var feedbackDelegate: FeedbackCollectorDelegate?
+    public var feedbackRecipients: [String]?
     
     // MARK: - FeedbackViewController
     
@@ -149,9 +150,9 @@ public final class FeedbackViewController: UITableViewController {
         let feedback: Feedback?
         
         if let screenshot = annotatedScreenshot {
-            feedback = Feedback(screenshot: .Annotated(image: screenshot), logs: logs)
+            feedback = Feedback(screenshot: .Annotated(image: screenshot), recipients: feedbackRecipients, logs: logs)
         } else if let screenshot = screenshot {
-            feedback = Feedback(screenshot: .Original(image: screenshot), logs: logs)
+            feedback = Feedback(screenshot: .Original(image: screenshot), recipients: feedbackRecipients, logs: logs)
         } else {
             feedback = nil
         }
