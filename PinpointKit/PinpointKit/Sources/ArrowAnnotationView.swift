@@ -87,32 +87,31 @@ class ArrowAnnotationView: AnnotationView {
     }
 
     override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        let path = annotation?.touchTargetPath
-        return path.map { $0.containsPoint(point) } ?? false
+        return annotation?.touchTargetPath?.containsPoint(point) ?? false
     }
 
 
     // MARK: - AnnotationView
 
     override func setSecondControlPoint(point: CGPoint) {
-        annotation = annotation.map {
-            ArrowAnnotation(startLocation: $0.startLocation, endLocation: point, strokeColor: $0.strokeColor)
-        }
+        guard let previousAnnotation = annotation else { return }
+        
+        annotation = ArrowAnnotation(startLocation: previousAnnotation.startLocation, endLocation: point, strokeColor: previousAnnotation.strokeColor)
     }
 
     override func moveControlPoints(translation: CGPoint) {
-        annotation = annotation.map {
-            let startLocation = CGPoint(x: $0.startLocation.x + translation.x, y: $0.startLocation.y + translation.y)
-            let endLocation = CGPoint(x: $0.endLocation.x + translation.x, y: $0.endLocation.y + translation.y)
-            return ArrowAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: $0.strokeColor)
-        }
+        guard let previousAnnotation = annotation else { return }
+        let startLocation = CGPoint(x: previousAnnotation.startLocation.x + translation.x, y: previousAnnotation.startLocation.y + translation.y)
+        let endLocation = CGPoint(x: previousAnnotation.endLocation.x + translation.x, y: previousAnnotation.endLocation.y + translation.y)
+        
+        annotation = ArrowAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: previousAnnotation.strokeColor)
     }
     
     override func scaleControlPoints(scale: CGFloat) {
-        annotation = annotation.map {
-            let startLocation = $0.scaledPoint($0.startLocation, scale: scale)
-            let endLocation = $0.scaledPoint($0.endLocation, scale: scale)
-            return ArrowAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: $0.strokeColor)
-        }
+        guard let previousAnnotation = annotation else { return }
+        let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scale)
+        let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scale)
+        
+        annotation = ArrowAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: previousAnnotation.strokeColor)
     }
 }

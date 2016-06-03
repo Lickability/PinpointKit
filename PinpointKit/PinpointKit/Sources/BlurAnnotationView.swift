@@ -115,25 +115,25 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     // MARK: - AnnotationView
 
     override func setSecondControlPoint(point: CGPoint) {
-        guard let annotation = annotation else { return }
+        guard let previousAnnotation = annotation else { return }
         
-        BlurAnnotation(startLocation: annotation.startLocation, endLocation: point, image: annotation.image)
+        annotation = BlurAnnotation(startLocation: previousAnnotation.startLocation, endLocation: point, image: previousAnnotation.image)
     }
 
     override func moveControlPoints(translation: CGPoint) {
-        guard let annotation = annotation else { return }
-        let startLocation = CGPoint(x: annotation.startLocation.x + translation.x, y: annotation.startLocation.y + translation.y)
-        let endLocation = CGPoint(x: annotation.endLocation.x + translation.x, y: annotation.endLocation.y + translation.y)
+        guard let previousAnnotation = annotation else { return }
+        let startLocation = CGPoint(x: previousAnnotation.startLocation.x + translation.x, y: previousAnnotation.startLocation.y + translation.y)
+        let endLocation = CGPoint(x: previousAnnotation.endLocation.x + translation.x, y: previousAnnotation.endLocation.y + translation.y)
         
-        BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: annotation.image)
+        annotation = BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: previousAnnotation.image)
     }
 
     override func scaleControlPoints(scale: CGFloat) {
-        guard let annotation = annotation else { return }
-        let startLocation = annotation.scaledPoint(annotation.startLocation, scale: scale)
-        let endLocation = annotation.scaledPoint(annotation.endLocation, scale: scale)
+        guard let previousAnnotation = annotation else { return }
+        let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scale)
+        let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scale)
         
-        BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: annotation.image)
+        annotation = BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: previousAnnotation.image)
     }
 
     // MARK: - GLKViewDelegate
