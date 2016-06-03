@@ -8,14 +8,14 @@
 
 import UIKit
 
-public final class KeyboardAvoider {
-    public var viewsToAvoidKeyboard: [UIView] = []
-    public var triggerViews: [UIView] = []
-    public let window: UIWindow?
+final class KeyboardAvoider {
+    var viewsToAvoidKeyboard: [UIView] = []
+    var triggerViews: [UIView] = []
+    let window: UIWindow?
     
     private var originalConstraintConstants: [NSLayoutConstraint: CGFloat] = [:]
     
-    public init(window: UIWindow) {
+    init(window: UIWindow) {
         self.window = window
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(KeyboardAvoider.keyboardWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)

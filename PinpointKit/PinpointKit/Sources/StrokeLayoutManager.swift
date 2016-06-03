@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class StrokeLayoutManager: NSLayoutManager {
+final class StrokeLayoutManager: NSLayoutManager {
     var strokeColor: UIColor?
     var strokeWidth: CGFloat?
     

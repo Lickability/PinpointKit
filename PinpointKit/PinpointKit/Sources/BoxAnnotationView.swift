@@ -48,7 +48,8 @@ private func PathForPointInsideBoxAnnotation(annotation: BoxAnnotation) -> UIBez
         }
 }
 
-class BoxAnnotationView: AnnotationView {
+/// The default box annotation view.
+public class BoxAnnotationView: AnnotationView {
 
     // MARK: - Properties
 
@@ -82,19 +83,19 @@ class BoxAnnotationView: AnnotationView {
         layer.shadowRadius = 4
     }
 
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
 
     // MARK: - UIView
 
-    override func tintColorDidChange() {
+    override public func tintColorDidChange() {
         super.tintColorDidChange()
         setNeedsDisplay()
     }
 
-    override func drawRect(rect: CGRect) {
+    override public func drawRect(rect: CGRect) {
         tintColor.setFill()
         UIColor.whiteColor().setStroke()
 
@@ -103,7 +104,7 @@ class BoxAnnotationView: AnnotationView {
         path?.stroke()
     }
 
-    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+    override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
         return annotation.flatMap(PathForPointInsideBoxAnnotation).map({ $0.containsPoint(point) }) ?? false
     }
 

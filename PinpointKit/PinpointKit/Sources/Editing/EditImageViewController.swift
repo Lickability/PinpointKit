@@ -2,6 +2,7 @@ import UIKit
 import Photos
 import CoreImage
 
+/// The view controller responsible for editing an image.
 public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
     static let TextViewEditingBarAnimationDuration = 0.25
     static let MinimumAnnotationsNeededToPromptBeforeDismissal = 3
@@ -11,6 +12,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private var hasSavedOrSharedAnyComposion: Bool = false
     
+    /// The `EditorDelegate` of the `EditImageViewController`.
     public weak var delegate: EditorDelegate?
     
     // MARK: - Properties
@@ -102,7 +104,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private var selectedAnnotationView: AnnotationView?
     
-    private(set) public var currentViewModel: AssetViewModel?
+    private(set) var currentViewModel: AssetViewModel?
     
     public init() {
         super.init(nibName: nil, bundle: nil)
@@ -141,6 +143,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
        
     }
     
+    @available(*, unavailable)
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

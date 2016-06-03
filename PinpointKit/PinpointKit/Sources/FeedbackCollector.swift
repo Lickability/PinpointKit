@@ -15,6 +15,7 @@ public protocol FeedbackCollector: LogSupporting, InterfaceCustomizable {
     /// The configuration that the collector should use to set itself up.
     var interfaceCustomization: InterfaceCustomization? { get set }
     
+    /// The Editor to collect feedback for.
     var editor: Editor? { get set }
     
     /**

@@ -8,7 +8,9 @@
 
 import UIKit
 
+/// The base annotation view.
 public class AnnotationView: UIView {
+    
     static let BorderAlpha: CGFloat = 0.7
 
     // MARK: - Properties
