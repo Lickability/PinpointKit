@@ -25,7 +25,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
             setNeedsDisplay()
             
             let layer = CAShapeLayer()
-            layer.path = annotation.map({ UIBezierPath(rect: $0.frame) })?.CGPath
+            layer.path = annotation.map { UIBezierPath(rect: $0.frame) } ?.CGPath
             GLKView.layer.mask = layer
         }
     }
@@ -90,7 +90,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
         let frame = touchTargetFrame
         
-        return frame.map({ $0.contains(point) }) ?? false
+        return frame.map { $0.contains(point) } ?? false
     }
     
     override public func drawRect(rect: CGRect) {
@@ -112,25 +112,25 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     // MARK: - AnnotationView
 
     override func setSecondControlPoint(point: CGPoint) {
-        annotation = annotation.map({
+        annotation = annotation.map {
             BlurAnnotation(startLocation: $0.startLocation, endLocation: point, image: $0.image)
-        })
+        }
     }
 
     override func moveControlPoints(translation: CGPoint) {
-        annotation = annotation.map({
+        annotation = annotation.map {
             let startLocation = CGPoint(x: $0.startLocation.x + translation.x, y: $0.startLocation.y + translation.y)
             let endLocation = CGPoint(x: $0.endLocation.x + translation.x, y: $0.endLocation.y + translation.y)
             return BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: $0.image)
-        })
+        }
     }
 
     override func scaleControlPoints(scale: CGFloat) {
-        annotation = annotation.map({
+        annotation = annotation.map {
             let startLocation = $0.scaledPoint($0.startLocation, scale: scale)
             let endLocation = $0.scaledPoint($0.endLocation, scale: scale)
             return BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: $0.image)
-        })
+        }
     }
 
     // MARK: - GLKViewDelegate

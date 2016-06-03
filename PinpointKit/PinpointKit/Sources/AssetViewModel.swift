@@ -30,9 +30,9 @@ public final class AssetViewModel: NSObject {
     public func requestImage(completion: UIImage? -> ()) {
         let options = PHImageRequestOptions()
         options.networkAccessAllowed = true
-        imageManager.requestImageForAsset(asset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFit, options: options, resultHandler: { image, _ in
+        imageManager.requestImageForAsset(asset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFit, options: options) { image, _ in
             completion(image)
-        })
+        }
     }
 
 }
