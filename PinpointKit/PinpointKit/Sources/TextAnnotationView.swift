@@ -134,7 +134,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
             
             let size = CGSize(width: textViewFrame.width, height: CGFloat.max)
             
-            textViewFrame.size.height = max(self.textView.sizeThatFits(size).height, minHeight)
+            textViewFrame.size.height = max(textView.sizeThatFits(size).height, minHeight)
             
             return textViewFrame
         }()

@@ -36,7 +36,7 @@ class Annotation {
         let centeredXDistance = scaledRect.width / 2.0 - frame.width / 2.0
         let centeredYDistance = scaledRect.height / 2.0 - frame.height / 2.0
 
-        scaledRect.origin = CGPoint(x: frame.origin.x - centeredXDistance, y: frame.origin.y - centeredYDistance)
+        scaledRect.origin = CGPoint(x: frame.minX - centeredXDistance, y: frame.minY - centeredYDistance)
         
         var newPoint: CGPoint = CGPoint.zero
         if point.x == frame.minX {

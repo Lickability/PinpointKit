@@ -12,7 +12,7 @@ import UIKit
 public protocol Sender: class {
     
     /// A delegate that is informed of successful or failed feedback sending.
-    var delegate: SenderDelegate? { get set }
+    weak var delegate: SenderDelegate? { get set }
     
     /**
      Sends the feedback using the provided view controller as a presenting view controller.

@@ -85,13 +85,20 @@ public final class FeedbackViewController: UITableViewController {
         updateInterfaceCustomization()
     }
     
+    public override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Since this view controller could be reused in another orientation, update the table header view on every appearance to reflect the current orientation sizing.
+        updateTableHeaderView()
+    }
+    
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         
         coordinator.animateAlongsideTransition({ context in
             // Layout and adjust the height of the table header view by setting the property once more to alert the table view of a layout change.
             self.tableView.tableHeaderView?.layoutIfNeeded()
             self.tableView.tableHeaderView = self.tableView.tableHeaderView
-            }, completion: nil)
+        }, completion: nil)
     }
     
     // MARK: - FeedbackViewController
@@ -192,7 +199,7 @@ extension FeedbackViewController: FeedbackCollector {
 
 extension FeedbackViewController: EditorDelegate {
     public func editorWillDismiss(editor: Editor, screenshot: UIImage) {
-        self.annotatedScreenshot = screenshot
+        annotatedScreenshot = screenshot
         updateTableHeaderView()
     }
 }
