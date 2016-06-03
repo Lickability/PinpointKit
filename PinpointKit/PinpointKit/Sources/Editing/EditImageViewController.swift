@@ -110,8 +110,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private var selectedAnnotationView: AnnotationView?
     
-    private(set) public var currentViewModel: AssetViewModel?
-    
     public init() {
         super.init(nibName: nil, bundle: nil)
         
@@ -141,12 +139,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         annotationsView.accessibilityTraits = annotationsView.accessibilityTraits | UIAccessibilityTraitAllowsDirectInteraction
         
         closeBarButtonItem.accessibilityLabel = "Close"
-        
-        if let currentViewModel = currentViewModel {
-            self.currentViewModel = currentViewModel
-            currentViewModel.requestImage { [weak self] in self?.imageView.image = $0 }
-        }
-       
     }
     
     public required init?(coder aDecoder: NSCoder) {
@@ -254,7 +246,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return currentModelAssetIsLandscape() ? .Landscape : [.Portrait, .PortraitUpsideDown]
+        return imageIsLandscape() ? .Landscape : [.Portrait, .PortraitUpsideDown]
     }
     
     public override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
@@ -267,7 +259,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             portraitOrientation = (deviceOrientation == .PortraitUpsideDown ? .PortraitUpsideDown : .Portrait)
         }
         
-        return currentModelAssetIsLandscape() ? landscapeOrientation : portraitOrientation
+        return imageIsLandscape() ? landscapeOrientation : portraitOrientation
     }
     
     // MARK: - Private
@@ -369,13 +361,14 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         return hitAnnotationView ?? hitTextViewSuperview
     }
     
-    private func currentModelAssetIsLandscape() -> Bool {
-        return currentViewModel.map {
-            let asset = $0.asset
-            
-            let portraitPixelSize = UIScreen.mainScreen().portraitPixelSize()
-            return CGFloat(asset.pixelWidth) == portraitPixelSize.height && CGFloat(asset.pixelHeight) == portraitPixelSize.width
-            } ?? false
+    private func imageIsLandscape() -> Bool {
+        guard let imageSize = imageView.image?.size else { return false }
+        guard let imageScale = imageView.image?.scale else { return false }
+
+        let imagePixelSize = CGSize(width: imageSize.width * imageScale, height: imageSize.height * imageScale)
+        
+        let portraitPixelSize = UIScreen.mainScreen().portraitPixelSize()
+        return CGFloat(imagePixelSize.width) == portraitPixelSize.height && CGFloat(imagePixelSize.height) == portraitPixelSize.width
     }
     
     private func beginEditingTextView() {
