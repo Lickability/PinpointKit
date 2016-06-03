@@ -213,10 +213,6 @@ extension FeedbackViewController {
         userEnabledLogCollection = !userEnabledLogCollection
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
-    
-    public override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.textLabel?.font = interfaceCustomization?.appearance.logCollectionPermissionFont
-    }
 }
 
 private extension UITableView {
