@@ -27,11 +27,11 @@ public final class AssetViewModel: NSObject {
     // MARK: - Helpers
     
     // TODO figure out cancelation
-    public func requestImage(f: UIImage? -> ()) {
+    public func requestImage(completion: UIImage? -> ()) {
         let options = PHImageRequestOptions()
         options.networkAccessAllowed = true
-        let _ = imageManager.requestImageForAsset(asset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFit, options: options, resultHandler: { image, _ in
-            f(image)
+        imageManager.requestImageForAsset(asset, targetSize: PHImageManagerMaximumSize, contentMode: .AspectFit, options: options, resultHandler: { image, _ in
+            completion(image)
         })
     }
 
