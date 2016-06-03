@@ -9,6 +9,7 @@
 import UIKit
 
 extension ArrowAnnotation {
+    
     var path: UIBezierPath? {
         if arrowLength < headLength * 2.0 {
             return nil
@@ -32,7 +33,8 @@ extension ArrowAnnotation {
     }
 }
 
-class ArrowAnnotationView: AnnotationView {
+/// The default arrow annotation view.
+public class ArrowAnnotationView: AnnotationView {
 
     // MARK: - Properties
 
@@ -64,20 +66,20 @@ class ArrowAnnotationView: AnnotationView {
         layer.shadowOpacity = 1
         layer.shadowRadius = 4
     }
-
-    required init?(coder: NSCoder) {
+    
+    @available(*, unavailable)
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-
     // MARK: - UIView
 
-    override func tintColorDidChange() {
+    override public func tintColorDidChange() {
         super.tintColorDidChange()
         setNeedsDisplay()
     }
 
-    override func drawRect(rect: CGRect) {
+    override public func drawRect(rect: CGRect) {
         tintColor.setFill()
         annotation?.strokeColor.setStroke()
 
@@ -86,7 +88,7 @@ class ArrowAnnotationView: AnnotationView {
         path?.stroke()
     }
 
-    override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+    override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
         let path = annotation?.touchTargetPath
         return path.map { $0.containsPoint(point) } ?? false
     }

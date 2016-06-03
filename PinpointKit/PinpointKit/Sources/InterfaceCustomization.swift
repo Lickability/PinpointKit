@@ -11,6 +11,12 @@ public struct InterfaceCustomization {
     let interfaceText: InterfaceText
     let appearance: Appearance
     
+    /**
+     Initializes an InterfaceCustomization object.
+     
+     - parameter interfaceText: The interfact text customization.
+     - parameter appearance:    The appearance customization.     
+     */
     public init(interfaceText: InterfaceText = InterfaceText(), appearance: Appearance = Appearance()) {
         self.interfaceText = interfaceText
         self.appearance = appearance

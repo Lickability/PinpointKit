@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// The default view controller for the text log.
 public class BasicLogViewController: UIViewController, LogViewer {
     
     // MARK: - InterfaceCustomizable

@@ -2,6 +2,7 @@ import UIKit
 import Photos
 import CoreImage
 
+/// The default view controller responsible for editing an image.
 public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
     static let TextViewEditingBarAnimationDuration = 0.25
     static let MinimumAnnotationsNeededToPromptBeforeDismissal = 3
@@ -144,6 +145,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         closeBarButtonItem.accessibilityLabel = "Close"
     }
     
+    @available(*, unavailable)
     public required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

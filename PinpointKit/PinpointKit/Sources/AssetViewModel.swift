@@ -9,17 +9,17 @@
 import UIKit
 import Photos
 
-public final class AssetViewModel: NSObject {
+final class AssetViewModel: NSObject {
 
     // MARK: - Properties
 
-    public let imageManager: PHImageManager
+    let imageManager: PHImageManager
 
-    public let asset: PHAsset
+    let asset: PHAsset
 
     // MARK: - Initializers
 
-    public init(imageManager: PHImageManager, asset: PHAsset) {
+    init(imageManager: PHImageManager, asset: PHAsset) {
         self.imageManager = imageManager
         self.asset = asset
     }
@@ -34,5 +34,4 @@ public final class AssetViewModel: NSObject {
             completion(image)
         })
     }
-
 }
