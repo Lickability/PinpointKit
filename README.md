@@ -1,4 +1,4 @@
-**PinpointKit** is an open-source iOS library in Swift that lets your your testers and user send feedback with annotated screenshots and logs using a simple gesture.
+**PinpointKit** is an open-source iOS library in Swift that lets your testers and users send feedback with annotated screenshots and logs using a simple gesture.
 
 ## Features
 
@@ -8,7 +8,7 @@
 - [x] Blur our sensitive information before sending screenshots
 - [x] Customize everything
 	- [x] The color of the arrows, and boxes
-	- [x] The text in the interfaces
+	- [x] The text in the interface
 	- [x] How and where your feedback is sent
 - [x] Absolutely free and open source
 - [x] No backend required
@@ -105,7 +105,7 @@ The `PinpointKit.framework` is automatically added as a target dependency, linke
 
 Once PinpointKit is installed, it’s simple to use.
 
-To display a feedback view, simply add the following code where you want the feedback to display, passing the view controller from which PinpointKit should present:
+To display a feedback view controller, simply add the following code where you want the feedback to display, passing the view controller from which PinpointKit should present:
 
 ```swift
 PinpointKit.defaultPinpointKit.show(fromViewController: viewController)
@@ -121,4 +121,4 @@ lazy var window: UIWindow? = {
 
 If you don't want to use [`defaultPinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L17) you can specify both a [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) and [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L49) instances on initialization of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift).
 
-The [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) instance will allow you to specify how the feedback view looks and behaves, while the [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L49) instance will give you hooks into the state of the feedback being sent.
+The [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) struct will allow you to specify how the feedback view looks and behaves, while the [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L49) instance will give you hooks into the state of the feedback being sent.
