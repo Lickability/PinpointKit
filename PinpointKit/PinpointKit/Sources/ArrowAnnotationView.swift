@@ -47,7 +47,6 @@ class ArrowAnnotationView: AnnotationView {
         return annotation?.path?.bounds
     }
 
-
     // MARK: - Initializers
 
     convenience init() {
