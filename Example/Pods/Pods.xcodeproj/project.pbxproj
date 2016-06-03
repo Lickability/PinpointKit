@@ -68,7 +68,6 @@
 		E85055EF39EBF4294C946536467B2288 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBC7D134D6F3D0898BD1FC5F0771EA7 /* Feedback.swift */; };
 		F10D6F308264A0A591F2589A0C3E0490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E4C26A72D50DB44D17501848286B727 /* Foundation.framework */; };
 		F15801118086D7ED81A97CA2D5A54602 /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F8A5603E2F85795926E1DBC573DA1D /* ScreenshotDetector.swift */; };
-		F56FF73BD7BCF0324BF569A15A0DDDEA /* AssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95DEE8F1066F0DE28A98B0830C85671 /* AssetViewModel.swift */; };
 		F6A301168138D00B0C3B341530C24B7D /* PinpointKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EEDDBE4C1A424929684B6138D23642E8 /* PinpointKit-dummy.m */; };
 		F87B4B5C8FDB74BDD0623DD4035D8D0A /* CheckmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2CE6B3E061366FA36405E5D0E42E67 /* CheckmarkCell.swift */; };
 /* End PBXBuildFile section */
@@ -150,7 +149,6 @@
 		D37B3CC579D24F19F07B469C5B0CBF69 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3978111B9A4397C306BABFDB5B20D6E /* Pods-PinpointKitExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PinpointKitExample-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D464EDAAB861D1D404088A7C1BE3D62A /* PinpointKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinpointKit.swift; sourceTree = "<group>"; };
-		D95DEE8F1066F0DE28A98B0830C85671 /* AssetViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AssetViewModel.swift; sourceTree = "<group>"; };
 		DC58B3A702B075BDAE4C485AF19D37C6 /* Annotations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Annotations.swift; sourceTree = "<group>"; };
 		E42A9844F76F9E28FEEC5A0F0037FF76 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		E67F14BE56D39AB091EA3093215FB9EE /* Screen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
@@ -328,7 +326,6 @@
 				7203702A3822ED47393005A0F9FE7501 /* ArrowAnnotationView.swift */,
 				C0A2A0192F202BCF89F9C19CF9455EC3 /* ASLLogger.h */,
 				6832A713195B5704CF66B5D9D4AB441E /* ASLLogger.m */,
-				D95DEE8F1066F0DE28A98B0830C85671 /* AssetViewModel.swift */,
 				1D2B278FC673DD571C18D29175F7A5AF /* BarButtonItem.swift */,
 				FAEF3E772B70666681E46CE33845D222 /* BasicLogViewController.swift */,
 				BA21ECFC5E2C84EEF30545C987D4B81E /* BezierPath.swift */,
@@ -505,7 +502,6 @@
 				53CD663D26E15B5F52880BF8C0A661FF /* AnnotationViewFactory.swift in Sources */,
 				DBD66326A30E6AB39D660474E63BA61C /* ArrowAnnotationView.swift in Sources */,
 				484C4C21727D7BB29BE4898F005B1374 /* ASLLogger.m in Sources */,
-				F56FF73BD7BCF0324BF569A15A0DDDEA /* AssetViewModel.swift in Sources */,
 				212C189C5AD5AC9D9F658F40F97FD870 /* BarButtonItem.swift in Sources */,
 				0462AD05A2F87E8CC1D9A63F757EBCA4 /* BasicLogViewController.swift in Sources */,
 				3106699B5836D1BEB7438FF4C984FC5B /* BezierPath.swift in Sources */,
