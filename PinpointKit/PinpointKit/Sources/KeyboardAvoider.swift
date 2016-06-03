@@ -11,7 +11,8 @@ import UIKit
 public final class KeyboardAvoider {
     public var viewsToAvoidKeyboard: [UIView] = []
     public var triggerViews: [UIView] = []
-    public let window: UIWindow?
+    
+    private let window: UIWindow
     
     private var originalConstraintConstants: [NSLayoutConstraint: CGFloat] = [:]
     
@@ -29,56 +30,53 @@ public final class KeyboardAvoider {
         let frameEndValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
         let animationDurationValue = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSValue
         
-        if let frameEndValue = frameEndValue {
-            let keyboardEndFrame = frameEndValue.CGRectValue()
+        guard let keyboardEndFrame = frameEndValue?.CGRectValue() else { return }
+        
+        let animationDurationNumber = animationDurationValue as? NSNumber
+        let animationDuration = animationDurationNumber?.doubleValue ?? 0.0
+        
+        var difference: CGFloat = 0
+        
+        for triggerView in triggerViews {
+            let triggerViewFrameInWindow = triggerView.superview?.convertRect(triggerView.frame, toView: window) ?? CGRect.zero
+            let intersectsKeyboard = triggerViewFrameInWindow.intersects(keyboardEndFrame)
             
-            let animationDurationNumber = animationDurationValue as? NSNumber
-            let animationDuration = animationDurationNumber.map { $0.doubleValue } ?? 0.0
-            
-            var difference: CGFloat = 0
-            
-            for triggerView in triggerViews {
-                let triggerViewFrameInWindow = triggerView.superview?.convertRect(triggerView.frame, toView: window) ?? CGRect.zero
-                let intersectsKeyboard = triggerViewFrameInWindow.intersects(keyboardEndFrame)
-                
-                let triggerKeyboardDifference = intersectsKeyboard ? triggerViewFrameInWindow.maxY - keyboardEndFrame.minY : 0
-                difference = max(difference, triggerKeyboardDifference)
-            }
-            
-            // If the keyboard is going to or below 0, we're dismissing.
-            let isDismissing = window.map { keyboardEndFrame.minY >= $0.bounds.maxY } ?? false
-            
-            // This will be animated because this notification is called from within an animation block.
-            for avoidingView in self.viewsToAvoidKeyboard {
-                let constraints = avoidingView.superview?.constraints ?? []
-                
-                self.updateAndStoreConstraints(constraints, onView: avoidingView, withDifference: difference, isDismissing: isDismissing)
-                
-                avoidingView.superview?.layoutIfNeeded()
-            }
-            
-            UIView.animateWithDuration(animationDuration, animations: {}, completion: { (completed) in
-                if isDismissing {
-                    self.originalConstraintConstants.removeAll(keepCapacity: false)
-                }
-            })
+            let triggerKeyboardDifference = intersectsKeyboard ? triggerViewFrameInWindow.maxY - keyboardEndFrame.minY : 0
+            difference = max(difference, triggerKeyboardDifference)
         }
+        
+        // If the keyboard is going to or below 0, we're dismissing.
+        let isDismissing = keyboardEndFrame.minY >= window.bounds.maxY
+        
+        // This will be animated because this notification is called from within an animation block.
+        for avoidingView in viewsToAvoidKeyboard {
+            let constraints = avoidingView.superview?.constraints ?? []
+            
+            updateAndStoreConstraints(constraints, onView: avoidingView, withDifference: difference, isDismissing: isDismissing)
+            
+            avoidingView.superview?.layoutIfNeeded()
+        }
+        
+        UIView.animateWithDuration(animationDuration, animations: {}, completion: { (completed) in
+            if isDismissing {
+                self.originalConstraintConstants.removeAll(keepCapacity: false)
+            }
+        })
     }
     
-    private func updateAndStoreConstraints(constraints: [AnyObject], onView view: UIView, withDifference difference: CGFloat, isDismissing: Bool) {
-        let typedContraints = constraints.filter { $0 is NSLayoutConstraint }.map { $0 as! NSLayoutConstraint } // swiftlint:disable:this force_cast
+    private func updateAndStoreConstraints(constraints: [NSLayoutConstraint], onView view: UIView, withDifference difference: CGFloat, isDismissing: Bool) {
         
-        for constraint in typedContraints {
-            let originalConstant = self.originalConstraintConstants[constraint]
+        for constraint in constraints {
+            let originalConstant = originalConstraintConstants[constraint]
             
             if let originalConstant = originalConstant where isDismissing {
                 constraint.constant = originalConstant
-                self.originalConstraintConstants.removeValueForKey(constraint)
+                originalConstraintConstants.removeValueForKey(constraint)
                 
             } else if !isDismissing && firstOrSecondItemForConstraint(constraint, isEqualToView: view) {
                 // Only replace contraints that don't already exist.
                 if originalConstant == nil {
-                    self.originalConstraintConstants[constraint] = constraint.constant
+                    originalConstraintConstants[constraint] = constraint.constant
                 }
                 
                 if constraint.secondAttribute == .Bottom {

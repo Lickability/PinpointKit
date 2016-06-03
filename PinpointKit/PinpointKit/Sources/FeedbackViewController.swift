@@ -192,7 +192,7 @@ extension FeedbackViewController: FeedbackCollector {
 
 extension FeedbackViewController: EditorDelegate {
     public func editorWillDismiss(editor: Editor, screenshot: UIImage) {
-        self.annotatedScreenshot = screenshot
+        annotatedScreenshot = screenshot
         updateTableHeaderView()
     }
 }

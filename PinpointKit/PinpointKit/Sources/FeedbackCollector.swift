@@ -10,7 +10,7 @@
 public protocol FeedbackCollector: class, LogSupporting, InterfaceCustomizable {
     
     /// A delegate that is informed of significant events in feedback collection.
-    var feedbackDelegate: FeedbackCollectorDelegate? { get set }
+    weak var feedbackDelegate: FeedbackCollectorDelegate? { get set }
     
     /// The recipients of the feedback submission. Suitable for email recipients in the "To:" field.
     var feedbackRecipients: [String]? { get set }

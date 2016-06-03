@@ -22,6 +22,6 @@ extension PinpointKit: ShakeDetectingWindowDelegate {
             return
         }
 
-        self.show(fromViewController: rootViewController)
+        show(fromViewController: rootViewController)
     }
 }

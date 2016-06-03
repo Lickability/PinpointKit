@@ -60,7 +60,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }()
     
     private var shouldPromptBeforeDismissal: Bool {
-        return !hasACopyOfCurrentComposition && self.annotationsView.subviews.count >= self.dynamicType.MinimumAnnotationsNeededToPromptBeforeDismissal
+        return !hasACopyOfCurrentComposition && annotationsView.subviews.count >= self.dynamicType.MinimumAnnotationsNeededToPromptBeforeDismissal
     }
     
     private var createAnnotationPanGestureRecognizer: UIPanGestureRecognizer! = nil
@@ -217,9 +217,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // TODO
-        // reportEventNameAsScreenView(AnalyticsEvent(name: "Edit Image"))
-        
         navigationController?.hidesBarsOnTap = true
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
@@ -228,9 +225,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         super.viewDidAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
-        
-        // TODO
-        // BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("navbarSlideIn", fileExtension: "aif")
     }
     
     public override func viewWillDisappear(animated: Bool) {
@@ -239,7 +233,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     public override func viewDidLayoutSubviews() {
-        if let height = self.navigationController?.navigationBar.frame.size.height {
+        if let height = navigationController?.navigationBar.frame.height {
             var rect = annotationsView.frame
             rect.origin.y += height
             rect.size.height -= height
@@ -309,7 +303,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             alert.popoverPresentationController?.barButtonItem = button
             presentViewController(alert, animated: true, completion: nil)
         } else {
-            self.delegate?.editorWillDismiss(self, screenshot: self.view.pinpoint_screenshot)
+            delegate?.editorWillDismiss(self, screenshot: view.pinpoint_screenshot)
 
             dismissViewControllerAnimated(true, completion: nil)
         }
@@ -425,9 +419,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     @objc private func toolChanged(segmentedControl: UISegmentedControl) {
-        // TODO
-        // BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("annotationSegmentTap", fileExtension: "aif")
-        
         endEditingTextView()
         
         // Disable the bar hiding behavior when selecting the text tool. Enable for all others.
@@ -456,11 +447,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func handleCreateAnnotationGestureRecognizerBegan(gestureRecognizer: UIGestureRecognizer) {
-        guard let currentTool = self.currentTool else { return }
+        guard let currentTool = currentTool else { return }
         
         let currentLocation = gestureRecognizer.locationInView(annotationsView)
         
-        let factory = AnnotationViewFactory(image: self.imageView.image?.CGImage, currentLocation: currentLocation, tool: currentTool)
+        let factory = AnnotationViewFactory(image: imageView.image?.CGImage, currentLocation: currentLocation, tool: currentTool)
         
         let view: AnnotationView = factory.annotationView()
         
@@ -580,15 +571,12 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func deleteAnnotationView(annotationView: UIView, animated: Bool) {
-        let removeAnnotationView = { () -> Void in
+        let removeAnnotationView = {
             self.endEditingTextView()
             annotationView.removeFromSuperview()
         }
         
         if animated {
-            // TODO
-            // BRYSoundEffectPlayer.sharedInstance().playPinpointSoundEffectWithName("annotationDelete", fileExtension: "aif")
-            
             UIView.performSystemAnimation(.Delete, onViews: [annotationView], options: [], animations: nil, completion: { (finished: Bool) -> Void in
                 removeAnnotationView()
             })
@@ -652,9 +640,5 @@ extension EditImageViewController: Editor {
         for annotationView in annotationsView.subviews where annotationView is AnnotationView {
             annotationView.removeFromSuperview()
         }
-    }
-    
-    public var viewController: UIViewController {
-        return self
     }
 }
