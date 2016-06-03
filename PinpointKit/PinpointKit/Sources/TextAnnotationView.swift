@@ -16,7 +16,6 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     let textView: UITextView = {
         let storage = NSTextStorage()
         let manager = StrokeLayoutManager()
-        manager.strokeColor = UIColor.whiteColor()
         manager.strokeWidth = 4.5
         
         let container = NSTextContainer(size: CGSize(width: 0, height: CGFloat.max))
@@ -46,6 +45,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         didSet {
             textView.frame = annotation.map { $0.frame } ?? CGRect.zero
             originalTextViewFrame = textView.frame
+            (textView.layoutManager as? StrokeLayoutManager)?.strokeColor = annotation?.strokeColor
         }
     }
     

@@ -8,7 +8,6 @@ disabled_rules: # rule identifiers to exclude from running
   
 opt_in_rules: # some rules are only opt-in
   - force_unwrapping
-  - force_https
   - empty_count
   - conditional_binding_cascade
   
@@ -39,5 +38,5 @@ custom_rules:
     name: "Force HTTPS over HTTP"
     regex: "((?i)http(?!s))"
     match_kinds: string
-    message: "HTTPS should be favored over HTTP"
+    message: "HTTPS should be favored over HTTP."
     severity: warning

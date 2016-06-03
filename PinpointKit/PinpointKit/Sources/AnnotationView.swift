@@ -12,7 +12,7 @@ import UIKit
 public class AnnotationView: UIView {
     
     static let BorderAlpha: CGFloat = 0.7
-
+    
     // MARK: - Properties
 
     var annotationFrame: CGRect? {

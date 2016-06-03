@@ -17,6 +17,9 @@ class Annotation {
 
     let endLocation: CGPoint
     
+    /// The color used to stroke the annotation.
+    let strokeColor: UIColor
+    
     var frame: CGRect {
         let origin = CGPoint(
             x: min(startLocation.x, endLocation.x),
@@ -56,9 +59,10 @@ class Annotation {
 
     // MARK: - Initializers
 
-    init(startLocation: CGPoint = CGPoint.zero, endLocation: CGPoint = CGPoint.zero) {
+    init(startLocation: CGPoint = CGPoint.zero, endLocation: CGPoint = CGPoint.zero, strokeColor: UIColor) {
         self.startLocation = startLocation
         self.endLocation = endLocation
+        self.strokeColor = strokeColor
     }
 }
 
@@ -153,6 +157,6 @@ class BlurAnnotation: Annotation {
 
     init(startLocation: CGPoint, endLocation: CGPoint, image: CIImage) {
         self.image = image
-        super.init(startLocation: startLocation, endLocation: endLocation)
+        super.init(startLocation: startLocation, endLocation: endLocation, strokeColor: .clearColor())
     }
 }
