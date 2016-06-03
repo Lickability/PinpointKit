@@ -12,7 +12,7 @@ public struct InterfaceCustomization {
     let appearance: Appearance
     
     /**
-     Initializes a InterfaceCustomization object.
+     Initializes an InterfaceCustomization object.
      
      - parameter interfaceText: The interfact text customization.
      - parameter appearance:    The appearance customization.     
