@@ -24,11 +24,12 @@ extension ArrowAnnotation {
     }
     
     var touchTargetPath: UIBezierPath? {
-        let outsideStrokeWidth = strokeWidth * 5.0
+        guard let path = path else { return nil }
         
-        return path
-            .flatMap { CGPathCreateCopyByStrokingPath($0.CGPath, nil, outsideStrokeWidth, .Butt, .Bevel, 0) }
-            .map { UIBezierPath(CGPath: $0) }
+        let outsideStrokeWidth = strokeWidth * 5.0
+        guard let strokedPath = CGPathCreateCopyByStrokingPath(path.CGPath, nil, outsideStrokeWidth, .Butt, .Bevel, 0) else { return nil }
+        
+        return UIBezierPath(CGPath: strokedPath)
     }
 }
 
