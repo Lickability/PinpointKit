@@ -40,6 +40,10 @@ class AnnotationsView: UIView {
     override func tintColorDidChange() {
         super.tintColorDidChange()
         
+        // In certain cases, subviews would otherwise revert to the system default `tintColor`.
+        // One such case occurs when an alert controller is shown followed by dismissing and re-presenting
+        // a view controller containing an `AnnotationsView` when the `AnnotationsView` has a custom 
+        // (non-inherited) `tintColor`.
         for subview in subviews {
             subview.tintColor = tintColor
         }
