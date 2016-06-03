@@ -25,7 +25,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
             setNeedsDisplay()
             
             let layer = CAShapeLayer()
-            layer.path = annotation.map { UIBezierPath(rect: $0.frame) } ?.CGPath
+            layer.path = annotation.map { UIBezierPath(rect: $0.frame) }?.CGPath
             GLKView.layer.mask = layer
         }
     }

@@ -284,7 +284,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             self.dismissViewControllerAnimated(true, completion: nil)
         })
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert button title to cancel the alert."), style: .Cancel))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert button title to cancel the alert."), style: .Cancel, handler: nil))
         return alert
     }
     
