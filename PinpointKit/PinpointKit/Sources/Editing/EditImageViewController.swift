@@ -251,7 +251,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return currentModelAssetIsLandscape() ? .Landscape : [.Portrait, .PortraitUpsideDown]
+        return imageIsLandscape() ? .Landscape : [.Portrait, .PortraitUpsideDown]
     }
     
     public override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
@@ -264,7 +264,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             portraitOrientation = (deviceOrientation == .PortraitUpsideDown ? .PortraitUpsideDown : .Portrait)
         }
         
-        return currentModelAssetIsLandscape() ? landscapeOrientation : portraitOrientation
+        return imageIsLandscape() ? landscapeOrientation : portraitOrientation
     }
     
     // MARK: - Private
@@ -366,7 +366,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         return hitAnnotationView ?? hitTextViewSuperview
     }
     
-    private func currentModelAssetIsLandscape() -> Bool {
+    private func imageIsLandscape() -> Bool {
         guard let imageSize = imageView.image?.size else { return false }
         guard let imageScale = imageView.image?.scale else { return false }
 
