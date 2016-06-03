@@ -102,8 +102,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private var selectedAnnotationView: AnnotationView?
     
-    private(set) public var currentViewModel: AssetViewModel?
-    
     public init() {
         super.init(nibName: nil, bundle: nil)
         
@@ -133,12 +131,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         annotationsView.accessibilityTraits = annotationsView.accessibilityTraits | UIAccessibilityTraitAllowsDirectInteraction
         
         closeBarButtonItem.accessibilityLabel = "Close"
-        
-        if let currentViewModel = currentViewModel {
-            self.currentViewModel = currentViewModel
-            currentViewModel.requestImage { [weak self] in self?.imageView.image = $0 }
-        }
-       
     }
     
     public required init?(coder aDecoder: NSCoder) {
