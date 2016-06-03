@@ -96,7 +96,7 @@ class BoxAnnotationView: AnnotationView {
 
     override func drawRect(rect: CGRect) {
         tintColor.setFill()
-        UIColor.whiteColor().setStroke()
+        annotation?.strokeColor.setStroke()
 
         let path = annotation.flatMap(PathForDrawingBoxAnnotation)
         path?.fill()
@@ -104,31 +104,31 @@ class BoxAnnotationView: AnnotationView {
     }
 
     override func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        return annotation.flatMap(PathForPointInsideBoxAnnotation).map({ $0.containsPoint(point) }) ?? false
+        return annotation.flatMap(PathForPointInsideBoxAnnotation).map { $0.containsPoint(point) } ?? false
     }
 
 
     // MARK: - AnnotationView
 
     override func setSecondControlPoint(point: CGPoint) {
-        annotation = annotation.map({
-            BoxAnnotation(startLocation: $0.startLocation, endLocation: point)
-        })
+        annotation = annotation.map {
+            BoxAnnotation(startLocation: $0.startLocation, endLocation: point, strokeColor: $0.strokeColor)
+        }
     }
 
     override func moveControlPoints(translation: CGPoint) {
-        annotation = annotation.map({
+        annotation = annotation.map {
             let startLocation = CGPoint(x: $0.startLocation.x + translation.x, y: $0.startLocation.y + translation.y)
             let endLocation = CGPoint(x: $0.endLocation.x + translation.x, y: $0.endLocation.y + translation.y)
-            return BoxAnnotation(startLocation: startLocation, endLocation: endLocation)
-        })
+            return BoxAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: $0.strokeColor)
+        }
     }
     
     override func scaleControlPoints(scale: CGFloat) {
-        annotation = annotation.map({
+        annotation = annotation.map {
             let startLocation = $0.scaledPoint($0.startLocation, scale: scale)
             let endLocation = $0.scaledPoint($0.endLocation, scale: scale)
-            return BoxAnnotation(startLocation: startLocation, endLocation: endLocation)
-        })
+            return BoxAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: $0.strokeColor)
+        }
     }
 }

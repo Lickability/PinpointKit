@@ -429,6 +429,10 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         guard let appearance = interfaceCustomization?.appearance else { assertionFailure(); return }
         segmentedControl.setTitleTextAttributes([NSFontAttributeName: appearance.editorTextAnnotationSegmentFont], forState: UIControlState.Normal)
         UITextView.appearanceWhenContainedInInstancesOfClasses([TextAnnotationView.self]).font = appearance.editorTextAnnotationFont
+        
+        if let annotationFillColor = appearance.annotationFillColor {
+            annotationsView.tintColor = annotationFillColor
+        }
     }
     
     // MARK: - Create annotations
@@ -448,10 +452,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private func handleCreateAnnotationGestureRecognizerBegan(gestureRecognizer: UIGestureRecognizer) {
         guard let currentTool = currentTool else { return }
+        guard let annotationStrokeColor = interfaceCustomization?.appearance.annotationStrokeColor else { return }
         
         let currentLocation = gestureRecognizer.locationInView(annotationsView)
         
-        let factory = AnnotationViewFactory(image: imageView.image?.CGImage, currentLocation: currentLocation, tool: currentTool)
+        let factory = AnnotationViewFactory(image: imageView.image?.CGImage, currentLocation: currentLocation, tool: currentTool, strokeColor: annotationStrokeColor)
         
         let view: AnnotationView = factory.annotationView()
         
