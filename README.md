@@ -1,4 +1,4 @@
-![PinpointKit Logo](Assets/pinpointkit.png)
+![PinpointKit Logo](Assets/logo.png)
 
 **PinpointKit** is an open-source iOS library in Swift that lets your testers and users send feedback with annotated screenshots and logs using a simple gesture.
 
