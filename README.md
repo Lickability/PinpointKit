@@ -39,7 +39,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'PinpointKit', '~> 1.0'
+pod 'PinpointKit', '~> 0.9'
 ```
 
 Then, run the following command:
@@ -62,7 +62,7 @@ $ brew install carthage
 To integrate PinpointKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "Lickability/PinpointKit" ~> 1.0
+github "Lickability/PinpointKit" ~> 0.9
 ```
 
 - Run `carthage update` to build the framework.

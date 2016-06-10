@@ -1,15 +1,15 @@
 PODS:
-  - PinpointKit (0.1.0)
+  - PinpointKit (0.9)
 
 DEPENDENCIES:
   - PinpointKit (from `../PinpointKit`)
 
 EXTERNAL SOURCES:
   PinpointKit:
-    :path: "../PinpointKit"
+    :path: ../PinpointKit
 
 SPEC CHECKSUMS:
-  PinpointKit: 4fb66c11fe0ec108773e22a15ca0b39a19ce5e75
+  PinpointKit: 1daa4d645f7ca73aa5b8a1a4b642a65897b090af
 
 PODFILE CHECKSUM: 4b326719eaf8bc8bd2b6f6391daec947f383b538
 
