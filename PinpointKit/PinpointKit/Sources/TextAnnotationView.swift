@@ -10,9 +10,10 @@ import UIKit
 
 /// The default text annotation view.
 public class TextAnnotationView: AnnotationView, UITextViewDelegate {
-    static let TextViewInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-    static let TextViewLineFragmentPadding: CGFloat = 5.0
+    private static let TextViewInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+    private static let TextViewLineFragmentPadding: CGFloat = 5.0
     
+    /// The text view that is used to display the text of the annotation.
     let textView: UITextView = {
         let storage = NSTextStorage()
         let manager = StrokeLayoutManager()
@@ -55,7 +56,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         addSubview(textView)
         
         textView.delegate = self
-        textView.typingAttributes = textAttributes()
+        textView.typingAttributes = textAttributes
     }
 
     @available(*, unavailable)
@@ -89,32 +90,36 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     
     // MARK: - TextAnnotationView
     
-    func textAttributes() -> [String: AnyObject] {
+    /// The attributes of the text to use for an `NSAttributedString`.
+    var textAttributes: [String: AnyObject] {
         let shadow = NSShadow()
         shadow.shadowBlurRadius = 5
         shadow.shadowColor = UIColor(white: 0.0, alpha: 1.0)
         shadow.shadowOffset = CGSize.zero
         
         return [
-            NSFontAttributeName: self.dynamicType.font(),
+            NSFontAttributeName: font,
             NSForegroundColorAttributeName: tintColor,
             NSShadowAttributeName: shadow,
             NSKernAttributeName: 1.3
         ]
     }
     
-    class func font() -> UIFont {
+    private var font: UIFont {
         return UITextView.appearanceWhenContainedInInstancesOfClasses([TextAnnotationView.self]).font ?? UIFont.systemFontOfSize(32)
     }
     
-    class func minimumTextSize() -> CGSize {
+    /// The minimum text size for the annotation view.
+    var minimumTextSize: CGSize {
         let width: CGFloat = 40.0
         let character = "." as NSString
-        let size = character.boundingRectWithSize(CGSize(width: width, height: CGFloat.max), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font()], context: nil)
-        return CGSize(width: width, height: size.height + TextViewInset.top + TextViewInset.bottom + TextViewLineFragmentPadding)
+        let textFont = textAttributes[NSFontAttributeName] ?? font
+        
+        let size = character.boundingRectWithSize(CGSize(width: width, height: CGFloat.max), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: textFont], context: nil)
+        return CGSize(width: width, height: size.height + TextAnnotationView.TextViewInset.top + TextAnnotationView.TextViewInset.bottom + TextAnnotationView.TextViewLineFragmentPadding)
     }
     
-    func updateTextViewFrame() {
+    private func updateTextViewFrame() {
         textView.frame = {
             var textViewFrame = self.textView.frame
             textViewFrame.size = self.textView.intrinsicContentSize()
@@ -128,7 +133,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
                 textViewFrame.size.width = max(textViewFrame.width, originalTextViewFrame.width)
                 minHeight = originalTextViewFrame.height
             } else {
-                minHeight = self.dynamicType.minimumTextSize().height
+                minHeight = minimumTextSize.height
             }
             
             let size = CGSize(width: textViewFrame.width, height: CGFloat.max)
@@ -139,6 +144,9 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         }()
     }
     
+    /**
+     Tells the internal text view to begin editing.
+     */
     func beginEditing() {
         textView.selectable = true
         textView.editable = true
