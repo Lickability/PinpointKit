@@ -1,10 +1,31 @@
-// A factory that constructs `AnnotationView`s.
+//
+//  AnnotationViewFactory.swift
+//  PinpointKit
+//
+//  Created by Matthew Bischoff on 2/19/16.
+//  Copyright © 2016 Lickability. All rights reserved.
+//
+
+/// A factory that constructs `AnnotationView`s.
 struct AnnotationViewFactory {
+    
+    /// The image to annotate.
     let image: QuartzCore.CGImage?
+    
+    /// The current location to start the annotation.
     let currentLocation: CGPoint
+    
+    /// The tool to annotate with.
     let tool: Tool
+    
+    /// The stroke color of the annotation.
     let strokeColor: UIColor
     
+    /**
+     Constructs an annotation view.
+     
+     - returns: An annotation view built from the specified parameters upon initialization.
+     */
     func annotationView() -> AnnotationView {
         switch tool {
         case .Arrow:

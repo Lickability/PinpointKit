@@ -8,12 +8,7 @@
 
 import UIKit
 
-extension UIViewController {
-    var customNavigationController: NavigationController? {
-        return navigationController as? NavigationController
-    }
-}
-
+/// The custom navigation controller that PinpointKit uses to wrap the `FeedbackViewController`.
 final class NavigationController: UINavigationController, UINavigationControllerDelegate, UIViewControllerTransitioningDelegate {
 
     // MARK: - Initializers
@@ -30,6 +25,7 @@ final class NavigationController: UINavigationController, UINavigationController
         modalPresentationCapturesStatusBarAppearance = true
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -55,29 +51,4 @@ final class NavigationController: UINavigationController, UINavigationController
     override func childViewControllerForStatusBarStyle() -> UIViewController? {
         return topViewController
     }
-    
-    func setNavigationBarBackgroundImageColor(color: UIColor, separatorAlpha: CGFloat) {
-        var alpha: CGFloat = 0
-        color.getRed(nil, green: nil, blue: nil, alpha: &alpha)
-                
-        if alpha >= 1.0 {
-            navigationBar.setBackgroundImage(nil, forBarMetrics: .Default)
-        } else {
-            func imageFromColor(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage {
-                let rect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
-                UIGraphicsBeginImageContext(rect.size)
-                let context = UIGraphicsGetCurrentContext()
-                
-                CGContextSetFillColorWithColor(context, color.CGColor)
-                CGContextFillRect(context, rect)
-                
-                let image = UIGraphicsGetImageFromCurrentImageContext()
-                UIGraphicsEndImageContext()
-                
-                return image
-            }
-            navigationBar.setBackgroundImage(imageFromColor(color), forBarMetrics: .Default)
-        }
-    }
-    
 }

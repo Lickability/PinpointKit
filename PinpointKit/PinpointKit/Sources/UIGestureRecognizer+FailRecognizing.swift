@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Extends UIGestureRecognizer to force a failure to recognize the gesture.
 extension UIGestureRecognizer {
     
     /**

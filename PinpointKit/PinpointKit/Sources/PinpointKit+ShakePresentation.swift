@@ -8,10 +8,8 @@
 
 import Foundation
 
-/**
- *  Extends `PinpointKit` to present itself on the application's root view controller as the result
- *  of a shake event.
- */
+
+/// Extends `PinpointKit` to present itself on the application's root view controller as the result of a shake event.
 extension PinpointKit: ShakeDetectingWindowDelegate {
     
     // MARK: - ShakeDetectingWindowDelegate

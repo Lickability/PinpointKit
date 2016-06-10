@@ -1,12 +1,29 @@
+//
+//  Tool.swift
+//  PinpointKit
+//
+//  Created by Matthew Bischoff on 2/19/16.
+//  Copyright © 2016 Lickability. All rights reserved.
+//
+
 import UIKit
 
-/// Represents a editing tool.
+/// Represents an editing tool.
 enum Tool: Int {
+    
+    /// The arrow tool.
     case Arrow
+    
+    /// The box tool.
     case Box
+    
+    /// The text tool.
     case Text
+    
+    /// The blur tool.
     case Blur
     
+    /// The name of the tool.
     var name: String {
         switch self {
         case .Arrow:
@@ -20,6 +37,7 @@ enum Tool: Int {
         }
     }
     
+    /// The image for the tool.
     var image: UIImage {
         let bundle = NSBundle.pinpointKitBundle()
         
@@ -39,6 +57,7 @@ enum Tool: Int {
         return loadImage() ?? UIImage()
     }
     
+    /// The item to use for a segmented control.
     var segmentedControlItem: AnyObject {
         switch self {
         case .Arrow, .Box, .Blur:

@@ -1,3 +1,11 @@
+//
+//  EditImageViewController.swift
+//  PinpointKit
+//
+//  Created by Matthew Bischoff on 2/19/16.
+//  Copyright © 2016 Lickability. All rights reserved.
+//
+
 import UIKit
 import Photos
 import CoreImage
@@ -48,7 +56,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         return view
         }()
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -425,7 +433,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }
     }
     
-    func handleGestureRecognizerFinished() {
+    private func handleGestureRecognizerFinished() {
         hasACopyOfCurrentComposition = false
         currentBlurAnnotationView?.drawsBorder = false
         let isEditingTextView = currentTextAnnotationView?.textView.isFirstResponder() ?? false
