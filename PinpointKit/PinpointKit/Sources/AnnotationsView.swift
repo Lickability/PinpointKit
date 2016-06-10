@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// A `UIView` subclass that displays an annotation.
 class AnnotationsView: UIView {
     override func addSubview(view: UIView) {
         super.addSubview(view)
@@ -19,12 +20,22 @@ class AnnotationsView: UIView {
         moveViewIfAppropriate(view)
     }
     
+    /**
+     Calls `moveBlurViewAboveBlurViewsAndUnderOthers(blurView:)`, passing `view`, but only if `view` is a `BlurAnnotationView`.
+     
+     - parameter view: The view to potentially move.
+     */
     func moveViewIfAppropriate(view: UIView) {
         if let blurView = view as? BlurAnnotationView {
             moveBlurViewAboveBlurViewsAndUnderOthers(blurView: blurView)
         }
     }
     
+    /**
+     Moves the blur view passed in above other subviews that are blur views, but beneath other subviews.
+     
+     - parameter blurView: The blur view to move.
+     */
     func moveBlurViewAboveBlurViewsAndUnderOthers(blurView blurView: BlurAnnotationView) {
         var lastBlurViewIndex: Int?
         for (index, subview) in subviews.enumerate() {
