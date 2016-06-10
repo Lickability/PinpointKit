@@ -1,17 +1,18 @@
 {
   "name": "PinpointKit",
-  "version": "0.1.0",
+  "version": "0.9",
   "homepage": "https://github.com/Lickability/PinpointKit",
   "source": {
     "git": "https://github.com/Lickability/PinpointKit.git",
-    "tag": "0.1.0"
+    "tag": "0.9"
   },
-  "summary": "A library that makes bug reporting dead simple for your testers and users by allowing them to send annotated screenshots and logs from a simple gesture.",
+  "summary": "A library that makes bug reporting dead simple for your testers and users by allowing them to send feedback with annotated screenshots and logs using a simple gesture.",
   "authors": {
     "Matthew Bishoff": "matt@lickability.com",
     "Brian Capps": "brian@lickability.com",
     "Kenneth Ackerson": "pearapps@gmail.com",
-    "Paul Rehkugler": "paul@rehkugler.com"
+    "Paul Rehkugler": "paul@rehkugler.com",
+    "Michael Liberatore": "michael@lickability.com"
   },
   "platforms": {
     "ios": "9.0"
