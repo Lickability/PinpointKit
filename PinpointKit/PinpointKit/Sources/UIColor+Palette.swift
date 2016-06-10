@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Extends UIColor to add the Pinpoint specific colors.
 public extension UIColor {
     
     /**
