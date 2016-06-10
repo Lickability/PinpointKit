@@ -6,7 +6,10 @@
 //
 //
 
+/// Extends UIView to take a snapshot of the screen.
 extension UIView {
+    
+    /// The UIImage representation of the current screen at the time of access.
     var pinpoint_screenshot: UIImage {
         UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0)
         drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
