@@ -144,7 +144,7 @@ private extension MFMailComposeViewController {
         if let data = data {
             addAttachmentData(data, mimeType: MIMEType.JSON.rawValue, fileName: "info.json")
         } else {
-            print("PinpointKit could not attach Feedback.additionalInformation because it was not valid JSON.")
+            NSLog("PinpointKit could not attach Feedback.additionalInformation because it was not valid JSON.")
         }
     }
 }
