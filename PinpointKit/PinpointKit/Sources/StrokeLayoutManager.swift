@@ -12,7 +12,7 @@ final class StrokeLayoutManager: NSLayoutManager {
     var strokeColor: UIColor?
     var strokeWidth: CGFloat?
     
-    public override func drawGlyphsForGlyphRange(glyphsToShow: NSRange, atPoint origin: CGPoint) {
+    override func drawGlyphsForGlyphRange(glyphsToShow: NSRange, atPoint origin: CGPoint) {
         let context = UIGraphicsGetCurrentContext()
         
         let firstIndex = characterIndexForGlyphAtIndex(glyphsToShow.location)
@@ -33,7 +33,7 @@ final class StrokeLayoutManager: NSLayoutManager {
         }
     }
     
-    public override func showCGGlyphs(glyphs: UnsafePointer<CGGlyph>, positions: UnsafePointer<CGPoint>, count glyphCount: Int, font: UIFont, matrix textMatrix: CGAffineTransform, attributes: [String : AnyObject], inContext graphicsContext: CGContext) {
+    override func showCGGlyphs(glyphs: UnsafePointer<CGGlyph>, positions: UnsafePointer<CGPoint>, count glyphCount: Int, font: UIFont, matrix textMatrix: CGAffineTransform, attributes: [String : AnyObject], inContext graphicsContext: CGContext) {
         var textAttributes = attributes
         
         if let strokeColor = strokeColor, strokeWidth = strokeWidth {
