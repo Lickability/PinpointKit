@@ -122,3 +122,11 @@ lazy var window: UIWindow? = return ShakeDetectingWindow(frame: UIScreen.mainScr
 If you don't want to use [`defaultPinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L17) you can specify both [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) and [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L83) instances on initialization of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift).
 
 The [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) struct will allow you to specify how the feedback view looks and behaves, while the [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L83) instance will give you hooks into the state of the feedback being sent.
+
+# About
+
+![Lickability Logo](Assets/lickability-logo.png)
+
+PinpointKit is built and maintained by [Lickability](http://lickability.com), a small software studio in New York that builds apps for clients and customers. If you or your team need help building or updating an app, say [hello@lickability.com](mailto:hello@lickability.com). We’d love to hear more about your project.
+
+Huge thanks to our other contributors, including [Kenny Ackerson](https://twitter.com/pearapps), [Paul Rehkugler](https://twitter.com/paulrehkugler), and [Caleb Davenport](https://twitter.com/calebd).
