@@ -56,7 +56,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         return view
         }()
     
-    let imageView: UIImageView = {
+    private let imageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -433,7 +433,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }
     }
     
-    func handleGestureRecognizerFinished() {
+    private func handleGestureRecognizerFinished() {
         hasACopyOfCurrentComposition = false
         currentBlurAnnotationView?.drawsBorder = false
         let isEditingTextView = currentTextAnnotationView?.textView.isFirstResponder() ?? false
