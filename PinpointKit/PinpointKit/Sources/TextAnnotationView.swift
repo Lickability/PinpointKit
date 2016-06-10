@@ -121,9 +121,9 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     func minimumTextSize() -> CGSize {
         let width: CGFloat = 40.0
         let character = "." as NSString
-        let font = textAttributes()[NSFontAttributeName] ?? UIFont.systemFontOfSize(32)
+        let textFont = textAttributes()[NSFontAttributeName] ?? font()
         
-        let size = character.boundingRectWithSize(CGSize(width: width, height: CGFloat.max), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        let size = character.boundingRectWithSize(CGSize(width: width, height: CGFloat.max), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: textFont], context: nil)
         return CGSize(width: width, height: size.height + TextAnnotationView.TextViewInset.top + TextAnnotationView.TextViewInset.bottom + TextAnnotationView.TextViewLineFragmentPadding)
     }
     
