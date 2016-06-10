@@ -90,9 +90,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     
     // MARK: - TextAnnotationView
     
-    /**
-     The attributes of the text to use for an `NSAttributedString`.
-     */
+    /// The attributes of the text to use for an `NSAttributedString`.
     var textAttributes: [String: AnyObject] {
         let shadow = NSShadow()
         shadow.shadowBlurRadius = 5
@@ -111,9 +109,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         return UITextView.appearanceWhenContainedInInstancesOfClasses([TextAnnotationView.self]).font ?? UIFont.systemFontOfSize(32)
     }
     
-    /**
-     The minimum text size for the annotation view.
-     */
+    /// The minimum text size for the annotation view.
     var minimumTextSize: CGSize {
         let width: CGFloat = 40.0
         let character = "." as NSString
