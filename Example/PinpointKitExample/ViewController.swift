@@ -9,11 +9,13 @@
 import UIKit
 import PinpointKit
 
-final class ViewController: UIViewController {
+final class ViewController: UITableViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.lightGrayColor()
+        // Hides the infinite cells footer.
+        tableView.tableFooterView = UIView()
     }
     
     override func viewDidAppear(animated: Bool) {
