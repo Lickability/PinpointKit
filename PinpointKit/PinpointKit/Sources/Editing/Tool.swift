@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Represents a editing tool.
+/// Represents an editing tool.
 enum Tool: Int {
     
     /// The arrow tool.
