@@ -19,8 +19,6 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
      - parameter interfaceCustomization:   The configuration used to set up the data source.
      - parameter logSupporting:            The object the controls the support of logging.
      - parameter userEnabledLogCollection: A boolean value indicating whether the user has enabled log collection.
-     
-     - returns: An initialized `FeedbackTableViewDataSource`.
      */
     init(interfaceCustomization: InterfaceCustomization, logSupporting: LogSupporting, userEnabledLogCollection: Bool) {
         sections = self.dynamicType.sectionsFromConfiguration(interfaceCustomization, logSupporting: logSupporting, userEnabledLogCollection: userEnabledLogCollection)

@@ -16,8 +16,6 @@ extension UIBarButtonItem {
      - parameter target: The bar button item’s target.
      - parameter font:   The font of the bar button item’s title.
      - parameter action: The bar button item’s action.
-     
-     - returns: An initialized “Done” `UIBarButtonItem`.
      */
     convenience init(doneButtonWithTarget target: AnyObject?, font: UIFont, action: Selector) {
         self.init(barButtonSystemItem: .Done, target: target, action: action)

@@ -92,8 +92,6 @@ public struct Feedback {
      - parameter logsFileName:           The file name of the logs text file.
      - parameter additionalInformation:  Any additional information you want to capture.
      - parameter applicationInformation: Information about the application to be captured.
-     
-     - returns: An initialized `Configuration`.
      */
     init(screenshot: ScreenshotType,
         screenshotFileName: String = "Screenshot",
