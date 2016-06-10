@@ -15,12 +15,11 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
 
     // MARK: - Properties
 
-    let EAGLContext: OpenGLES.EAGLContext
+    private let EAGLContext: OpenGLES.EAGLContext
+    private let GLKView: GLKit.GLKView
+    private let CIContext: CoreImage.CIContext
 
-    let GLKView: GLKit.GLKView
-    
-    let CIContext: CoreImage.CIContext
-
+    /// The corresponding annotation.
     var annotation: BlurAnnotation? {
         didSet {
             setNeedsDisplay()
@@ -34,6 +33,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
         }
     }
     
+    /// Whether to draw a border on the blur view.
     var drawsBorder = false {
         didSet {
             if drawsBorder != oldValue {
@@ -41,12 +41,12 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
             }
         }
     }
-
+    
     override var annotationFrame: CGRect? {
         return annotation?.frame
     }
     
-    var touchTargetFrame: CGRect? {
+    private var touchTargetFrame: CGRect? {
         guard let annotationFrame = annotationFrame else { return nil }
         
         let size = frame.size

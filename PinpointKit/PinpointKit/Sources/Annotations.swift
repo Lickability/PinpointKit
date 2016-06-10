@@ -9,17 +9,21 @@
 import UIKit
 import CoreImage
 
+/// Base type for representing annotations that can be added to images.
 class Annotation {
 
     // MARK: - Properties
-
+    
+    /// The start location of the annotation.
     let startLocation: CGPoint
 
+    /// The end location of the annotation.
     let endLocation: CGPoint
     
     /// The color used to stroke the annotation.
     let strokeColor: UIColor
     
+    /// The frame of the annotation.
     var frame: CGRect {
         let origin = CGPoint(
             x: min(startLocation.x, endLocation.x),
@@ -32,7 +36,16 @@ class Annotation {
         return CGRect(origin: origin, size: size)
     }
 
-    // Point must be on corner of `frame`
+    /**
+     Creates a new `CGPoint` from an existing point if `frame` were scaled by the specified amount.
+     
+     - parameter point: The existing point to scale.
+     - parameter scale: The amount to scale.
+     
+     - note: `point` must be on a corner of `frame`.
+     
+     - returns: The scaled point.
+     */
     func scaledPoint(point: CGPoint, scale: CGFloat) -> CGPoint {
         var scaledRect = CGRectApplyAffineTransform(frame, CGAffineTransformMakeScale(scale, scale))
         
@@ -59,6 +72,13 @@ class Annotation {
 
     // MARK: - Initializers
 
+    /**
+     Creates a new annotation.
+     
+     - parameter startLocation: The start location of the annotation.
+     - parameter endLocation:   The end location of the annotation.
+     - parameter strokeColor:   The color used to stroke the annotation.
+     */
     init(startLocation: CGPoint = CGPoint.zero, endLocation: CGPoint = CGPoint.zero, strokeColor: UIColor) {
         self.startLocation = startLocation
         self.endLocation = endLocation
@@ -66,62 +86,76 @@ class Annotation {
     }
 }
 
+/// An `Annotation` that represents an arrow.
 class ArrowAnnotation: Annotation {
 
     // MARK: - Properties
 
+    /// The length of the arrow annotation.
     var arrowLength: CGFloat {
         let horizontalDistance = pow(endLocation.x - startLocation.x, 2.0)
         let verticalDistance = pow(endLocation.y - startLocation.y, 2.0)
         return sqrt(horizontalDistance + verticalDistance)
     }
 
+    /// The width of the tail of the arrow.
     var tailWidth: CGFloat {
         return max(4.0, arrowLength * 0.07)
     }
 
+    /// The length of the head of the arrow.
     var headLength: CGFloat {
         return max(10.0, arrowLength / 3.0)
     }
-
+    
+    /// The width of the head of the arrow.
     var headWidth: CGFloat {
         return headLength * 0.9
     }
-
+    
+    /// The width of the stroke of the arrow.
     var strokeWidth: CGFloat {
         return max(1.0, tailWidth * 0.25)
     }
 }
 
+/// An annotation that represents a box.
 class BoxAnnotation: Annotation {
 
     // MARK: - Properties
 
+    /// The border width of the box.
     var borderWidth: CGFloat {
         let size = frame.size
         let maximumWidth = max(4.0, min(size.width, size.height) * 0.075)
         return min(maximumWidth, 14.0)
     }
 
+    /// The shadow radius of the box.
     var shadowRadius: CGFloat {
         return max(3.0, borderWidth * 0.25)
     }
 
+    /// The stroke width of the box.
     var strokeWidth: CGFloat {
         return max(2.0, borderWidth * 0.25)
     }
-
+    
+    /// The corner radius of the box.
     var cornerRadius: CGFloat {
         return borderWidth * 2.0
     }
 }
 
+/// An annotation that represents a blur.
 class BlurAnnotation: Annotation {
 
     // MARK: - Properties
-
+    
+    /// The `CGImage`-representation of the image to blur.
     let image: CIImage
     
+    /// The blurred representation of the image.
     var blurredImage: CIImage? {
         var image: CIImage? = self.image
         let extent = image?.extent
@@ -149,10 +183,16 @@ class BlurAnnotation: Annotation {
 
         return image
     }
-
     
     // MARK: - Initializers
 
+    /**
+     Creates a new blur annotation.
+     
+     - parameter startLocation: The start location of the annotation.
+     - parameter endLocation:   The end location of the annotation.
+     - parameter image:         The `CGIImage`-representation of the image to blur.
+     */
     init(startLocation: CGPoint, endLocation: CGPoint, image: CIImage) {
         self.image = image
         super.init(startLocation: startLocation, endLocation: endLocation, strokeColor: .clearColor())

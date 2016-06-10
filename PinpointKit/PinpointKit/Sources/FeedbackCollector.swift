@@ -15,9 +15,6 @@ public protocol FeedbackCollector: class, LogSupporting, InterfaceCustomizable {
     /// The recipients of the feedback submission. Suitable for email recipients in the "To:" field.
     var feedbackRecipients: [String]? { get set }
     
-    /// The configuration that the collector should use to set itself up.
-    var interfaceCustomization: InterfaceCustomization? { get set }
-    
     /// The view controller that displays the feedback to collect.
     var viewController: UIViewController { get }
     

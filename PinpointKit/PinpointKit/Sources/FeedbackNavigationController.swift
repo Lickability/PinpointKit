@@ -34,15 +34,6 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         }
     }
     
-    public var editor: Editor? {
-        get {
-            return feedbackViewController.editor
-        }
-        set {
-            feedbackViewController.editor = newValue
-        }
-    }
-    
     public var logCollector: LogCollector? {
         get {
             return feedbackViewController.logCollector
@@ -52,18 +43,14 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         }
     }
     
-    // MARK: - FeedbackNavigationController
-
-    /// The root view controller used to collect feedback.
-    let feedbackViewController: FeedbackViewController
+    // MARK: - FeedbackCollector
     
-    /// A delegate that is informed of significant events in feedback collection.
-    public var feedbackDelegate: FeedbackCollectorDelegate? {
+    public var editor: Editor? {
         get {
-            return feedbackViewController.feedbackDelegate
+            return feedbackViewController.editor
         }
         set {
-            feedbackViewController.feedbackDelegate = newValue
+            feedbackViewController.editor = newValue
         }
     }
     
@@ -75,7 +62,21 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
             feedbackViewController.feedbackRecipients = newValue
         }
     }
-        
+    
+    public var feedbackDelegate: FeedbackCollectorDelegate? {
+        get {
+            return feedbackViewController.feedbackDelegate
+        }
+        set {
+            feedbackViewController.feedbackDelegate = newValue
+        }
+    }
+    
+    // MARK: - FeedbackNavigationController
+
+    /// The root view controller used to collect feedback.
+    let feedbackViewController: FeedbackViewController
+    
     override init(navigationBarClass: AnyClass?, toolbarClass: AnyClass?) {
         feedbackViewController = FeedbackViewController()
         
@@ -84,7 +85,7 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         commonInitialization()
     }
     
-    convenience init () {
+    convenience init() {
         self.init(navigationBarClass: nil, toolbarClass: nil)
     }
     

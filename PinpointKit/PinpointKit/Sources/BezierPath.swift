@@ -10,7 +10,15 @@ import UIKit
 
 extension UIBezierPath {
     private static let PaintCodeArrowPathWidth: CGFloat = 267.0
-
+    
+    /**
+     Creates a bezier path in the shape of an arrow.
+     
+     - parameter startPoint: The starting control point of the shape.
+     - parameter endPoint:   The ending control point of the shape.
+     
+     - returns: A `UIBezierPath` in the shape of an arrow.
+     */
     static func arrowBezierPath(startPoint startPoint: CGPoint, endPoint: CGPoint) -> UIBezierPath {
         let length = hypot(endPoint.x - startPoint.x, endPoint.y - startPoint.y)
 
@@ -42,7 +50,7 @@ extension UIBezierPath {
         return bezierPath
     }
     
-    static func transformForStartPoint(startPoint: CGPoint, endPoint: CGPoint, length: CGFloat) -> CGAffineTransform {
+    private static func transformForStartPoint(startPoint: CGPoint, endPoint: CGPoint, length: CGFloat) -> CGAffineTransform {
         let cosine = (endPoint.x - startPoint.x) / length
         let sine = (endPoint.y - startPoint.y) / length
         
