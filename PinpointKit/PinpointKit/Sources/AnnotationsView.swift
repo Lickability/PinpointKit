@@ -33,7 +33,7 @@ class AnnotationsView: UIView {
             }
         }
         
-        let index = lastBlurViewIndex.map { $0 + 1 } ?? 0
+        let index = lastBlurViewIndex?.successor() ?? 0
         insertSubview(blurView, atIndex: index)
     }
     

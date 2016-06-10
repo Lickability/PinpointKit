@@ -126,27 +126,25 @@ class BlurAnnotation: Annotation {
         var image: CIImage? = self.image
         let extent = image?.extent
 
-        image = image.flatMap({
-            let transform = NSValue(CGAffineTransform: CGAffineTransformIdentity)
-            let filter: CIFilter? = CIFilter(name: "CIAffineClamp")
-            filter?.setValue($0, forKey: "inputImage")
-            filter?.setValue(transform, forKey: "inputTransform")
-            return filter?.valueForKey("outputImage") as? CIImage
-        })
+        let transform = NSValue(CGAffineTransform: CGAffineTransformIdentity)
+        let affineClampFilter = CIFilter(name: "CIAffineClamp")
+        affineClampFilter?.setValue(image, forKey: kCIInputImageKey)
+        affineClampFilter?.setValue(transform, forKey: kCIInputTransformKey)
+        image = affineClampFilter?.valueForKey(kCIOutputImageKey) as? CIImage
 
-        image = image.flatMap({
-            let filter: CIFilter? = CIFilter(name: "CIPixellate")
-            filter?.setValue($0, forKey: "inputImage")
-            filter?.setValue(16, forKey: "inputScale")
-            return filter?.valueForKey("outputImage") as? CIImage
-        })
+        let pixellateFilter = CIFilter(name: "CIPixellate")
+        pixellateFilter?.setValue(image, forKey: kCIInputImageKey)
+        
+        let inputScale = 16
+        pixellateFilter?.setValue(inputScale, forKey: kCIInputScaleKey)
+        image = pixellateFilter?.valueForKey(kCIOutputImageKey) as? CIImage
 
         if let imageValue = image, extentValue = extent {
             let vector = CIVector(CGRect: extentValue)
             let filter: CIFilter? = CIFilter(name: "CICrop")
-            filter?.setValue(imageValue, forKey: "inputImage")
+            filter?.setValue(imageValue, forKey: kCIInputImageKey)
             filter?.setValue(vector, forKey: "inputRectangle")
-            image = filter?.valueForKey("outputImage") as? CIImage
+            image = filter?.valueForKey(kCIOutputImageKey) as? CIImage
         }
 
         return image
