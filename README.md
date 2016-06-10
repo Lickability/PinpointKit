@@ -2,6 +2,22 @@
 
 **PinpointKit** is an open-source iOS library in Swift that lets your testers and users send feedback with annotated screenshots and logs using a simple gesture.
 
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+	- [CocoaPods](#cocoapods)
+	- [Carthage](#carthage)
+	- [Manually](#manually)
+		- [Embedded Framework](#embedded-framework)
+- [Usage](#usage)
+- [Customization](#customization)
+- [License](#license)
+- [About](#about)
+
+<!-- /TOC -->
+
 ## Features
 
 - [x] Shake to trigger feedback collection
