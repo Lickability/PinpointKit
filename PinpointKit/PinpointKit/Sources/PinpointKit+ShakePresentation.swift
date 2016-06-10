@@ -25,3 +25,18 @@ extension PinpointKit: ShakeDetectingWindowDelegate {
         show(fromViewController: rootViewController)
     }
 }
+
+private extension UIViewController {
+
+    func pinpointTopModalViewController() -> UIViewController {
+        var topViewController: UIViewController = self
+        
+        while topViewController.presentedViewController != nil {
+            guard let presentedViewController = topViewController.presentedViewController else { break }
+            
+            topViewController = presentedViewController
+        }
+        
+        return topViewController
+    }
+}
