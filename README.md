@@ -107,7 +107,7 @@ The `PinpointKit.framework` is automatically added as a target dependency, linke
 
 Once PinpointKit is installed, it’s simple to use.
 
-To display a feedback view controller, simply add the following code where you want the feedback to display, passing the view controller from which PinpointKit should present:
+To display a feedback view controller, add the following code where you want the feedback to display, passing the view controller from which PinpointKit should present:
 
 ```swift
 PinpointKit.defaultPinpointKit.show(fromViewController: viewController)
@@ -121,7 +121,7 @@ lazy var window: UIWindow? = return ShakeDetectingWindow(frame: UIScreen.mainScr
 
 If you don't want to use [`defaultPinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L17) you can specify both [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) and [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L83) instances on initialization of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift).
 
-The [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) struct will allow you to specify how the feedback view looks and behaves, while the [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L83) instance will give you hooks into the state of the feedback being sent.
+The [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) struct allows you to specify how the feedback view looks and behaves, while the [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L83) instance provides hooks into the state of the feedback being sent.
 
 # About
 
