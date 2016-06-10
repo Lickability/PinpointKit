@@ -107,7 +107,7 @@ The `PinpointKit.framework` is automatically added as a target dependency, linke
 
 Once PinpointKit is installed, it’s simple to use.
 
-To display a feedback view controller, simply add the following code where you want the feedback to display, passing the view controller from which PinpointKit should present:
+To display a feedback view controller, add the following code where you want the feedback to display, passing the view controller from which PinpointKit should present:
 
 ```swift
 PinpointKit.defaultPinpointKit.show(fromViewController: viewController)
