@@ -17,7 +17,7 @@ struct AnnotationViewFactory {
             return view
         case .Text:
             let view = TextAnnotationView()
-            let minimumSize = view.minimumTextSize()
+            let minimumSize = view.minimumTextSize
             let endLocation = CGPoint(x: currentLocation.x + minimumSize.width, y: currentLocation.y + minimumSize.height)
             view.annotation = Annotation(startLocation: currentLocation, endLocation: endLocation, strokeColor: strokeColor)
             return view

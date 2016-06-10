@@ -56,7 +56,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         addSubview(textView)
         
         textView.delegate = self
-        textView.typingAttributes = textAttributes()
+        textView.typingAttributes = textAttributes
     }
 
     @available(*, unavailable)
@@ -95,21 +95,21 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
      
      - returns: A dictionary representation of the attributes of text for use when building an `NSAttributedString`.
      */
-    func textAttributes() -> [String: AnyObject] {
+    var textAttributes: [String: AnyObject] {
         let shadow = NSShadow()
         shadow.shadowBlurRadius = 5
         shadow.shadowColor = UIColor(white: 0.0, alpha: 1.0)
         shadow.shadowOffset = CGSize.zero
         
         return [
-            NSFontAttributeName: font(),
+            NSFontAttributeName: font,
             NSForegroundColorAttributeName: tintColor,
             NSShadowAttributeName: shadow,
             NSKernAttributeName: 1.3
         ]
     }
     
-    private func font() -> UIFont {
+    private var font: UIFont {
         return UITextView.appearanceWhenContainedInInstancesOfClasses([TextAnnotationView.self]).font ?? UIFont.systemFontOfSize(32)
     }
     
@@ -118,10 +118,10 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
      
      - returns: The minimum size for text allowed by the annotation view.
      */
-    func minimumTextSize() -> CGSize {
+    var minimumTextSize: CGSize {
         let width: CGFloat = 40.0
         let character = "." as NSString
-        let textFont = textAttributes()[NSFontAttributeName] ?? font()
+        let textFont = textAttributes[NSFontAttributeName] ?? font
         
         let size = character.boundingRectWithSize(CGSize(width: width, height: CGFloat.max), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: textFont], context: nil)
         return CGSize(width: width, height: size.height + TextAnnotationView.TextViewInset.top + TextAnnotationView.TextViewInset.bottom + TextAnnotationView.TextViewLineFragmentPadding)
@@ -141,7 +141,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
                 textViewFrame.size.width = max(textViewFrame.width, originalTextViewFrame.width)
                 minHeight = originalTextViewFrame.height
             } else {
-                minHeight = minimumTextSize().height
+                minHeight = minimumTextSize.height
             }
             
             let size = CGSize(width: textViewFrame.width, height: CGFloat.max)
