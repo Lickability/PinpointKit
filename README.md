@@ -125,7 +125,7 @@ The [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/Pin
 
 # About
 
-[![Lickability Logo](Assets/lickability-logo.png)](http://lickability.com)]
+[![Lickability Logo](Assets/lickability-logo.png)](http://lickability.com)
 
 PinpointKit is built and maintained by [Lickability](http://lickability.com), a small software studio in New York that builds apps for clients and customers. If you or your team need help building or updating an app, say [hello@lickability.com](mailto:hello@lickability.com). We’d love to hear more about your project.
 
