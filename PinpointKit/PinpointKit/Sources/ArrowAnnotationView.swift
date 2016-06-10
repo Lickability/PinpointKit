@@ -8,37 +8,12 @@
 
 import UIKit
 
-extension ArrowAnnotation {
-    
-    var path: UIBezierPath? {
-        if arrowLength < headLength * 2.0 {
-            return nil
-        }
-        
-        let path = UIBezierPath.arrowBezierPath(
-            startPoint: startLocation,
-            endPoint: endLocation
-        )
-        
-        path.lineWidth = strokeWidth
-        return path
-    }
-    
-    var touchTargetPath: UIBezierPath? {
-        guard let path = path else { return nil }
-        
-        let outsideStrokeWidth = strokeWidth * 5.0
-        guard let strokedPath = CGPathCreateCopyByStrokingPath(path.CGPath, nil, outsideStrokeWidth, .Butt, .Bevel, 0) else { return nil }
-        
-        return UIBezierPath(CGPath: strokedPath)
-    }
-}
-
 /// The default arrow annotation view.
 public class ArrowAnnotationView: AnnotationView {
 
     // MARK: - Properties
 
+    /// The corresponding annotation.
     var annotation: ArrowAnnotation? {
         didSet {
             setNeedsDisplay()
@@ -116,5 +91,31 @@ public class ArrowAnnotationView: AnnotationView {
         let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scale)
         
         annotation = ArrowAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: previousAnnotation.strokeColor)
+    }
+}
+
+private extension ArrowAnnotation {
+    
+    var path: UIBezierPath? {
+        if arrowLength < headLength * 2.0 {
+            return nil
+        }
+        
+        let path = UIBezierPath.arrowBezierPath(
+            startPoint: startLocation,
+            endPoint: endLocation
+        )
+        
+        path.lineWidth = strokeWidth
+        return path
+    }
+    
+    var touchTargetPath: UIBezierPath? {
+        guard let path = path else { return nil }
+        
+        let outsideStrokeWidth = strokeWidth * 5.0
+        guard let strokedPath = CGPathCreateCopyByStrokingPath(path.CGPath, nil, outsideStrokeWidth, .Butt, .Bevel, 0) else { return nil }
+        
+        return UIBezierPath(CGPath: strokedPath)
     }
 }
