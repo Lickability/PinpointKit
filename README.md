@@ -85,7 +85,7 @@ $ git init
 - Add PinpointKit as a git [submodule](http://git-scm.com/docs/git-submodule) by running the following command:
 
 ```bash
-$ git submodule add https://github.com/Lickability/PinpointKit.git
+$ git submodule add -b master https://github.com/Lickability/PinpointKit.git
 ```
 
 - Open the new `PinpointKit/PinpointKit` folder, and drag the `PinpointKit.xcodeproj` into the Project Navigator of your application’s Xcode project.
