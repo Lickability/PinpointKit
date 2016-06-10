@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// A `UIView` subclass that displays an annotation.
+/// A `UIView` subclass that displays annotations.
 class AnnotationsView: UIView {
     override func addSubview(view: UIView) {
         super.addSubview(view)
