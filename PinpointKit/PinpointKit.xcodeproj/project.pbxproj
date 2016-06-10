@@ -50,7 +50,6 @@
 		B92901A51C556791007CCA5E /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901A41C556791007CCA5E /* Annotations.swift */; };
 		B92901A71C5567EC007CCA5E /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901A61C5567EC007CCA5E /* BarButtonItem.swift */; };
 		B92901A91C556831007CCA5E /* AnnotationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901A81C556831007CCA5E /* AnnotationsView.swift */; };
-		B92901B31C557401007CCA5E /* AssetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901B21C557401007CCA5E /* AssetViewModel.swift */; };
 		B92901B71C557406007CCA5E /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901B41C557406007CCA5E /* BezierPath.swift */; };
 		B92901B81C557406007CCA5E /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901B51C557406007CCA5E /* Screen.swift */; };
 		B92901B91C557406007CCA5E /* StrokeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901B61C557406007CCA5E /* StrokeLayoutManager.swift */; };
@@ -515,7 +514,6 @@
 				DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */,
 				2C9CB2141CE622EB006567E2 /* UIView+PinpointKit.swift in Sources */,
 				2C9CB20A1CE61F37006567E2 /* PinpointKit+ShakePresentation.swift in Sources */,
-				B92901B31C557401007CCA5E /* AssetViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
