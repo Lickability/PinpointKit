@@ -133,6 +133,10 @@ PinpointKit uses a protocol-oriented architecture which allows almost everything
 
 For more information on what you can customize, take a peek the documentation of [`Configuration.swift`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift).
 
+## License
+
+PinpointKit is available under the MIT license. See the [`LICENSE`](LICENSE) file for more information.
+
 ## About
 
 [![Lickability Logo](Assets/lickability-logo.png)](http://lickability.com)
