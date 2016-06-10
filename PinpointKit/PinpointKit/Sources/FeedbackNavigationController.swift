@@ -34,15 +34,6 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         }
     }
     
-    public var editor: Editor? {
-        get {
-            return feedbackViewController.editor
-        }
-        set {
-            feedbackViewController.editor = newValue
-        }
-    }
-    
     public var logCollector: LogCollector? {
         get {
             return feedbackViewController.logCollector
@@ -52,12 +43,26 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         }
     }
     
-    // MARK: - FeedbackNavigationController
-
-    /// The root view controller used to collect feedback.
-    let feedbackViewController: FeedbackViewController
+    // MARK: - FeedbackCollector
     
-    /// A delegate that is informed of significant events in feedback collection.
+    public var editor: Editor? {
+        get {
+            return feedbackViewController.editor
+        }
+        set {
+            feedbackViewController.editor = newValue
+        }
+    }
+    
+    public var feedbackRecipients: [String]? {
+        get {
+            return feedbackViewController.feedbackRecipients
+        }
+        set {
+            feedbackViewController.feedbackRecipients = newValue
+        }
+    }
+    
     public var feedbackDelegate: FeedbackCollectorDelegate? {
         get {
             return feedbackViewController.feedbackDelegate
@@ -67,16 +72,11 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         }
     }
     
-    /// The default email addresses of recipients to which feedback should be sent.
-    public var feedbackRecipients: [String]? {
-        get {
-            return feedbackViewController.feedbackRecipients
-        }
-        set {
-            feedbackViewController.feedbackRecipients = newValue
-        }
-    }
-        
+    // MARK: - FeedbackNavigationController
+
+    /// The root view controller used to collect feedback.
+    let feedbackViewController: FeedbackViewController
+    
     override init(navigationBarClass: AnyClass?, toolbarClass: AnyClass?) {
         feedbackViewController = FeedbackViewController()
         
