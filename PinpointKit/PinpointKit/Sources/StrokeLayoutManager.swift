@@ -8,8 +8,13 @@
 
 import UIKit
 
+/// A subclass of `NSLayoutManager` that handles drawing the stroke.
 final class StrokeLayoutManager: NSLayoutManager {
+    
+    /// The stroke color to use for the layout manager.
     var strokeColor: UIColor?
+    
+    /// The stroke width to use for the layout manager.
     var strokeWidth: CGFloat?
     
     override func drawGlyphsForGlyphRange(glyphsToShow: NSRange, atPoint origin: CGPoint) {
