@@ -395,8 +395,10 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         guard let currentTextAnnotationView = currentTextAnnotationView else { return }
         currentTextAnnotationView.beginEditing()
         
-        guard let doneButtonFont = interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return }
+        guard let buttonFont = interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return }
         let dismissButton = UIBarButtonItem(title: interfaceCustomization?.interfaceText.textEditingDismissButtonTitle, style: .Done, target: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
+        dismissButton.setTitleTextAttributes([NSFontAttributeName: buttonFont], forState: .Normal)
+        
         navigationItem.setRightBarButtonItem(dismissButton, animated: true)
         navigationItem.setLeftBarButtonItem(nil, animated: true)
     }
