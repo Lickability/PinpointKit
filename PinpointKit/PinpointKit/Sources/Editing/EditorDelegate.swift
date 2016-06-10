@@ -1,3 +1,11 @@
+//
+//  EditorDelegate.swift
+//  PinpointKit
+//
+//  Created by Matthew Bischoff on 2/19/16.
+//  Copyright © 2016 Lickability. All rights reserved.
+//
+
 /// A delegate for the Editor.
 public protocol EditorDelegate: class {
     

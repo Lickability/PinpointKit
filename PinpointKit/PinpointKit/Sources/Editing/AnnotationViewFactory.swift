@@ -1,3 +1,11 @@
+//
+//  AnnotationViewFactory.swift
+//  PinpointKit
+//
+//  Created by Matthew Bischoff on 2/19/16.
+//  Copyright © 2016 Lickability. All rights reserved.
+//
+
 // A factory that constructs `AnnotationView`s.
 struct AnnotationViewFactory {
     let image: QuartzCore.CGImage?

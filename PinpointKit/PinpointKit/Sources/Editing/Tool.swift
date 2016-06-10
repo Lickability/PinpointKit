@@ -1,3 +1,11 @@
+//
+//  Tool.swift
+//  PinpointKit
+//
+//  Created by Matthew Bischoff on 2/19/16.
+//  Copyright © 2016 Lickability. All rights reserved.
+//
+
 import UIKit
 
 /// Represents a editing tool.
