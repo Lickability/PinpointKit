@@ -29,7 +29,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private lazy var segmentedControl: UISegmentedControl = { [unowned self] in
         let segmentArray = [Tool.Arrow, Tool.Box, Tool.Text, Tool.Blur]
         
-        let view = UISegmentedControl(items: segmentArray.map({ $0.segmentedControlItem }))
+        let view = UISegmentedControl(items: segmentArray.map { $0.segmentedControlItem })
         view.selectedSegmentIndex = 0
         
         let textToolIndex = segmentArray.indexOf(Tool.Text)
@@ -286,10 +286,10 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private func newCloseScreenshotAlert() -> UIAlertController {
         let alert = UIAlertController(title: nil, message: NSLocalizedString("Your edits to this screenshot will be lost unless you share it or save a copy.", comment: "Alert title for closing a screenshot that has annotations that hasn’t been shared."), preferredStyle: .ActionSheet)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Discard", comment: "Alert button title to close a screenshot and discard edits"), style: .Destructive, handler: { (action) in
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Discard", comment: "Alert button title to close a screenshot and discard edits"), style: .Destructive) { action in
             self.delegate?.editorWillDismiss(self, screenshot: self.view.pinpoint_screenshot)
             self.dismissViewControllerAnimated(true, completion: nil)
-        }))
+        })
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert button title to cancel the alert."), style: .Cancel, handler: nil))
         return alert
@@ -594,9 +594,9 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }
         
         if animated {
-            UIView.performSystemAnimation(.Delete, onViews: [annotationView], options: [], animations: nil, completion: { (finished: Bool) -> Void in
+            UIView.performSystemAnimation(.Delete, onViews: [annotationView], options: [], animations: nil) { finished in
                 removeAnnotationView()
-            })
+            }
             
         } else {
             removeAnnotationView()

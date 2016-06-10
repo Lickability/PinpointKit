@@ -43,7 +43,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     
     var annotation: Annotation? {
         didSet {
-            textView.frame = annotation.map { $0.frame } ?? CGRect.zero
+            textView.frame = annotation?.frame ?? CGRect.zero
             originalTextViewFrame = textView.frame
             (textView.layoutManager as? StrokeLayoutManager)?.strokeColor = annotation?.strokeColor
         }
@@ -74,8 +74,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     }
     
     override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        let value = annotationFrame.map { $0.contains(point) } ?? false
-        return value
+        return annotationFrame?.contains(point) ?? false
     }
         
     // MARK: - AnnotationView
