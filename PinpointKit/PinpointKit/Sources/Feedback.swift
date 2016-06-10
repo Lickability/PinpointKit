@@ -8,9 +8,7 @@
 
 import UIKit
 
-/**
- *  A struct containing user feedback on an application.
- */
+/// A struct containing user feedback on an application.
 public struct Feedback {
     
     /// An enum with assocated values that represents the screenshot.
@@ -37,9 +35,7 @@ public struct Feedback {
         }
     }
     
-    /**
-     *  A substructure containing information about the application and its environment.
-     */
+    /// A substructure containing information about the application and its environment.
     struct ApplicationInformation {
         /// The application’s marketing version.
         let version: String?
@@ -84,8 +80,6 @@ public struct Feedback {
     /// A struct containing information about the application and its environment.
     let applicationInformation: ApplicationInformation?
     
-    /// Initializes a `Feedback` with optional default values.
-    
     /**
      Initializes a `Feedback` with optional default values.
      
@@ -98,6 +92,8 @@ public struct Feedback {
      - parameter logsFileName:           The file name of the logs text file.
      - parameter additionalInformation:  Any additional information you want to capture.
      - parameter applicationInformation: Information about the application to be captured.
+     
+     - returns: An initialized `Configuration`.
      */
     init(screenshot: ScreenshotType,
         screenshotFileName: String = "Screenshot",
