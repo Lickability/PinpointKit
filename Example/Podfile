@@ -1,5 +1,5 @@
 use_frameworks!
 
 target 'PinpointKitExample' do
-	pod 'PinpointKit', :path => '../PinpointKit'
+	pod 'PinpointKit', :path => '../'
 end

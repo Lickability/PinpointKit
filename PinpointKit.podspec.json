@@ -28,7 +28,7 @@
     "UIKit",
     "MessageUI"
   ],
-  "source_files": "PinpointKit/Sources/**/*.{h,m,swift}",
-  "resources": "PinpointKit/Resources/*",
+  "source_files": "PinpointKit/PinpointKit/Sources/**/*.{h,m,swift}",
+  "resources": "PinpointKit/PinpointKit/Resources/*",
   "dependencies": { }
 }
