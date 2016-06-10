@@ -15,6 +15,10 @@
     "Michael Liberatore": "michael@lickability.com",
     "Andrew Harrison": "andrew@lickability.com"
   },
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
   "platforms": {
     "ios": "9.0"
   },
@@ -24,8 +28,8 @@
     "UIKit",
     "MessageUI"
   ],
-  "source_files": "PinpointKit/Sources/**/*.{h,m,swift}",
-  "resources": "PinpointKit/Resources/*",
+  "source_files": "PinpointKit/PinpointKit/Sources/**/*.{h,m,swift}",
+  "resources": "PinpointKit/PinpointKit/Resources/*",
   "dependencies": {
   }
 }
