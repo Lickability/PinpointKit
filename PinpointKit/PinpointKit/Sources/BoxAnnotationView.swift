@@ -8,51 +8,12 @@
 
 import UIKit
 
-private func PathForDrawingBoxAnnotation(annotation: BoxAnnotation) -> UIBezierPath? {
-    let frame = annotation.frame
-    let strokeWidth = annotation.strokeWidth
-    let borderWidth = annotation.borderWidth
-    let cornerRadius = annotation.cornerRadius
-
-    let outerBox = frame.insetBy(dx: strokeWidth, dy: strokeWidth)
-    let innerBox = outerBox.insetBy(dx: borderWidth + strokeWidth, dy: borderWidth + strokeWidth)
-
-    if min(innerBox.size.height, innerBox.size.width) < (borderWidth + strokeWidth) * 2.0 {
-        return nil
-    }
-
-    if min(innerBox.size.height, innerBox.size.width) < cornerRadius * 2.5 {
-        return nil
-    }
-
-    let firstPath = CGPathCreateWithRoundedRect(innerBox, cornerRadius, cornerRadius, nil)
-    let secondPath = CGPathCreateCopyByStrokingPath(firstPath, nil, borderWidth + strokeWidth, .Butt, .Bevel, 100)
-    
-    guard let strokePath = secondPath else { return nil }
-
-    let path = UIBezierPath(CGPath: strokePath)
-    path.lineWidth = strokeWidth
-    path.closePath()
-    return path
-}
-
-private func PathForPointInsideBoxAnnotation(annotation: BoxAnnotation) -> UIBezierPath? {
-    let outsideStrokeWidth = annotation.borderWidth * 2.0
-    
-    return PathForDrawingBoxAnnotation(annotation)
-        .flatMap { path in
-            CGPathCreateCopyByStrokingPath(path.CGPath, nil, outsideStrokeWidth, .Butt, .Bevel, 0)
-        }
-        .map { path in
-            UIBezierPath(CGPath: path)
-        }
-}
-
 /// The default box annotation view.
 public class BoxAnnotationView: AnnotationView {
 
     // MARK: - Properties
-
+    
+    /// The corresponding annotation.
     var annotation: BoxAnnotation? {
         didSet {
             layer.shadowPath = annotation.flatMap(PathForDrawingBoxAnnotation)?.CGPath
@@ -131,5 +92,45 @@ public class BoxAnnotationView: AnnotationView {
         let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scale)
         
         annotation = BoxAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: previousAnnotation.strokeColor)
+    }
+}
+
+private func PathForDrawingBoxAnnotation(annotation: BoxAnnotation) -> UIBezierPath? {
+    let frame = annotation.frame
+    let strokeWidth = annotation.strokeWidth
+    let borderWidth = annotation.borderWidth
+    let cornerRadius = annotation.cornerRadius
+    
+    let outerBox = frame.insetBy(dx: strokeWidth, dy: strokeWidth)
+    let innerBox = outerBox.insetBy(dx: borderWidth + strokeWidth, dy: borderWidth + strokeWidth)
+    
+    if min(innerBox.size.height, innerBox.size.width) < (borderWidth + strokeWidth) * 2.0 {
+        return nil
+    }
+    
+    if min(innerBox.size.height, innerBox.size.width) < cornerRadius * 2.5 {
+        return nil
+    }
+    
+    let firstPath = CGPathCreateWithRoundedRect(innerBox, cornerRadius, cornerRadius, nil)
+    let secondPath = CGPathCreateCopyByStrokingPath(firstPath, nil, borderWidth + strokeWidth, .Butt, .Bevel, 100)
+    
+    guard let strokePath = secondPath else { return nil }
+    
+    let path = UIBezierPath(CGPath: strokePath)
+    path.lineWidth = strokeWidth
+    path.closePath()
+    return path
+}
+
+private func PathForPointInsideBoxAnnotation(annotation: BoxAnnotation) -> UIBezierPath? {
+    let outsideStrokeWidth = annotation.borderWidth * 2.0
+    
+    return PathForDrawingBoxAnnotation(annotation)
+        .flatMap { path in
+            CGPathCreateCopyByStrokingPath(path.CGPath, nil, outsideStrokeWidth, .Butt, .Bevel, 0)
+        }
+        .map { path in
+            UIBezierPath(CGPath: path)
     }
 }

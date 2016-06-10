@@ -6,10 +6,9 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
-/**
-*  A protocol describing an interface to an object that can view a console log.
-*/
+/// A protocol describing an interface to an object that can view a console log.
 public protocol LogViewer: InterfaceCustomizable {
+    
     /**
      Displays a log from a given view controller.
      

@@ -8,9 +8,7 @@
 
 import UIKit
 
-/**
- *  A struct containing user feedback on an application.
- */
+/// A struct containing user feedback on an application.
 public struct Feedback {
     
     /// An enum with assocated values that represents the screenshot.
@@ -37,9 +35,7 @@ public struct Feedback {
         }
     }
     
-    /**
-     *  A substructure containing information about the application and its environment.
-     */
+    /// A substructure containing information about the application and its environment.
     struct ApplicationInformation {
         /// The application’s marketing version.
         let version: String?
@@ -83,8 +79,6 @@ public struct Feedback {
     
     /// A struct containing information about the application and its environment.
     let applicationInformation: ApplicationInformation?
-    
-    /// Initializes a `Feedback` with optional default values.
     
     /**
      Initializes a `Feedback` with optional default values.

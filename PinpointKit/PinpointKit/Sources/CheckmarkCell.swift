@@ -11,7 +11,7 @@ import UIKit
 /// A `UITableViewCell` subclass that displays a checkmark in the `imageView` when `isChecked` is `true` and hides it, leaving a space when `false`.
 final class CheckmarkCell: UITableViewCell {
     
-    /// A property that controls whether the receiver displays a checkmark in the `imageView`.
+    /// Controls whether the receiver displays a checkmark in `imageView`.
     var isChecked: Bool = false {
         didSet {
             imageView?.hidden = !isChecked
@@ -27,5 +27,4 @@ final class CheckmarkCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
