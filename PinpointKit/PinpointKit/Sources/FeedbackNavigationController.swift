@@ -67,6 +67,7 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         }
     }
     
+    /// The default email addresses of recipients to which feedback should be sent.
     public var feedbackRecipients: [String]? {
         get {
             return feedbackViewController.feedbackRecipients
@@ -84,7 +85,7 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         commonInitialization()
     }
     
-    convenience init () {
+    convenience init() {
         self.init(navigationBarClass: nil, toolbarClass: nil)
     }
     
