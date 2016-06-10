@@ -128,21 +128,23 @@ class BlurAnnotation: Annotation {
 
         let transform = NSValue(CGAffineTransform: CGAffineTransformIdentity)
         let affineClampFilter = CIFilter(name: "CIAffineClamp")
-        affineClampFilter?.setValue(image, forKey: "inputImage")
-        affineClampFilter?.setValue(transform, forKey: "inputTransform")
-        image = affineClampFilter?.valueForKey("outputImage") as? CIImage
+        affineClampFilter?.setValue(image, forKey: kCIInputImageKey)
+        affineClampFilter?.setValue(transform, forKey: kCIInputTransformKey)
+        image = affineClampFilter?.valueForKey(kCIOutputImageKey) as? CIImage
 
         let pixellateFilter = CIFilter(name: "CIPixellate")
-        pixellateFilter?.setValue(image, forKey: "inputImage")
-        pixellateFilter?.setValue(16, forKey: "inputScale")
-        image = pixellateFilter?.valueForKey("outputImage") as? CIImage
+        pixellateFilter?.setValue(image, forKey: kCIInputImageKey)
+        
+        let inputScale = 16
+        pixellateFilter?.setValue(inputScale, forKey: kCIInputScaleKey)
+        image = pixellateFilter?.valueForKey(kCIOutputImageKey) as? CIImage
 
         if let imageValue = image, extentValue = extent {
             let vector = CIVector(CGRect: extentValue)
             let filter: CIFilter? = CIFilter(name: "CICrop")
-            filter?.setValue(imageValue, forKey: "inputImage")
+            filter?.setValue(imageValue, forKey: kCIInputImageKey)
             filter?.setValue(vector, forKey: "inputRectangle")
-            image = filter?.valueForKey("outputImage") as? CIImage
+            image = filter?.valueForKey(kCIOutputImageKey) as? CIImage
         }
 
         return image
