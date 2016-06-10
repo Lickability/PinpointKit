@@ -8,9 +8,9 @@
 
 import UIKit
 
-/// A class that handles the adjustment of specified auto-layout views that will be adjusted upon the appearance of the keyboard.
+/// A class that handles the adjustment of specified auto-layout views upon the appearance of the keyboard.
 final class KeyboardAvoider {
-    /// The views that you want to be adjusted when the keyboard appears.
+    /// The views to be adjusted when the keyboard appears.
     var viewsToAvoidKeyboard: [UIView] = []
     
     /// Views that trigger the appearance of the keyboard.
