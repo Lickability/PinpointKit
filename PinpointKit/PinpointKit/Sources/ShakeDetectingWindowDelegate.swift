@@ -8,10 +8,8 @@
 
 import Foundation
 
-/**
- *  A `ShakeDetectingWindowDelegate` is the receiver of callbacks from `ShakeDetectingWindow` when a
- *  shake motion event occurs.
- */
+
+/// A `ShakeDetectingWindowDelegate` is the receiver of callbacks from `ShakeDetectingWindow` when a shake motion event occurs.
 public protocol ShakeDetectingWindowDelegate: class {
 
     /**

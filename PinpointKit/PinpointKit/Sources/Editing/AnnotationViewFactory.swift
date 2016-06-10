@@ -6,7 +6,7 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
-// A factory that constructs `AnnotationView`s.
+/// A factory that constructs `AnnotationView`s.
 struct AnnotationViewFactory {
     
     /// The image to annotate.
