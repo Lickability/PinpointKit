@@ -123,13 +123,6 @@ If you don't want to use [`defaultPinpointKit`](https://github.com/Lickability/P
 
 The [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) struct allows you to specify how the feedback view looks and behaves, while the [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift#L83) instance provides hooks into the state of the feedback being sent.
 
-<<<<<<< HEAD
-## License
-
-PinpointKit is available under the MIT license. See the [`LICENSE`](LICENSE) file for more information.
-
-# About
-=======
 ## Customization
 
 PinpointKit uses a protocol-oriented architecture which allows almost everything to be customized. Here are some examples of what’s possible:
@@ -140,8 +133,11 @@ PinpointKit uses a protocol-oriented architecture which allows almost everything
 
 For more information on what you can customize, take a peek the documentation of [`Configuration.swift`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift).
 
+## License
+
+PinpointKit is available under the MIT license. See the [`LICENSE`](LICENSE) file for more information.
+
 ## About
->>>>>>> master
 
 [![Lickability Logo](Assets/lickability-logo.png)](http://lickability.com)
 
