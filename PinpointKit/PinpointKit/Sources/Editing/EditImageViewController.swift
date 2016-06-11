@@ -335,14 +335,14 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             let annotationViewIsNotBlurView = !(possibleAnnotationView is BlurAnnotationView)
             
             if let annotationView = possibleAnnotationView {
-                annotationsView.bringSubviewToFront(annotationView)
+                annotationsView.bringSubviewToFront(annotationView.view())
                 
                 if annotationViewIsNotBlurView {
                     navigationController?.barHideOnTapGestureRecognizer.failRecognizing()
                 }
             }
             
-            if possibleAnnotationView != currentTextAnnotationView {
+            if possibleAnnotationView?.view() != currentTextAnnotationView?.view() {
                 endEditingTextView()
                 
                 if !(possibleAnnotationView is TextAnnotationView) {
@@ -372,10 +372,13 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
                 }
             }
             
-            let annotationView = annotationViews.first
-            let annotationViewsFiltered = annotationViews.filter { $0 == annotationViews.first }
+            if let annotationView = annotationViews.first {
+                let annotationViewsFiltered = annotationViews.filter { $0.view() == annotationView.view() }
+                
+                return annotationViewsFiltered.count == numberOfTouches ? annotationView : nil
+            }
             
-            return annotationViewsFiltered.count == numberOfTouches ? annotationView : nil
+            return  nil
         }
         
         return annotationViewInView(view, withLocation: gestureRecognizer.locationInView(view))
@@ -480,12 +483,13 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         let factory = AnnotationViewFactory(image: imageView.image?.CGImage, currentLocation: currentLocation, tool: currentTool, strokeColor: annotationStrokeColor)
         
-        let view: AnnotationView = factory.annotationView()
+        let annotationView = factory.annotationView()
+        let view = annotationView.view()
         
         view.frame = annotationsView.bounds
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         annotationsView.addSubview(view)
-        currentAnnotationView = view
+        currentAnnotationView = annotationView
         beginEditingTextView()
     }
     
@@ -571,7 +575,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     @objc private func handleDoubleTapGestureRecognizer(gestureRecognizer: UITapGestureRecognizer) {
         if let view = annotationViewWithGestureRecognizer(gestureRecognizer) {
-            deleteAnnotationView(view, animated: true)
+            deleteAnnotationView(view.view(), animated: true)
         }
     }
     
@@ -580,16 +584,16 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             return
         }
         
-        guard let view = annotationViewWithGestureRecognizer(gestureRecognizer) else { return }
+        guard let annotationView = annotationViewWithGestureRecognizer(gestureRecognizer) else { return }
         
-        selectedAnnotationView = view
+        selectedAnnotationView = annotationView
         becomeFirstResponder()
         
         let point = gestureRecognizer.locationInView(gestureRecognizer.view)
         let targetRect = CGRect(origin: point, size: CGSize())
         
         let controller = UIMenuController.sharedMenuController()
-        controller.setTargetRect(targetRect, inView: view)
+        controller.setTargetRect(targetRect, inView: annotationView.view())
         controller.menuItems = [
             UIMenuItem(title: "Delete", action: #selector(EditImageViewController.deleteSelectedAnnotationView))
         ]
@@ -615,7 +619,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     @objc private func deleteSelectedAnnotationView() {
         if let selectedAnnotationView = selectedAnnotationView {
-            deleteAnnotationView(selectedAnnotationView, animated: true)
+            deleteAnnotationView(selectedAnnotationView.view(), animated: true)
         }
     }
     

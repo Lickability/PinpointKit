@@ -11,7 +11,7 @@ import GLKit
 import CoreImage
 
 /// The default blur annotation view.
-public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
+public class BlurAnnotationView: UIView, AnnotationView, GLKViewDelegate {
 
     // MARK: - Properties
 
@@ -42,7 +42,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
         }
     }
     
-    override var annotationFrame: CGRect? {
+    public var annotationFrame: CGRect? {
         return annotation?.frame
     }
     
@@ -102,7 +102,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
         
         if drawsBorder {
             let context = UIGraphicsGetCurrentContext()
-            tintColor?.colorWithAlphaComponent(self.dynamicType.BorderAlpha).setStroke()
+            tintColor?.colorWithAlphaComponent(BorderAlpha).setStroke()
             
             // Since this draws under the GLKView, and strokes extend both inside and outside, we have to double the intended width.
             let strokeWidth: CGFloat = 1.0
@@ -115,13 +115,13 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
         
     // MARK: - AnnotationView
 
-    override func setSecondControlPoint(point: CGPoint) {
+    public func setSecondControlPoint(point: CGPoint) {
         guard let previousAnnotation = annotation else { return }
         
         annotation = BlurAnnotation(startLocation: previousAnnotation.startLocation, endLocation: point, image: previousAnnotation.image)
     }
 
-    override func moveControlPoints(translation: CGPoint) {
+    public func moveControlPoints(translation: CGPoint) {
         guard let previousAnnotation = annotation else { return }
         let startLocation = CGPoint(x: previousAnnotation.startLocation.x + translation.x, y: previousAnnotation.startLocation.y + translation.y)
         let endLocation = CGPoint(x: previousAnnotation.endLocation.x + translation.x, y: previousAnnotation.endLocation.y + translation.y)
@@ -129,7 +129,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
         annotation = BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: previousAnnotation.image)
     }
 
-    override func scaleControlPoints(scale: CGFloat) {
+    public func scaleControlPoints(scale: CGFloat) {
         guard let previousAnnotation = annotation else { return }
         let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scale)
         let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scale)

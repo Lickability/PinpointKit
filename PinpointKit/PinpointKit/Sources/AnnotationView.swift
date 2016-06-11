@@ -8,18 +8,16 @@
 
 import UIKit
 
+/// The alpha value used for annotation borders.
+let BorderAlpha: CGFloat = 0.7
+
 /// The base annotation `UIView` subclass.
-public class AnnotationView: UIView {
-    
-    /// The alpha value used for annotation borders.
-    static let BorderAlpha: CGFloat = 0.7
+public protocol AnnotationView {
     
     // MARK: - Properties
     
     /// The frame of the annotation view.
-    var annotationFrame: CGRect? {
-        return nil
-    }
+    var annotationFrame: CGRect? { get }
     
     // MARK: - Helpers
     
@@ -28,25 +26,27 @@ public class AnnotationView: UIView {
      
      - parameter translation: The amount to translate the control points.
      */
-    func moveControlPoints(translation: CGPoint) {
-        
-    }
+    func moveControlPoints(translation: CGPoint)
     
     /**
      Scales the control points of the annotation by the amount specified in `scale`.
      
      - parameter scale: The factor by which to scale the annotation.
      */
-    func scaleControlPoints(scale: CGFloat) {
-        
-    }
+    func scaleControlPoints(scale: CGFloat)
     
     /**
      Sets the second control point of the annotation to `point`.
      
      - parameter point: The new value for the annotation’s second control point.
      */
-    func setSecondControlPoint(point: CGPoint) {
-        
+    func setSecondControlPoint(point: CGPoint)
+    
+    func view() -> UIView
+}
+
+extension AnnotationView where Self: UIView {
+    public func view() -> UIView {
+        return self
     }
 }

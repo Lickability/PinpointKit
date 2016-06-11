@@ -39,13 +39,13 @@ class AnnotationsView: UIView {
     func moveBlurViewAboveBlurViewsAndUnderOthers(blurView blurView: BlurAnnotationView) {
         var lastBlurViewIndex: Int?
         for (index, subview) in subviews.enumerate() {
-            if subview is BlurAnnotationView && subview as? BlurAnnotationView != blurView {
+            if let subview = subview as? BlurAnnotationView {
                 lastBlurViewIndex = index
             }
         }
         
         let index = lastBlurViewIndex?.successor() ?? 0
-        insertSubview(blurView, atIndex: index)
+        insertSubview(blurView.view(), atIndex: index)
     }
     
     override func tintColorDidChange() {
