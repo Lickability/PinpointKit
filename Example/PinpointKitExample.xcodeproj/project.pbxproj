@@ -97,12 +97,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DA19C3F61C67D4420016861F /* Build configuration list for PBXNativeTarget "PinpointKitExample" */;
 			buildPhases = (
-				072623A5468F27A0975A871A /* 📦 Check Pods Manifest.lock */,
+				072623A5468F27A0975A871A /* [CP] Check Pods Manifest.lock */,
 				DA19C3E01C67D4420016861F /* Sources */,
 				DA19C3E11C67D4420016861F /* Frameworks */,
 				DA19C3E21C67D4420016861F /* Resources */,
-				E9FAB3019A9E163A9B828A51 /* 📦 Embed Pods Frameworks */,
-				8B1639EE38352A1103B1DD1B /* 📦 Copy Pods Resources */,
+				E9FAB3019A9E163A9B828A51 /* [CP] Embed Pods Frameworks */,
+				8B1639EE38352A1103B1DD1B /* [CP] Copy Pods Resources */,
 				F2ACE9C71CEF90FD00A461E5 /* Swiftlint */,
 			);
 			buildRules = (
@@ -161,14 +161,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		072623A5468F27A0975A871A /* 📦 Check Pods Manifest.lock */ = {
+		072623A5468F27A0975A871A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,14 +176,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		8B1639EE38352A1103B1DD1B /* 📦 Copy Pods Resources */ = {
+		8B1639EE38352A1103B1DD1B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,14 +191,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PinpointKitExample/Pods-PinpointKitExample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E9FAB3019A9E163A9B828A51 /* 📦 Embed Pods Frameworks */ = {
+		E9FAB3019A9E163A9B828A51 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
