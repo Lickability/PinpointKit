@@ -9,7 +9,7 @@
 import UIKit
 
 /// The default arrow annotation view.
-public class ArrowAnnotationView: UIView, AnnotationView {
+public final class ArrowAnnotationView: UIView, AnnotationView {
 
     // MARK: - Properties
 

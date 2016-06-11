@@ -11,7 +11,7 @@ import GLKit
 import CoreImage
 
 /// The default blur annotation view.
-public class BlurAnnotationView: UIView, AnnotationView, GLKViewDelegate {
+public final class BlurAnnotationView: UIView, AnnotationView, GLKViewDelegate {
 
     // MARK: - Properties
 

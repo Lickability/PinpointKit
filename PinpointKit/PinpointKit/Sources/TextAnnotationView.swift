@@ -9,7 +9,7 @@
 import UIKit
 
 /// The default text annotation view.
-public class TextAnnotationView: UIView, AnnotationView, UITextViewDelegate {
+public final class TextAnnotationView: UIView, AnnotationView, UITextViewDelegate {
     private static let TextViewInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
     private static let TextViewLineFragmentPadding: CGFloat = 5.0
     
