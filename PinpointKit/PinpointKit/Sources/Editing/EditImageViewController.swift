@@ -367,7 +367,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             let numberOfTouches = gestureRecognizer.numberOfTouches()
             
             for index in 0..<numberOfTouches {
-                if let annotationView = annotationViewInView(view, withLocation: gestureRecognizer.location(ofTouch: index, in: view)) {
+                if let annotationView = self.annotationView(in: view, with: gestureRecognizer.location(ofTouch: index, in: view)) {
                     annotationViews.append(annotationView)
                 }
             }
@@ -378,10 +378,10 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             return annotationViewsFiltered.count == numberOfTouches ? annotationView : nil
         }
         
-        return annotationViewInView(view, withLocation: gestureRecognizer.location(in: view))
+        return annotationView(in: view, with: gestureRecognizer.location(in: view))
     }
     
-    private func annotationViewInView(_ view: UIView, withLocation location: CGPoint) -> AnnotationView? {
+    private func annotationView(in view: UIView, with location: CGPoint) -> AnnotationView? {
         let hitView = view.hitTest(location, with: nil)
         let hitTextView = hitView as? UITextView
         let hitTextViewSuperview = hitTextView?.superview as? AnnotationView
