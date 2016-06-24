@@ -113,7 +113,7 @@ private extension MFMailComposeViewController {
         }
         
         if let additionalInformation = feedback.additionalInformation {
-            attachAdditionalInformation(additionalInformation)
+            attach(additionalInformation: additionalInformation)
         }
     }
     
@@ -138,7 +138,7 @@ private extension MFMailComposeViewController {
         addAttachmentData(textData, mimeType: MIMEType.PlainText.rawValue, fileName: filename)
     }
     
-    func attachAdditionalInformation(_ additionalInformation: [String: AnyObject]) {
+    func attach(additionalInformation additionalInformation: [String: AnyObject]) {
         let data = try? JSONSerialization.data(withJSONObject: additionalInformation, options: .prettyPrinted)
         
         if let data = data {
