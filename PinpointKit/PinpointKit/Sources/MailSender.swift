@@ -88,7 +88,7 @@ public class MailSender: NSObject, Sender {
     }
     
     private func succeed(_ success: Success) {
-        delegate?.sender(self, didSendFeedback: feedback, success: success)
+        delegate?.sender(self, didSend: feedback, success: success)
         feedback = nil
     }
 }

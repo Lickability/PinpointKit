@@ -32,7 +32,7 @@ public protocol SenderDelegate: class {
      - parameter feedback: The feedback that was sent.
      - parameter success:  The optional type of success.
      */
-    func sender(_ sender: Sender, didSendFeedback feedback: Feedback?, success: SuccessType?)
+    func sender(_ sender: Sender, didSend feedback: Feedback?, success: SuccessType?)
     
     /**
      Notifies the receiver that the sender failed to send the feedback with a given error.

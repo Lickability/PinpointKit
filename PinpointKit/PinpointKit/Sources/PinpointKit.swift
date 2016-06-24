@@ -64,7 +64,7 @@ extension PinpointKit: FeedbackCollectorDelegate {
 
 extension PinpointKit: SenderDelegate {
     
-    public func sender(_ sender: Sender, didSendFeedback feedback: Feedback?, success: SuccessType?) {
+    public func sender(_ sender: Sender, didSend feedback: Feedback?, success: SuccessType?) {
         guard let feedback = feedback else { return }
         
         delegate?.pinpointKit(self, didSendFeedback: feedback)
