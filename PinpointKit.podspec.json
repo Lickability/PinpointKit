@@ -1,6 +1,7 @@
 {
   "name": "PinpointKit",
   "version": "0.9",
+  "homepage": "https://github.com/Lickability/PinpointKit",
   "source": {
       "git": "https://github.com/Lickability/PinpointKit.git",
       "tag": "0.9"
