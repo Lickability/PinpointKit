@@ -41,11 +41,11 @@ public protocol SenderDelegate: class {
      - parameter feedback: The feedback that failed to send.
      - parameter error:    The error that caused the failure.
      */
-    func sender(_ sender: Sender, didFailToSendFeedback feedback: Feedback?, error: ErrorProtocol)
+    func sender(_ sender: Sender, didFailToSend feedback: Feedback?, error: ErrorProtocol)
 }
 
 /// An extension on PinpointKitDelegate that makes some of the delegate methods optional by giving them empty implementations by default.
 public extension SenderDelegate {
 
-    func sender(_ sender: Sender, didFailToSendFeedback feedback: Feedback?, error: ErrorProtocol) { }
+    func sender(_ sender: Sender, didFailToSend feedback: Feedback?, error: ErrorProtocol) { }
 }

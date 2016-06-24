@@ -83,7 +83,7 @@ public class MailSender: NSObject, Sender {
     // MARK: - MailSender
     
     private func fail(_ error: Error) {
-        delegate?.sender(self, didFailToSendFeedback: feedback, error: error)
+        delegate?.sender(self, didFailToSend: feedback, error: error)
         feedback = nil
     }
     
