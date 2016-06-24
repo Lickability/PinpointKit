@@ -70,7 +70,7 @@ class ScreenshotHeaderView: UIView {
     
     private let hintLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.lightGray()
+        label.textColor = .lightGray()
         return label
     }()
     

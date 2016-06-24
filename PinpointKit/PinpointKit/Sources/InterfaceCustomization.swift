@@ -83,7 +83,7 @@ public struct InterfaceCustomization {
          - parameter editorTextAnnotationFont:           The font used for text annotations in the editor.
          - parameter editorTextAnnotationDoneButtonFont: The font used for the done button in the editor displayed while editing a text annotation.
          */
-        public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(),
+        public init(tintColor: UIColor? = .pinpointOrangeColor(),
                     annotationFillColor: UIColor? = nil,
                     annotationStrokeColor: UIColor = .white(),
                     navigationTitleFont: UIFont = .sourceSansProFontOfSize(19, weight: .semibold),
