@@ -118,7 +118,7 @@ private extension MFMailComposeViewController {
     }
     
     func attach(_ screenshot: Feedback.ScreenshotType, screenshotFileName: String) throws {
-        try attachImage(screenshot.preferredImage, filename: screenshotFileName + MIMEType.PNG.fileExtension)
+        try attach(screenshot.preferredImage, filename: screenshotFileName + MIMEType.PNG.fileExtension)
     }
     
     func attach(_ logs: [String], logsFileName: String) throws {
@@ -126,7 +126,7 @@ private extension MFMailComposeViewController {
         try attachText(logsText, filename: logsFileName + MIMEType.PlainText.fileExtension)
     }
     
-    func attachImage(_ image: UIImage, filename: String) throws {
+    func attach(_ image: UIImage, filename: String) throws {
         guard let PNGData = UIImagePNGRepresentation(image) else { throw MailSender.Error.imageEncoding }
         
         addAttachmentData(PNGData, mimeType: MIMEType.PNG.rawValue, fileName: filename)
