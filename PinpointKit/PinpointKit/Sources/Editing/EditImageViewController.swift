@@ -520,8 +520,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private func handleUpdateAnnotationGestureRecognizerChanged(_ gestureRecognizer: UIPanGestureRecognizer) {
         let currentLocation = gestureRecognizer.location(in: gestureRecognizer.view)
-        let previousLocation = previousUpdateAnnotationPanGestureRecognizerLocation
-        let offset = CGPoint(x: currentLocation.x - (previousLocation?.x)!, y: currentLocation.y - (previousLocation?.y)!)
+        let previousLocation: CGPoint = previousUpdateAnnotationPanGestureRecognizerLocation
+        let offset = CGPoint(x: currentLocation.x - previousLocation.x, y: currentLocation.y - previousLocation.y)
         currentAnnotationView?.moveControlPoints(offset)
         previousUpdateAnnotationPanGestureRecognizerLocation = gestureRecognizer.location(in: gestureRecognizer.view)
     }
