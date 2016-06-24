@@ -83,12 +83,12 @@ public class ScreenshotDetector: NSObject {
                 guard let strongSelf = self else { return }
                 guard let image = image else { strongSelf.fail(.loadFailure); return }
                 
-                strongSelf.succeed(image)
+                strongSelf.succeed(with: image)
             }
         }
     }
     
-    private func succeed(_ image: UIImage) {
+    private func succeed(with image: UIImage) {
         delegate?.screenshotDetector(self, didDetectScreenshot: image)
     }
     
