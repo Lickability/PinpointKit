@@ -56,7 +56,7 @@ public class BasicLogViewController: UIViewController, LogViewer {
     
     // MARK: - LogViewer
     
-    public func viewLog(_ collector: LogCollector, fromViewController viewController: UIViewController) {
+    public func viewLog(in collector: LogCollector, from viewController: UIViewController) {
         let logText = collector.retrieveLogs().joined(separator: "\n")
         textView.text = logText
         

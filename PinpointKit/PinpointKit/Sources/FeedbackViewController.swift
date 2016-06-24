@@ -212,7 +212,7 @@ extension FeedbackViewController {
             return
         }
         
-        logViewer?.viewLog(logCollector, fromViewController: self)
+        logViewer?.viewLog(in: logCollector, from: self)
     }
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
