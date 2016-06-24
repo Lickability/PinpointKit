@@ -331,7 +331,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     @objc private func handleTouchDownGestureRecognizer(_ gestureRecognizer: UILongPressGestureRecognizer) {
         if gestureRecognizer.state == .began {
-            let possibleAnnotationView = annotationViewWithGestureRecognizer(gestureRecognizer)
+            let possibleAnnotationView = annotationView(with: gestureRecognizer)
             let annotationViewIsNotBlurView = !(possibleAnnotationView is BlurAnnotationView)
             
             if let annotationView = possibleAnnotationView {
@@ -359,7 +359,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }
     }
     
-    private func annotationViewWithGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) -> AnnotationView? {
+    private func annotationView(with gestureRecognizer: UIGestureRecognizer) -> AnnotationView? {
         let view = annotationsView
         if gestureRecognizer is UIPinchGestureRecognizer {
             var annotationViews: [AnnotationView] = []
@@ -510,7 +510,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func handleUpdateAnnotationGestureRecognizerBegan(_ gestureRecognizer: UIPanGestureRecognizer) {
-        currentAnnotationView = annotationViewWithGestureRecognizer(gestureRecognizer)
+        currentAnnotationView = annotationView(with: gestureRecognizer)
         previousUpdateAnnotationPanGestureRecognizerLocation = gestureRecognizer.location(in: gestureRecognizer.view)
         currentBlurAnnotationView?.drawsBorder = true
         
@@ -529,7 +529,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     @objc private func handleUpdateAnnotationTapGestureRecognizer(_ gestureRecognizer: UITapGestureRecognizer) {
         switch gestureRecognizer.state {
         case .ended:
-            if let annotationView = annotationViewWithGestureRecognizer(gestureRecognizer) {
+            if let annotationView = annotationView(with: gestureRecognizer) {
                 currentAnnotationView = annotationView as? TextAnnotationView
                 beginEditingTextView()
             } else if currentTool == .text {
@@ -554,7 +554,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func handleUpdateAnnotationPinchGestureRecognizerBegan(_ gestureRecognizer: UIPinchGestureRecognizer) {
-        currentAnnotationView = annotationViewWithGestureRecognizer(gestureRecognizer)
+        currentAnnotationView = annotationView(with: gestureRecognizer)
         previousUpdateAnnotationPinchScale = 1
         currentBlurAnnotationView?.drawsBorder = true
     }
@@ -570,7 +570,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     // MARK: - Delete annotations
     
     @objc private func handleDoubleTapGestureRecognizer(_ gestureRecognizer: UITapGestureRecognizer) {
-        if let view = annotationViewWithGestureRecognizer(gestureRecognizer) {
+        if let view = annotationView(with: gestureRecognizer) {
             deleteAnnotationView(view, animated: true)
         }
     }
@@ -580,7 +580,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             return
         }
         
-        guard let view = annotationViewWithGestureRecognizer(gestureRecognizer) else { return }
+        guard let view = annotationView(with: gestureRecognizer) else { return }
         
         selectedAnnotationView = view
         becomeFirstResponder()
@@ -623,15 +623,15 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer == createAnnotationPanGestureRecognizer {
-            return annotationViewWithGestureRecognizer(gestureRecognizer) == nil
+            return annotationView(with: gestureRecognizer) == nil
         }
         
         if gestureRecognizer == updateAnnotationPanGestureRecognizer {
-            return annotationViewWithGestureRecognizer(gestureRecognizer) != nil
+            return annotationView(with: gestureRecognizer) != nil
         }
         
         if gestureRecognizer == createOrUpdateAnnotationTapGestureRecognizer {
-            let annotationViewExists = annotationViewWithGestureRecognizer(gestureRecognizer) != nil
+            let annotationViewExists = annotationView(with: gestureRecognizer) != nil
             return currentTool == .text ? true : annotationViewExists
         }
         
