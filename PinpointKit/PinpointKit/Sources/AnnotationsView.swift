@@ -27,7 +27,7 @@ class AnnotationsView: UIView {
      */
     func moveViewIfAppropriate(_ view: UIView) {
         if let blurView = view as? BlurAnnotationView {
-            moveBlurViewAboveBlurViewsAndUnderOthers(blurView: blurView)
+            moveBlurViewAboveBlurViewsAndUnderOthers(blurView)
         }
     }
     
@@ -36,7 +36,7 @@ class AnnotationsView: UIView {
      
      - parameter blurView: The blur view to move.
      */
-    func moveBlurViewAboveBlurViewsAndUnderOthers(blurView: BlurAnnotationView) {
+    func moveBlurViewAboveBlurViewsAndUnderOthers(_ blurView: BlurAnnotationView) {
         var lastBlurViewIndex: Int?
         for (index, subview) in subviews.enumerated() {
             if subview is BlurAnnotationView && subview as? BlurAnnotationView != blurView {

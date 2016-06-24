@@ -101,10 +101,7 @@ private extension ArrowAnnotation {
             return nil
         }
         
-        let path = UIBezierPath.arrowBezierPath(
-            startPoint: startLocation,
-            endPoint: endLocation
-        )
+        let path = UIBezierPath.arrowBezierPath(startLocation, endPoint: endLocation)
         
         path.lineWidth = strokeWidth
         return path
