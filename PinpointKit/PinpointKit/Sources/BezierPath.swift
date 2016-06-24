@@ -19,7 +19,7 @@ extension UIBezierPath {
      
      - returns: A `UIBezierPath` in the shape of an arrow.
      */
-    static func arrowBezierPath(startPoint: CGPoint, endPoint: CGPoint) -> UIBezierPath {
+    static func arrowBezierPath(_ startPoint: CGPoint, endPoint: CGPoint) -> UIBezierPath {
         let length = hypot(endPoint.x - startPoint.x, endPoint.y - startPoint.y)
 
         // Shape 267x120 from PaintCode. 0 is the mid Y of the arrow to match the original arrow Y.

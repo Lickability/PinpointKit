@@ -158,16 +158,14 @@ extension MailSender: MFMailComposeViewControllerDelegate {
     
     private func completeWithResult(_ result: MFMailComposeResult, error: NSError?) {
         switch result {
-        case MFMailComposeResult.cancelled:
+        case .cancelled:
             fail(.mailCanceled(underlyingError: error))
-        case MFMailComposeResult.failed:
+        case .failed:
             fail(.mailFailed(underlyingError: error))
-        case MFMailComposeResult.saved:
+        case .saved:
             succeed(.saved)
-        case MFMailComposeResult.sent:
+        case .sent:
             succeed(.sent)
-        default:
-            fail(.unknown)
         }
     }
 }
