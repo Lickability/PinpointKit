@@ -106,7 +106,7 @@ private extension MFMailComposeViewController {
            setMessageBody(body, isHTML: false)
         }
         
-        try attachScreenshot(feedback.screenshot, screenshotFileName: feedback.screenshotFileName)
+        try attach(feedback.screenshot, screenshotFileName: feedback.screenshotFileName)
         
         if let logs = feedback.logs {
             try attachLogs(logs, logsFileName: feedback.logsFileName)
@@ -117,7 +117,7 @@ private extension MFMailComposeViewController {
         }
     }
     
-    func attachScreenshot(_ screenshot: Feedback.ScreenshotType, screenshotFileName: String) throws {
+    func attach(_ screenshot: Feedback.ScreenshotType, screenshotFileName: String) throws {
         try attachImage(screenshot.preferredImage, filename: screenshotFileName + MIMEType.PNG.fileExtension)
     }
     
