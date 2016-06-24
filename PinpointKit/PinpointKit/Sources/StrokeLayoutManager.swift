@@ -18,7 +18,7 @@ final class StrokeLayoutManager: NSLayoutManager {
     var strokeWidth: CGFloat?
     
     override func drawGlyphsForGlyphRange(glyphsToShow: NSRange, atPoint origin: CGPoint) {
-        let context = UIGraphicsGetCurrentContext()
+        guard let context = UIGraphicsGetCurrentContext() else { assertionFailure(); return }
         
         let firstIndex = characterIndexForGlyphAtIndex(glyphsToShow.location)
         let attributes = textStorage?.attributesAtIndex(firstIndex, effectiveRange: nil)

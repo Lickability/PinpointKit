@@ -101,7 +101,8 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
         super.drawRect(rect)
         
         if drawsBorder {
-            let context = UIGraphicsGetCurrentContext()
+            guard let context = UIGraphicsGetCurrentContext() else { assertionFailure(); return }
+            
             tintColor?.colorWithAlphaComponent(self.dynamicType.BorderAlpha).setStroke()
             
             // Since this draws under the GLKView, and strokes extend both inside and outside, we have to double the intended width.
