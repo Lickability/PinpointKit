@@ -123,7 +123,7 @@ private extension MFMailComposeViewController {
     
     func attach(_ logs: [String], logsFileName: String) throws {
         let logsText = logs.joined(separator: "\n\n")
-        try attachText(logsText, filename: logsFileName + MIMEType.PlainText.fileExtension)
+        try attach(logsText, filename: logsFileName + MIMEType.PlainText.fileExtension)
     }
     
     func attach(_ image: UIImage, filename: String) throws {
@@ -132,7 +132,7 @@ private extension MFMailComposeViewController {
         addAttachmentData(PNGData, mimeType: MIMEType.PNG.rawValue, fileName: filename)
     }
     
-    func attachText(_ text: String, filename: String) throws {
+    func attach(_ text: String, filename: String) throws {
         guard let textData = text.data(using: String.Encoding.utf8) else { throw MailSender.Error.textEncoding }
         
         addAttachmentData(textData, mimeType: MIMEType.PlainText.rawValue, fileName: filename)
