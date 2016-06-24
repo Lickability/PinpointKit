@@ -56,7 +56,7 @@ final class KeyboardAvoider {
         for avoidingView in viewsToAvoidKeyboard {
             let constraints = avoidingView.superview?.constraints ?? []
             
-            updateAndStoreConstraints(constraints, onView: avoidingView, withDifference: difference, isDismissing: isDismissing)
+            updateAndStore(constraints, on: avoidingView, withDifference: difference, isDismissing: isDismissing)
             
             avoidingView.superview?.layoutIfNeeded()
         }
@@ -68,7 +68,7 @@ final class KeyboardAvoider {
         }
     }
     
-    private func updateAndStoreConstraints(_ constraints: [NSLayoutConstraint], onView view: UIView, withDifference difference: CGFloat, isDismissing: Bool) {
+    private func updateAndStore(_ constraints: [NSLayoutConstraint], on view: UIView, withDifference difference: CGFloat, isDismissing: Bool) {
         
         for constraint in constraints {
             let originalConstant = originalConstraintConstants[constraint]
