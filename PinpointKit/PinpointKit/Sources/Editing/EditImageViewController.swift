@@ -295,7 +295,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private func newCloseScreenshotAlert() -> UIAlertController {
         let alert = UIAlertController(title: nil, message: NSLocalizedString("Your edits to this screenshot will be lost unless you share it or save a copy.", comment: "Alert title for closing a screenshot that has annotations that hasn’t been shared."), preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("Discard", comment: "Alert button title to close a screenshot and discard edits"), style: .destructive) { action in
-            self.delegate?.editorWillDismiss(self, screenshot: self.view.pinpoint_screenshot)
+            self.delegate?.editorWillDismiss(self, with: self.view.pinpoint_screenshot)
             self.dismiss(animated: true, completion: nil)
         })
         
@@ -307,8 +307,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         guard let image = imageView.image else { assertionFailure(); return }
         
         if let delegate = self.delegate {
-            if delegate.editorShouldDismiss(self, screenshot: image) {
-                delegate.editorWillDismiss(self, screenshot: image)
+            if delegate.editorShouldDismiss(self, with: image) {
+                delegate.editorWillDismiss(self, with: image)
                 
                 dismiss(animated: true, completion: nil)
             }
@@ -319,8 +319,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     @objc private func doneButtonTapped(_ button: UIBarButtonItem) {
         if let delegate = self.delegate {
-            if delegate.editorShouldDismiss(self, screenshot: self.view.pinpoint_screenshot) {
-                self.delegate?.editorWillDismiss(self, screenshot: self.view.pinpoint_screenshot)
+            if delegate.editorShouldDismiss(self, with: self.view.pinpoint_screenshot) {
+                self.delegate?.editorWillDismiss(self, with: self.view.pinpoint_screenshot)
                 
                 dismiss(animated: true, completion: nil)
             }

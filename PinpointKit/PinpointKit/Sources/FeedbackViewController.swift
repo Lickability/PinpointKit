@@ -197,7 +197,7 @@ extension FeedbackViewController: FeedbackCollector {
 // MARK: - EditorDelegate
 
 extension FeedbackViewController: EditorDelegate {
-    public func editorWillDismiss(_ editor: Editor, screenshot: UIImage) {
+    public func editorWillDismiss(_ editor: Editor, with screenshot: UIImage) {
         annotatedScreenshot = screenshot
         updateTableHeaderView()
     }
