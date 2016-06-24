@@ -77,7 +77,7 @@ final class KeyboardAvoider {
                 constraint.constant = originalConstant
                 originalConstraintConstants.removeValue(forKey: constraint)
                 
-            } else if !isDismissing && firstOrSecondItemForConstraint(constraint, isEqualToView: view) {
+            } else if !isDismissing && firstOrSecondItem(forConstraint: constraint, isEqualTo: view) {
                 // Only replace contraints that don't already exist.
                 if originalConstant == nil {
                     originalConstraintConstants[constraint] = constraint.constant
@@ -92,7 +92,7 @@ final class KeyboardAvoider {
         }
     }
     
-    private func firstOrSecondItemForConstraint(_ constraint: NSLayoutConstraint, isEqualToView view: UIView) -> Bool {
+    private func firstOrSecondItem(forConstraint constraint: NSLayoutConstraint, isEqualTo view: UIView) -> Bool {
         return constraint.secondItem as? UIView == view || constraint.firstItem as? UIView == view
     }
 }
