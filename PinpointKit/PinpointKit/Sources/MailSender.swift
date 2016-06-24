@@ -70,7 +70,7 @@ public class MailSender: NSObject, Sender {
         self.feedback = feedback
         
         do {
-            try mailComposer.attach(feedback)
+            try mailComposer.attachFeedback(feedback)
         } catch let error as Error {
             fail(error)
         } catch {
@@ -95,7 +95,7 @@ public class MailSender: NSObject, Sender {
 
 private extension MFMailComposeViewController {
     
-    func attach(_ feedback: Feedback) throws {
+    func attachFeedback(_ feedback: Feedback) throws {
         setToRecipients(feedback.recipients)
         
         if let subject = feedback.title {
