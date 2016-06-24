@@ -64,12 +64,12 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     public required init() {
-        super.init(style: .Grouped)
+        super.init(style: .grouped)
     }
     
     @available(*, unavailable)
     override init(style: UITableViewStyle) {
-        super.init(style: .Grouped)
+        super.init(style: .grouped)
     }
     
     @available(*, unavailable)
@@ -85,16 +85,16 @@ public final class FeedbackViewController: UITableViewController {
         updateInterfaceCustomization()
     }
     
-    public override func viewWillAppear(animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // Since this view controller could be reused in another orientation, update the table header view on every appearance to reflect the current orientation sizing.
         updateTableHeaderView()
     }
     
-    public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
-        coordinator.animateAlongsideTransition({ context in
+        coordinator.animate(alongsideTransition: { context in
             // Layout and adjust the height of the table header view by setting the property once more to alert the table view of a layout change.
             self.tableView.tableHeaderView?.layoutIfNeeded()
             self.tableView.tableHeaderView = self.tableView.tableHeaderView
@@ -121,7 +121,7 @@ public final class FeedbackViewController: UITableViewController {
         header.screenshotButtonTapHandler = { [weak self] button in
             let editImageViewController = NavigationController(rootViewController: editor.viewController)
             editImageViewController.view.tintColor = self?.interfaceCustomization?.appearance.tintColor
-            self?.presentViewController(editImageViewController, animated: true, completion: nil)
+            self?.present(editImageViewController, animated: true, completion: nil)
         }
         
         tableView.tableHeaderView = header
@@ -136,23 +136,23 @@ public final class FeedbackViewController: UITableViewController {
         title = interfaceText.feedbackCollectorTitle
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: appearance.navigationTitleFont]
         
-        let sendBarButtonItem = UIBarButtonItem(title: interfaceText.feedbackSendButtonTitle, style: .Done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
-        sendBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackSendButtonFont], forState: .Normal)
+        let sendBarButtonItem = UIBarButtonItem(title: interfaceText.feedbackSendButtonTitle, style: .done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
+        sendBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackSendButtonFont], for: UIControlState())
         navigationItem.rightBarButtonItem = sendBarButtonItem
         
-        let backBarButtonItem = UIBarButtonItem(title: interfaceText.feedbackBackButtonTitle, style: .Plain, target: nil, action: nil)
-        backBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackBackButtonFont], forState: .Normal)
+        let backBarButtonItem = UIBarButtonItem(title: interfaceText.feedbackBackButtonTitle, style: .plain, target: nil, action: nil)
+        backBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackBackButtonFont], for: UIControlState())
         navigationItem.backBarButtonItem = backBarButtonItem
         
         let cancelBarButtonItem: UIBarButtonItem
         let cancelAction = #selector(FeedbackViewController.cancelButtonTapped)
         if let cancelButtonTitle = interfaceText.feedbackCancelButtonTitle {
-            cancelBarButtonItem = UIBarButtonItem(title: cancelButtonTitle, style: .Plain, target: self, action: cancelAction)
+            cancelBarButtonItem = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: cancelAction)
         } else {
-            cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: cancelAction)
+            cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: cancelAction)
         }
         
-        cancelBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackCancelButtonFont], forState: .Normal)
+        cancelBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackCancelButtonFont], for: UIControlState())
         navigationItem.leftBarButtonItem = cancelBarButtonItem
         
         view.tintColor = appearance.tintColor
@@ -167,9 +167,9 @@ public final class FeedbackViewController: UITableViewController {
         let feedback: Feedback?
         
         if let screenshot = annotatedScreenshot {
-            feedback = Feedback(screenshot: .Annotated(image: screenshot), recipients: feedbackRecipients, logs: logs)
+            feedback = Feedback(screenshot: .annotated(image: screenshot), recipients: feedbackRecipients, logs: logs)
         } else if let screenshot = screenshot {
-            feedback = Feedback(screenshot: .Original(image: screenshot), recipients: feedbackRecipients, logs: logs)
+            feedback = Feedback(screenshot: .original(image: screenshot), recipients: feedbackRecipients, logs: logs)
         } else {
             feedback = nil
         }
@@ -180,14 +180,14 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     @objc private func cancelButtonTapped() {        
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
 
 // MARK: - FeedbackCollector
 
 extension FeedbackViewController: FeedbackCollector {
-    public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
+    public func collectFeedbackWithScreenshot(_ screenshot: UIImage, fromViewController viewController: UIViewController) {
         self.screenshot = screenshot
         annotatedScreenshot = nil
         viewController.showDetailViewController(self, sender: viewController)
@@ -197,7 +197,7 @@ extension FeedbackViewController: FeedbackCollector {
 // MARK: - EditorDelegate
 
 extension FeedbackViewController: EditorDelegate {
-    public func editorWillDismiss(editor: Editor, screenshot: UIImage) {
+    public func editorWillDismiss(_ editor: Editor, screenshot: UIImage) {
         annotatedScreenshot = screenshot
         updateTableHeaderView()
     }
@@ -206,7 +206,7 @@ extension FeedbackViewController: EditorDelegate {
 // MARK: - UITableViewDelegate
 
 extension FeedbackViewController {
-    public override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+    public override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         guard let logCollector = logCollector else {
             assertionFailure("No log collector exists.")
             return
@@ -215,9 +215,9 @@ extension FeedbackViewController {
         logViewer?.viewLog(logCollector, fromViewController: self)
     }
     
-    public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userEnabledLogCollection = !userEnabledLogCollection
-        tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
     }
 }
 
@@ -230,12 +230,12 @@ private extension UITableView {
         tableHeaderView?.translatesAutoresizingMaskIntoConstraints = false
         
         if let headerView = tableHeaderView {
-            let leadingConstraint = headerView.leadingAnchor.constraintEqualToAnchor(leadingAnchor)
-            let trailingContraint = headerView.trailingAnchor.constraintEqualToAnchor(trailingAnchor)
-            let topConstraint = headerView.topAnchor.constraintEqualToAnchor(topAnchor)
-            let widthConstraint = headerView.widthAnchor.constraintEqualToAnchor(widthAnchor)
+            let leadingConstraint = headerView.leadingAnchor.constraint(equalTo: leadingAnchor)
+            let trailingContraint = headerView.trailingAnchor.constraint(equalTo: trailingAnchor)
+            let topConstraint = headerView.topAnchor.constraint(equalTo: topAnchor)
+            let widthConstraint = headerView.widthAnchor.constraint(equalTo: widthAnchor)
             
-            NSLayoutConstraint.activateConstraints([leadingConstraint, trailingContraint, topConstraint, widthConstraint])
+            NSLayoutConstraint.activate([leadingConstraint, trailingContraint, topConstraint, widthConstraint])
             
             headerView.layoutIfNeeded()
             tableHeaderView = headerView

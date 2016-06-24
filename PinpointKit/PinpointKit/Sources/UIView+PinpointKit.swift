@@ -12,9 +12,9 @@ extension UIView {
     /// The UIImage representation of this view at the time of access.
     var pinpoint_screenshot: UIImage {
         UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0)
-        drawViewHierarchyInRect(bounds, afterScreenUpdates: true)
+        drawHierarchy(in: bounds, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return image
+        return image!
     }
 }

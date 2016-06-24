@@ -90,7 +90,7 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
     }
     
     @available(*, unavailable)
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         feedbackViewController = FeedbackViewController()
         
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -114,7 +114,7 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
 
     // MARK: - FeedbackCollector
     
-    public func collectFeedbackWithScreenshot(screenshot: UIImage, fromViewController viewController: UIViewController) {
+    public func collectFeedbackWithScreenshot(_ screenshot: UIImage, fromViewController viewController: UIViewController) {
         guard presentingViewController == nil else {
             NSLog("Unable to present FeedbackNavigationController because it is already being presetned")
             return
@@ -123,6 +123,6 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         feedbackViewController.screenshot = screenshot
         feedbackViewController.annotatedScreenshot = screenshot
 
-        viewController.presentViewController(self, animated: true, completion: nil)
+        viewController.present(self, animated: true, completion: nil)
     }
 }

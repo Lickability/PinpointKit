@@ -17,5 +17,5 @@ public protocol ShakeDetectingWindowDelegate: class {
 
      - parameter shakeDetectingWindow: The `ShakeDetectingWindow` in which the shake motion event occurred.
      */
-    func shakeDetectingWindowDidDetectShake(shakeDetectingWindow: ShakeDetectingWindow)
+    func shakeDetectingWindowDidDetectShake(_ shakeDetectingWindow: ShakeDetectingWindow)
 }

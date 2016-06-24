@@ -19,18 +19,18 @@ public class Screenshotter {
      
      - returns: A screenshot as a `UIImage`.
      */
-    public static func takeScreenshot(screen: UIScreen = UIScreen.mainScreen(), application: UIApplication = UIApplication.sharedApplication()) -> UIImage {
+    public static func takeScreenshot(_ screen: UIScreen = UIScreen.main(), application: UIApplication = UIApplication.shared()) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(screen.bounds.size, true, 0)
         
         application.windows.forEach { window in
             guard window.screen == screen else { return }
             
-            window.drawViewHierarchyInRect(window.bounds, afterScreenUpdates: false)
+            window.drawHierarchy(in: window.bounds, afterScreenUpdates: false)
         }
         
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return image
+        return image!
     }
 }

@@ -28,7 +28,7 @@ public class AnnotationView: UIView {
      
      - parameter translation: The amount to translate the control points.
      */
-    func moveControlPoints(translation: CGPoint) {
+    func moveControlPoints(_ translation: CGPoint) {
         
     }
     
@@ -37,7 +37,7 @@ public class AnnotationView: UIView {
      
      - parameter scale: The factor by which to scale the annotation.
      */
-    func scaleControlPoints(scale: CGFloat) {
+    func scaleControlPoints(_ scale: CGFloat) {
         
     }
     
@@ -46,7 +46,7 @@ public class AnnotationView: UIView {
      
      - parameter point: The new value for the annotation’s second control point.
      */
-    func setSecondControlPoint(point: CGPoint) {
+    func setSecondControlPoint(_ point: CGPoint) {
         
     }
 }

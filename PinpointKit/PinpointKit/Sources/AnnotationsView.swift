@@ -10,13 +10,13 @@ import UIKit
 
 /// A `UIView` subclass that displays annotations.
 class AnnotationsView: UIView {
-    override func addSubview(view: UIView) {
+    override func addSubview(_ view: UIView) {
         super.addSubview(view)
         moveViewIfAppropriate(view)
     }
     
-    override func bringSubviewToFront(view: UIView) {
-        super.bringSubviewToFront(view)
+    override func bringSubview(toFront view: UIView) {
+        super.bringSubview(toFront: view)
         moveViewIfAppropriate(view)
     }
     
@@ -25,7 +25,7 @@ class AnnotationsView: UIView {
      
      - parameter view: The view to potentially move.
      */
-    func moveViewIfAppropriate(view: UIView) {
+    func moveViewIfAppropriate(_ view: UIView) {
         if let blurView = view as? BlurAnnotationView {
             moveBlurViewAboveBlurViewsAndUnderOthers(blurView: blurView)
         }
@@ -36,16 +36,16 @@ class AnnotationsView: UIView {
      
      - parameter blurView: The blur view to move.
      */
-    func moveBlurViewAboveBlurViewsAndUnderOthers(blurView blurView: BlurAnnotationView) {
+    func moveBlurViewAboveBlurViewsAndUnderOthers(blurView: BlurAnnotationView) {
         var lastBlurViewIndex: Int?
-        for (index, subview) in subviews.enumerate() {
+        for (index, subview) in subviews.enumerated() {
             if subview is BlurAnnotationView && subview as? BlurAnnotationView != blurView {
                 lastBlurViewIndex = index
             }
         }
         
-        let index = lastBlurViewIndex?.successor() ?? 0
-        insertSubview(blurView, atIndex: index)
+        let index = ((lastBlurViewIndex?)! + 1) ?? 0
+        insertSubview(blurView, at: index)
     }
     
     override func tintColorDidChange() {

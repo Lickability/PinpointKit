@@ -13,7 +13,7 @@ final class NavigationController: UINavigationController, UINavigationController
 
     // MARK: - Initializers
 
-    override init(nibName: String?, bundle nibBundle: NSBundle?) {
+    override init(nibName: String?, bundle nibBundle: Bundle?) {
         super.init(nibName: nibName, bundle: nibBundle)
         delegate = self
     }
@@ -21,7 +21,7 @@ final class NavigationController: UINavigationController, UINavigationController
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         delegate = self
-        modalPresentationStyle = .FullScreen // Necessary for proper transition rotation.
+        modalPresentationStyle = .fullScreen // Necessary for proper transition rotation.
         modalPresentationCapturesStatusBarAppearance = true
     }
 
@@ -37,11 +37,11 @@ final class NavigationController: UINavigationController, UINavigationController
     }
     
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return topViewController?.supportedInterfaceOrientations() ?? .All
+        return topViewController?.supportedInterfaceOrientations() ?? .all
     }
     
     override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return topViewController?.preferredInterfaceOrientationForPresentation() ?? .Unknown
+        return topViewController?.preferredInterfaceOrientationForPresentation() ?? .unknown
     }
     
     override func childViewControllerForStatusBarHidden() -> UIViewController? {

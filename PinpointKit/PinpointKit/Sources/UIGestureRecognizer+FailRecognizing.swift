@@ -15,12 +15,12 @@ extension UIGestureRecognizer {
      Function that forces a gesture recognizer to fail
      */
     func failRecognizing() {
-        if !enabled {
+        if !isEnabled {
             return
         }
         
         // Disabling and enabling causes recognizing to fail.
-        enabled = false
-        enabled = true
+        isEnabled = false
+        isEnabled = true
     }
 }

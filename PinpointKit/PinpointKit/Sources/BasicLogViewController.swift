@@ -25,8 +25,8 @@ public class BasicLogViewController: UIViewController, LogViewer {
     private let textView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.editable = false
-        textView.dataDetectorTypes = .None
+        textView.isEditable = false
+        textView.dataDetectorTypes = UIDataDetectorTypes()
 
         return textView
     }()
@@ -39,16 +39,16 @@ public class BasicLogViewController: UIViewController, LogViewer {
         func setUpTextView() {
             view.addSubview(textView)
             
-            textView.centerXAnchor.constraintEqualToAnchor(view.centerXAnchor, constant: 0).active = true
-            textView.centerYAnchor.constraintEqualToAnchor(view.centerYAnchor, constant: 0).active = true
-            textView.widthAnchor.constraintEqualToAnchor(view.widthAnchor, constant: 0).active = true
-            textView.heightAnchor.constraintEqualToAnchor(view.heightAnchor, constant: 0).active = true
+            textView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
+            textView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0).isActive = true
+            textView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: 0).isActive = true
+            textView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: 0).isActive = true
         }
         
         setUpTextView()
     }
     
-    public override func viewWillAppear(animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         textView.scrollRangeToVisible(NSRange(location: (textView.text as NSString).length, length: 0))
@@ -56,10 +56,10 @@ public class BasicLogViewController: UIViewController, LogViewer {
     
     // MARK: - LogViewer
     
-    public func viewLog(collector: LogCollector, fromViewController viewController: UIViewController) {
-        let logText = collector.retrieveLogs().joinWithSeparator("\n")
+    public func viewLog(_ collector: LogCollector, fromViewController viewController: UIViewController) {
+        let logText = collector.retrieveLogs().joined(separator: "\n")
         textView.text = logText
         
-        viewController.showViewController(self, sender: viewController)
+        viewController.show(self, sender: viewController)
     }
 }
