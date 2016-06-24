@@ -67,7 +67,7 @@ extension PinpointKit: SenderDelegate {
     public func sender(_ sender: Sender, didSend feedback: Feedback?, success: SuccessType?) {
         guard let feedback = feedback else { return }
         
-        delegate?.pinpointKit(self, didSendFeedback: feedback)
+        delegate?.pinpointKit(self, didSend: feedback)
         displayingViewController?.dismiss(animated: true, completion: nil)
     }
     
@@ -95,12 +95,12 @@ public protocol PinpointKitDelegate: class {
      - parameter pinpointKit:   The `PinpointKit` instance responsible for the feedback.
      - parameter feedback:      The feedback that’s just been sent.
      */
-    func pinpointKit(_ pinpointKit: PinpointKit, didSendFeedback feedback: Feedback)
+    func pinpointKit(_ pinpointKit: PinpointKit, didSend feedback: Feedback)
 }
 
 /// An extension on PinpointKitDelegate that makes all delegate methods optional by giving them empty implementations by default.
 public extension PinpointKitDelegate {
     
     func pinpointKit(_ pinpointKit: PinpointKit, willSend feedback: Feedback) {}
-    func pinpointKit(_ pinpointKit: PinpointKit, didSendFeedback feedback: Feedback) {}
+    func pinpointKit(_ pinpointKit: PinpointKit, didSend feedback: Feedback) {}
 }
