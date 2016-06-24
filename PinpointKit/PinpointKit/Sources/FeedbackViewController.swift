@@ -176,7 +176,7 @@ public final class FeedbackViewController: UITableViewController {
         
         guard let feedbackToSend = feedback else { return assertionFailure("We must have either a screenshot or an edited screenshot!") }
         
-        feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedbackToSend)
+        feedbackDelegate?.feedbackCollector(self, didCollect: feedbackToSend)
     }
     
     @objc private func cancelButtonTapped() {        

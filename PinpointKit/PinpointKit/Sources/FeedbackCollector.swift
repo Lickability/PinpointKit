@@ -45,5 +45,5 @@ public protocol FeedbackCollectorDelegate: class {
      - parameter feedbackCollector: The collector which collected the feedback.
      - parameter feedback:          The feedback that was collected by the collector.
      */
-    func feedbackCollector(_ feedbackCollector: FeedbackCollector, didCollectFeedback feedback: Feedback)
+    func feedbackCollector(_ feedbackCollector: FeedbackCollector, didCollect feedback: Feedback)
 }

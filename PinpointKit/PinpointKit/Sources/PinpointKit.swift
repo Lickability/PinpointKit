@@ -54,7 +54,7 @@ public class PinpointKit {
 
 extension PinpointKit: FeedbackCollectorDelegate {
     
-    public func feedbackCollector(_ feedbackCollector: FeedbackCollector, didCollectFeedback feedback: Feedback) {
+    public func feedbackCollector(_ feedbackCollector: FeedbackCollector, didCollect feedback: Feedback) {
         delegate?.pinpointKit(self, willSendFeedback: feedback)
         configuration.sender.sendFeedback(feedback, fromViewController: feedbackCollector.viewController)
     }
