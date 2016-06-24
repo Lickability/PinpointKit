@@ -131,7 +131,7 @@ private extension PHAsset {
         options.predicate = Predicate(format: "(mediaSubtype & %d) != 0", PHAssetMediaSubtype.photoScreenshot.rawValue)
         options.sortDescriptors = [SortDescriptor(key: "creationDate", ascending: false)]
         
-        return PHAsset.fetchAssets(with: .image, options: options).firstObject as? PHAsset
+        return PHAsset.fetchAssets(with: .image, options: options).firstObject
     }
 }
 
