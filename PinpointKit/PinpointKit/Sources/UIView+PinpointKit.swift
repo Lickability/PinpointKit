@@ -13,8 +13,13 @@ extension UIView {
     var pinpoint_screenshot: UIImage {
         UIGraphicsBeginImageContextWithOptions(bounds.size, true, 0)
         drawHierarchy(in: bounds, afterScreenUpdates: true)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
+            preconditionFailure("`UIGraphicsGetImageFromCurrentImageContext()` should never return `nil` as we satisify the requirements of having a bitmap-based current context created with `UIGraphicsBeginImageContextWithOptions(_:_:_:)`")
+        }
+        
         UIGraphicsEndImageContext()
-        return image!
+        
+        return image
     }
 }
