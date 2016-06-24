@@ -103,13 +103,13 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private var currentAnnotationView: AnnotationView? {
         didSet {
             if let oldTextAnnotationView = oldValue as? TextAnnotationView {
-                NotificationCenter.default().removeObserver(self, name: NSNotification.Name.UITextViewTextDidEndEditing, object: oldTextAnnotationView.textView)
+                NotificationCenter.default().removeObserver(self, name: .UITextViewTextDidEndEditing, object: oldTextAnnotationView.textView)
             }
             
             if let currentTextAnnotationView = currentTextAnnotationView {
                 keyboardAvoider?.triggerViews = [currentTextAnnotationView.textView]
                 
-                NotificationCenter.default().addObserver(self, selector: #selector(EditImageViewController.forceEndEditingTextView), name: NSNotification.Name.UITextViewTextDidEndEditing, object: currentTextAnnotationView.textView)
+                NotificationCenter.default().addObserver(self, selector: #selector(EditImageViewController.forceEndEditingTextView), name: .UITextViewTextDidEndEditing, object: currentTextAnnotationView.textView)
             }
         }
     }

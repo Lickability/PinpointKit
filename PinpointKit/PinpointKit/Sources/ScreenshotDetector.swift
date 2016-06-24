@@ -50,7 +50,7 @@ public class ScreenshotDetector: NSObject {
         
         super.init()
         
-        notificationCenter.addObserver(self, selector: #selector(ScreenshotDetector.userTookScreenshot(_:)), name: NSNotification.Name.UIApplicationUserDidTakeScreenshot, object: application)
+        notificationCenter.addObserver(self, selector: #selector(ScreenshotDetector.userTookScreenshot(_:)), name: .UIApplicationUserDidTakeScreenshot, object: application)
     }
     
     @objc private func userTookScreenshot(_ notification: Notification) {
