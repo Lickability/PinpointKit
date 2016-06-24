@@ -109,7 +109,7 @@ private extension MFMailComposeViewController {
         try attach(feedback.screenshot, screenshotFileName: feedback.screenshotFileName)
         
         if let logs = feedback.logs {
-            try attachLogs(logs, logsFileName: feedback.logsFileName)
+            try attach(logs, logsFileName: feedback.logsFileName)
         }
         
         if let additionalInformation = feedback.additionalInformation {
@@ -121,7 +121,7 @@ private extension MFMailComposeViewController {
         try attachImage(screenshot.preferredImage, filename: screenshotFileName + MIMEType.PNG.fileExtension)
     }
     
-    func attachLogs(_ logs: [String], logsFileName: String) throws {
+    func attach(_ logs: [String], logsFileName: String) throws {
         let logsText = logs.joined(separator: "\n\n")
         try attachText(logsText, filename: logsFileName + MIMEType.PlainText.fileExtension)
     }
