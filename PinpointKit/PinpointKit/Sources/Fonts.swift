@@ -58,7 +58,7 @@ public extension UIFont {
      
      - returns: A `UIFont` representing Menlo Regular at the specified size.
      */
-    public static func menloRegularFontOfSize(_ fontSize: CGFloat) -> UIFont {
+    public static func menloRegularFont(ofSize fontSize: CGFloat) -> UIFont {
         return UIFont(name: "Menlo-Regular", size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)
     }
 }

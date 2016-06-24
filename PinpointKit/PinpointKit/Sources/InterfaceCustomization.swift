@@ -92,7 +92,7 @@ public struct InterfaceCustomization {
                     feedbackEditHintFont: UIFont = .sourceSansProFont(ofSize: 14),
                     feedbackBackButtonFont: UIFont = .sourceSansProFont(ofSize: 19),
                     logCollectionPermissionFont: UIFont = .sourceSansProFont(ofSize: 19),
-                    logFont: UIFont = .menloRegularFontOfSize(10),
+                    logFont: UIFont = .menloRegularFont(ofSize: 10),
                     editorTextAnnotationSegmentFont: UIFont = .sourceSansProFont(ofSize: 18),
                     editorTextAnnotationFont: UIFont = .sourceSansProFont(ofSize: 32, weight: .semibold),
                     editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold)) {
