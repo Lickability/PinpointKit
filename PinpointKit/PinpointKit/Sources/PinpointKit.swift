@@ -55,7 +55,7 @@ public class PinpointKit {
 extension PinpointKit: FeedbackCollectorDelegate {
     
     public func feedbackCollector(_ feedbackCollector: FeedbackCollector, didCollect feedback: Feedback) {
-        delegate?.pinpointKit(self, willSendFeedback: feedback)
+        delegate?.pinpointKit(self, willSend: feedback)
         configuration.sender.sendFeedback(feedback, fromViewController: feedbackCollector.viewController)
     }
 }
@@ -87,7 +87,7 @@ public protocol PinpointKitDelegate: class {
      - parameter pinpointKit:   The `PinpointKit` instance responsible for the feedback.
      - parameter feedback:      The feedback that’s about to be sent.
      */
-    func pinpointKit(_ pinpointKit: PinpointKit, willSendFeedback feedback: Feedback)
+    func pinpointKit(_ pinpointKit: PinpointKit, willSend feedback: Feedback)
     
     /**
      Notifies the delegate that PinpointKit has just sent user feedback.
@@ -101,6 +101,6 @@ public protocol PinpointKitDelegate: class {
 /// An extension on PinpointKitDelegate that makes all delegate methods optional by giving them empty implementations by default.
 public extension PinpointKitDelegate {
     
-    func pinpointKit(_ pinpointKit: PinpointKit, willSendFeedback feedback: Feedback) {}
+    func pinpointKit(_ pinpointKit: PinpointKit, willSend feedback: Feedback) {}
     func pinpointKit(_ pinpointKit: PinpointKit, didSendFeedback feedback: Feedback) {}
 }
