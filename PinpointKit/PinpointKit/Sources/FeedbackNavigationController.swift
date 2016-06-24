@@ -114,7 +114,7 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
 
     // MARK: - FeedbackCollector
     
-    public func collectFeedbackWithScreenshot(_ screenshot: UIImage, fromViewController viewController: UIViewController) {
+    public func collectFeedback(with screenshot: UIImage, from viewController: UIViewController) {
         guard presentingViewController == nil else {
             NSLog("Unable to present FeedbackNavigationController because it is already being presetned")
             return

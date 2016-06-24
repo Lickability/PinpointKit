@@ -187,7 +187,7 @@ public final class FeedbackViewController: UITableViewController {
 // MARK: - FeedbackCollector
 
 extension FeedbackViewController: FeedbackCollector {
-    public func collectFeedbackWithScreenshot(_ screenshot: UIImage, fromViewController viewController: UIViewController) {
+    public func collectFeedback(with screenshot: UIImage, from viewController: UIViewController) {
         self.screenshot = screenshot
         annotatedScreenshot = nil
         viewController.showDetailViewController(self, sender: viewController)

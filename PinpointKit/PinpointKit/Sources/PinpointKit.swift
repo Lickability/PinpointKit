@@ -46,7 +46,7 @@ public class PinpointKit {
         let screenshot = Screenshotter.takeScreenshot()
         displayingViewController = viewController
         
-        configuration.feedbackCollector.collectFeedbackWithScreenshot(screenshot, fromViewController: viewController)
+        configuration.feedbackCollector.collectFeedback(with: screenshot, from: viewController)
     }
 }
 
