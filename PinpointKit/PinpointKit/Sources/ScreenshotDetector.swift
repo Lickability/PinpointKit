@@ -93,7 +93,7 @@ public class ScreenshotDetector: NSObject {
     }
     
     private func fail(with error: Error) {
-        delegate?.screenshotDetector(self, didFailWithError: error)
+        delegate?.screenshotDetector(self, didFailWith: error)
     }
 }
 
@@ -116,7 +116,7 @@ protocol ScreenshotDetectorDelegate: class {
      - parameter screenshotDetector: The detector responsible for the message.
      - parameter error:              The error that occurred while attempting to detecting the screenshot.
      */
-    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didFailWithError error: ScreenshotDetector.Error)
+    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didFailWith error: ScreenshotDetector.Error)
 }
 
 @available(iOS 9.0, *)
