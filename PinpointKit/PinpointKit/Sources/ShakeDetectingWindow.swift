@@ -13,7 +13,7 @@ import UIKit
 public class ShakeDetectingWindow: UIWindow {
 
     /// A `ShakeDetectingWindowDelegate` to notify when a shake motion event occurs.
-	public weak var delegate: ShakeDetectingWindowDelegate? = nil
+	public weak var delegate: ShakeDetectingWindowDelegate?
 
     /**
      Initializes a `ShakeDetectingWindow`.
