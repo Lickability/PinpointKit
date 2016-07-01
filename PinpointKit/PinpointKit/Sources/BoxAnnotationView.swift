@@ -92,10 +92,10 @@ public class BoxAnnotationView: AnnotationView {
         annotation = BoxAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: previousAnnotation.strokeColor)
     }
     
-    override func scaleControlPoints(_ scale: CGFloat) {
+    override func scale(controlPointsBy scaleFactor: CGFloat) {
         guard let previousAnnotation = annotation else { return }
-        let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scale)
-        let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scale)
+        let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scaleFactor)
+        let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scaleFactor)
         
         annotation = BoxAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: previousAnnotation.strokeColor)
     }

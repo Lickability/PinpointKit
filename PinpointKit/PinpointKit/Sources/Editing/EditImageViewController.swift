@@ -561,7 +561,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private func handleUpdateAnnotationPinchGestureRecognizerChanged(_ gestureRecognizer: UIPinchGestureRecognizer) {
         if previousUpdateAnnotationPinchScale != 0 {
-            currentAnnotationView?.scaleControlPoints(gestureRecognizer.scale / previousUpdateAnnotationPinchScale)
+            currentAnnotationView?.scale(controlPointsBy: (gestureRecognizer.scale / previousUpdateAnnotationPinchScale))
         }
         
         previousUpdateAnnotationPinchScale = gestureRecognizer.scale

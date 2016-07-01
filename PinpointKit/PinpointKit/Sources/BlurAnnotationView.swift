@@ -129,10 +129,10 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
         annotation = BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: previousAnnotation.image)
     }
 
-    override func scaleControlPoints(_ scale: CGFloat) {
+    override func scale(controlPointsBy scaleFactor: CGFloat) {
         guard let previousAnnotation = annotation else { return }
-        let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scale)
-        let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scale)
+        let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scaleFactor)
+        let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scaleFactor)
         
         annotation = BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: previousAnnotation.image)
     }

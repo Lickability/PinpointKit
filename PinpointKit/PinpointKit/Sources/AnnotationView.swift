@@ -33,11 +33,11 @@ public class AnnotationView: UIView {
     }
     
     /**
-     Scales the control points of the annotation by the amount specified in `scale`.
+     Scales the control points of the annotation by the amount specified in `scaleFactor`.
      
-     - parameter scale: The factor by which to scale the annotation.
+     - parameter scaleFactor: The factor by which to scale the annotation.
      */
-    func scaleControlPoints(_ scale: CGFloat) {
+    func scale(controlPointsBy scaleFactor: CGFloat) {
         
     }
     
