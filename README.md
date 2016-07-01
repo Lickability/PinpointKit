@@ -125,19 +125,28 @@ The `PinpointKit.framework` is automatically added as a target dependency, linke
 
 Once PinpointKit is installed, it’s simple to use.
 
-To display a feedback view controller, add the following code where you want the feedback to display, passing the view controller from which PinpointKit should present:
+Initialize an instance of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift), specifying an array of feedback recipients used to pre-populate email addresses to which feedback can be sent:
 
 ```swift
-PinpointKit.defaultPinpointKit.show(fromViewController: viewController)
+let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
 ```
 
-If you want to have the feedback view display from a shake gesture, simply do the following in your [`UIApplicationDelegate`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/index.html) class:
+To display a feedback view controller, add the following code where you want the feedback to display, passing the view controller from which [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) should present:
+
+> **Note:** Be sure to keep a strong reference to your instance of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) for the duration of its use.
 
 ```swift
-lazy var window: UIWindow? = ShakeDetectingWindow(frame: UIScreen.mainScreen().bounds)
+pinpointKit.show(fromViewController: viewController)
 ```
 
-If you don't want to use `defaultPinpointKit` you can specify both [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) and [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) instances on initialization of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift).
+If you want to have the feedback view display from a shake gesture, simply add the following to your [`UIApplicationDelegate`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIApplicationDelegate_Protocol/index.html) class, replacing `["feedback@example.com"]` with your array of email recipients:
+
+```swift
+private let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
+lazy var window: UIWindow? = ShakeDetectingWindow(frame: UIScreen.mainScreen().bounds, delegate: self.pinpointKit)
+```
+
+If you don't want to use [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift)’s default configuration, you can specify both [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) and [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) instances on initialization of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift).
 
 The [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) struct allows you to specify how the feedback view looks and behaves, while the [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) instance provides hooks into the state of the feedback being sent.
 
