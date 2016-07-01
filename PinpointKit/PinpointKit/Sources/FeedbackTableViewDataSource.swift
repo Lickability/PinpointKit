@@ -62,11 +62,11 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = CheckmarkCell()
-        let section = sections[(indexPath as NSIndexPath).section]
+        let section = sections[indexPath.section]
         
         switch section {
         case let .feedback(rows):
-            let row = rows[(indexPath as NSIndexPath).row]
+            let row = rows[indexPath.row]
             
             switch row {
             case let .collectLogs(enabled, title, font, canView):
