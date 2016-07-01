@@ -60,9 +60,9 @@ public class MailSender: NSObject, Sender {
      - parameter viewController: The view controller from which to present any of the sender’s necessary views.
      */
     public func send(_ feedback: Feedback, from viewController: UIViewController?) {
-        guard let viewController = viewController else { fail(.noViewControllerProvided); return }
+        guard let viewController = viewController else { fail(with: .noViewControllerProvided); return }
         
-        guard MFMailComposeViewController.canSendMail() else { fail(.mailCannotSend); return }
+        guard MFMailComposeViewController.canSendMail() else { fail(with: .mailCannotSend); return }
         
         let mailComposer = MFMailComposeViewController()
         mailComposer.mailComposeDelegate = self
@@ -72,9 +72,9 @@ public class MailSender: NSObject, Sender {
         do {
             try mailComposer.attach(feedback)
         } catch let error as Error {
-            fail(error)
+            fail(with: error)
         } catch {
-            fail(.unknown)
+            fail(with: .unknown)
         }
         
         viewController.present(mailComposer, animated: true, completion: nil)
@@ -82,12 +82,12 @@ public class MailSender: NSObject, Sender {
     
     // MARK: - MailSender
     
-    private func fail(_ error: Error) {
+    private func fail(with error: Error) {
         delegate?.sender(self, didFailToSend: feedback, error: error)
         feedback = nil
     }
     
-    private func succeed(_ success: Success) {
+    private func succeed(with success: Success) {
         delegate?.sender(self, didSend: feedback, success: success)
         feedback = nil
     }
@@ -159,13 +159,13 @@ extension MailSender: MFMailComposeViewControllerDelegate {
     private func completeWithResult(_ result: MFMailComposeResult, error: NSError?) {
         switch result {
         case .cancelled:
-            fail(.mailCanceled(underlyingError: error))
+            fail(with: .mailCanceled(underlyingError: error))
         case .failed:
-            fail(.mailFailed(underlyingError: error))
+            fail(with: .mailFailed(underlyingError: error))
         case .saved:
-            succeed(.saved)
+            succeed(with: .saved)
         case .sent:
-            succeed(.sent)
+            succeed(with: .sent)
         }
     }
 }
