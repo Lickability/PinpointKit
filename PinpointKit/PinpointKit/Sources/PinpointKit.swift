@@ -42,7 +42,7 @@ public class PinpointKit {
      
      - parameter viewController: The view controller from which to present.
      */
-    public func show(fromViewController viewController: UIViewController) {
+    public func show(from viewController: UIViewController) {
         let screenshot = Screenshotter.takeScreenshot()
         displayingViewController = viewController
         

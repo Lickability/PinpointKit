@@ -21,6 +21,6 @@ final class ViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        PinpointKit.defaultPinpointKit.show(fromViewController: self)
+        PinpointKit.defaultPinpointKit.show(from: self)
     }
 }
