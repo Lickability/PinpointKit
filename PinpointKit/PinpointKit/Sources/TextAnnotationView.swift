@@ -106,7 +106,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     }
     
     private var font: UIFont {
-        return UITextView.whenContained(inInstancesOfClasses: [TextAnnotationView.self]).font ?? UIFont.systemFont(ofSize: 32)
+        return UITextView.whenContained(inInstancesOfClasses: [TextAnnotationView.self]).font ?? .systemFont(ofSize: 32)
     }
     
     /// The minimum text size for the annotation view.

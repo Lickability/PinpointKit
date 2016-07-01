@@ -48,7 +48,7 @@ public extension UIFont {
             CTFontManagerRegisterFontsForURL(fontURL, .process, nil)
         }
         
-        return UIFont(name: fontName, size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)
+        return UIFont(name: fontName, size: fontSize) ?? .systemFont(ofSize: fontSize)
     }
     
     /**
@@ -59,6 +59,6 @@ public extension UIFont {
      - returns: A `UIFont` representing Menlo Regular at the specified size.
      */
     public static func menloRegularFont(ofSize fontSize: CGFloat) -> UIFont {
-        return UIFont(name: "Menlo-Regular", size: fontSize) ?? UIFont.systemFont(ofSize: fontSize)
+        return UIFont(name: "Menlo-Regular", size: fontSize) ?? .systemFont(ofSize: fontSize)
     }
 }
