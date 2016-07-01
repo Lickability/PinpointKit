@@ -18,7 +18,7 @@ final class ViewController: UITableViewController {
         tableView.tableFooterView = UIView()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         PinpointKit.defaultPinpointKit.show(fromViewController: self)

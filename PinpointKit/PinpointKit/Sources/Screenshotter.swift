@@ -19,16 +19,19 @@ public class Screenshotter {
      
      - returns: A screenshot as a `UIImage`.
      */
-    public static func takeScreenshot(screen: UIScreen = UIScreen.mainScreen(), application: UIApplication = UIApplication.sharedApplication()) -> UIImage {
+    public static func takeScreenshot(_ screen: UIScreen = UIScreen.main(), application: UIApplication = UIApplication.shared()) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(screen.bounds.size, true, 0)
         
         application.windows.forEach { window in
             guard window.screen == screen else { return }
             
-            window.drawViewHierarchyInRect(window.bounds, afterScreenUpdates: false)
+            window.drawHierarchy(in: window.bounds, afterScreenUpdates: false)
         }
         
-        let image = UIGraphicsGetImageFromCurrentImageContext()
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else {
+            preconditionFailure("`UIGraphicsGetImageFromCurrentImageContext()` should never return `nil` as we satisify the requirements of having a bitmap-based current context created with `UIGraphicsBeginImageContextWithOptions(_:_:_:)`")
+        }
+        
         UIGraphicsEndImageContext()
         
         return image

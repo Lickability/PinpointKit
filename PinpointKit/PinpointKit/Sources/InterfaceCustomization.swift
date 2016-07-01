@@ -85,17 +85,17 @@ public struct InterfaceCustomization {
          */
         public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(),
                     annotationFillColor: UIColor? = nil,
-                    annotationStrokeColor: UIColor = .whiteColor(),
-                    navigationTitleFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold),
-                    feedbackSendButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold),
+                    annotationStrokeColor: UIColor = .white(),
+                    navigationTitleFont: UIFont = .sourceSansProFontOfSize(19, weight: .semibold),
+                    feedbackSendButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .semibold),
                     feedbackCancelButtonFont: UIFont = .sourceSansProFontOfSize(19),
                     feedbackEditHintFont: UIFont = .sourceSansProFontOfSize(14),
                     feedbackBackButtonFont: UIFont = .sourceSansProFontOfSize(19),
                     logCollectionPermissionFont: UIFont = .sourceSansProFontOfSize(19),
                     logFont: UIFont = .menloRegularFontOfSize(10),
                     editorTextAnnotationSegmentFont: UIFont = .sourceSansProFontOfSize(18),
-                    editorTextAnnotationFont: UIFont = .sourceSansProFontOfSize(32, weight: .Semibold),
-                    editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold)) {
+                    editorTextAnnotationFont: UIFont = .sourceSansProFontOfSize(32, weight: .semibold),
+                    editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .semibold)) {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor

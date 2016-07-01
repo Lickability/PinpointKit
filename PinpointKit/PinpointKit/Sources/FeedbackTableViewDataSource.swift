@@ -25,54 +25,54 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     private enum Section {
-        case Feedback(rows: [Row])
+        case feedback(rows: [Row])
         
         var numberOfRows: Int {
             switch self {
-            case let .Feedback(rows):
+            case let .feedback(rows):
                 return rows.count
             }
         }
     }
     
     private enum Row {
-        case CollectLogs(enabled: Bool, title: String, font: UIFont, canView: Bool)
+        case collectLogs(enabled: Bool, title: String, font: UIFont, canView: Bool)
     }
     
     // MARK: - FeedbackTableViewDataSource
     
-    private static func sectionsFromConfiguration(interfaceCustomization: InterfaceCustomization, logSupporting: LogSupporting, userEnabledLogCollection: Bool) -> [Section] {
+    private static func sectionsFromConfiguration(_ interfaceCustomization: InterfaceCustomization, logSupporting: LogSupporting, userEnabledLogCollection: Bool) -> [Section] {
         guard logSupporting.logCollector != nil else { return [] }
         
-        let collectLogsRow = Row.CollectLogs(enabled: userEnabledLogCollection, title: interfaceCustomization.interfaceText.logCollectionPermissionTitle, font: interfaceCustomization.appearance.logCollectionPermissionFont, canView: logSupporting.logViewer != nil)
-        let feedbackSection = Section.Feedback(rows: [collectLogsRow])
+        let collectLogsRow = Row.collectLogs(enabled: userEnabledLogCollection, title: interfaceCustomization.interfaceText.logCollectionPermissionTitle, font: interfaceCustomization.appearance.logCollectionPermissionFont, canView: logSupporting.logViewer != nil)
+        let feedbackSection = Section.feedback(rows: [collectLogsRow])
         
         return [feedbackSection]
     }
     
     // MARK: - UITableViewDataSource
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].numberOfRows
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = CheckmarkCell()
-        let section = sections[indexPath.section]
+        let section = sections[(indexPath as NSIndexPath).section]
         
         switch section {
-        case let .Feedback(rows):
-            let row = rows[indexPath.row]
+        case let .feedback(rows):
+            let row = rows[(indexPath as NSIndexPath).row]
             
             switch row {
-            case let .CollectLogs(enabled, title, font, canView):
+            case let .collectLogs(enabled, title, font, canView):
                 cell.textLabel?.text = title
                 cell.textLabel?.font = font
-                cell.accessoryType = canView ? .DetailButton : .None
+                cell.accessoryType = canView ? .detailButton : .none
                 cell.isChecked = enabled
             }
         }

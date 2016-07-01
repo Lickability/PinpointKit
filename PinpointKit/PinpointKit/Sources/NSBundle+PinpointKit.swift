@@ -9,14 +9,14 @@
 import Foundation
 
 /// Extends `NSBundle` to provide bundles from PinpointKit.
-extension NSBundle {
+extension Bundle {
     
     /**
      The main PinpointKit bundle.
      
      - returns: Returns the bundle associated with PinpointKit.
      */
-    static func pinpointKitBundle() -> NSBundle {
-        return NSBundle(forClass: PinpointKit.self)
+    static func pinpointKitBundle() -> Bundle {
+        return Bundle(for: PinpointKit.self)
     }
 }

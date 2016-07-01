@@ -19,7 +19,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         let manager = StrokeLayoutManager()
         manager.strokeWidth = 4.5
         
-        let container = NSTextContainer(size: CGSize(width: 0, height: CGFloat.max))
+        let container = NSTextContainer(size: CGSize(width: 0, height: CGFloat.greatestFiniteMagnitude))
         container.widthTracksTextView = true
         
         manager.addTextContainer(container)
@@ -27,8 +27,8 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         
         let textView = UITextView(frame: CGRect.zero, textContainer: container)
         
-        textView.spellCheckingType = .No
-        textView.scrollEnabled = false
+        textView.spellCheckingType = .no
+        textView.isScrollEnabled = false
         textView.backgroundColor = UIColor(white: 1.0, alpha: 0.3)
         textView.textContainerInset = TextViewInset
         textView.textContainer.lineFragmentPadding = TextViewLineFragmentPadding
@@ -74,13 +74,13 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         }()
     }
     
-    override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+    override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return annotationFrame?.contains(point) ?? false
     }
         
     // MARK: - AnnotationView
     
-    override func moveControlPoints(translation: CGPoint) {
+    override func moveControlPoints(_ translation: CGPoint) {
         textView.frame = {
             var textViewFrame = self.textView.frame
             textViewFrame.origin = CGPoint(x: textViewFrame.minX + translation.x, y: textViewFrame.minY + translation.y)
@@ -106,7 +106,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     }
     
     private var font: UIFont {
-        return UITextView.appearanceWhenContainedInInstancesOfClasses([TextAnnotationView.self]).font ?? UIFont.systemFontOfSize(32)
+        return UITextView.whenContained(inInstancesOfClasses: [TextAnnotationView.self]).font ?? UIFont.systemFont(ofSize: 32)
     }
     
     /// The minimum text size for the annotation view.
@@ -115,7 +115,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         let character = "." as NSString
         let textFont = textAttributes[NSFontAttributeName] ?? font
         
-        let size = character.boundingRectWithSize(CGSize(width: width, height: CGFloat.max), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: textFont], context: nil)
+        let size = character.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: textFont], context: nil)
         return CGSize(width: width, height: size.height + TextAnnotationView.TextViewInset.top + TextAnnotationView.TextViewInset.bottom + TextAnnotationView.TextViewLineFragmentPadding)
     }
     
@@ -136,7 +136,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
                 minHeight = minimumTextSize.height
             }
             
-            let size = CGSize(width: textViewFrame.width, height: CGFloat.max)
+            let size = CGSize(width: textViewFrame.width, height: CGFloat.greatestFiniteMagnitude)
             
             textViewFrame.size.height = max(textView.sizeThatFits(size).height, minHeight)
             
@@ -148,28 +148,28 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
      Tells the internal text view to begin editing.
      */
     func beginEditing() {
-        textView.selectable = true
-        textView.editable = true
+        textView.isSelectable = true
+        textView.isEditable = true
         textView.becomeFirstResponder()
     }
     
     // MARK: - UITextViewDelegate
     
-    public func textViewDidChange(textView: UITextView) {
+    public func textViewDidChange(_ textView: UITextView) {
         updateTextViewFrame()
     }
     
-    public func textViewDidBeginEditing(textView: UITextView) {
+    public func textViewDidBeginEditing(_ textView: UITextView) {
         textView.backgroundColor = UIColor(white: 1.0, alpha: 0.3)
         textView.layer.borderWidth = 1
-        textView.layer.borderColor = tintColor.colorWithAlphaComponent(self.dynamicType.BorderAlpha).CGColor
+        textView.layer.borderColor = tintColor.withAlphaComponent(self.dynamicType.BorderAlpha).cgColor
     }
     
-    public func textViewDidEndEditing(textView: UITextView) {
-        textView.selectable = false
-        textView.editable = false
+    public func textViewDidEndEditing(_ textView: UITextView) {
+        textView.isSelectable = false
+        textView.isEditable = false
         
-        textView.backgroundColor = UIColor.clearColor()
+        textView.backgroundColor = UIColor.clear()
         textView.layer.borderWidth = 0
         textView.layer.borderColor = nil
     }

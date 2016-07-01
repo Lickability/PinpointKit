@@ -12,38 +12,38 @@ import MessageUI
 public class MailSender: NSObject, Sender {
 
     /// An error in sending feedback.
-    enum Error: ErrorType {
+    enum Error: ErrorProtocol {
 
         /// An unknown error occured.
-        case Unknown
+        case unknown
 
         /// No view controller was provided for presentation.
-        case NoViewControllerProvided
+        case noViewControllerProvided
         
         /// The screenshot failed to encode.
-        case ImageEncoding
+        case imageEncoding
         
         /// The text failed to encode.
-        case TextEncoding
+        case textEncoding
         
         /// `MFMailComposeViewController.canSendMail()` returned `false`.
-        case MailCannotSend
+        case mailCannotSend
         
         /// Email composing was canceled by the user.
-        case MailCanceled(underlyingError: NSError?)
+        case mailCanceled(underlyingError: NSError?)
         
         /// Email sending failed.
-        case MailFailed(underlyingError: NSError?)
+        case mailFailed(underlyingError: NSError?)
     }
     
     /// A success in sending feedback.
     enum Success: SuccessType {
         
         /// The email was saved as a draft.
-        case Saved
+        case saved
         
         /// The email was sent.
-        case Sent
+        case sent
     }
     
     private var feedback: Feedback?
@@ -59,10 +59,10 @@ public class MailSender: NSObject, Sender {
      - parameter feedback:       The feedback to send.
      - parameter viewController: The view controller from which to present any of the sender’s necessary views.
      */
-    public func sendFeedback(feedback: Feedback, fromViewController viewController: UIViewController?) {
-        guard let viewController = viewController else { fail(.NoViewControllerProvided); return }
+    public func sendFeedback(_ feedback: Feedback, fromViewController viewController: UIViewController?) {
+        guard let viewController = viewController else { fail(.noViewControllerProvided); return }
         
-        guard MFMailComposeViewController.canSendMail() else { fail(.MailCannotSend); return }
+        guard MFMailComposeViewController.canSendMail() else { fail(.mailCannotSend); return }
         
         let mailComposer = MFMailComposeViewController()
         mailComposer.mailComposeDelegate = self
@@ -74,20 +74,20 @@ public class MailSender: NSObject, Sender {
         } catch let error as Error {
             fail(error)
         } catch {
-            fail(.Unknown)
+            fail(.unknown)
         }
         
-        viewController.presentViewController(mailComposer, animated: true, completion: nil)
+        viewController.present(mailComposer, animated: true, completion: nil)
     }
     
     // MARK: - MailSender
     
-    private func fail(error: Error) {
+    private func fail(_ error: Error) {
         delegate?.sender(self, didFailToSendFeedback: feedback, error: error)
         feedback = nil
     }
     
-    private func succeed(success: Success) {
+    private func succeed(_ success: Success) {
         delegate?.sender(self, didSendFeedback: feedback, success: success)
         feedback = nil
     }
@@ -95,7 +95,7 @@ public class MailSender: NSObject, Sender {
 
 private extension MFMailComposeViewController {
     
-    func attachFeedback(feedback: Feedback) throws {
+    func attachFeedback(_ feedback: Feedback) throws {
         setToRecipients(feedback.recipients)
         
         if let subject = feedback.title {
@@ -117,29 +117,29 @@ private extension MFMailComposeViewController {
         }
     }
     
-    func attachScreenshot(screenshot: Feedback.ScreenshotType, screenshotFileName: String) throws {
+    func attachScreenshot(_ screenshot: Feedback.ScreenshotType, screenshotFileName: String) throws {
         try attachImage(screenshot.preferredImage, filename: screenshotFileName + MIMEType.PNG.fileExtension)
     }
     
-    func attachLogs(logs: [String], logsFileName: String) throws {
-        let logsText = logs.joinWithSeparator("\n\n")
+    func attachLogs(_ logs: [String], logsFileName: String) throws {
+        let logsText = logs.joined(separator: "\n\n")
         try attachText(logsText, filename: logsFileName + MIMEType.PlainText.fileExtension)
     }
     
-    func attachImage(image: UIImage, filename: String) throws {
-        guard let PNGData = UIImagePNGRepresentation(image) else { throw MailSender.Error.ImageEncoding }
+    func attachImage(_ image: UIImage, filename: String) throws {
+        guard let PNGData = UIImagePNGRepresentation(image) else { throw MailSender.Error.imageEncoding }
         
         addAttachmentData(PNGData, mimeType: MIMEType.PNG.rawValue, fileName: filename)
     }
     
-    func attachText(text: String, filename: String) throws {
-        guard let textData = text.dataUsingEncoding(NSUTF8StringEncoding) else { throw MailSender.Error.TextEncoding }
+    func attachText(_ text: String, filename: String) throws {
+        guard let textData = text.data(using: String.Encoding.utf8) else { throw MailSender.Error.textEncoding }
         
         addAttachmentData(textData, mimeType: MIMEType.PlainText.rawValue, fileName: filename)
     }
     
-    func attachAdditionalInformation(additionalInformation: [String: AnyObject]) {
-        let data = try? NSJSONSerialization.dataWithJSONObject(additionalInformation, options: .PrettyPrinted)
+    func attachAdditionalInformation(_ additionalInformation: [String: AnyObject]) {
+        let data = try? JSONSerialization.data(withJSONObject: additionalInformation, options: .prettyPrinted)
         
         if let data = data {
             addAttachmentData(data, mimeType: MIMEType.JSON.rawValue, fileName: "info.json")
@@ -150,24 +150,22 @@ private extension MFMailComposeViewController {
 }
 
 extension MailSender: MFMailComposeViewControllerDelegate {
-    public func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true) {
+    public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: NSError?) {
+        controller.dismiss(animated: true) {
             self.completeWithResult(result, error: error)
         }
     }
     
-    private func completeWithResult(result: MFMailComposeResult, error: NSError?) {
+    private func completeWithResult(_ result: MFMailComposeResult, error: NSError?) {
         switch result {
-        case MFMailComposeResultCancelled:
-            fail(.MailCanceled(underlyingError: error))
-        case MFMailComposeResultFailed:
-            fail(.MailFailed(underlyingError: error))
-        case MFMailComposeResultSaved:
-            succeed(.Saved)
-        case MFMailComposeResultSent:
-            succeed(.Sent)
-        default:
-            fail(.Unknown)
+        case .cancelled:
+            fail(.mailCanceled(underlyingError: error))
+        case .failed:
+            fail(.mailFailed(underlyingError: error))
+        case .saved:
+            succeed(.saved)
+        case .sent:
+            succeed(.sent)
         }
     }
 }

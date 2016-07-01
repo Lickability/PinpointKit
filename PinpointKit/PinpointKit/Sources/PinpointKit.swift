@@ -54,7 +54,7 @@ public class PinpointKit {
 
 extension PinpointKit: FeedbackCollectorDelegate {
     
-    public func feedbackCollector(feedbackCollector: FeedbackCollector, didCollectFeedback feedback: Feedback) {
+    public func feedbackCollector(_ feedbackCollector: FeedbackCollector, didCollectFeedback feedback: Feedback) {
         delegate?.pinpointKit(self, willSendFeedback: feedback)
         configuration.sender.sendFeedback(feedback, fromViewController: feedbackCollector.viewController)
     }
@@ -64,15 +64,15 @@ extension PinpointKit: FeedbackCollectorDelegate {
 
 extension PinpointKit: SenderDelegate {
     
-    public func sender(sender: Sender, didSendFeedback feedback: Feedback?, success: SuccessType?) {
+    public func sender(_ sender: Sender, didSendFeedback feedback: Feedback?, success: SuccessType?) {
         guard let feedback = feedback else { return }
         
         delegate?.pinpointKit(self, didSendFeedback: feedback)
-        displayingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        displayingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    public func sender(sender: Sender, didFailToSendFeedback feedback: Feedback?, error: ErrorType) {
-        if case MailSender.Error.MailCanceled = error { return }
+    public func sender(_ sender: Sender, didFailToSendFeedback feedback: Feedback?, error: ErrorProtocol) {
+        if case MailSender.Error.mailCanceled = error { return }
         
         NSLog("An error occurred sending mail: \(error)")
     }
@@ -87,7 +87,7 @@ public protocol PinpointKitDelegate: class {
      - parameter pinpointKit:   The `PinpointKit` instance responsible for the feedback.
      - parameter feedback:      The feedback that’s about to be sent.
      */
-    func pinpointKit(pinpointKit: PinpointKit, willSendFeedback feedback: Feedback)
+    func pinpointKit(_ pinpointKit: PinpointKit, willSendFeedback feedback: Feedback)
     
     /**
      Notifies the delegate that PinpointKit has just sent user feedback.
@@ -95,12 +95,12 @@ public protocol PinpointKitDelegate: class {
      - parameter pinpointKit:   The `PinpointKit` instance responsible for the feedback.
      - parameter feedback:      The feedback that’s just been sent.
      */
-    func pinpointKit(pinpointKit: PinpointKit, didSendFeedback feedback: Feedback)
+    func pinpointKit(_ pinpointKit: PinpointKit, didSendFeedback feedback: Feedback)
 }
 
 /// An extension on PinpointKitDelegate that makes all delegate methods optional by giving them empty implementations by default.
 public extension PinpointKitDelegate {
     
-    func pinpointKit(pinpointKit: PinpointKit, willSendFeedback feedback: Feedback) {}
-    func pinpointKit(pinpointKit: PinpointKit, didSendFeedback feedback: Feedback) {}
+    func pinpointKit(_ pinpointKit: PinpointKit, willSendFeedback feedback: Feedback) {}
+    func pinpointKit(_ pinpointKit: PinpointKit, didSendFeedback feedback: Feedback) {}
 }

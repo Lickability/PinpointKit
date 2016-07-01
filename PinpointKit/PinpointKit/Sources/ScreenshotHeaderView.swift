@@ -24,21 +24,21 @@ class ScreenshotHeaderView: UIView {
     }
     
     private enum DesignConstants: CGFloat {
-        case DefaultMargin = 15
-        case MinimumScreenshotPadding = 50
+        case defaultMargin = 15
+        case minimumScreenshotPadding = 50
     }
     
     /// Set the `viewData` in order to update the receiver’s content.
     var viewModel: ViewModel? {
         didSet {
-            screenshotButton.setImage(viewModel?.screenshot.imageWithRenderingMode(.AlwaysOriginal), forState: .Normal)
+            screenshotButton.setImage(viewModel?.screenshot.withRenderingMode(.alwaysOriginal), for: UIControlState())
             
             if let screenshot = viewModel?.screenshot {
-                screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraintEqualToAnchor(screenshotButton.widthAnchor, multiplier: 1.0 / screenshot.aspectRatio)
+                screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraint(equalTo: screenshotButton.widthAnchor, multiplier: 1.0 / screenshot.aspectRatio)
             }
             
             hintLabel.text = viewModel?.hintText
-            hintLabel.hidden = viewModel?.hintText == nil || viewModel?.hintText?.isEmpty == true
+            hintLabel.isHidden = viewModel?.hintText == nil || viewModel?.hintText?.isEmpty == true
             hintLabel.font = viewModel?.hintFont
         }
     }
@@ -49,20 +49,20 @@ class ScreenshotHeaderView: UIView {
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         
-        stackView.axis = .Vertical
-        stackView.alignment = .Center
+        stackView.axis = .vertical
+        stackView.alignment = .center
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        stackView.layoutMargins = UIEdgeInsets(top: DesignConstants.DefaultMargin.rawValue, left: DesignConstants.DefaultMargin.rawValue, bottom: DesignConstants.DefaultMargin.rawValue, right: DesignConstants.DefaultMargin.rawValue)
-        stackView.layoutMarginsRelativeArrangement = true
+        stackView.layoutMargins = UIEdgeInsets(top: DesignConstants.defaultMargin.rawValue, left: DesignConstants.defaultMargin.rawValue, bottom: DesignConstants.defaultMargin.rawValue, right: DesignConstants.defaultMargin.rawValue)
+        stackView.isLayoutMarginsRelativeArrangement = true
         
         return stackView
     }()
     
     private lazy var screenshotButton: UIButton = {
-        let button = UIButton(type: .System)
-        button.layer.borderColor = self.tintColor.CGColor
+        let button = UIButton(type: .system)
+        button.layer.borderColor = self.tintColor.cgColor
         button.layer.borderWidth = 1
         
         return button
@@ -70,14 +70,14 @@ class ScreenshotHeaderView: UIView {
     
     private let hintLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.lightGrayColor()
+        label.textColor = UIColor.lightGray()
         return label
     }()
     
     private var screenshotButtonHeightConstraint: NSLayoutConstraint? {
         didSet {
-            oldValue?.active = false
-            screenshotButtonHeightConstraint?.active = true
+            oldValue?.isActive = false
+            screenshotButtonHeightConstraint?.isActive = true
         }
     }
     
@@ -97,7 +97,7 @@ class ScreenshotHeaderView: UIView {
     override func tintColorDidChange() {
         super.tintColorDidChange()
         
-        screenshotButton.layer.borderColor = tintColor.CGColor
+        screenshotButton.layer.borderColor = tintColor.cgColor
     }
     
     // MARK: - ScreenshotHeaderView
@@ -105,10 +105,10 @@ class ScreenshotHeaderView: UIView {
     private func setUp() {
         addSubview(stackView)
         
-        stackView.topAnchor.constraintEqualToAnchor(topAnchor).active = true
-        stackView.bottomAnchor.constraintEqualToAnchor(bottomAnchor).active = true
-        stackView.leadingAnchor.constraintEqualToAnchor(leadingAnchor).active = true
-        stackView.trailingAnchor.constraintEqualToAnchor(trailingAnchor).active = true
+        stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
         stackView.addArrangedSubview(screenshotButton)
         stackView.addArrangedSubview(hintLabel)
@@ -117,15 +117,15 @@ class ScreenshotHeaderView: UIView {
     }
     
     private func setUpScreenshotButton() {
-        screenshotButton.leadingAnchor.constraintGreaterThanOrEqualToAnchor(stackView.leadingAnchor, constant: DesignConstants.MinimumScreenshotPadding.rawValue).active = true
-        screenshotButton.trailingAnchor.constraintLessThanOrEqualToAnchor(stackView.trailingAnchor, constant: -DesignConstants.MinimumScreenshotPadding.rawValue).active = true
+        screenshotButton.leadingAnchor.constraint(greaterThanOrEqualTo: stackView.leadingAnchor, constant: DesignConstants.minimumScreenshotPadding.rawValue).isActive = true
+        screenshotButton.trailingAnchor.constraint(lessThanOrEqualTo: stackView.trailingAnchor, constant: -DesignConstants.minimumScreenshotPadding.rawValue).isActive = true
         
-        screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraintEqualToAnchor(screenshotButton.widthAnchor, multiplier: 1.0)
+        screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraint(equalTo: screenshotButton.widthAnchor, multiplier: 1.0)
         
-        screenshotButton.addTarget(self, action: #selector(ScreenshotHeaderView.screenshotButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        screenshotButton.addTarget(self, action: #selector(ScreenshotHeaderView.screenshotButtonTapped(_:)), for: .touchUpInside)
     }
     
-    @objc private func screenshotButtonTapped(sender: UIButton) {
+    @objc private func screenshotButtonTapped(_ sender: UIButton) {
         screenshotButtonTapHandler?(button: sender)
     }
 }

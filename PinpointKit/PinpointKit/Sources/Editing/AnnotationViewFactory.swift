@@ -28,26 +28,26 @@ struct AnnotationViewFactory {
      */
     func annotationView() -> AnnotationView {
         switch tool {
-        case .Arrow:
+        case .arrow:
             let view = ArrowAnnotationView()
             view.annotation = ArrowAnnotation(startLocation: currentLocation, endLocation: currentLocation, strokeColor: strokeColor)
             return view
-        case .Box:
+        case .box:
             let view = BoxAnnotationView()
             view.annotation = BoxAnnotation(startLocation: currentLocation, endLocation: currentLocation, strokeColor: strokeColor)
             return view
-        case .Text:
+        case .text:
             let view = TextAnnotationView()
             let minimumSize = view.minimumTextSize
             let endLocation = CGPoint(x: currentLocation.x + minimumSize.width, y: currentLocation.y + minimumSize.height)
             view.annotation = Annotation(startLocation: currentLocation, endLocation: endLocation, strokeColor: strokeColor)
             return view
-        case .Blur:
+        case .blur:
             let view = BlurAnnotationView()
             view.drawsBorder = true
             
             if let image = image {
-                let CIImage = CoreImage.CIImage(CGImage: image)
+                let CIImage = CoreImage.CIImage(cgImage: image)
                 view.annotation = BlurAnnotation(startLocation: currentLocation, endLocation: currentLocation, image: CIImage)
             }
             
