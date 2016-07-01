@@ -24,11 +24,11 @@ public class AnnotationView: UIView {
     // MARK: - Helpers
     
     /**
-     Moves the control points of the annotation by the amount specified in `translation`.
+     Moves the control points of the annotation by the amount specified in `translationAmount`.
      
-     - parameter translation: The amount to translate the control points.
+     - parameter translationAmount: The amount to translate the control points.
      */
-    func moveControlPoints(_ translation: CGPoint) {
+    func move(controlPointsBy translationAmount: CGPoint) {
         
     }
     

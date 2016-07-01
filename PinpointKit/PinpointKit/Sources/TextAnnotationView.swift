@@ -80,10 +80,10 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         
     // MARK: - AnnotationView
     
-    override func moveControlPoints(_ translation: CGPoint) {
+    override func move(controlPointsBy translationAmount: CGPoint) {
         textView.frame = {
             var textViewFrame = self.textView.frame
-            textViewFrame.origin = CGPoint(x: textViewFrame.minX + translation.x, y: textViewFrame.minY + translation.y)
+            textViewFrame.origin = CGPoint(x: textViewFrame.minX + translationAmount.x, y: textViewFrame.minY + translationAmount.y)
             return textViewFrame
         }()
     }
