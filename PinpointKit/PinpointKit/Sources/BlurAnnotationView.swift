@@ -84,8 +84,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-
+    
     // MARK: - UIView
 
     override public func layoutSubviews() {
