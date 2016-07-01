@@ -60,7 +60,7 @@ public struct Configuration {
                 feedbackCollector: FeedbackCollector = FeedbackNavigationController(),
                 editor: Editor = EditImageViewController(),
                 sender: Sender = MailSender(),
-                feedbackRecipients: [String]? = nil) {
+                feedbackRecipients: [String]) {
         self.feedbackCollector = feedbackCollector
         self.editor = editor
         

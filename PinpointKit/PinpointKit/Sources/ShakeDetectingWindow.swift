@@ -13,17 +13,15 @@ import UIKit
 public class ShakeDetectingWindow: UIWindow {
 
     /// A `ShakeDetectingWindowDelegate` to notify when a shake motion event occurs.
-	public weak var delegate: ShakeDetectingWindowDelegate?
+	public weak var delegate: ShakeDetectingWindowDelegate? = nil
 
     /**
      Initializes a `ShakeDetectingWindow`.
 
      - parameter frame:    The frame rectangle for the view.
-     - parameter delegate: An object to notify when a shake motion event occurs. Defaults to `PinpointKit.defaultPinpointKit`.
+     - parameter delegate: An object to notify when a shake motion event occurs.
      */
-	required public init(
-        frame: CGRect,
-        delegate: ShakeDetectingWindowDelegate = PinpointKit.defaultPinpointKit) {
+	required public init(frame: CGRect, delegate: ShakeDetectingWindowDelegate) {
         self.delegate = delegate
         super.init(frame: frame)
 	}
@@ -32,7 +30,6 @@ public class ShakeDetectingWindow: UIWindow {
     
 	required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-	    delegate = PinpointKit.defaultPinpointKit
 	}
 	
 	// MARK: - UIResponder

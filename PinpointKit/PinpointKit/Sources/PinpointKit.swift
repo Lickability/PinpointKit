@@ -11,10 +11,7 @@ import Foundation
 
 /// `PinpointKit` is an object that can be used to collect feedback from application users.
 public class PinpointKit {
-
-    /// Returns a `PinpointKit` instance with a default configuration.
-    public static let defaultPinpointKit = PinpointKit()
-
+    
     /// The configuration struct that specifies how PinpointKit should be configured.
     private let configuration: Configuration
     
@@ -29,12 +26,24 @@ public class PinpointKit {
      - parameter configuration: The configuration struct that specifies how PinpointKit should be configured.
      - parameter delegate:      A delegate that is notified of significant events.
      */
-    public init(configuration: Configuration = Configuration(), delegate: PinpointKitDelegate? = nil) {
+    public init(configuration: Configuration, delegate: PinpointKitDelegate? = nil) {
         self.configuration = configuration
         self.delegate = delegate
         
         self.configuration.feedbackCollector.feedbackDelegate = self
         self.configuration.sender.delegate = self
+    }
+    
+    /**
+     Initializes a `PinpointKit` with a default configuration supplied with feedback recipients and an optional delegate.
+     
+     - parameter feedbackRecipients: The recipients of the feedback submission. Suitable for email recipients in the "To:" field.
+     - parameter delegate:           A delegate that is notified of significant events.
+     */
+    public convenience init(feedbackRecipients: [String], delegate: PinpointKitDelegate? = nil) {
+        let configuration = Configuration(feedbackRecipients: feedbackRecipients)
+        
+        self.init(configuration: configuration, delegate: delegate)
     }
     
     /**
