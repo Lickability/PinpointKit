@@ -12,7 +12,7 @@ import PinpointKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
+    private let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
     lazy var window: UIWindow? = ShakeDetectingWindow(frame: UIScreen.mainScreen().bounds, delegate: self.pinpointKit)
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
