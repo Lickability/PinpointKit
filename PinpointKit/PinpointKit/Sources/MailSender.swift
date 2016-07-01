@@ -59,7 +59,7 @@ public class MailSender: NSObject, Sender {
      - parameter feedback:       The feedback to send.
      - parameter viewController: The view controller from which to present any of the sender’s necessary views.
      */
-    public func sendFeedback(_ feedback: Feedback, fromViewController viewController: UIViewController?) {
+    public func send(_ feedback: Feedback, from viewController: UIViewController?) {
         guard let viewController = viewController else { fail(.noViewControllerProvided); return }
         
         guard MFMailComposeViewController.canSendMail() else { fail(.mailCannotSend); return }

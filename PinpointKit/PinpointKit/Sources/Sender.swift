@@ -20,11 +20,12 @@ public protocol Sender: class {
      - parameter feedback:       The feedback to send.
      - parameter viewController: The view controller from which to present any of the sender’s necessary views.
      */
-    func sendFeedback(_ feedback: Feedback, fromViewController viewController: UIViewController?)
+    func send(_ feedback: Feedback, from viewController: UIViewController?)
 }
 
 /// A delegate protocol describing an object that receives success and failure events from a `Sender`.
 public protocol SenderDelegate: class {    
+    
     /**
      Notifies the receiver that the sender successfully sent the feedback with a given type of success.
      
