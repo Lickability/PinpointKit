@@ -138,7 +138,7 @@ pinpointKit.show(fromViewController: viewController)
 ```
 > **Note:** Be sure to keep a strong reference to your instance of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) for the duration of its use.
 
-If you want to have the feedback view display from a shake gesture, simply add the following to your application delegate class, replacing `["feedback@example.com"]` with your array of email recipients:
+If you want to have the feedback view display from a shake gesture, simply add the following to your application delegate, replacing `["feedback@example.com"]` with your array of email recipients:
 
 ```swift
 private let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
