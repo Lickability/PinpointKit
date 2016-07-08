@@ -16,7 +16,7 @@ public extension UIColor {
      
      - returns: The Pinpoint specific orange color.
      */
-    static func pinpointOrangeColor() -> UIColor {
+    static func pinpointOrange() -> UIColor {
         return UIColor(red: 1, green: 0.2196, blue: 0.0392, alpha: 1)
     }
 }

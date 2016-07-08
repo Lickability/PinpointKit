@@ -89,34 +89,34 @@ public class ScreenshotDetector: NSObject {
     }
     
     private func succeed(with image: UIImage) {
-        delegate?.screenshotDetector(self, didDetectScreenshot: image)
+        delegate?.screenshotDetector(self, didDetect: image)
     }
     
     private func fail(with error: Error) {
-        delegate?.screenshotDetector(self, didFailWithError: error)
+        delegate?.screenshotDetector(self, didFailWith: error)
     }
 }
 
-/// A protocol that `ScreenshotDetector` uses to inform its delegate of sucessful and failed screenshot detection events.
+/// A protocol that `ScreenshotDetector` uses to inform its delegate of successful and failed screenshot detection events.
 
 @available(iOS 9.0, *)
 protocol ScreenshotDetectorDelegate: class {
     
     /**
-     Notifies the delegate that the detector did sucessfully detect a screenshot.
+     Notifies the delegate that the detector did successfully detect a screenshot.
      
      - parameter screenshotDetector: The detector responsible for the message.
-     - parameter screenshot:         The screeenshot that was detected.
+     - parameter screenshot:         The screenshot that was detected.
      */
-    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didDetectScreenshot screenshot: UIImage)
+    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didDetect screenshot: UIImage)
     
     /**
      Notifies the delegate that the detector failed to detect a screenshot.
      
      - parameter screenshotDetector: The detector responsible for the message.
-     - parameter error:              The error that occurred while attempting to detecting the screenshot.
+     - parameter error:              The error that occurred while attempting to detect the screenshot.
      */
-    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didFailWithError error: ScreenshotDetector.Error)
+    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didFailWith error: ScreenshotDetector.Error)
 }
 
 @available(iOS 9.0, *)

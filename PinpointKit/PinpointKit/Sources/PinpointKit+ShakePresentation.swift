@@ -20,7 +20,7 @@ extension PinpointKit: ShakeDetectingWindowDelegate {
             return
         }
         
-        show(fromViewController: viewController)
+        show(from: viewController)
     }
 }
 

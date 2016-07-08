@@ -12,14 +12,14 @@ import Foundation
 public class Screenshotter {
 
     /**
-     Takes and returns a screenshot of all of an `application`’s windows displayed on a given screen.
+     Takes and returns a screenshot of all of an application’s windows displayed on a given screen.
      
-     - parameter screen:      The screen to determine the screenshot size.
      - parameter application: The application to screenshot.
+     - parameter screen:      The screen to determine the screenshot size.
      
      - returns: A screenshot as a `UIImage`.
      */
-    public static func takeScreenshot(_ screen: UIScreen = UIScreen.main(), application: UIApplication = UIApplication.shared()) -> UIImage {
+    public static func takeScreenshot(of application: UIApplication = UIApplication.shared(), on screen: UIScreen = UIScreen.main()) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(screen.bounds.size, true, 0)
         
         application.windows.forEach { window in

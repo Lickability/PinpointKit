@@ -42,7 +42,7 @@ public class PinpointKit {
      
      - parameter viewController: The view controller from which to present.
      */
-    public func show(fromViewController viewController: UIViewController) {
+    public func show(from viewController: UIViewController) {
         let screenshot = Screenshotter.takeScreenshot()
         displayingViewController = viewController
         
@@ -56,7 +56,7 @@ extension PinpointKit: FeedbackCollectorDelegate {
     
     public func feedbackCollector(_ feedbackCollector: FeedbackCollector, didCollect feedback: Feedback) {
         delegate?.pinpointKit(self, willSend: feedback)
-        configuration.sender.sendFeedback(feedback, fromViewController: feedbackCollector.viewController)
+        configuration.sender.send(feedback, from: feedbackCollector.viewController)
     }
 }
 
