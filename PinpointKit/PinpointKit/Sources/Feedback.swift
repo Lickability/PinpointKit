@@ -60,7 +60,7 @@ public struct Feedback {
     public var screenshotFileName: String
     
     /// The recipients of the feedback submission. Suitable for email recipients in the "To:" field.
-    var recipients: [String]?
+    public var recipients: [String]?
     
     /// A short, optional title of the feedback submission. Suitable for an email subject.
     public var title: String?
