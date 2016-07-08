@@ -61,7 +61,7 @@ public class ScreenshotDetector: NSObject {
     
     private func requestPhotosAuthorization() {
         PHPhotoLibrary.requestAuthorization { authorizationStatus in
-            OperationQueue.main().addOperation {
+            OperationQueue.main.addOperation {
                 switch authorizationStatus {
                 case .authorized:
                     self.findScreenshot()
@@ -79,7 +79,7 @@ public class ScreenshotDetector: NSObject {
             targetSize: PHImageManagerMaximumSize,
             contentMode: .default,
             options: PHImageRequestOptions.highQualitySynchronousLocalOptions()) { [weak self] image, info in
-            OperationQueue.main().addOperation {
+            OperationQueue.main.addOperation {
                 guard let strongSelf = self else { return }
                 guard let image = image else { strongSelf.fail(with: .loadFailure); return }
                 
