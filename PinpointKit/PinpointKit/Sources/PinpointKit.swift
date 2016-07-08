@@ -41,7 +41,8 @@ public class PinpointKit {
      - parameter delegate:           A delegate that is notified of significant events.
      */
     public convenience init(feedbackRecipients: [String], delegate: PinpointKitDelegate? = nil) {
-        let configuration = Configuration(feedbackRecipients: feedbackRecipients)
+        let feedbackConfiguration = FeedbackConfiguration(recipients: feedbackRecipients)
+        let configuration = Configuration(feedbackConfiguration: feedbackConfiguration)
         
         self.init(configuration: configuration, delegate: delegate)
     }

@@ -25,6 +25,7 @@
 		475B3ACDE2B25B16097F8FD10645A926 /* BasicLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CC4696A751768B9105D5565B68C3DB /* BasicLogViewController.swift */; };
 		497847DAB395437D5D11CEBA42705280 /* FeedbackNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D1CAFDC8EA2D8703C0C6EE29E4BF08 /* FeedbackNavigationController.swift */; };
 		4AAEFBB95D4BEDFA82C236B80573C825 /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D762474867E802650DD20E294750CF9 /* Annotations.swift */; };
+		4C53FBF91D304C39009EDC4E /* FeedbackConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C53FBF81D304C39009EDC4E /* FeedbackConfiguration.swift */; };
 		50A95E93DED4283192EBFF3DC62B9211 /* StrokeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAE808FC0873920E02EBCD77AD9FA43 /* StrokeLayoutManager.swift */; };
 		54AFDAD8B333D569BE25A6BF091AA987 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 93FA706115160440E9256964E66FA57D /* SourceSansPro-Bold.ttf */; };
 		595BB86A2C0B9F6BF072D43298E1442F /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4307288F72B971AF1C34C59718AF3B32 /* Configuration.swift */; };
@@ -106,6 +107,7 @@
 		4307288F72B971AF1C34C59718AF3B32 /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		46808D8DD82EBD9B48A30EB1E7344CF1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46B1CD047C1B63EF67F23CAC1806889A /* EditorDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditorDelegate.swift; sourceTree = "<group>"; };
+		4C53FBF81D304C39009EDC4E /* FeedbackConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackConfiguration.swift; sourceTree = "<group>"; };
 		4F026C9460FBD43D5F04EF65D2FB5362 /* ArrowAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArrowAnnotationView.swift; sourceTree = "<group>"; };
 		6207788D80D5F34F8E7DB00DE24A8F3E /* PinpointKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PinpointKit-dummy.m"; sourceTree = "<group>"; };
 		624639227B49043215FCD240C6AC0F95 /* PinpointKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PinpointKit.xcconfig; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				A746927132FD9B70272F614430C08EA6 /* BoxAnnotationView.swift */,
 				A56326EAEA58486DF118DDF5FACD210D /* CheckmarkCell.swift */,
 				4307288F72B971AF1C34C59718AF3B32 /* Configuration.swift */,
+				4C53FBF81D304C39009EDC4E /* FeedbackConfiguration.swift */,
 				DEF610D46B4270498BF110D72EA7ACF8 /* Feedback.swift */,
 				421EAA998DAEFE3DD043FD4FDC40CA43 /* FeedbackCollector.swift */,
 				67D1CAFDC8EA2D8703C0C6EE29E4BF08 /* FeedbackNavigationController.swift */,
@@ -539,6 +542,7 @@
 				151F2A9C1F7BC634B583654EEADB2676 /* MailSender.swift in Sources */,
 				C7F53858824968A2D584C2F34ADBCCDE /* MIMEType.swift in Sources */,
 				A20259EDEFDB840DA0D529030FFA58B0 /* NavigationController.swift in Sources */,
+				4C53FBF91D304C39009EDC4E /* FeedbackConfiguration.swift in Sources */,
 				431AAD1F47EB8C0CF5E6249CC813424F /* NSBundle+PinpointKit.swift in Sources */,
 				30F586F105FF6DC58A6451A4763F10DF /* PinpointKit+ShakePresentation.swift in Sources */,
 				B90600A5C292DF97239C0E7EC3DB0C2B /* PinpointKit-dummy.m in Sources */,
