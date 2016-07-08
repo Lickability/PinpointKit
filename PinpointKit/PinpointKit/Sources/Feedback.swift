@@ -57,25 +57,25 @@ public struct Feedback {
     let screenshot: ScreenshotType
     
     /// A file name without an extension for the screenshot or annotated screenshot.
-    let screenshotFileName: String
+    public var screenshotFileName: String
     
     /// The recipients of the feedback submission. Suitable for email recipients in the "To:" field.
-    let recipients: [String]?
+    var recipients: [String]?
     
     /// A short, optional title of the feedback submission. Suitable for an email subject.
-    let title: String?
+    public var title: String?
     
     /// An optional plain-text body of the feedback submission. Suitable for an email body.
-    let body: String?
+    public var body: String?
     
     /// An optional collection of log strings.
     let logs: [String]?
     
     /// A file name without an extension for the logs text file.
-    let logsFileName: String
+    public var logsFileName: String
     
     /// A dictionary of additional information provided by the application developer.
-    let additionalInformation: [String: AnyObject]?
+    public var additionalInformation: [String: AnyObject]?
     
     /// A struct containing information about the application and its environment.
     let applicationInformation: ApplicationInformation?
