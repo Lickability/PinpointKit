@@ -29,5 +29,6 @@
   ],
   "source_files": "PinpointKit/PinpointKit/Sources/**/*.{h,m,swift}",
   "resources": "PinpointKit/PinpointKit/Resources/*",
+  "homepage": "https://github.com/Lickability/PinpointKit",
   "dependencies": { }
 }
