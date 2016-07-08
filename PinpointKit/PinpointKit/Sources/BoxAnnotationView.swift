@@ -17,7 +17,7 @@ public class BoxAnnotationView: AnnotationView {
     var annotation: BoxAnnotation? {
         didSet {
             if let annotation = annotation {
-                layer.shadowPath = self.dynamicType.path(forDrawing: annotation)?.cgPath
+                layer.shadowPath = self.dynamicType.path(for: annotation)?.cgPath
             } else {
                 layer.shadowPath = nil
             }
@@ -65,7 +65,7 @@ public class BoxAnnotationView: AnnotationView {
         tintColor.setFill()
         annotation.strokeColor.setStroke()
 
-        let path = self.dynamicType.path(forDrawing: annotation)
+        let path = self.dynamicType.path(for: annotation)
         path?.fill()
         path?.stroke()
     }
@@ -103,7 +103,7 @@ public class BoxAnnotationView: AnnotationView {
 
 private extension BoxAnnotationView {
     
-    private static func path(forDrawing annotation: BoxAnnotation) -> UIBezierPath? {
+    private static func path(for annotation: BoxAnnotation) -> UIBezierPath? {
         let frame = annotation.frame
         let strokeWidth = annotation.strokeWidth
         let borderWidth = annotation.borderWidth
@@ -134,7 +134,7 @@ private extension BoxAnnotationView {
     private static func path(forPointInside annotation: BoxAnnotation) -> UIBezierPath? {
         let outsideStrokeWidth = annotation.borderWidth * 2.0
         
-        return path(forDrawing: annotation)
+        return path(for: annotation)
             .flatMap { path in
                 CGPath(copyByStroking: path.cgPath, transform: nil, lineWidth: outsideStrokeWidth, lineCap: .butt, lineJoin: .bevel, miterLimit: 0)
             }
