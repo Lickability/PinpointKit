@@ -83,19 +83,19 @@ public struct InterfaceCustomization {
          - parameter editorTextAnnotationFont:           The font used for text annotations in the editor.
          - parameter editorTextAnnotationDoneButtonFont: The font used for the done button in the editor displayed while editing a text annotation.
          */
-        public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(),
+        public init(tintColor: UIColor? = .pinpointOrangeColor(),
                     annotationFillColor: UIColor? = nil,
                     annotationStrokeColor: UIColor = .white(),
-                    navigationTitleFont: UIFont = .sourceSansProFontOfSize(19, weight: .semibold),
-                    feedbackSendButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .semibold),
-                    feedbackCancelButtonFont: UIFont = .sourceSansProFontOfSize(19),
-                    feedbackEditHintFont: UIFont = .sourceSansProFontOfSize(14),
-                    feedbackBackButtonFont: UIFont = .sourceSansProFontOfSize(19),
-                    logCollectionPermissionFont: UIFont = .sourceSansProFontOfSize(19),
-                    logFont: UIFont = .menloRegularFontOfSize(10),
-                    editorTextAnnotationSegmentFont: UIFont = .sourceSansProFontOfSize(18),
-                    editorTextAnnotationFont: UIFont = .sourceSansProFontOfSize(32, weight: .semibold),
-                    editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .semibold)) {
+                    navigationTitleFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
+                    feedbackSendButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
+                    feedbackCancelButtonFont: UIFont = .sourceSansProFont(ofSize: 19),
+                    feedbackEditHintFont: UIFont = .sourceSansProFont(ofSize: 14),
+                    feedbackBackButtonFont: UIFont = .sourceSansProFont(ofSize: 19),
+                    logCollectionPermissionFont: UIFont = .sourceSansProFont(ofSize: 19),
+                    logFont: UIFont = .menloRegularFont(ofSize: 10),
+                    editorTextAnnotationSegmentFont: UIFont = .sourceSansProFont(ofSize: 18),
+                    editorTextAnnotationFont: UIFont = .sourceSansProFont(ofSize: 32, weight: .semibold),
+                    editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold)) {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor

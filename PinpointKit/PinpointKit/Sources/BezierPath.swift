@@ -45,12 +45,12 @@ extension UIBezierPath {
         bezierPath.close()
         bezierPath.usesEvenOddFillRule = true
         
-        bezierPath.apply(transformForStartPoint(startPoint, endPoint: endPoint, length: length))
+        bezierPath.apply(transform(forStartPoint: startPoint, endPoint: endPoint, length: length))
         
         return bezierPath
     }
     
-    private static func transformForStartPoint(_ startPoint: CGPoint, endPoint: CGPoint, length: CGFloat) -> CGAffineTransform {
+    private static func transform(forStartPoint startPoint: CGPoint, endPoint: CGPoint, length: CGFloat) -> CGAffineTransform {
         let cosine = (endPoint.x - startPoint.x) / length
         let sine = (endPoint.y - startPoint.y) / length
         

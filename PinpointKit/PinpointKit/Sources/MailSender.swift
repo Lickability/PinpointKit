@@ -70,7 +70,7 @@ public class MailSender: NSObject, Sender {
         self.feedback = feedback
         
         do {
-            try mailComposer.attachFeedback(feedback)
+            try mailComposer.attach(feedback)
         } catch let error as Error {
             fail(error)
         } catch {
@@ -83,19 +83,19 @@ public class MailSender: NSObject, Sender {
     // MARK: - MailSender
     
     private func fail(_ error: Error) {
-        delegate?.sender(self, didFailToSendFeedback: feedback, error: error)
+        delegate?.sender(self, didFailToSend: feedback, error: error)
         feedback = nil
     }
     
     private func succeed(_ success: Success) {
-        delegate?.sender(self, didSendFeedback: feedback, success: success)
+        delegate?.sender(self, didSend: feedback, success: success)
         feedback = nil
     }
 }
 
 private extension MFMailComposeViewController {
     
-    func attachFeedback(_ feedback: Feedback) throws {
+    func attach(_ feedback: Feedback) throws {
         setToRecipients(feedback.recipients)
         
         if let subject = feedback.title {
@@ -106,39 +106,39 @@ private extension MFMailComposeViewController {
            setMessageBody(body, isHTML: false)
         }
         
-        try attachScreenshot(feedback.screenshot, screenshotFileName: feedback.screenshotFileName)
+        try attach(feedback.screenshot, screenshotFileName: feedback.screenshotFileName)
         
         if let logs = feedback.logs {
-            try attachLogs(logs, logsFileName: feedback.logsFileName)
+            try attach(logs, logsFileName: feedback.logsFileName)
         }
         
         if let additionalInformation = feedback.additionalInformation {
-            attachAdditionalInformation(additionalInformation)
+            attach(additionalInformation: additionalInformation)
         }
     }
     
-    func attachScreenshot(_ screenshot: Feedback.ScreenshotType, screenshotFileName: String) throws {
-        try attachImage(screenshot.preferredImage, filename: screenshotFileName + MIMEType.PNG.fileExtension)
+    func attach(_ screenshot: Feedback.ScreenshotType, screenshotFileName: String) throws {
+        try attach(screenshot.preferredImage, filename: screenshotFileName + MIMEType.PNG.fileExtension)
     }
     
-    func attachLogs(_ logs: [String], logsFileName: String) throws {
+    func attach(_ logs: [String], logsFileName: String) throws {
         let logsText = logs.joined(separator: "\n\n")
-        try attachText(logsText, filename: logsFileName + MIMEType.PlainText.fileExtension)
+        try attach(logsText, filename: logsFileName + MIMEType.PlainText.fileExtension)
     }
     
-    func attachImage(_ image: UIImage, filename: String) throws {
+    func attach(_ image: UIImage, filename: String) throws {
         guard let PNGData = UIImagePNGRepresentation(image) else { throw MailSender.Error.imageEncoding }
         
         addAttachmentData(PNGData, mimeType: MIMEType.PNG.rawValue, fileName: filename)
     }
     
-    func attachText(_ text: String, filename: String) throws {
+    func attach(_ text: String, filename: String) throws {
         guard let textData = text.data(using: String.Encoding.utf8) else { throw MailSender.Error.textEncoding }
         
         addAttachmentData(textData, mimeType: MIMEType.PlainText.rawValue, fileName: filename)
     }
     
-    func attachAdditionalInformation(_ additionalInformation: [String: AnyObject]) {
+    func attach(additionalInformation additionalInformation: [String: AnyObject]) {
         let data = try? JSONSerialization.data(withJSONObject: additionalInformation, options: .prettyPrinted)
         
         if let data = data {

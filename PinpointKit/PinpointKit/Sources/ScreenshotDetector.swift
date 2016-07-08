@@ -50,7 +50,7 @@ public class ScreenshotDetector: NSObject {
         
         super.init()
         
-        notificationCenter.addObserver(self, selector: #selector(ScreenshotDetector.userTookScreenshot(_:)), name: NSNotification.Name.UIApplicationUserDidTakeScreenshot, object: application)
+        notificationCenter.addObserver(self, selector: #selector(ScreenshotDetector.userTookScreenshot(_:)), name: .UIApplicationUserDidTakeScreenshot, object: application)
     }
     
     @objc private func userTookScreenshot(_ notification: Notification) {
@@ -66,14 +66,14 @@ public class ScreenshotDetector: NSObject {
                 case .authorized:
                     self.findScreenshot()
                 case .denied, .notDetermined, .restricted:
-                    self.fail(.unauthorized(status: authorizationStatus))
+                    self.fail(with: .unauthorized(status: authorizationStatus))
                 }
             }
         }
     }
     
     private func findScreenshot() {
-        guard let screenshot = PHAsset.fetchLastScreenshot() else { fail(.fetchFailure); return }
+        guard let screenshot = PHAsset.fetchLastScreenshot() else { fail(with: .fetchFailure); return }
         
         imageManager.requestImage(for: screenshot,
             targetSize: PHImageManagerMaximumSize,
@@ -81,18 +81,18 @@ public class ScreenshotDetector: NSObject {
             options: PHImageRequestOptions.highQualitySynchronousLocalOptions()) { [weak self] image, info in
             OperationQueue.main().addOperation {
                 guard let strongSelf = self else { return }
-                guard let image = image else { strongSelf.fail(.loadFailure); return }
+                guard let image = image else { strongSelf.fail(with: .loadFailure); return }
                 
-                strongSelf.succeed(image)
+                strongSelf.succeed(with: image)
             }
         }
     }
     
-    private func succeed(_ image: UIImage) {
+    private func succeed(with image: UIImage) {
         delegate?.screenshotDetector(self, didDetectScreenshot: image)
     }
     
-    private func fail(_ error: Error) {
+    private func fail(with error: Error) {
         delegate?.screenshotDetector(self, didFailWithError: error)
     }
 }

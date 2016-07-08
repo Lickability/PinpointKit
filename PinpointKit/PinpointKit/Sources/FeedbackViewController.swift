@@ -176,7 +176,7 @@ public final class FeedbackViewController: UITableViewController {
         
         guard let feedbackToSend = feedback else { return assertionFailure("We must have either a screenshot or an edited screenshot!") }
         
-        feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedbackToSend)
+        feedbackDelegate?.feedbackCollector(self, didCollect: feedbackToSend)
     }
     
     @objc private func cancelButtonTapped() {        
@@ -187,7 +187,7 @@ public final class FeedbackViewController: UITableViewController {
 // MARK: - FeedbackCollector
 
 extension FeedbackViewController: FeedbackCollector {
-    public func collectFeedbackWithScreenshot(_ screenshot: UIImage, fromViewController viewController: UIViewController) {
+    public func collectFeedback(with screenshot: UIImage, from viewController: UIViewController) {
         self.screenshot = screenshot
         annotatedScreenshot = nil
         viewController.showDetailViewController(self, sender: viewController)
@@ -197,7 +197,7 @@ extension FeedbackViewController: FeedbackCollector {
 // MARK: - EditorDelegate
 
 extension FeedbackViewController: EditorDelegate {
-    public func editorWillDismiss(_ editor: Editor, screenshot: UIImage) {
+    public func editorWillDismiss(_ editor: Editor, with screenshot: UIImage) {
         annotatedScreenshot = screenshot
         updateTableHeaderView()
     }
@@ -212,7 +212,7 @@ extension FeedbackViewController {
             return
         }
         
-        logViewer?.viewLog(logCollector, fromViewController: self)
+        logViewer?.viewLog(in: logCollector, from: self)
     }
     
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
