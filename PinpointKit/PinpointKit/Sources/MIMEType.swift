@@ -7,7 +7,7 @@
 //
 
 /// An enumeration of MIME types used in PinpointKit.
-enum MIMEType: String {
+public enum MIMEType: String {
     
     /// The MIME type used to represent a Portable Network Graphics image.
     case PNG = "image/png"
@@ -19,7 +19,7 @@ enum MIMEType: String {
     case JSON = "application/json"
     
     /// The file extension associated with the MIME type including the leading `.`.
-    var fileExtension: String {
+    public var fileExtension: String {
         switch self {
         case PNG:
             return ".png"
