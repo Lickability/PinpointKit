@@ -42,7 +42,7 @@ public class ScreenshotDetector: NSObject {
      - parameter application:        An application that will be the `object` of the notification observer.
      - parameter imageManager:       An image manager used to fetch the image data of the screenshot.
      */
-    init(delegate: ScreenshotDetectorDelegate, notificationCenter: NotificationCenter = .default(), application: UIApplication = .shared(), imageManager: PHImageManager = .default()) {
+    init(delegate: ScreenshotDetectorDelegate, notificationCenter: NotificationCenter = .default, application: UIApplication = .shared(), imageManager: PHImageManager = .default()) {
         self.delegate = delegate
         self.notificationCenter = notificationCenter
         self.application = application
@@ -61,7 +61,7 @@ public class ScreenshotDetector: NSObject {
     
     private func requestPhotosAuthorization() {
         PHPhotoLibrary.requestAuthorization { authorizationStatus in
-            OperationQueue.main().addOperation {
+            OperationQueue.main.addOperation {
                 switch authorizationStatus {
                 case .authorized:
                     self.findScreenshot()
@@ -79,7 +79,7 @@ public class ScreenshotDetector: NSObject {
             targetSize: PHImageManagerMaximumSize,
             contentMode: .default,
             options: PHImageRequestOptions.highQualitySynchronousLocalOptions()) { [weak self] image, info in
-            OperationQueue.main().addOperation {
+            OperationQueue.main.addOperation {
                 guard let strongSelf = self else { return }
                 guard let image = image else { strongSelf.fail(with: .loadFailure); return }
                 

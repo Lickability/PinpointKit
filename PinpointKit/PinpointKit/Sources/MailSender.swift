@@ -138,7 +138,7 @@ private extension MFMailComposeViewController {
         addAttachmentData(textData, mimeType: MIMEType.PlainText.rawValue, fileName: filename)
     }
     
-    func attach(additionalInformation additionalInformation: [String: AnyObject]) {
+    func attach(additionalInformation: [String: AnyObject]) {
         let data = try? JSONSerialization.data(withJSONObject: additionalInformation, options: .prettyPrinted)
         
         if let data = data {

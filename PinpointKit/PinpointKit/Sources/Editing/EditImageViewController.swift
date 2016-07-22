@@ -103,13 +103,13 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private var currentAnnotationView: AnnotationView? {
         didSet {
             if let oldTextAnnotationView = oldValue as? TextAnnotationView {
-                NotificationCenter.default().removeObserver(self, name: .UITextViewTextDidEndEditing, object: oldTextAnnotationView.textView)
+                NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidEndEditing, object: oldTextAnnotationView.textView)
             }
             
             if let currentTextAnnotationView = currentTextAnnotationView {
                 keyboardAvoider?.triggerViews = [currentTextAnnotationView.textView]
                 
-                NotificationCenter.default().addObserver(self, selector: #selector(EditImageViewController.forceEndEditingTextView), name: .UITextViewTextDidEndEditing, object: currentTextAnnotationView.textView)
+                NotificationCenter.default.addObserver(self, selector: #selector(EditImageViewController.forceEndEditingTextView), name: .UITextViewTextDidEndEditing, object: currentTextAnnotationView.textView)
             }
         }
     }
@@ -159,7 +159,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     deinit {
-        NotificationCenter.default().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         createAnnotationPanGestureRecognizer.delegate = nil
         updateAnnotationPanGestureRecognizer.delegate = nil
         createOrUpdateAnnotationTapGestureRecognizer.delegate = nil
@@ -450,7 +450,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private func updateInterfaceCustomization() {
         guard let appearance = interfaceCustomization?.appearance else { assertionFailure(); return }
         segmentedControl.setTitleTextAttributes([NSFontAttributeName: appearance.editorTextAnnotationSegmentFont], for: UIControlState())
-        UITextView.whenContained(inInstancesOfClasses: [TextAnnotationView.self]).font = appearance.editorTextAnnotationFont
+        UITextView.appearance(whenContainedInInstancesOf: [TextAnnotationView.self]).font = appearance.editorTextAnnotationFont
         
         if let annotationFillColor = appearance.annotationFillColor {
             annotationsView.tintColor = annotationFillColor
