@@ -9,7 +9,7 @@
 /// Encapsulates configuration properties for all feedback to be sent.
 public struct FeedbackConfiguration {
     
-    /// The value of the default parameter for `title in the initializer.
+    /// The value of the default parameter for `title` in the initializer.
     public static let DefaultTitle = "Bug Report"
     
     /// A file name without an extension for the screenshot or annotated screenshot.
