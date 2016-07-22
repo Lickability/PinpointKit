@@ -38,7 +38,7 @@
 * iOS 9.0+
 * Xcode 7.3+
 
-> **Note:** Branches for Swift 2.3 ([`swift-2.3`](https://github.com/Lickability/PinpointKit/tree/swift-2.3)) and 3.0 ([`swift-3.0`](https://github.com/Lickability/PinpointKit/tree/swift-3.0)) are being kept up to date as Xcode 8 betas are released.
+> **Note:** Branches for Swift 2.3 ([`swift-2.3`](https://github.com/Lickability/PinpointKit/tree/swift-2.3)) and 3.0 ([`swift-3.0`](https://github.com/Lickability/PinpointKit/tree/swift-3.0)) are being kept up-to-date as Xcode 8 betas are released.
 
 ## Installation
 
