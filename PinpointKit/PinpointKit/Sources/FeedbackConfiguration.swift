@@ -9,6 +9,9 @@
 /// Encapsulates configuration properties for all feedback to be sent.
 public struct FeedbackConfiguration {
     
+    /// The value of the default parameter for `title in the initializer.
+    public static let DefaultTitle = "Bug Report"
+    
     /// A file name without an extension for the screenshot or annotated screenshot.
     public var screenshotFileName: String
     
@@ -39,7 +42,7 @@ public struct FeedbackConfiguration {
      */
     public init(screenshotFileName: String = "Screenshot",
                 recipients: [String],
-                title: String? = "Bug Report",
+                title: String? = FeedbackConfiguration.DefaultTitle,
                 body: String? = nil,
                 logsFileName: String = "logs",
                 additionalInformation: [String: AnyObject]? = nil) {
