@@ -38,10 +38,13 @@ public class PinpointKit {
      Initializes a `PinpointKit` with a default configuration supplied with feedback recipients and an optional delegate.
      
      - parameter feedbackRecipients: The recipients of the feedback submission. Suitable for email recipients in the "To:" field.
+     - parameter title:              The default title of the feedback.
+     - parameter body:               The default body text of the feedback.
      - parameter delegate:           A delegate that is notified of significant events.
      */
-    public convenience init(feedbackRecipients: [String], delegate: PinpointKitDelegate? = nil) {
-        let configuration = Configuration(feedbackRecipients: feedbackRecipients)
+    public convenience init(feedbackRecipients: [String], title: String? = FeedbackConfiguration.DefaultTitle, body: String? = nil, delegate: PinpointKitDelegate? = nil) {
+        let feedbackConfiguration = FeedbackConfiguration(recipients: feedbackRecipients, title: title, body: body)
+        let configuration = Configuration(feedbackConfiguration: feedbackConfiguration)
         
         self.init(configuration: configuration, delegate: delegate)
     }
