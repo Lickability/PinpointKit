@@ -12,7 +12,7 @@ import UIKit
 public struct Feedback {
     
     /// An enum with assocated values that represents the screenshot.
-    enum ScreenshotType {
+    public enum ScreenshotType {
         /// The original, un-annotated screenshot.
         case Original(image: UIImage)
         
@@ -54,10 +54,10 @@ public struct Feedback {
     }
     
     /// A screenshot of the screen the feedback relates to.
-    let screenshot: ScreenshotType
+    public let screenshot: ScreenshotType
     
     /// An optional collection of log strings.
-    let logs: [String]?
+    public let logs: [String]?
     
     /// A struct containing information about the application and its environment.
     let applicationInformation: ApplicationInformation?
