@@ -6,11 +6,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   PinpointKit:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  PinpointKit: 9dc1f4f0a15e880d889935bcc2b86f556ca1eb72
+  PinpointKit: 5cfcfab58ac6c23fa257a18d6655fe87c9abff98
 
-PODFILE CHECKSUM: df93971be773f9819daf87d261ef545dc0476fa7
+PODFILE CHECKSUM: 8a41f754ccc60b0f2afc75e52afeff6669890bd5
 
 COCOAPODS: 1.0.1

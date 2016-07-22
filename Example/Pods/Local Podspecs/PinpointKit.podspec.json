@@ -1,11 +1,12 @@
 {
   "name": "PinpointKit",
   "version": "0.9",
+  "summary": "A library that makes bug reporting simple for your users by allowing them to send feedback with annotated screenshots and logs.",
+  "homepage": "https://github.com/Lickability/PinpointKit",
   "source": {
     "git": "https://github.com/Lickability/PinpointKit.git",
     "tag": "0.9"
   },
-  "summary": "A library that makes bug reporting simple for your users by allowing them to send feedback with annotated screenshots and logs.",
   "authors": {
     "Matthew Bishoff": "matt@lickability.com",
     "Brian Capps": "brian@lickability.com",
@@ -29,7 +30,6 @@
   ],
   "source_files": "PinpointKit/PinpointKit/Sources/**/*.{h,m,swift}",
   "resources": "PinpointKit/PinpointKit/Resources/*",
-  "homepage": "https://github.com/Lickability/PinpointKit",
   "dependencies": {
   }
 }
