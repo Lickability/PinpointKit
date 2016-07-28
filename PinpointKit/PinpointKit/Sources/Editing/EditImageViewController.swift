@@ -454,7 +454,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         if let annotationFillColor = appearance.annotationFillColor {
             annotationsView.tintColor = annotationFillColor
-        }
+        }        
     }
     
     // MARK: - Create annotations
@@ -475,10 +475,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private func handleCreateAnnotationGestureRecognizerBegan(gestureRecognizer: UIGestureRecognizer) {
         guard let currentTool = currentTool else { return }
         guard let annotationStrokeColor = interfaceCustomization?.appearance.annotationStrokeColor else { return }
+        guard let annotationTextAttributes = interfaceCustomization?.appearance.annotationTextAttributes else { return }
         
         let currentLocation = gestureRecognizer.locationInView(annotationsView)
         
-        let factory = AnnotationViewFactory(image: imageView.image?.CGImage, currentLocation: currentLocation, tool: currentTool, strokeColor: annotationStrokeColor)
+        let factory = AnnotationViewFactory(image: imageView.image?.CGImage, currentLocation: currentLocation, tool: currentTool, strokeColor: annotationStrokeColor, textAttributes: annotationTextAttributes)
         
         let view: AnnotationView = factory.annotationView()
         

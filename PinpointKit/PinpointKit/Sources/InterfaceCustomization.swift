@@ -33,6 +33,9 @@ public struct InterfaceCustomization {
         /// The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
         let annotationFillColor: UIColor?
         
+        /// The text attributes for annotations.
+        let annotationTextAttributes: [String: AnyObject]
+        
         /// The stroke color for annotations.
         let annotationStrokeColor: UIColor
         
@@ -72,6 +75,7 @@ public struct InterfaceCustomization {
          - parameter tintColor:                          The tint color of the interface.
          - parameter annotationFillColor:                The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
          - parameter annotationStrokeColor:              The stroke color for annotations.
+         - parameter annotationTextAttributes:           The text attributes for annotations.
          - parameter navigationTitleFont:                The font used for navigation titles.
          - parameter feedbackSendButtonFont:             The font used for the button that sends feedback.
          - parameter feedbackCancelButtonFont:           The font used for the button that cancels feedback collection.
@@ -86,6 +90,7 @@ public struct InterfaceCustomization {
         public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(),
                     annotationFillColor: UIColor? = nil,
                     annotationStrokeColor: UIColor = .whiteColor(),
+                    annotationTextAttributes: [String: AnyObject]? = nil,
                     navigationTitleFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold),
                     feedbackSendButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold),
                     feedbackCancelButtonFont: UIFont = .sourceSansProFontOfSize(19),
@@ -99,6 +104,23 @@ public struct InterfaceCustomization {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor
+            if let annotationTextAttributes = annotationTextAttributes {
+                self.annotationTextAttributes = annotationTextAttributes
+            } else {
+                var textAttributes: [String: AnyObject] {
+                    let shadow = NSShadow()
+                    shadow.shadowBlurRadius = 5
+                    shadow.shadowColor = UIColor(white: 0.0, alpha: 1.0)
+                    shadow.shadowOffset = CGSize.zero
+                    
+                    return [
+                        NSForegroundColorAttributeName: annotationStrokeColor,
+                        NSShadowAttributeName: shadow,
+                        NSKernAttributeName: 1.3
+                    ]
+                }
+                self.annotationTextAttributes = textAttributes
+            }
             self.logFont = logFont
             self.navigationTitleFont = navigationTitleFont
             self.feedbackSendButtonFont = feedbackSendButtonFont
