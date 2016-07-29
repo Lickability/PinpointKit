@@ -162,6 +162,9 @@ public struct InterfaceCustomization {
         
         ///  The title of a button that cancels text editing.
         let textEditingDismissButtonTitle: String
+
+        ///  The title of a button that cancels text editing.
+        let textEditingDoneButtonTitle: String
         
         /**
          Initializes an `InterfaceText` with custom values, using a default if a particular property is unspecified.
@@ -174,6 +177,7 @@ public struct InterfaceCustomization {
          - parameter logCollectorTitle:             The title of the log collector.
          - parameter logCollectionPermissionTitle:  The title of the permission button.
          - parameter textEditingDismissButtonTitle: The title of the text editing dismiss button.
+         - parameter textEditingDoneButtonTitle:    The title of the text editing done button.
          */
         public init(feedbackCollectorTitle: String? = NSLocalizedString("Report a Bug", comment: "Title of a view that reports a bug"),
                     feedbackSendButtonTitle: String = NSLocalizedString("Send", comment: "A button that sends feedback."),
@@ -182,7 +186,8 @@ public struct InterfaceCustomization {
                     feedbackEditHint: String? = NSLocalizedString("Tap the screenshot to annotate.", comment: "A hint on how to edit the screenshot"),
                     logCollectorTitle: String? = NSLocalizedString("Console Log", comment: "Title of a view that collects logs"),
                     logCollectionPermissionTitle: String = NSLocalizedString("Include Console Log", comment: "Title of a button asking the user to include system logs"),
-                    textEditingDismissButtonTitle: String = NSLocalizedString("Dismiss", comment: "Title of a button that dismisses text editing")) {
+                    textEditingDismissButtonTitle: String = NSLocalizedString("Dismiss", comment: "Title of a button that dismisses text editing"),
+                    textEditingDoneButtonTitle: String = NSLocalizedString("Done", comment: "Title of a button that finish editing")) {
             self.feedbackCollectorTitle = feedbackCollectorTitle
             self.feedbackSendButtonTitle = feedbackSendButtonTitle
             self.feedbackCancelButtonTitle = feedbackCancelButtonTitle
@@ -191,6 +196,7 @@ public struct InterfaceCustomization {
             self.logCollectorTitle = logCollectorTitle
             self.logCollectionPermissionTitle = logCollectionPermissionTitle
             self.textEditingDismissButtonTitle = textEditingDismissButtonTitle
+            self.textEditingDoneButtonTitle = textEditingDoneButtonTitle
         }
     }
 }

@@ -93,7 +93,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private lazy var doneBarButtonItem: UIBarButtonItem = {
         guard let doneButtonFont = self.interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return UIBarButtonItem() }
-        return UIBarButtonItem(doneButtonWithTarget: self, font: doneButtonFont, action: #selector(EditImageViewController.doneButtonTapped(_:)))
+        return UIBarButtonItem(doneButtonWithTarget: self, title: self.interfaceCustomization?.interfaceText.textEditingDoneButtonTitle, font: doneButtonFont, action: #selector(EditImageViewController.doneButtonTapped(_:)))
     }()
     
     private var currentTool: Tool? {

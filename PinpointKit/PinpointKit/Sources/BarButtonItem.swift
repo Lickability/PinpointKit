@@ -14,12 +14,16 @@ extension UIBarButtonItem {
      Convenience initializer for creating a “Done” `UIBarButtonItem` with a specified target, action, and font.
      
      - parameter target: The bar button item’s target.
+     - parameter title:  The bar button item’s title.
      - parameter font:   The font of the bar button item’s title.
      - parameter action: The bar button item’s action.
      */
-    convenience init(doneButtonWithTarget target: AnyObject?, font: UIFont, action: Selector) {
-        self.init(barButtonSystemItem: .Done, target: target, action: action)
-        
+    convenience init(doneButtonWithTarget target: AnyObject?, title: String? = nil, font: UIFont, action: Selector) {
+        if let title = title {
+            self.init(title: title, style: .Done, target: target, action: action)
+        } else {
+            self.init(barButtonSystemItem: .Done, target: target, action: action)
+        }
         setTitleTextAttributes([NSFontAttributeName: font], forState: .Normal)
     }
 }
