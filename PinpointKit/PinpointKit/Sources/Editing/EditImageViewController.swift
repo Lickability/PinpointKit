@@ -93,7 +93,9 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private lazy var doneBarButtonItem: UIBarButtonItem = {
         guard let doneButtonFont = self.interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return UIBarButtonItem() }
-        return UIBarButtonItem(doneButtonWithTarget: self, title: self.interfaceCustomization?.interfaceText.textEditingDoneButtonTitle, font: doneButtonFont, action: #selector(EditImageViewController.doneButtonTapped(_:)))
+        guard let doneButtonTitle = self.interfaceCustomization?.interfaceText.textEditingDoneButtonTitle else {
+            assertionFailure(); return UIBarButtonItem() }
+        return UIBarButtonItem(doneButtonWithTarget: self, title: doneButtonTitle, font: doneButtonFont, action: #selector(EditImageViewController.doneButtonTapped(_:)))
     }()
     
     private var currentTool: Tool? {
@@ -450,7 +452,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private func updateInterfaceCustomization() {
         guard let appearance = interfaceCustomization?.appearance else { assertionFailure(); return }
         segmentedControl.setTitleTextAttributes([NSFontAttributeName: appearance.editorTextAnnotationSegmentFont], forState: UIControlState.Normal)
-        UITextView.appearanceWhenContainedInInstancesOfClasses([TextAnnotationView.self]).font = appearance.editorTextAnnotationFont
+        guard let annotationFont = appearance.annotationTextAttributes[NSFontAttributeName] as? UIFont else { assertionFailure(); return }
+        UITextView.appearanceWhenContainedInInstancesOfClasses([TextAnnotationView.self]).font = annotationFont
         
         if let annotationFillColor = appearance.annotationFillColor {
             annotationsView.tintColor = annotationFillColor

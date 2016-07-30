@@ -62,10 +62,7 @@ public struct InterfaceCustomization {
         
         /// The font used for the text annotation tool segment in the editor.
         let editorTextAnnotationSegmentFont: UIFont
-        
-        /// The font used for text annotations in the editor.
-        let editorTextAnnotationFont: UIFont
-        
+                
         /// The font used for the done button in the editor displayed while editing a text annotation.
         let editorTextAnnotationDoneButtonFont: UIFont
         
@@ -84,7 +81,6 @@ public struct InterfaceCustomization {
          - parameter logCollectionPermissionFont:        The font used for the title of the cell that allows the user to toggle log collection.
          - parameter logFont:                            The font used for displaying logs.
          - parameter editorTextAnnotationSegmentFont:    The font used for the text annotation tool segment in the editor.
-         - parameter editorTextAnnotationFont:           The font used for text annotations in the editor.
          - parameter editorTextAnnotationDoneButtonFont: The font used for the done button in the editor displayed while editing a text annotation.
          */
         public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(),
@@ -99,28 +95,34 @@ public struct InterfaceCustomization {
                     logCollectionPermissionFont: UIFont = .sourceSansProFontOfSize(19),
                     logFont: UIFont = .menloRegularFontOfSize(10),
                     editorTextAnnotationSegmentFont: UIFont = .sourceSansProFontOfSize(18),
-                    editorTextAnnotationFont: UIFont = .sourceSansProFontOfSize(32, weight: .Semibold),
                     editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold)) {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor
+            
+            // Default annotation text attributes
+            var defaultAnnotationTextAttributes = [String: AnyObject]()
+            let shadow = NSShadow()
+            shadow.shadowBlurRadius = 5
+            shadow.shadowColor = UIColor(white: 0.0, alpha: 1.0)
+            shadow.shadowOffset = CGSize.zero
+            defaultAnnotationTextAttributes[NSFontAttributeName] = UIFont.sourceSansProFontOfSize(32, weight: .Semibold)
+            defaultAnnotationTextAttributes[NSForegroundColorAttributeName] = annotationStrokeColor
+            defaultAnnotationTextAttributes[NSShadowAttributeName] = shadow
+            defaultAnnotationTextAttributes[NSKernAttributeName] = 1.3
+                
+            // Custom annotation text attributes
             if let annotationTextAttributes = annotationTextAttributes {
-                self.annotationTextAttributes = annotationTextAttributes
-            } else {
-                var textAttributes: [String: AnyObject] {
-                    let shadow = NSShadow()
-                    shadow.shadowBlurRadius = 5
-                    shadow.shadowColor = UIColor(white: 0.0, alpha: 1.0)
-                    shadow.shadowOffset = CGSize.zero
-                    
-                    return [
-                        NSForegroundColorAttributeName: annotationStrokeColor,
-                        NSShadowAttributeName: shadow,
-                        NSKernAttributeName: 1.3
-                    ]
+                var customAnnotationTextAttributes = annotationTextAttributes
+                // Ensure annotation font is set, if not use default font
+                if annotationTextAttributes[NSFontAttributeName] == nil {
+                    customAnnotationTextAttributes[NSFontAttributeName] = defaultAnnotationTextAttributes[NSFontAttributeName]
                 }
-                self.annotationTextAttributes = textAttributes
+                self.annotationTextAttributes = customAnnotationTextAttributes
+            } else {
+                self.annotationTextAttributes = defaultAnnotationTextAttributes
             }
+            
             self.logFont = logFont
             self.navigationTitleFont = navigationTitleFont
             self.feedbackSendButtonFont = feedbackSendButtonFont
@@ -129,7 +131,6 @@ public struct InterfaceCustomization {
             self.feedbackBackButtonFont = feedbackBackButtonFont
             self.logCollectionPermissionFont = logCollectionPermissionFont
             self.editorTextAnnotationSegmentFont = editorTextAnnotationSegmentFont
-            self.editorTextAnnotationFont = editorTextAnnotationFont
             self.editorTextAnnotationDoneButtonFont = editorTextAnnotationDoneButtonFont
         }
     }
