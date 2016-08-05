@@ -58,7 +58,13 @@ public class PinpointKit {
         let screenshot = Screenshotter.takeScreenshot()
         displayingViewController = viewController
         
-        configuration.feedbackCollector.collectFeedbackWithScreenshot(screenshot, fromViewController: viewController)
+        if let feedbackNavigationController = configuration.feedbackCollector as? FeedbackNavigationController {
+            feedbackNavigationController.feedbackViewController.screenshot = screenshot
+            viewController.navigationController?.view.tintColor = feedbackNavigationController.interfaceCustomization?.appearance.tintColor
+            viewController.navigationController?.pushViewController(feedbackNavigationController.feedbackViewController, animated: true)
+        }
+        
+        //configuration.feedbackCollector.collectFeedbackWithScreenshot(screenshot, fromViewController: viewController)
     }
 }
 
