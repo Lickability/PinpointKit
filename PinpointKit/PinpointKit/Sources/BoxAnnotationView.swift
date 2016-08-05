@@ -43,7 +43,7 @@ public class BoxAnnotationView: AnnotationView {
         contentMode = .redraw
 
         layer.shadowOffset = CGSize.zero
-        layer.shadowColor = UIColor.black().cgColor
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 1
         layer.shadowRadius = 4
     }

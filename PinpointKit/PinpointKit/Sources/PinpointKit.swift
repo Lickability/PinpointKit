@@ -71,7 +71,7 @@ extension PinpointKit: SenderDelegate {
         displayingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    public func sender(_ sender: Sender, didFailToSend feedback: Feedback?, error: ErrorProtocol) {
+    public func sender(_ sender: Sender, didFailToSend feedback: Feedback?, error: Error) {
         if case MailSender.Error.mailCanceled = error { return }
         
         NSLog("An error occurred sending mail: \(error)")

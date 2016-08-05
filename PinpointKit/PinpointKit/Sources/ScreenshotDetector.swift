@@ -15,7 +15,7 @@ import Photos
 public class ScreenshotDetector: NSObject {
     
     /// An error encountered when detecting and retreiving a screenshot.
-    enum Error: ErrorProtocol {
+    enum Error: Swift.Error {
         /// The user did not give authorization to this application to their Photo Library.
         case unauthorized(status: PHAuthorizationStatus)
         
@@ -42,7 +42,7 @@ public class ScreenshotDetector: NSObject {
      - parameter application:        An application that will be the `object` of the notification observer.
      - parameter imageManager:       An image manager used to fetch the image data of the screenshot.
      */
-    init(delegate: ScreenshotDetectorDelegate, notificationCenter: NotificationCenter = .default, application: UIApplication = .shared(), imageManager: PHImageManager = .default()) {
+    init(delegate: ScreenshotDetectorDelegate, notificationCenter: NotificationCenter = .default, application: UIApplication = .shared, imageManager: PHImageManager = .default()) {
         self.delegate = delegate
         self.notificationCenter = notificationCenter
         self.application = application
@@ -128,8 +128,8 @@ private extension PHAsset {
         options.fetchLimit = 1
         options.includeAssetSourceTypes = [.typeUserLibrary]
         options.wantsIncrementalChangeDetails = false
-        options.predicate = Predicate(format: "(mediaSubtype & %d) != 0", PHAssetMediaSubtype.photoScreenshot.rawValue)
-        options.sortDescriptors = [SortDescriptor(key: "creationDate", ascending: false)]
+        options.predicate = NSPredicate(format: "(mediaSubtype & %d) != 0", PHAssetMediaSubtype.photoScreenshot.rawValue)
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
         return PHAsset.fetchAssets(with: .image, options: options).firstObject
     }

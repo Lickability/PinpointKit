@@ -34,7 +34,7 @@ final class KeyboardAvoider {
         let frameEndValue = (notification as NSNotification).userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
         let animationDurationValue = (notification as NSNotification).userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSValue
         
-        guard let keyboardEndFrame = frameEndValue?.cgRectValue() else { return }
+        guard let keyboardEndFrame = frameEndValue?.cgRectValue else { return }
         
         let animationDurationNumber = animationDurationValue as? NSNumber
         let animationDuration = animationDurationNumber?.doubleValue ?? 0.0

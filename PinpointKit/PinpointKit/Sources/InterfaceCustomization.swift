@@ -85,7 +85,7 @@ public struct InterfaceCustomization {
          */
         public init(tintColor: UIColor? = .pinpointOrange(),
                     annotationFillColor: UIColor? = nil,
-                    annotationStrokeColor: UIColor = .white(),
+                    annotationStrokeColor: UIColor = .white,
                     navigationTitleFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackSendButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackCancelButtonFont: UIFont = .sourceSansProFont(ofSize: 19),

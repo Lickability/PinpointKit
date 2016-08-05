@@ -26,7 +26,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     public var interfaceCustomization: InterfaceCustomization? {
         didSet {
-            guard isViewLoaded() else { return }
+            guard isViewLoaded else { return }
             
             updateInterfaceCustomization()
         }
@@ -82,7 +82,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private var previousUpdateAnnotationPanGestureRecognizerLocation: CGPoint!
     
     private lazy var keyboardAvoider: KeyboardAvoider? = {
-        guard let window = UIApplication.shared().keyWindow else { assertionFailure("PinpointKit did not find a keyWindow."); return nil }
+        guard let window = UIApplication.shared.keyWindow else { assertionFailure("PinpointKit did not find a keyWindow."); return nil }
         
         return KeyboardAvoider(window: window)
     }()
@@ -169,12 +169,12 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     // MARK: - UIResponder
     
-    public override func canBecomeFirstResponder() -> Bool {
+    public override var canBecomeFirstResponder: Bool {
         return true
     }
     
     public override func canPerformAction(_ action: Selector, withSender sender: AnyObject?) -> Bool {
-        let textViewIsEditing = currentTextAnnotationView?.textView.isFirstResponder() ?? false
+        let textViewIsEditing = currentTextAnnotationView?.textView.isFirstResponder ?? false
         return action == #selector(EditImageViewController.deleteSelectedAnnotationView) && !textViewIsEditing
     }
     
@@ -187,7 +187,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         navigationItem.rightBarButtonItem = doneBarButtonItem
         
-        view.backgroundColor = .white()
+        view.backgroundColor = .white
         view.addSubview(imageView)
         view.addSubview(annotationsView)
         
@@ -248,7 +248,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }
     }
     
-    public override func prefersStatusBarHidden() -> Bool {
+    public override var prefersStatusBarHidden: Bool {
         return true
     }
     
@@ -256,20 +256,20 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    public override func shouldAutorotate() -> Bool {
+    public override var shouldAutorotate: Bool {
         return false
     }
     
-    public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return imageIsLandscape() ? .landscape : [.portrait, .portraitUpsideDown]
     }
     
-    public override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+    public override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
         var landscapeOrientation = UIInterfaceOrientation.landscapeRight
         var portraitOrientation = UIInterfaceOrientation.portrait
         
         if traitCollection.userInterfaceIdiom == .pad {
-            let deviceOrientation = UIDevice.current().orientation
+            let deviceOrientation = UIDevice.current.orientation
             landscapeOrientation = (deviceOrientation == .landscapeRight ? .landscapeLeft : .landscapeRight)
             portraitOrientation = (deviceOrientation == .portraitUpsideDown ? .portraitUpsideDown : .portrait)
         }
@@ -364,7 +364,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         if gestureRecognizer is UIPinchGestureRecognizer {
             var annotationViews: [AnnotationView] = []
             
-            let numberOfTouches = gestureRecognizer.numberOfTouches()
+            let numberOfTouches = gestureRecognizer.numberOfTouches
             
             for index in 0..<numberOfTouches {
                 if let annotationView = self.annotationView(in: view, with: gestureRecognizer.location(ofTouch: index, in: view)) {
@@ -395,7 +395,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
 
         let imagePixelSize = CGSize(width: imageSize.width * imageScale, height: imageSize.height * imageScale)
         
-        let portraitPixelSize = UIScreen.main().portraitPixelSize()
+        let portraitPixelSize = UIScreen.main.portraitPixelSize()
         return CGFloat(imagePixelSize.width) == portraitPixelSize.height && CGFloat(imagePixelSize.height) == portraitPixelSize.width
     }
     
@@ -420,10 +420,10 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func endEditingTextView(_ checksFirstResponder: Bool = true) {
-        if let textView = currentTextAnnotationView?.textView where !checksFirstResponder || textView.isFirstResponder() {
+        if let textView = currentTextAnnotationView?.textView where !checksFirstResponder || textView.isFirstResponder {
             textView.resignFirstResponder()
             
-            if !textView.hasText() {
+            if !textView.hasText {
                 currentTextAnnotationView?.removeFromSuperview()
             }
             
@@ -436,7 +436,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private func handleGestureRecognizerFinished() {
         hasACopyOfCurrentComposition = false
         currentBlurAnnotationView?.drawsBorder = false
-        let isEditingTextView = currentTextAnnotationView?.textView.isFirstResponder() ?? false
+        let isEditingTextView = currentTextAnnotationView?.textView.isFirstResponder ?? false
         currentAnnotationView = isEditingTextView ? currentAnnotationView : nil
     }
     
@@ -514,7 +514,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         previousUpdateAnnotationPanGestureRecognizerLocation = gestureRecognizer.location(in: gestureRecognizer.view)
         currentBlurAnnotationView?.drawsBorder = true
         
-        UIMenuController.shared().setMenuVisible(false, animated: true)
+        UIMenuController.shared.setMenuVisible(false, animated: true)
         currentTextAnnotationView?.textView.selectedRange = NSRange()
     }
     
@@ -588,7 +588,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         let point = gestureRecognizer.location(in: gestureRecognizer.view)
         let targetRect = CGRect(origin: point, size: CGSize())
         
-        let controller = UIMenuController.shared()
+        let controller = UIMenuController.shared
         controller.setTargetRect(targetRect, in: view)
         controller.menuItems = [
             UIMenuItem(title: "Delete", action: #selector(EditImageViewController.deleteSelectedAnnotationView))
@@ -639,7 +639,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
             return true
         }
         
-        let isEditingText = currentTextAnnotationView?.textView.isFirstResponder() ?? false
+        let isEditingText = currentTextAnnotationView?.textView.isFirstResponder ?? false
         
         return !isEditingText
     }

@@ -122,7 +122,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     private func updateTextViewFrame() {
         textView.frame = {
             var textViewFrame = self.textView.frame
-            textViewFrame.size = self.textView.intrinsicContentSize()
+            textViewFrame.size = self.textView.intrinsicContentSize
             
             let distanceToEdgeOfView = self.bounds.maxX - textViewFrame.minX
             textViewFrame.size.width = min(textViewFrame.width, distanceToEdgeOfView)
@@ -169,7 +169,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         textView.isSelectable = false
         textView.isEditable = false
         
-        textView.backgroundColor = .clear()
+        textView.backgroundColor = .clear
         textView.layer.borderWidth = 0
         textView.layer.borderColor = nil
     }

@@ -32,23 +32,23 @@ final class NavigationController: UINavigationController, UINavigationController
 
     // MARK: - UIViewController
     
-    override func shouldAutorotate() -> Bool {
-        return topViewController?.shouldAutorotate() ?? false
+    override var shouldAutorotate: Bool {
+        return topViewController?.shouldAutorotate ?? false
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return topViewController?.supportedInterfaceOrientations() ?? .all
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return topViewController?.supportedInterfaceOrientations ?? .all
     }
     
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return topViewController?.preferredInterfaceOrientationForPresentation() ?? .unknown
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return topViewController?.preferredInterfaceOrientationForPresentation ?? .unknown
     }
     
-    override func childViewControllerForStatusBarHidden() -> UIViewController? {
+    override var childViewControllerForStatusBarHidden: UIViewController? {
         return topViewController
     }
     
-    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+    override var childViewControllerForStatusBarStyle: UIViewController? {
         return topViewController
     }
 }
