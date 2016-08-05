@@ -52,9 +52,11 @@ class SystemLogCollectorTests: XCTestCase {
         dispatch_after(delayTime, dispatch_get_main_queue()) {
             let logs = systemLogCollector.retrieveLogs()
             
-            guard let firstLog = logs[optional: 0] else { return XCTFail("There should be a first log.") }
-            guard let secondLog = logs[optional: 1] else { return XCTFail("There should be a second log.") }
-            guard let thirdLog = logs[optional: 2] else { return XCTFail("There should be a third log.") }
+            guard logs.count == 3 else { return XCTFail("Count should be 3.") }
+            
+            let firstLog = logs[0]
+            let secondLog = logs[1]
+            let thirdLog = logs[2]
             
             XCTAssertEqual(logs.count, 3)
             XCTAssertTrue(firstLog.containsString(testString1))
@@ -82,11 +84,5 @@ class SystemLogCollectorTests: XCTestCase {
         let logs = systemLogCollector.retrieveLogs()
         
         XCTAssertEqual(logs.count, 0)
-    }
-}
-
-private extension Array {
-    subscript (optional index: UInt) -> Element? {
-        return Int(index) < count ? self[Int(index)] : nil
     }
 }
