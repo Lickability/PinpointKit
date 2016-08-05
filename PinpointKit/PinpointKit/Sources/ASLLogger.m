@@ -13,13 +13,22 @@
 
 @property (nonatomic, nullable) NSString *bundleIdentifier;
 @property (nonatomic, nullable) NSString *senderName;
+@property (nonatomic) NSDate *logDate;
 
 @end
 
 @implementation ASLLogger
 
-- (instancetype)initWithBundleIdentifier:(NSString *)bundleIdentifier {
+- (instancetype)init {
     self = [super init];
+    
+    _logDate = [NSDate date];
+    
+    return self;
+}
+
+- (instancetype)initWithBundleIdentifier:(NSString *)bundleIdentifier {
+    self = [self init];
     
     _bundleIdentifier = bundleIdentifier;
     
@@ -27,7 +36,7 @@
 }
 
 - (instancetype)initWithSenderName:(NSString *)senderName {
-    self = [super init];
+    self = [self init];
     
     _senderName = senderName;
     
@@ -60,12 +69,13 @@
         
         const char *content = asl_get(message, ASL_KEY_MSG);
         NSTimeInterval msgTime = (NSTimeInterval) atol(asl_get(message, ASL_KEY_TIME)) + ((NSTimeInterval) atol(asl_get(message, ASL_KEY_TIME_NSEC)) / 1000000000.0);
-
-        NSString *contentString = [[NSString alloc] initWithUTF8String:content];
-        NSString *timeString = [self stringFromTimeInterval:msgTime];
-        NSString *loggedText = [NSString stringWithFormat:@"%@ %@", timeString, contentString];
-        
-        [logs addObject:loggedText];
+        if (msgTime >= self.logDate.timeIntervalSince1970) {
+            NSString *contentString = [[NSString alloc] initWithUTF8String:content];
+            NSString *timeString = [self stringFromTimeInterval:msgTime];
+            NSString *loggedText = [NSString stringWithFormat:@"%@ %@", timeString, contentString];
+            
+            [logs addObject:loggedText];
+        }
     }
     
     asl_release(response);

@@ -11,7 +11,7 @@ import XCTest
 
 class SystemLogCollectorTests: XCTestCase {
     
-    func testExample() {
+    func testLogCollectorCollectsLogs() {
         let testString =  "TestLog"
         let sut = SystemLogCollector(loggingType: .Testing)
         
@@ -25,5 +25,13 @@ class SystemLogCollectorTests: XCTestCase {
         
         XCTAssertEqual(logs.count, 3)
         XCTAssertTrue(firstLog.containsString(testString))
+    }
+    
+    func testLogCollectorHasNoLogsInitially() {
+        let sut = SystemLogCollector(loggingType: .Testing)
+        
+        let logs = sut.retrieveLogs()
+        
+        XCTAssertEqual(logs.count, 0)
     }
 }
