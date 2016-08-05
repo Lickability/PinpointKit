@@ -55,10 +55,11 @@
 		B92901B91C557406007CCA5E /* StrokeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901B61C557406007CCA5E /* StrokeLayoutManager.swift */; };
 		DA0DA6061C53049B0012ADBE /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0DA6051C53049B0012ADBE /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
-		DA0DA6121C53049B0012ADBE /* PinpointKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */; };
 		DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */; };
 		DA3B16661C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3B16651C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift */; };
 		DA7B94F01CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA7B94EF1CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift */; };
+		F24381121D54CBAB004CC87F /* SystemLogCollectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24381111D54CBAB004CC87F /* SystemLogCollectorTests.swift */; };
+		F24381151D54ECD2004CC87F /* XCTestCaseExpectationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24381141D54ECD2004CC87F /* XCTestCaseExpectationExtensions.swift */; };
 		F2ACE95F1CE6532000A461E5 /* LogSupporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ACE95E1CE6532000A461E5 /* LogSupporting.swift */; };
 		F2ACE9611CE6539200A461E5 /* InterfaceCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2ACE9601CE6539200A461E5 /* InterfaceCustomization.swift */; };
 		F2ACE9E11CEF9E2100A461E5 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F2ACE9DE1CEF9E2100A461E5 /* SourceSansPro-Bold.ttf */; };
@@ -129,11 +130,12 @@
 		DA0DA6051C53049B0012ADBE /* PinpointKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PinpointKit.h; path = PinpointKit/Sources/PinpointKit.h; sourceTree = "<group>"; };
 		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PinpointKit/Info.plist; sourceTree = "<group>"; };
 		DA0DA60C1C53049B0012ADBE /* PinpointKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinpointKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinpointKitTests.swift; sourceTree = "<group>"; };
 		DA0DA6131C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DA0DA61C1C5305C00012ADBE /* PinpointKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinpointKit.swift; sourceTree = "<group>"; };
 		DA3B16651C9CD2DE00DBFDE6 /* ShakeDetectingWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindow.swift; sourceTree = "<group>"; };
 		DA7B94EF1CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindowDelegate.swift; sourceTree = "<group>"; };
+		F24381111D54CBAB004CC87F /* SystemLogCollectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemLogCollectorTests.swift; sourceTree = "<group>"; };
+		F24381141D54ECD2004CC87F /* XCTestCaseExpectationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCaseExpectationExtensions.swift; sourceTree = "<group>"; };
 		F2ACE95E1CE6532000A461E5 /* LogSupporting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogSupporting.swift; sourceTree = "<group>"; };
 		F2ACE9601CE6539200A461E5 /* InterfaceCustomization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterfaceCustomization.swift; sourceTree = "<group>"; };
 		F2ACE9DE1CEF9E2100A461E5 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
@@ -325,7 +327,8 @@
 		DA0DA6101C53049B0012ADBE /* PinpointKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */,
+				F24381131D54ECC7004CC87F /* Helpers */,
+				F24381111D54CBAB004CC87F /* SystemLogCollectorTests.swift */,
 				DA0DA6131C53049B0012ADBE /* Info.plist */,
 			);
 			path = PinpointKitTests;
@@ -339,6 +342,14 @@
 				2C9CB2091CE61F37006567E2 /* PinpointKit+ShakePresentation.swift */,
 			);
 			name = "Shake Detection";
+			sourceTree = "<group>";
+		};
+		F24381131D54ECC7004CC87F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F24381141D54ECD2004CC87F /* XCTestCaseExpectationExtensions.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 		F2ACE9DD1CEF9E0B00A461E5 /* PinpointKitResources */ = {
@@ -525,7 +536,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DA0DA6121C53049B0012ADBE /* PinpointKitTests.swift in Sources */,
+				F24381121D54CBAB004CC87F /* SystemLogCollectorTests.swift in Sources */,
+				F24381151D54ECD2004CC87F /* XCTestCaseExpectationExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
