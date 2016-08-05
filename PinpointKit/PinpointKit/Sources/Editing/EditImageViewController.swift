@@ -187,7 +187,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         navigationItem.rightBarButtonItem = doneBarButtonItem
         
-        view.backgroundColor = .white()
+        view.backgroundColor = .white
         view.addSubview(imageView)
         view.addSubview(annotationsView)
         
