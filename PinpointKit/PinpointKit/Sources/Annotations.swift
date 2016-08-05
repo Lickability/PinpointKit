@@ -195,6 +195,6 @@ class BlurAnnotation: Annotation {
      */
     init(startLocation: CGPoint, endLocation: CGPoint, image: CIImage) {
         self.image = image
-        super.init(startLocation: startLocation, endLocation: endLocation, strokeColor: .clear())
+        super.init(startLocation: startLocation, endLocation: endLocation, strokeColor: .clear)
     }
 }

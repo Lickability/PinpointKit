@@ -169,7 +169,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         textView.isSelectable = false
         textView.isEditable = false
         
-        textView.backgroundColor = .clear()
+        textView.backgroundColor = .clear
         textView.layer.borderWidth = 0
         textView.layer.borderColor = nil
     }
