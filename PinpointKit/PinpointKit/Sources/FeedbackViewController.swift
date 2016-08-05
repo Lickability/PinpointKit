@@ -15,7 +15,7 @@ public final class FeedbackViewController: UITableViewController {
     
     public var interfaceCustomization: InterfaceCustomization? {
         didSet {
-            guard isViewLoaded() else { return }
+            guard isViewLoaded else { return }
             
             updateInterfaceCustomization()
         }
@@ -37,7 +37,7 @@ public final class FeedbackViewController: UITableViewController {
     /// The screenshot the feedback describes.
     public var screenshot: UIImage? {
         didSet {
-            guard isViewLoaded() else { return }
+            guard isViewLoaded else { return }
             updateTableHeaderView()
         }
     }
@@ -45,14 +45,14 @@ public final class FeedbackViewController: UITableViewController {
     /// The annotated screenshot the feedback describes.
     var annotatedScreenshot: UIImage? {
         didSet {
-            guard isViewLoaded() else { return }
+            guard isViewLoaded else { return }
             updateTableHeaderView()
         }
     }
     
     private var dataSource: FeedbackTableViewDataSource? {
         didSet {
-            guard isViewLoaded() else { return }
+            guard isViewLoaded else { return }
             tableView.dataSource = dataSource
         }
     }
