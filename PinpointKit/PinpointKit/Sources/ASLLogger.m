@@ -9,7 +9,30 @@
 #import "ASLLogger.h"
 #import <asl.h>
 
+@interface ASLLogger ()
+
+@property (nonatomic, nullable) NSString *bundleIdentifier;
+@property (nonatomic, nullable) NSString *senderName;
+
+@end
+
 @implementation ASLLogger
+
+- (instancetype)initWithBundleIdentifier:(NSString *)bundleIdentifier {
+    self = [super init];
+    
+    _bundleIdentifier = bundleIdentifier;
+    
+    return self;
+}
+
+- (instancetype)initWithSenderName:(NSString *)senderName {
+    self = [super init];
+    
+    _senderName = senderName;
+    
+    return self;
+}
 
 - (NSArray<NSString *> *)retrieveLogs {
     NSMutableArray<NSString *> *logs = [NSMutableArray array];
@@ -18,8 +41,13 @@
     aslresponse response = NULL;
     
     query = asl_new(ASL_TYPE_QUERY);
-    asl_set_query(query, ASL_KEY_FACILITY, [[[NSBundle mainBundle] bundleIdentifier] UTF8String], ASL_QUERY_OP_EQUAL);
     
+    if (self.bundleIdentifier) {
+        asl_set_query(query, ASL_KEY_FACILITY, self.bundleIdentifier.UTF8String, ASL_QUERY_OP_EQUAL);
+    } else if (self.senderName) {
+        asl_set_query(query, ASL_KEY_SENDER, self.senderName.UTF8String, ASL_QUERY_OP_EQUAL);
+    }
+
     response = asl_search(NULL, query);
     
     pid_t myPID = getpid();

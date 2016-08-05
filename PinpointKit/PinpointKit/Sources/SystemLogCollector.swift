@@ -6,12 +6,30 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
+/**
+ The type of logs to collect.
+ 
+ - Application: Logs from the application target.
+ - Testing:     Logs from the testing target.
+ */
+public enum ASLLoggingType {
+    case Application
+    case Testing
+}
+
 /// A log collector that uses [Apple System Logger](https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/LoggingErrorsAndWarnings.html) API to retrieve messages logged to the console with `NSLog`.
 public class SystemLogCollector: LogCollector {
     
-    private let logger = ASLLogger()
+    private let logger: ASLLogger
     
-    public init() { }
+    public init(loggingType: ASLLoggingType = .Application) {
+        switch loggingType {
+        case .Application:
+            self.logger = ASLLogger(bundleIdentifier: NSBundle.mainBundle().bundleIdentifier ?? "")
+        case .Testing:
+            self.logger = ASLLogger(senderName: "xctest")
+        }
+    }
     
     // MARK: - LogCollector
     
