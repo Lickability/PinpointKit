@@ -185,13 +185,12 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     @objc private func cancelButtonTapped() {
-        if presentingViewController != nil {
-            dismissViewControllerAnimated(true, completion: nil)
-        } else if let navigationController = navigationController where navigationController.topViewController == self && navigationController.viewControllers.count > 1 {
-            navigationController.popViewControllerAnimated(true)
-        } else {
+        guard presentingViewController != nil else {
             assertionFailure("Attempting to dismiss `FeedbackViewController` in unexpected presentation context.")
+            return
         }
+        
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
