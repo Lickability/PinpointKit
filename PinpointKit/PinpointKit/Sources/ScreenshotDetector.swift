@@ -128,8 +128,8 @@ private extension PHAsset {
         options.fetchLimit = 1
         options.includeAssetSourceTypes = [.typeUserLibrary]
         options.wantsIncrementalChangeDetails = false
-        options.predicate = Predicate(format: "(mediaSubtype & %d) != 0", PHAssetMediaSubtype.photoScreenshot.rawValue)
-        options.sortDescriptors = [SortDescriptor(key: "creationDate", ascending: false)]
+        options.predicate = NSPredicate(format: "(mediaSubtype & %d) != 0", PHAssetMediaSubtype.photoScreenshot.rawValue)
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
         return PHAsset.fetchAssets(with: .image, options: options).firstObject
     }
