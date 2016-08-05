@@ -10,6 +10,13 @@ import XCTest
 
 extension XCTestCase {
     
+    /**
+     Creates a default expectation for the current function.
+     
+     - parameter description: The description for the expectation. By default this will be the name of the function.
+     
+     - returns: A new XCTestExpectation with the given description.
+     */
     func defaultExpectation(description: String = #function) -> XCTestExpectation {
         return expectationWithDescription(description)
     }
