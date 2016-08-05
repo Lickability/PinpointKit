@@ -54,12 +54,12 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         }
     }
     
-    public var feedbackRecipients: [String]? {
+    public var feedbackConfiguration: FeedbackConfiguration? {
         get {
-            return feedbackViewController.feedbackRecipients
+            return feedbackViewController.feedbackConfiguration
         }
         set {
-            feedbackViewController.feedbackRecipients = newValue
+            feedbackViewController.feedbackConfiguration = newValue
         }
     }
     
