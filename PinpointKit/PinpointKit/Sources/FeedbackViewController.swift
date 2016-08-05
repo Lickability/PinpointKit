@@ -82,7 +82,6 @@ public final class FeedbackViewController: UITableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         editor?.delegate = self
-        updateInterfaceCustomization()
     }
     
     public override func viewWillAppear(animated: Bool) {
@@ -90,6 +89,7 @@ public final class FeedbackViewController: UITableViewController {
         
         // Since this view controller could be reused in another orientation, update the table header view on every appearance to reflect the current orientation sizing.
         updateTableHeaderView()
+        updateInterfaceCustomization()
     }
     
     public override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -153,7 +153,12 @@ public final class FeedbackViewController: UITableViewController {
         }
         
         cancelBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackCancelButtonFont], forState: .Normal)
-        navigationItem.leftBarButtonItem = cancelBarButtonItem
+        
+        if presentingViewController != nil {
+            navigationItem.leftBarButtonItem = cancelBarButtonItem
+        } else {
+            navigationItem.leftBarButtonItem = nil
+        }
         
         view.tintColor = appearance.tintColor
         updateTableHeaderView()
@@ -179,7 +184,12 @@ public final class FeedbackViewController: UITableViewController {
         feedbackDelegate?.feedbackCollector(self, didCollectFeedback: feedbackToSend)
     }
     
-    @objc private func cancelButtonTapped() {        
+    @objc private func cancelButtonTapped() {
+        guard presentingViewController != nil else {
+            assertionFailure("Attempting to dismiss `FeedbackViewController` in unexpected presentation context.")
+            return
+        }
+        
         dismissViewControllerAnimated(true, completion: nil)
     }
 }
