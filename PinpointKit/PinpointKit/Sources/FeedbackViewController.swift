@@ -154,7 +154,7 @@ public final class FeedbackViewController: UITableViewController {
         
         cancelBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackCancelButtonFont], forState: .Normal)
         
-        if viewController.presentingViewController != nil {
+        if presentingViewController != nil {
             navigationItem.leftBarButtonItem = cancelBarButtonItem
         } else {
             navigationItem.leftBarButtonItem = nil
