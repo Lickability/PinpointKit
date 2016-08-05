@@ -169,7 +169,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     // MARK: - UIResponder
     
-    public override func canBecomeFirstResponder() -> Bool {
+    public override var canBecomeFirstResponder: Bool {
         return true
     }
     
@@ -248,7 +248,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }
     }
     
-    public override func prefersStatusBarHidden() -> Bool {
+    public override var prefersStatusBarHidden: Bool {
         return true
     }
     
@@ -256,15 +256,15 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    public override func shouldAutorotate() -> Bool {
+    public override var shouldAutorotate: Bool {
         return false
     }
     
-    public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return imageIsLandscape() ? .landscape : [.portrait, .portraitUpsideDown]
     }
     
-    public override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+    public override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
         var landscapeOrientation = UIInterfaceOrientation.landscapeRight
         var portraitOrientation = UIInterfaceOrientation.portrait
         
