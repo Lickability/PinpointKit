@@ -11,6 +11,8 @@ import PinpointKit
 
 final class ViewController: UITableViewController {
     
+    private let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,6 +23,6 @@ final class ViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        PinpointKit.defaultPinpointKit.show(from: self)
+        pinpointKit.show(from: self)
     }
 }
