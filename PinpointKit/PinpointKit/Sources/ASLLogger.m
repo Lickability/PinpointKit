@@ -69,7 +69,8 @@
         
         const char *content = asl_get(message, ASL_KEY_MSG);
         NSTimeInterval msgTime = (NSTimeInterval) atol(asl_get(message, ASL_KEY_TIME)) + ((NSTimeInterval) atol(asl_get(message, ASL_KEY_TIME_NSEC)) / 1000000000.0);
-        if (msgTime >= self.logDate.timeIntervalSince1970) {
+        
+        if (self.logDate.timeIntervalSince1970 < msgTime) {
             NSString *contentString = [[NSString alloc] initWithUTF8String:content];
             NSString *timeString = [self stringFromTimeInterval:msgTime];
             NSString *loggedText = [NSString stringWithFormat:@"%@ %@", timeString, contentString];
