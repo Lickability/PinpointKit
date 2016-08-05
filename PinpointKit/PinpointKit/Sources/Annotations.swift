@@ -47,7 +47,7 @@ class Annotation {
      - returns: The scaled point.
      */
     func scaledPoint(_ point: CGPoint, scale: CGFloat) -> CGPoint {
-        var scaledRect = frame.apply(transform: CGAffineTransform(scaleX: scale, y: scale))
+        var scaledRect = frame.applying(CGAffineTransform(scaleX: scale, y: scale))
         
         let centeredXDistance = scaledRect.width / 2.0 - frame.width / 2.0
         let centeredYDistance = scaledRect.height / 2.0 - frame.height / 2.0
