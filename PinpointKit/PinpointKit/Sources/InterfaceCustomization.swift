@@ -11,6 +11,23 @@ public struct InterfaceCustomization {
     let interfaceText: InterfaceText
     let appearance: Appearance
     
+    static let customAppearance = Appearance(tintColor: .greenColor(),
+                                             annotationFillColor: .yellowColor(),
+                                             annotationStrokeColor: .grayColor(),
+                                             annotationTextAttributes: [
+                                                NSFontAttributeName: UIFont.sourceSansProFontOfSize(60),
+                                                NSBackgroundColorAttributeName: UIColor.greenColor()
+                                             ],
+                                             navigationTitleFont: .sourceSansProFontOfSize(10),
+                                             feedbackSendButtonFont: .sourceSansProFontOfSize(10),
+                                             feedbackCancelButtonFont: .sourceSansProFontOfSize(10),
+                                             feedbackEditHintFont: .sourceSansProFontOfSize(10),
+                                             feedbackBackButtonFont: .sourceSansProFontOfSize(10),
+                                             logCollectionPermissionFont: .sourceSansProFontOfSize(10),
+                                             logFont: .sourceSansProFontOfSize(10),
+                                             editorTextAnnotationSegmentFont: .sourceSansProFontOfSize(10),
+                                             editorTextAnnotationDoneButtonFont: .sourceSansProFontOfSize(10))
+    
     /**
      Initializes an InterfaceCustomization object.
      

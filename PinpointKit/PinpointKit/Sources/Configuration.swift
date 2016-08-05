@@ -52,7 +52,7 @@ public struct Configuration {
      - parameter sender:                A sender that allows sending the feedback outside the framework.
      - parameter feedbackConfiguration: Configuration properties for all feedback to be sent.
      */
-    public init(appearance: InterfaceCustomization.Appearance = InterfaceCustomization.Appearance(),
+    public init(appearance: InterfaceCustomization.Appearance = InterfaceCustomization.customAppearance,
                 interfaceText: InterfaceCustomization.InterfaceText = InterfaceCustomization.InterfaceText(),
                 logCollector: LogCollector? = SystemLogCollector(),
                 logViewer: LogViewer? = BasicLogViewController(),
