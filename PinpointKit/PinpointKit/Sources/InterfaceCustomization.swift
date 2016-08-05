@@ -195,7 +195,7 @@ private extension InterfaceCustomization.Appearance {
     static var defaultTextAnnotationAttributes: [String: AnyObject] {
         let shadow = NSShadow()
         shadow.shadowBlurRadius = 5
-        shadow.shadowColor = UIColor.blackColor()
+        shadow.shadowColor = UIColor.black
         shadow.shadowOffset = .zero
 
         return [NSFontAttributeName: DefaultAnnotationTextFont,
@@ -203,5 +203,5 @@ private extension InterfaceCustomization.Appearance {
                 NSKernAttributeName: 1.3]
     }
     
-    static let DefaultAnnotationTextFont = UIFont.sourceSansProFontOfSize(32, weight: .Semibold)
+    static let DefaultAnnotationTextFont = UIFont.sourceSansProFont(ofSize: 32, weight: .semibold)
 }
