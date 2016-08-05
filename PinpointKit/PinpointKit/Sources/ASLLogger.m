@@ -19,28 +19,26 @@
 
 @implementation ASLLogger
 
-- (instancetype)init {
+- (instancetype)initWithBundleIdentifier:(NSString *)bundleIdentifier {
     self = [super init];
     
-    _logDate = [NSDate date];
-    
-    return self;
-}
-
-- (instancetype)initWithBundleIdentifier:(NSString *)bundleIdentifier {
-    self = [self init];
-    
     _bundleIdentifier = bundleIdentifier;
+    [self commonInitialization];
     
     return self;
 }
 
 - (instancetype)initWithSenderName:(NSString *)senderName {
-    self = [self init];
+    self = [super init];
     
     _senderName = senderName;
+    [self commonInitialization];
     
     return self;
+}
+
+- (void)commonInitialization {
+    _logDate = [NSDate date];
 }
 
 - (NSArray<NSString *> *)retrieveLogs {

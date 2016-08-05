@@ -19,14 +19,16 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param senderName The bundle identifier to retrieve logs for.
  */
-- (instancetype)initWithBundleIdentifier:(NSString *)bundleIdentifier;
+- (instancetype)initWithBundleIdentifier:(NSString *)bundleIdentifier NS_DESIGNATED_INITIALIZER;
 
 /**
  *  Initialize the ASLLogger with a specific sender name.
  *
  *  @param senderName The sender name to retrieve logs for.
  */
-- (instancetype)initWithSenderName:(NSString *)senderName;
+- (instancetype)initWithSenderName:(NSString *)senderName NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)init NS_UNAVAILABLE;
 
 /**
  Using the Apple System Logger API, retrieves and returns logs as an ordered list of strings.
