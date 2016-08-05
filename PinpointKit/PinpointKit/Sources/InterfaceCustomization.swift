@@ -62,7 +62,7 @@ public struct InterfaceCustomization {
         
         /// The font used for the text annotation tool segment in the editor.
         let editorTextAnnotationSegmentFont: UIFont
-                
+        
         /// The font used for the done button in the editor displayed while editing a text annotation.
         let editorTextAnnotationDoneButtonFont: UIFont
         
@@ -110,7 +110,7 @@ public struct InterfaceCustomization {
             defaultAnnotationTextAttributes[NSForegroundColorAttributeName] = annotationStrokeColor
             defaultAnnotationTextAttributes[NSShadowAttributeName] = shadow
             defaultAnnotationTextAttributes[NSKernAttributeName] = 1.3
-                
+            
             // Custom annotation text attributes
             if let annotationTextAttributes = annotationTextAttributes {
                 var customAnnotationTextAttributes = annotationTextAttributes
@@ -163,7 +163,7 @@ public struct InterfaceCustomization {
         
         ///  The title of a button that cancels text editing.
         let textEditingDismissButtonTitle: String
-
+        
         ///  The title of a button that cancels text editing.
         let textEditingDoneButtonTitle: String
         

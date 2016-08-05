@@ -456,7 +456,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         if let annotationFillColor = appearance.annotationFillColor {
             annotationsView.tintColor = annotationFillColor
-        }        
+        }
     }
     
     // MARK: - Create annotations
