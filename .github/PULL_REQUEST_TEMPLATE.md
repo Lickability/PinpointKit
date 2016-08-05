@@ -1,4 +1,4 @@
-## What it Does
+## What It Does
 
 ## How to Test
 
