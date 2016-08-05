@@ -93,8 +93,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private lazy var doneBarButtonItem: UIBarButtonItem = {
         guard let doneButtonFont = self.interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return UIBarButtonItem() }
-        guard let doneButtonTitle = self.interfaceCustomization?.interfaceText.textEditingDoneButtonTitle else {
-            assertionFailure(); return UIBarButtonItem() }
+        guard let doneButtonTitle = self.interfaceCustomization?.interfaceText.textEditingDoneButtonTitle else { assertionFailure(); return UIBarButtonItem() }
         return UIBarButtonItem(doneButtonWithTarget: self, title: doneButtonTitle, font: doneButtonFont, action: #selector(EditImageViewController.doneButtonTapped(_:)))
     }()
     
@@ -457,7 +456,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         if let annotationFillColor = appearance.annotationFillColor {
             annotationsView.tintColor = annotationFillColor
-        }        
+        }
     }
     
     // MARK: - Create annotations
