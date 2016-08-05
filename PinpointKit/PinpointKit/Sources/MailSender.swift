@@ -12,7 +12,7 @@ import MessageUI
 public class MailSender: NSObject, Sender {
 
     /// An error in sending feedback.
-    enum Error: Error {
+    enum Error: Swift.Error {
 
         /// An unknown error occured.
         case unknown

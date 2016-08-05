@@ -15,7 +15,7 @@ import Photos
 public class ScreenshotDetector: NSObject {
     
     /// An error encountered when detecting and retreiving a screenshot.
-    enum Error: Error {
+    enum Error: Swift.Error {
         /// The user did not give authorization to this application to their Photo Library.
         case unauthorized(status: PHAuthorizationStatus)
         
