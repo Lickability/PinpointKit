@@ -58,6 +58,6 @@ extension UIBezierPath {
         let scaleTransform = CGAffineTransform(scaleX: scale, y: scale)
 
         let rotationAndSizeTransform = CGAffineTransform(a: cosine, b: sine, c: -sine, d: cosine, tx: startPoint.x, ty: startPoint.y)
-        return scaleTransform.concat(rotationAndSizeTransform)
+        return scaleTransform.concatenating(rotationAndSizeTransform)
     }
 }
