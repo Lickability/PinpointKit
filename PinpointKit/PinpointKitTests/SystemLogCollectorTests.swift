@@ -13,7 +13,7 @@ class SystemLogCollectorTests: XCTestCase {
     
     func testLogCollectorCollectsLogs() {
         let testString = "TestLog"
-        let sut = SystemLogCollector(loggingType: .Testing)
+        let systemLogCollector = SystemLogCollector(loggingType: .Testing)
         
         NSLog(testString)
         NSLog(testString)
@@ -23,7 +23,7 @@ class SystemLogCollectorTests: XCTestCase {
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
-            let logs = sut.retrieveLogs()
+            let logs = systemLogCollector.retrieveLogs()
             
             guard let firstLog = logs.first else { return XCTFail("There should be at least 1 log.") }
             
@@ -33,7 +33,6 @@ class SystemLogCollectorTests: XCTestCase {
         }
         
         waitForExpectationsWithTimeout(5, handler: nil)
-        
     }
     
     func testLogCollectorCollecsLogInOrder() {
@@ -41,7 +40,7 @@ class SystemLogCollectorTests: XCTestCase {
         let testString2 = "Second"
         let testString3 = "Third"
         
-        let sut = SystemLogCollector(loggingType: .Testing)
+        let systemLogCollector = SystemLogCollector(loggingType: .Testing)
         
         NSLog(testString1)
         NSLog(testString2)
@@ -51,7 +50,7 @@ class SystemLogCollectorTests: XCTestCase {
         
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
         dispatch_after(delayTime, dispatch_get_main_queue()) {
-            let logs = sut.retrieveLogs()
+            let logs = systemLogCollector.retrieveLogs()
             
             guard let firstLog = logs[optional: 0] else { return XCTFail("There should be a first log.") }
             guard let secondLog = logs[optional: 1] else { return XCTFail("There should be a second log.") }
@@ -72,15 +71,15 @@ class SystemLogCollectorTests: XCTestCase {
         NSLog("Hey")
         NSLog("I'm a log!")
 
-        let sut = SystemLogCollector(loggingType: .Testing)
+        let systemLogCollector = SystemLogCollector(loggingType: .Testing)
         
-        XCTAssertEqual(sut.retrieveLogs().count, 0)
+        XCTAssertEqual(systemLogCollector.retrieveLogs().count, 0)
     }
     
     func testLogCollectorHasNoLogsInitially() {
-        let sut = SystemLogCollector(loggingType: .Testing)
+        let systemLogCollector = SystemLogCollector(loggingType: .Testing)
         
-        let logs = sut.retrieveLogs()
+        let logs = systemLogCollector.retrieveLogs()
         
         XCTAssertEqual(logs.count, 0)
     }

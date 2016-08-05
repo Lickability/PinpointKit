@@ -25,9 +25,9 @@ public class SystemLogCollector: LogCollector {
     public init(loggingType: ASLLoggingType = .Application) {
         switch loggingType {
         case .Application:
-            self.logger = ASLLogger(bundleIdentifier: NSBundle.mainBundle().bundleIdentifier ?? "")
+            logger = ASLLogger(bundleIdentifier: NSBundle.mainBundle().bundleIdentifier ?? "")
         case .Testing:
-            self.logger = ASLLogger(senderName: "xctest")
+            logger = ASLLogger(senderName: "xctest")
         }
     }
     
