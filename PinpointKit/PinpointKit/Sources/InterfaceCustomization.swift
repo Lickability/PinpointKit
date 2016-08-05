@@ -100,27 +100,15 @@ public struct InterfaceCustomization {
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor
             
-            // Default annotation text attributes
-            var defaultAnnotationTextAttributes = [String: AnyObject]()
-            let shadow = NSShadow()
-            shadow.shadowBlurRadius = 5
-            shadow.shadowColor = UIColor(white: 0.0, alpha: 1.0)
-            shadow.shadowOffset = CGSize.zero
-            defaultAnnotationTextAttributes[NSFontAttributeName] = UIFont.sourceSansProFontOfSize(32, weight: .Semibold)
-            defaultAnnotationTextAttributes[NSForegroundColorAttributeName] = annotationStrokeColor
-            defaultAnnotationTextAttributes[NSShadowAttributeName] = shadow
-            defaultAnnotationTextAttributes[NSKernAttributeName] = 1.3
-            
             // Custom annotation text attributes
-            if let annotationTextAttributes = annotationTextAttributes {
-                var customAnnotationTextAttributes = annotationTextAttributes
+            if var customAnnotationTextAttributes = annotationTextAttributes {
                 // Ensure annotation font is set, if not use default font
-                if annotationTextAttributes[NSFontAttributeName] == nil {
-                    customAnnotationTextAttributes[NSFontAttributeName] = defaultAnnotationTextAttributes[NSFontAttributeName]
+                if customAnnotationTextAttributes[NSFontAttributeName] == nil {
+                    customAnnotationTextAttributes[NSFontAttributeName] = self.dynamicType.DefaultAnnotationTextFont
                 }
                 self.annotationTextAttributes = customAnnotationTextAttributes
             } else {
-                self.annotationTextAttributes = defaultAnnotationTextAttributes
+                self.annotationTextAttributes = self.dynamicType.defaultTextAnnotationAttributes(withTextColor: annotationStrokeColor)
             }
             
             self.logFont = logFont
@@ -200,4 +188,21 @@ public struct InterfaceCustomization {
             self.textEditingDoneButtonTitle = textEditingDoneButtonTitle
         }
     }
+}
+
+private extension InterfaceCustomization.Appearance {
+    
+    static func defaultTextAnnotationAttributes(withTextColor textColor: UIColor) -> [String: AnyObject] {
+        let shadow = NSShadow()
+        shadow.shadowBlurRadius = 5
+        shadow.shadowColor = UIColor.blackColor()
+        shadow.shadowOffset = .zero
+
+        return [NSFontAttributeName: DefaultAnnotationTextFont,
+                NSForegroundColorAttributeName: textColor,
+                NSShadowAttributeName: shadow,
+                NSKernAttributeName: 1.3]
+    }
+    
+    static let DefaultAnnotationTextFont = UIFont.sourceSansProFontOfSize(32, weight: .Semibold)
 }
