@@ -69,12 +69,12 @@ class SystemLogCollectorTests: XCTestCase {
     }
     
     func testLogCollectorDoesNotCollectPreviousLogs() {
-        NSLog("Hey");
-        NSLog("I'm a log!");
+        NSLog("Hey")
+        NSLog("I'm a log!")
 
         let sut = SystemLogCollector(loggingType: .Testing)
         
-        XCTAssertEqual(sut.retrieveLogs().count, 0);
+        XCTAssertEqual(sut.retrieveLogs().count, 0)
     }
     
     func testLogCollectorHasNoLogsInitially() {
