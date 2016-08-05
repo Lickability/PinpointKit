@@ -33,7 +33,7 @@ public struct InterfaceCustomization {
         /// The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
         let annotationFillColor: UIColor?
         
-        /// The text attributes for annotations.
+        /// The text attributes for annotations. Note that `NSForegroundColorAttributeName` can only be customized using `annotationFillColor`.
         let annotationTextAttributes: [String: AnyObject]
         
         /// The stroke color for annotations.
@@ -108,7 +108,7 @@ public struct InterfaceCustomization {
                 }
                 self.annotationTextAttributes = customAnnotationTextAttributes
             } else {
-                self.annotationTextAttributes = self.dynamicType.defaultTextAnnotationAttributes(withTextColor: annotationStrokeColor)
+                self.annotationTextAttributes = self.dynamicType.defaultTextAnnotationAttributes
             }
             
             self.logFont = logFont
@@ -192,14 +192,13 @@ public struct InterfaceCustomization {
 
 private extension InterfaceCustomization.Appearance {
     
-    static func defaultTextAnnotationAttributes(withTextColor textColor: UIColor) -> [String: AnyObject] {
+    static var defaultTextAnnotationAttributes: [String: AnyObject] {
         let shadow = NSShadow()
         shadow.shadowBlurRadius = 5
         shadow.shadowColor = UIColor.blackColor()
         shadow.shadowOffset = .zero
 
         return [NSFontAttributeName: DefaultAnnotationTextFont,
-                NSForegroundColorAttributeName: textColor,
                 NSShadowAttributeName: shadow,
                 NSKernAttributeName: 1.3]
     }
