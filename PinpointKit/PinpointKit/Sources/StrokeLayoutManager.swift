@@ -57,7 +57,7 @@ final class StrokeLayoutManager: NSLayoutManager {
             
             super.showCGGlyphs(glyphs, positions: positions, count: glyphCount, font: font, matrix: textMatrix, attributes: textAttributes, inContext: graphicsContext)
             
-            // Due to a bug in iOS 7, kCGTextFillStroke will never have the correct fill color, so we must draw the string twice: once for stroke and once for fill. http://stackoverflow.com/questions/18894907/why-cgcontextsetrgbstrokecolor-isnt-working-on-ios7
+            // Due to a bug introduced in iOS 7, kCGTextFillStroke will never have the correct fill color, so we must draw the string twice: once for stroke and once for fill. http://stackoverflow.com/questions/18894907/why-cgcontextsetrgbstrokecolor-isnt-working-on-ios7
             
             CGContextRestoreGState(graphicsContext)
             CGContextSetTextDrawingMode(graphicsContext, .Fill)
