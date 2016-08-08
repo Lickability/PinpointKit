@@ -9,7 +9,7 @@
 import UIKit
 
 /// The default text annotation view.
-public class TextAnnotationView: AnnotationView, UITextViewDelegate {
+public final class TextAnnotationView: UIView, AnnotationView, UITextViewDelegate {
     private static let TextViewInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
     private static let TextViewLineFragmentPadding: CGFloat = 5.0
     
@@ -36,7 +36,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         return textView
     }()
     
-    override var annotationFrame: CGRect? {
+    public var annotationFrame: CGRect? {
         return textView.frame
     }
     
@@ -48,6 +48,14 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
             originalTextViewFrame = textView.frame
             (textView.layoutManager as? StrokeLayoutManager)?.strokeColor = annotation?.strokeColor
         }
+    }
+    
+    public func scaleControlPoints(scale: CGFloat) {
+        
+    }
+    
+    public func setSecondControlPoint(point: CGPoint) {
+        
     }
     
     override init(frame: CGRect) {
@@ -80,7 +88,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         
     // MARK: - AnnotationView
     
-    override func moveControlPoints(translation: CGPoint) {
+    public func moveControlPoints(translation: CGPoint) {
         textView.frame = {
             var textViewFrame = self.textView.frame
             textViewFrame.origin = CGPoint(x: textViewFrame.minX + translation.x, y: textViewFrame.minY + translation.y)
@@ -155,7 +163,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     public func textViewDidBeginEditing(textView: UITextView) {
         textView.backgroundColor = UIColor(white: 1.0, alpha: 0.3)
         textView.layer.borderWidth = 1
-        textView.layer.borderColor = tintColor.colorWithAlphaComponent(self.dynamicType.BorderAlpha).CGColor
+        textView.layer.borderColor = tintColor.colorWithAlphaComponent(BorderAlpha).CGColor
     }
     
     public func textViewDidEndEditing(textView: UITextView) {

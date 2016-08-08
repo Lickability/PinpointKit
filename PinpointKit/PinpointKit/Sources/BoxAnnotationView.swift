@@ -9,7 +9,7 @@
 import UIKit
 
 /// The default box annotation view.
-public class BoxAnnotationView: AnnotationView {
+public final class BoxAnnotationView: UIView, AnnotationView {
 
     // MARK: - Properties
     
@@ -21,7 +21,7 @@ public class BoxAnnotationView: AnnotationView {
         }
     }
 
-    override var annotationFrame: CGRect? {
+    public var annotationFrame: CGRect? {
         return annotation?.frame
     }
 
@@ -72,13 +72,13 @@ public class BoxAnnotationView: AnnotationView {
 
     // MARK: - AnnotationView
 
-    override func setSecondControlPoint(point: CGPoint) {
+    public func setSecondControlPoint(point: CGPoint) {
         guard let previousAnnotation = annotation else { return }
 
         annotation = BoxAnnotation(startLocation: previousAnnotation.startLocation, endLocation: point, strokeColor: previousAnnotation.strokeColor)
     }
 
-    override func moveControlPoints(translation: CGPoint) {
+    public func moveControlPoints(translation: CGPoint) {
         guard let previousAnnotation = annotation else { return }
         let startLocation = CGPoint(x: previousAnnotation.startLocation.x + translation.x, y: previousAnnotation.startLocation.y + translation.y)
         let endLocation = CGPoint(x: previousAnnotation.endLocation.x + translation.x, y: previousAnnotation.endLocation.y + translation.y)
@@ -86,7 +86,7 @@ public class BoxAnnotationView: AnnotationView {
         annotation = BoxAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: previousAnnotation.strokeColor)
     }
     
-    override func scaleControlPoints(scale: CGFloat) {
+    public func scaleControlPoints(scale: CGFloat) {
         guard let previousAnnotation = annotation else { return }
         let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scale)
         let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scale)
