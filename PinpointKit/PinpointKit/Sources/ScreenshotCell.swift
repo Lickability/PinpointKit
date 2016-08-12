@@ -1,5 +1,5 @@
 //
-//  ScreenshotHeaderView.swift
+//  ScreenshotCell.swift
 //  PinpointKit
 //
 //  Created by Matthew Bischoff on 2/19/16.
@@ -9,7 +9,7 @@
 import UIKit
 
 /// A view that displays a screenshot and hint text about how to edit it.
-class ScreenshotHeaderView: UITableViewCell {
+class ScreenshotCell: UITableViewCell {
     
     /// A type of closure that is invoked when a button is tapped.
     typealias TapHandler = (button: UIButton) -> Void
@@ -111,7 +111,7 @@ class ScreenshotHeaderView: UITableViewCell {
         super.addSubview(view)
     }
     
-    // MARK: - ScreenshotHeaderView
+    // MARK: - ScreenshotCell
     
     private func setUp() {
         backgroundColor = .clear
@@ -136,7 +136,7 @@ class ScreenshotHeaderView: UITableViewCell {
         
         screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraint(equalTo: screenshotButton.widthAnchor, multiplier: 1.0)
         
-        screenshotButton.addTarget(self, action: #selector(ScreenshotHeaderView.screenshotButtonTapped(_:)), for: .touchUpInside)
+        screenshotButton.addTarget(self, action: #selector(ScreenshotCell.screenshotButtonTapped(_:)), for: .touchUpInside)
     }
     
     @objc private func screenshotButtonTapped(_ sender: UIButton) {

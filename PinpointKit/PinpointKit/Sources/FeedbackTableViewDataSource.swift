@@ -74,15 +74,15 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
         return cell
     }
     
-    private func screenshotCell(for row: Row) -> ScreenshotHeaderView {
-        let cell = ScreenshotHeaderView()
+    private func screenshotCell(for row: Row) -> ScreenshotCell {
+        let cell = ScreenshotCell()
         
         guard case let .screenshot(screenshot, hintText, hintFont) = row else {
             assertionFailure("Found unexpected row type when creating screenshot cell.")
             return cell
         }
         
-        cell.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: hintText, hintFont: hintFont)
+        cell.viewModel = ScreenshotCell.ViewModel(screenshot: screenshot, hintText: hintText, hintFont: hintFont)
         cell.screenshotButtonTapHandler = { [weak self] button in
             guard let strongSelf = self else { return }
             
