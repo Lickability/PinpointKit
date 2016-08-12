@@ -53,9 +53,9 @@ public class PinpointKit {
      Shows PinpointKit’s feedback collection UI from a given view controller.
      
      - parameter viewController: The view controller from which to present.
+     - parameter screenshot: The screenshot associated with the bug report.
      */
-    public func show(fromViewController viewController: UIViewController) {
-        let screenshot = Screenshotter.takeScreenshot()
+    public func show(fromViewController viewController: UIViewController, screenshot: UIImage = Screenshotter.takeScreenshot()) {
         displayingViewController = viewController
         
         configuration.feedbackCollector.collectFeedbackWithScreenshot(screenshot, fromViewController: viewController)
