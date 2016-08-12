@@ -12,6 +12,7 @@ import UIKit
 final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     
     private let sections: [Section]
+    private weak var delegate: FeedbackTableViewDataSourceDelegate?
     
     /**
      Initializes the data source with a configuration and a boolean value indicating whether the user has enabled log collection.
@@ -20,9 +21,11 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
      - parameter screenshot:               The screenshot to display for annotating.
      - parameter logSupporting:            The object the controls the support of logging.
      - parameter userEnabledLogCollection: A boolean value indicating whether the user has enabled log collection.
+     - parameter delegate:                 The object informed when a screenshot is tapped.
      */
-    init(interfaceCustomization: InterfaceCustomization, screenshot: UIImage, logSupporting: LogSupporting, userEnabledLogCollection: Bool) {
+    init(interfaceCustomization: InterfaceCustomization, screenshot: UIImage, logSupporting: LogSupporting, userEnabledLogCollection: Bool, delegate: FeedbackTableViewDataSourceDelegate? = nil) {
         sections = self.dynamicType.sectionsFromConfiguration(interfaceCustomization, screenshot: screenshot, logSupporting: logSupporting, userEnabledLogCollection: userEnabledLogCollection)
+        self.delegate = delegate
     }
     
     private enum Section {
@@ -56,7 +59,7 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     private func checkmarkCell(for row: Row) -> CheckmarkCell {
-        let cell = CheckmarkCell() // TODO: dequeue instead.
+        let cell = CheckmarkCell()
 
         guard case let .collectLogs(enabled, title, font, canView) = row else {
             assertionFailure("Found unexpected row type when creating checkmark cell.")
@@ -72,7 +75,7 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     private func screenshotCell(for row: Row) -> ScreenshotHeaderView {
-        let cell = ScreenshotHeaderView() // TODO: dequeue instead.
+        let cell = ScreenshotHeaderView()
         
         guard case let .screenshot(screenshot, hintText, hintFont) = row else {
             assertionFailure("Found unexpected row type when creating screenshot cell.")
@@ -80,6 +83,11 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
         }
         
         cell.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshot, hintText: hintText, hintFont: hintFont)
+        cell.screenshotButtonTapHandler = { [weak self] button in
+            guard let strongSelf = self else { return }
+            
+            strongSelf.delegate?.feedbackTableViewDataSource(feedbackTableViewDataSource: strongSelf, didTapScreenshot: screenshot)
+        }
         
         return cell
     }
@@ -108,4 +116,16 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
             }
         }
     }
+}
+
+/// Delegate protocol describing a type that is informed of screenshot tapping events.
+protocol FeedbackTableViewDataSourceDelegate: class {
+    
+    /**
+     Notifies the delegate when a screenshot is tapped.
+     
+     - parameter feedbackTableViewDataSource: The feedback table view data source that sent the message.
+     - parameter screenshot:                  The screenshot that was tapped.
+     */
+    func feedbackTableViewDataSource(feedbackTableViewDataSource: FeedbackTableViewDataSource, didTapScreenshot screenshot: UIImage)
 }
