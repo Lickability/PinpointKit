@@ -21,6 +21,9 @@ struct AnnotationViewFactory {
     /// The stroke color of the annotation.
     let strokeColor: UIColor
     
+    /// The text attributes of the annotation.
+    let textAttributes: [String: AnyObject]
+    
     /**
      Constructs an annotation view.
      
@@ -38,6 +41,7 @@ struct AnnotationViewFactory {
             return view
         case .text:
             let view = TextAnnotationView()
+            view.textAttributes = textAttributes
             let minimumSize = view.minimumTextSize
             let endLocation = CGPoint(x: currentLocation.x + minimumSize.width, y: currentLocation.y + minimumSize.height)
             view.annotation = Annotation(startLocation: currentLocation, endLocation: endLocation, strokeColor: strokeColor)

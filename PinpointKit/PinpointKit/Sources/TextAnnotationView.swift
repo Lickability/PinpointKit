@@ -91,18 +91,11 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     // MARK: - TextAnnotationView
     
     /// The attributes of the text to use for an `NSAttributedString`.
-    var textAttributes: [String: AnyObject] {
-        let shadow = NSShadow()
-        shadow.shadowBlurRadius = 5
-        shadow.shadowColor = UIColor(white: 0.0, alpha: 1.0)
-        shadow.shadowOffset = CGSize.zero
-        
-        return [
-            NSFontAttributeName: font,
-            NSForegroundColorAttributeName: tintColor,
-            NSShadowAttributeName: shadow,
-            NSKernAttributeName: 1.3
-        ]
+    var textAttributes: [String: AnyObject] = [:] {
+        didSet {
+            textAttributes[NSFontAttributeName] = font
+            textView.typingAttributes = textAttributes
+        }
     }
     
     private var font: UIFont {

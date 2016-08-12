@@ -96,24 +96,24 @@ public class MailSender: NSObject, Sender {
 private extension MFMailComposeViewController {
     
     func attach(_ feedback: Feedback) throws {
-        setToRecipients(feedback.recipients)
+        setToRecipients(feedback.configuration?.recipients)
         
-        if let subject = feedback.title {
+        if let subject = feedback.configuration?.title {
             setSubject(subject)
         }
         
-        if let body = feedback.body {
+        if let body = feedback.configuration?.body {
            setMessageBody(body, isHTML: false)
         }
         
-        try attach(feedback.screenshot, screenshotFileName: feedback.screenshotFileName)
+        try attach(feedback.screenshot, screenshotFileName: feedback.configuration?.screenshotFileName ?? "Screenshot")
         
         if let logs = feedback.logs {
-            try attach(logs, logsFileName: feedback.logsFileName)
+            try attach(logs, logsFileName: feedback.configuration?.logsFileName ?? "logs")
         }
         
-        if let additionalInformation = feedback.additionalInformation {
-            attach(additionalInformation: additionalInformation)
+        if let additionalInformation = feedback.configuration?.additionalInformation {
+            attach(additionalInformation)
         }
     }
     
@@ -138,7 +138,7 @@ private extension MFMailComposeViewController {
         addAttachmentData(textData, mimeType: MIMEType.PlainText.rawValue, fileName: filename)
     }
     
-    func attach(additionalInformation: [String: AnyObject]) {
+    func attach(_ additionalInformation: [String: AnyObject]) {
         let data = try? JSONSerialization.data(withJSONObject: additionalInformation, options: .prettyPrinted)
         
         if let data = data {
