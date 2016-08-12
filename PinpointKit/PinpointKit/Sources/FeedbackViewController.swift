@@ -81,6 +81,10 @@ public final class FeedbackViewController: UITableViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = 100.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         editor?.delegate = self
     }
     
@@ -105,27 +109,12 @@ public final class FeedbackViewController: UITableViewController {
     
     private func updateDataSource() {
         guard let interfaceCustomization = interfaceCustomization else { assertionFailure(); return }
+        guard let screenshot = screenshot else { assertionFailure(); return }
         
-        dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, logSupporting: self, userEnabledLogCollection: userEnabledLogCollection)
+        dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, screenshot: screenshot, logSupporting: self, userEnabledLogCollection: userEnabledLogCollection)
     }
     
     private func updateTableHeaderView() {
-        guard let screenshot = screenshot, editor = editor else { return }
-        let screenshotToDisplay = annotatedScreenshot ?? screenshot
-        
-        // We must set the screenshot before showing the view controller.
-        editor.setScreenshot(screenshot)
-        let header = ScreenshotHeaderView()
-
-        header.viewModel = ScreenshotHeaderView.ViewModel(screenshot: screenshotToDisplay, hintText: interfaceCustomization?.interfaceText.feedbackEditHint, hintFont: interfaceCustomization?.appearance.feedbackEditHintFont)
-        header.screenshotButtonTapHandler = { [weak self] button in
-            let editImageViewController = NavigationController(rootViewController: editor.viewController)
-            editImageViewController.view.tintColor = self?.interfaceCustomization?.appearance.tintColor
-            self?.present(editImageViewController, animated: true, completion: nil)
-        }
-        
-        tableView.tableHeaderView = header
-        tableView.enableTableHeaderViewDynamicHeight()
     }
     
     private func updateInterfaceCustomization() {
@@ -228,6 +217,19 @@ extension FeedbackViewController {
     public override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         userEnabledLogCollection = !userEnabledLogCollection
         tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    public override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
+    }
+    
+    public override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        // Only leave space under the last section.
+        if section == tableView.numberOfSections - 1 {
+            return tableView.sectionFooterHeight
+        }
+        
+        return .leastNormalMagnitude
     }
 }
 

@@ -9,7 +9,7 @@
 import UIKit
 
 /// A view that displays a screenshot and hint text about how to edit it.
-class ScreenshotHeaderView: UIView {
+class ScreenshotHeaderView: UITableViewCell {
     
     /// A type of closure that is invoked when a button is tapped.
     typealias TapHandler = (button: UIButton) -> Void
@@ -81,15 +81,16 @@ class ScreenshotHeaderView: UIView {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setUp()
     }
     
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        setUp()
     }
     
     // MARK: - UIView
@@ -100,9 +101,22 @@ class ScreenshotHeaderView: UIView {
         screenshotButton.layer.borderColor = tintColor.cgColor
     }
     
+    override func addSubview(_ view: UIView) {
+        // Prevents the adding of separators to this cell.
+        let separatorHeight = 1.0 / UIScreen.main.scale
+        guard view.frame.height != separatorHeight else {
+            return
+        }
+        
+        super.addSubview(view)
+    }
+    
     // MARK: - ScreenshotHeaderView
     
     private func setUp() {
+        backgroundColor = .clear
+        selectionStyle = .none
+        
         addSubview(stackView)
         
         stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
