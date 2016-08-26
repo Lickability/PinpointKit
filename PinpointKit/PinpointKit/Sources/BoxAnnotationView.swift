@@ -9,7 +9,7 @@
 import UIKit
 
 /// The default box annotation view.
-public class BoxAnnotationView: AnnotationView {
+open class BoxAnnotationView: AnnotationView {
 
     // MARK: - Properties
     
@@ -54,12 +54,12 @@ public class BoxAnnotationView: AnnotationView {
 
     // MARK: - UIView
 
-    override public func tintColorDidChange() {
+    override open func tintColorDidChange() {
         super.tintColorDidChange()
         setNeedsDisplay()
     }
 
-    override public func draw(_ rect: CGRect) {
+    override open func draw(_ rect: CGRect) {
         guard let annotation = annotation else { return }
 
         tintColor.setFill()
@@ -70,7 +70,7 @@ public class BoxAnnotationView: AnnotationView {
         path?.stroke()
     }
 
-    override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         guard let annotation = annotation else { return false }
         
         return type(of: self).path(forPointInside: annotation)?.contains(point) ?? false

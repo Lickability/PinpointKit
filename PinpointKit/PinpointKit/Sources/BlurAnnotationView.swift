@@ -11,7 +11,7 @@ import GLKit
 import CoreImage
 
 /// The default blur annotation view.
-public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
+open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
 
     // MARK: - Properties
 
@@ -87,16 +87,16 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     
     // MARK: - UIView
 
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         GLKView.frame = bounds
     }
 
-    override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return touchTargetFrame?.contains(point) ?? false
     }
     
-    override public func draw(_ rect: CGRect) {
+    override open func draw(_ rect: CGRect) {
         super.draw(rect)
         
         if drawsBorder {
@@ -139,7 +139,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
 
     // MARK: - GLKViewDelegate
 
-    public func glkView(_ view: GLKit.GLKView, drawIn rect: CGRect) {
+    open func glkView(_ view: GLKit.GLKView, drawIn rect: CGRect) {
         glClearColor(0, 0, 0, 0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
 

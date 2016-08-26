@@ -9,7 +9,7 @@
 import MessageUI
 
 /// A `Sender` that uses `MessageUI` to send an email containing the feedback.
-public class MailSender: NSObject, Sender {
+open class MailSender: NSObject, Sender {
 
     /// An error in sending feedback.
     enum Error: Swift.Error {
