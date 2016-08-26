@@ -13,12 +13,12 @@ import Foundation
 public class PinpointKit {
     
     /// The configuration struct that specifies how PinpointKit should be configured.
-    private let configuration: Configuration
+    fileprivate let configuration: Configuration
     
     /// A delegate that is notified of significant events.
-    private weak var delegate: PinpointKitDelegate?
+    fileprivate weak var delegate: PinpointKitDelegate?
     
-    private weak var displayingViewController: UIViewController?
+    fileprivate weak var displayingViewController: UIViewController?
     
     /**
      Initializes a `PinpointKit` object with a configuration and an optional delegate.

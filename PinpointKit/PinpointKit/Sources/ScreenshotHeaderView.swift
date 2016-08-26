@@ -12,7 +12,7 @@ import UIKit
 class ScreenshotHeaderView: UIView {
     
     /// A type of closure that is invoked when a button is tapped.
-    typealias TapHandler = (button: UIButton) -> Void
+    typealias TapHandler = (_ button: UIButton) -> Void
     
     /**
      *  A struct encapsulating the information necessary for this view to be displayed.
@@ -126,7 +126,7 @@ class ScreenshotHeaderView: UIView {
     }
     
     @objc private func screenshotButtonTapped(_ sender: UIButton) {
-        screenshotButtonTapHandler?(button: sender)
+        screenshotButtonTapHandler?(sender)
     }
 }
 

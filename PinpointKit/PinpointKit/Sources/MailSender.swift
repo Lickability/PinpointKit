@@ -82,12 +82,12 @@ public class MailSender: NSObject, Sender {
     
     // MARK: - MailSender
     
-    private func fail(with error: Error) {
+    fileprivate func fail(with error: Error) {
         delegate?.sender(self, didFailToSend: feedback, error: error)
         feedback = nil
     }
     
-    private func succeed(with success: Success) {
+    fileprivate func succeed(with success: Success) {
         delegate?.sender(self, didSend: feedback, success: success)
         feedback = nil
     }

@@ -57,7 +57,7 @@ public final class FeedbackViewController: UITableViewController {
         }
     }
     
-    private var userEnabledLogCollection = true {
+    fileprivate var userEnabledLogCollection = true {
         didSet {
             updateDataSource()
         }
@@ -109,8 +109,8 @@ public final class FeedbackViewController: UITableViewController {
         dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, logSupporting: self, userEnabledLogCollection: userEnabledLogCollection)
     }
     
-    private func updateTableHeaderView() {
-        guard let screenshot = screenshot, editor = editor else { return }
+    fileprivate func updateTableHeaderView() {
+        guard let screenshot = screenshot, let editor = editor else { return }
         let screenshotToDisplay = annotatedScreenshot ?? screenshot
         
         // We must set the screenshot before showing the view controller.

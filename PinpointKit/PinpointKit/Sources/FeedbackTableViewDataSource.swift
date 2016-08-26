@@ -21,7 +21,7 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
      - parameter userEnabledLogCollection: A boolean value indicating whether the user has enabled log collection.
      */
     init(interfaceCustomization: InterfaceCustomization, logSupporting: LogSupporting, userEnabledLogCollection: Bool) {
-        sections = self.dynamicType.sectionsFromConfiguration(interfaceCustomization, logSupporting: logSupporting, userEnabledLogCollection: userEnabledLogCollection)
+        sections = type(of: self).sectionsFromConfiguration(interfaceCustomization, logSupporting: logSupporting, userEnabledLogCollection: userEnabledLogCollection)
     }
     
     private enum Section {

@@ -65,7 +65,7 @@ enum Tool: Int {
             image.accessibilityLabel = self.name
             return image
         case .text:
-            return NSLocalizedString("Aa", comment: "The text tool’s button label.")
+            return NSLocalizedString("Aa", comment: "The text tool’s button label.") as AnyObject
         }
     }
 }

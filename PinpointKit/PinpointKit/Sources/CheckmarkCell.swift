@@ -21,7 +21,7 @@ final class CheckmarkCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        imageView?.image = UIImage(named: "Checkmark", in: Bundle(for: self.dynamicType), compatibleWith: nil)
+        imageView?.image = UIImage(named: "Checkmark", in: Bundle(for: type(of: self)), compatibleWith: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {

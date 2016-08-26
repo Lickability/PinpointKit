@@ -25,9 +25,9 @@ final class StrokeLayoutManager: NSLayoutManager {
         let shadow = attributes?[NSShadowAttributeName] as? NSShadow
         let shouldRenderTransparencyLayer = strokeColor != nil && strokeWidth != nil && shadow != nil
         
-        if let shadow = shadow where shouldRenderTransparencyLayer {
+        if let shadow = shadow, shouldRenderTransparencyLayer {
             // Applies the shadow to the entire stroke as one layer, insead of overlapping per-character.
-            context?.setShadow(offset: shadow.shadowOffset, blur: shadow.shadowBlurRadius, color: shadow.shadowColor?.cgColor)
+            context?.setShadow(offset: shadow.shadowOffset, blur: shadow.shadowBlurRadius, color: (shadow.shadowColor as? UIColor)?.cgColor)
             context?.beginTransparencyLayer(auxiliaryInfo: nil)
         }
         
@@ -38,10 +38,10 @@ final class StrokeLayoutManager: NSLayoutManager {
         }
     }
     
-    override func showCGGlyphs(_ glyphs: UnsafePointer<CGGlyph>, positions: UnsafePointer<CGPoint>, count glyphCount: Int, font: UIFont, matrix textMatrix: CGAffineTransform, attributes: [String : AnyObject], in graphicsContext: CGContext) {
+    override func showCGGlyphs(_ glyphs: UnsafePointer<CGGlyph>, positions: UnsafePointer<CGPoint>, count glyphCount: Int, font: UIFont, matrix textMatrix: CGAffineTransform, attributes: [String : Any], in graphicsContext: CGContext) {
         var textAttributes = attributes
         
-        if let strokeColor = strokeColor, strokeWidth = strokeWidth {
+        if let strokeColor = strokeColor, let strokeWidth = strokeWidth {
             // Remove the shadow. It'll all be drawn at once afterwards.
             textAttributes[NSShadowAttributeName] = nil
             graphicsContext.setShadow(offset: CGSize.zero, blur: 0, color: nil)

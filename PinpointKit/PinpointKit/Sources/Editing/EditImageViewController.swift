@@ -56,20 +56,20 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         return view
         }()
     
-    private let imageView: UIImageView = {
+    fileprivate let imageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private let annotationsView: AnnotationsView = {
+    fileprivate let annotationsView: AnnotationsView = {
         let view = AnnotationsView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private var shouldPromptBeforeDismissal: Bool {
-        return !hasACopyOfCurrentComposition && annotationsView.subviews.count >= self.dynamicType.MinimumAnnotationsNeededToPromptBeforeDismissal
+        return !hasACopyOfCurrentComposition && annotationsView.subviews.count >= type(of: self).MinimumAnnotationsNeededToPromptBeforeDismissal
     }
     
     private var createAnnotationPanGestureRecognizer: UIPanGestureRecognizer! = nil
@@ -104,7 +104,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private var currentAnnotationView: AnnotationView? {
         didSet {
             if let oldTextAnnotationView = oldValue as? TextAnnotationView {
-                NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidEndEditing, object: oldTextAnnotationView.textView)
+                NotificationCenter.`default`.removeObserver(self, name: .UITextViewTextDidEndEditing, object: oldTextAnnotationView.textView)
             }
             
             if let currentTextAnnotationView = currentTextAnnotationView {
@@ -174,7 +174,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         return true
     }
     
-    public override func canPerformAction(_ action: Selector, withSender sender: AnyObject?) -> Bool {
+    public override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         let textViewIsEditing = currentTextAnnotationView?.textView.isFirstResponder ?? false
         return action == #selector(EditImageViewController.deleteSelectedAnnotationView) && !textViewIsEditing
     }
@@ -421,7 +421,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func endEditingTextView(_ checksFirstResponder: Bool = true) {
-        if let textView = currentTextAnnotationView?.textView where !checksFirstResponder || textView.isFirstResponder {
+        if let textView = currentTextAnnotationView?.textView, !checksFirstResponder || textView.isFirstResponder {
             textView.resignFirstResponder()
             
             if !textView.hasText {

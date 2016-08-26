@@ -155,7 +155,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     public func textViewDidBeginEditing(_ textView: UITextView) {
         textView.backgroundColor = UIColor(white: 1.0, alpha: 0.3)
         textView.layer.borderWidth = 1
-        textView.layer.borderColor = tintColor.withAlphaComponent(self.dynamicType.BorderAlpha).cgColor
+        textView.layer.borderColor = tintColor.withAlphaComponent(type(of: self).BorderAlpha).cgColor
     }
     
     public func textViewDidEndEditing(_ textView: UITextView) {

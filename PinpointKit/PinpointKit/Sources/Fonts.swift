@@ -45,7 +45,7 @@ public extension UIFont {
         }()
         
         if let fontURL = Bundle.pinpointKitBundle().url(forResource: fontName, withExtension: "ttf") {
-            CTFontManagerRegisterFontsForURL(fontURL, .process, nil)
+            CTFontManagerRegisterFontsForURL(fontURL as CFURL, .process, nil)
         }
         
         return UIFont(name: fontName, size: fontSize) ?? .systemFont(ofSize: fontSize)
