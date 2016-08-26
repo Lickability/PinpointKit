@@ -24,7 +24,7 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
      - parameter delegate:                 The object informed when a screenshot is tapped.
      */
     init(interfaceCustomization: InterfaceCustomization, screenshot: UIImage, logSupporting: LogSupporting, userEnabledLogCollection: Bool, delegate: FeedbackTableViewDataSourceDelegate? = nil) {
-        sections = self.dynamicType.sectionsFromConfiguration(interfaceCustomization, screenshot: screenshot, logSupporting: logSupporting, userEnabledLogCollection: userEnabledLogCollection)
+        sections = type(of: self).sectionsFromConfiguration(interfaceCustomization, screenshot: screenshot, logSupporting: logSupporting, userEnabledLogCollection: userEnabledLogCollection)
         self.delegate = delegate
     }
     

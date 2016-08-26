@@ -25,11 +25,11 @@ public struct Feedback {
         /// Returns an image of the screenshot preferring the annotated image.
         var preferredImage: UIImage {
             switch self {
-            case let original(image):
+            case let .original(image):
                 return image
-            case let annotated(image):
+            case let .annotated(image):
                 return image
-            case let combined(_, annotatedImage):
+            case let .combined(_, annotatedImage):
                 return annotatedImage
             }
         }

@@ -57,7 +57,7 @@ public final class FeedbackViewController: UITableViewController {
         }
     }
     
-    private var userEnabledLogCollection = true {
+    fileprivate var userEnabledLogCollection = true {
         didSet {
             updateDataSource()
         }

@@ -104,11 +104,11 @@ public struct InterfaceCustomization {
             if var customAnnotationTextAttributes = annotationTextAttributes {
                 // Ensure annotation font is set, if not use default font
                 if customAnnotationTextAttributes[NSFontAttributeName] == nil {
-                    customAnnotationTextAttributes[NSFontAttributeName] = self.dynamicType.DefaultAnnotationTextFont
+                    customAnnotationTextAttributes[NSFontAttributeName] = type(of: self).DefaultAnnotationTextFont
                 }
                 self.annotationTextAttributes = customAnnotationTextAttributes
             } else {
-                self.annotationTextAttributes = self.dynamicType.defaultTextAnnotationAttributes
+                self.annotationTextAttributes = type(of: self).defaultTextAnnotationAttributes
             }
             
             self.logFont = logFont
@@ -200,7 +200,7 @@ private extension InterfaceCustomization.Appearance {
 
         return [NSFontAttributeName: DefaultAnnotationTextFont,
                 NSShadowAttributeName: shadow,
-                NSKernAttributeName: 1.3]
+                NSKernAttributeName: 1.3 as NSNumber]
     }
     
     static let DefaultAnnotationTextFont = UIFont.sourceSansProFont(ofSize: 32, weight: .semibold)

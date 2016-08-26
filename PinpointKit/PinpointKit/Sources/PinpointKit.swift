@@ -10,15 +10,15 @@ import Foundation
 
 
 /// `PinpointKit` is an object that can be used to collect feedback from application users.
-public class PinpointKit {
+open class PinpointKit {
     
     /// The configuration struct that specifies how PinpointKit should be configured.
-    private let configuration: Configuration
+    fileprivate let configuration: Configuration
     
     /// A delegate that is notified of significant events.
-    private weak var delegate: PinpointKitDelegate?
+    fileprivate weak var delegate: PinpointKitDelegate?
     
-    private weak var displayingViewController: UIViewController?
+    fileprivate weak var displayingViewController: UIViewController?
     
     /**
      Initializes a `PinpointKit` object with a configuration and an optional delegate.
@@ -54,7 +54,7 @@ public class PinpointKit {
      
      - parameter viewController: The view controller from which to present.
      */
-    public func show(from viewController: UIViewController) {
+    open func show(from viewController: UIViewController) {
         let screenshot = Screenshotter.takeScreenshot()
         displayingViewController = viewController
         

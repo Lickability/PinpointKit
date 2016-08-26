@@ -9,11 +9,11 @@
 import UIKit
 
 /// The default view controller for the text log.
-public class BasicLogViewController: UIViewController, LogViewer {
+open class BasicLogViewController: UIViewController, LogViewer {
     
     // MARK: - InterfaceCustomizable
     
-    public var interfaceCustomization: InterfaceCustomization? {
+    open var interfaceCustomization: InterfaceCustomization? {
         didSet {
             title = interfaceCustomization?.interfaceText.logCollectorTitle
             textView.font = interfaceCustomization?.appearance.logFont
@@ -33,7 +33,7 @@ public class BasicLogViewController: UIViewController, LogViewer {
     
     // MARK: - UIViewController
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         func setUpTextView() {
@@ -48,7 +48,7 @@ public class BasicLogViewController: UIViewController, LogViewer {
         setUpTextView()
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         textView.scrollRangeToVisible(NSRange(location: (textView.text as NSString).length, length: 0))
@@ -56,7 +56,7 @@ public class BasicLogViewController: UIViewController, LogViewer {
     
     // MARK: - LogViewer
     
-    public func viewLog(in collector: LogCollector, from viewController: UIViewController) {
+    open func viewLog(in collector: LogCollector, from viewController: UIViewController) {
         let logText = collector.retrieveLogs().joined(separator: "\n")
         textView.text = logText
         

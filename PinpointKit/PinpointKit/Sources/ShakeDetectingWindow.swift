@@ -10,10 +10,10 @@ import UIKit
 
 
 /// `ShakeDetectingWindow` is a `UIWindow` subclass that notifies a `ShakeDetectingWindowDelegate` any time a shake motion event occurs.
-public class ShakeDetectingWindow: UIWindow {
+open class ShakeDetectingWindow: UIWindow {
 
     /// A `ShakeDetectingWindowDelegate` to notify when a shake motion event occurs.
-	public weak var delegate: ShakeDetectingWindowDelegate?
+	open weak var delegate: ShakeDetectingWindowDelegate?
 
     /**
      Initializes a `ShakeDetectingWindow`.
@@ -34,7 +34,7 @@ public class ShakeDetectingWindow: UIWindow {
 	
 	// MARK: - UIResponder
     
-    override public func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+    override open func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             guard let delegate = delegate else {
                 NSLog(#file + "- There is no ShakeDetectingWindowDelegate registered to handle this shake.")
