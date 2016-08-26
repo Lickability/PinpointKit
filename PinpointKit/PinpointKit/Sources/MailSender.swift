@@ -51,7 +51,7 @@ open class MailSender: NSObject, Sender {
     // MARK: - Sender
     
     /// A delegate that is informed of successful or failed feedback sending.
-    weak public var delegate: SenderDelegate?
+    weak open var delegate: SenderDelegate?
     
     /**
      Sends the feedback using the provided view controller as a presenting view controller.
@@ -59,7 +59,7 @@ open class MailSender: NSObject, Sender {
      - parameter feedback:       The feedback to send.
      - parameter viewController: The view controller from which to present any of the sender’s necessary views.
      */
-    public func send(_ feedback: Feedback, from viewController: UIViewController?) {
+    open func send(_ feedback: Feedback, from viewController: UIViewController?) {
         guard let viewController = viewController else { fail(with: .noViewControllerProvided); return }
         
         guard MFMailComposeViewController.canSendMail() else { fail(with: .mailCannotSend); return }
