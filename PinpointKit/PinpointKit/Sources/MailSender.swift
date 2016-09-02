@@ -96,23 +96,23 @@ public class MailSender: NSObject, Sender {
 private extension MFMailComposeViewController {
     
     func attachFeedback(feedback: Feedback) throws {
-        setToRecipients(feedback.configuration?.recipients)
+        setToRecipients(feedback.configuration.recipients)
         
-        if let subject = feedback.configuration?.title {
+        if let subject = feedback.configuration.title {
             setSubject(subject)
         }
         
-        if let body = feedback.configuration?.body {
+        if let body = feedback.configuration.body {
            setMessageBody(body, isHTML: false)
         }
         
-        try attachScreenshot(feedback.screenshot, screenshotFileName: feedback.configuration?.screenshotFileName ?? "Screenshot")
+        try attachScreenshot(feedback.screenshot, screenshotFileName: feedback.configuration.screenshotFileName)
         
         if let logs = feedback.logs {
-            try attachLogs(logs, logsFileName: feedback.configuration?.logsFileName ?? "logs")
+            try attachLogs(logs, logsFileName: feedback.configuration.logsFileName)
         }
         
-        if let additionalInformation = feedback.configuration?.additionalInformation {
+        if let additionalInformation = feedback.configuration.additionalInformation {
             attachAdditionalInformation(additionalInformation)
         }
     }
