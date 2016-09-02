@@ -121,11 +121,9 @@ private extension BoxAnnotationView {
         }
         
         let firstPath = CGPath(roundedRect: innerBox, cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil)
-        let secondPath = CGPath(__byStroking: firstPath, transform: nil, lineWidth: borderWidth + strokeWidth, lineCap: .butt, lineJoin: .bevel, miterLimit: 100)
+        let secondPath = firstPath.copy(strokingWithWidth: borderWidth + strokeWidth, lineCap: .butt, lineJoin: .bevel, miterLimit: 100)
         
-        guard let strokePath = secondPath else { return nil }
-        
-        let path = UIBezierPath(cgPath: strokePath)
+        let path = UIBezierPath(cgPath: secondPath)
         path.lineWidth = strokeWidth
         path.close()
         return path
@@ -136,7 +134,7 @@ private extension BoxAnnotationView {
         
         return path(for: annotation)
             .flatMap { path in
-                CGPath(__byStroking: path.cgPath, transform: nil, lineWidth: outsideStrokeWidth, lineCap: .butt, lineJoin: .bevel, miterLimit: 0)
+                path.cgPath.copy(strokingWithWidth: outsideStrokeWidth, lineCap: .butt, lineJoin: .bevel, miterLimit: 0)
             }
             .map { path in
                 UIBezierPath(cgPath: path)
