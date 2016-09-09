@@ -111,7 +111,8 @@ private extension ArrowAnnotation {
         guard let path = path else { return nil }
         
         let outsideStrokeWidth = strokeWidth * 5.0
-        guard let strokedPath = CGPath(__byStroking: path.cgPath, transform: nil, lineWidth: outsideStrokeWidth, lineCap: .butt, lineJoin: .bevel, miterLimit: 0) else { return nil }
+        
+        let strokedPath = path.cgPath.copy(strokingWithWidth: outsideStrokeWidth, lineCap: .butt, lineJoin: .bevel, miterLimit: 0)
         
         return UIBezierPath(cgPath: strokedPath)
     }

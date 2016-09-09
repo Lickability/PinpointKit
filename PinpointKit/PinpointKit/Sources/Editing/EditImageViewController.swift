@@ -104,7 +104,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private var currentAnnotationView: AnnotationView? {
         didSet {
             if let oldTextAnnotationView = oldValue as? TextAnnotationView {
-                NotificationCenter.`default`.removeObserver(self, name: .UITextViewTextDidEndEditing, object: oldTextAnnotationView.textView)
+                NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidEndEditing, object: oldTextAnnotationView.textView)
             }
             
             if let currentTextAnnotationView = currentTextAnnotationView {

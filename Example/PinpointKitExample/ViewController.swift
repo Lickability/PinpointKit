@@ -11,7 +11,7 @@ import PinpointKit
 
 final class ViewController: UITableViewController {
     
-    private let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
+    fileprivate let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
