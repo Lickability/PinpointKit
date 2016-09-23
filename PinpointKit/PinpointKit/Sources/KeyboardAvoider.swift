@@ -23,18 +23,18 @@ final class KeyboardAvoider {
     init(window: UIWindow) {
         self.window = window
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(KeyboardAvoider.keyboardWillChangeFrame(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardAvoider.keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    @objc private func keyboardWillChangeFrame(notification: NSNotification) {
-        let frameEndValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
-        let animationDurationValue = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSValue
+    @objc private func keyboardWillChangeFrame(_ notification: Notification) {
+        let frameEndValue = (notification as NSNotification).userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
+        let animationDurationValue = (notification as NSNotification).userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSValue
         
-        guard let keyboardEndFrame = frameEndValue?.CGRectValue() else { return }
+        guard let keyboardEndFrame = frameEndValue?.cgRectValue else { return }
         
         let animationDurationNumber = animationDurationValue as? NSNumber
         let animationDuration = animationDurationNumber?.doubleValue ?? 0.0
@@ -42,7 +42,7 @@ final class KeyboardAvoider {
         var difference: CGFloat = 0
         
         for triggerView in triggerViews {
-            let triggerViewFrameInWindow = triggerView.superview?.convertRect(triggerView.frame, toView: window) ?? CGRect.zero
+            let triggerViewFrameInWindow = triggerView.superview?.convert(triggerView.frame, to: window) ?? CGRect.zero
             let intersectsKeyboard = triggerViewFrameInWindow.intersects(keyboardEndFrame)
             
             let triggerKeyboardDifference = intersectsKeyboard ? triggerViewFrameInWindow.maxY - keyboardEndFrame.minY : 0
@@ -56,43 +56,43 @@ final class KeyboardAvoider {
         for avoidingView in viewsToAvoidKeyboard {
             let constraints = avoidingView.superview?.constraints ?? []
             
-            updateAndStoreConstraints(constraints, onView: avoidingView, withDifference: difference, isDismissing: isDismissing)
+            updateAndStore(constraints, on: avoidingView, withDifference: difference, isDismissing: isDismissing)
             
             avoidingView.superview?.layoutIfNeeded()
         }
         
-        UIView.animateWithDuration(animationDuration, animations: {}) { finished in
+        UIView.animate(withDuration: animationDuration, animations: {}) { finished in
             if isDismissing {
-                self.originalConstraintConstants.removeAll(keepCapacity: false)
+                self.originalConstraintConstants.removeAll(keepingCapacity: false)
             }
         }
     }
     
-    private func updateAndStoreConstraints(constraints: [NSLayoutConstraint], onView view: UIView, withDifference difference: CGFloat, isDismissing: Bool) {
+    private func updateAndStore(_ constraints: [NSLayoutConstraint], on view: UIView, withDifference difference: CGFloat, isDismissing: Bool) {
         
         for constraint in constraints {
             let originalConstant = originalConstraintConstants[constraint]
             
-            if let originalConstant = originalConstant where isDismissing {
+            if let originalConstant = originalConstant, isDismissing {
                 constraint.constant = originalConstant
-                originalConstraintConstants.removeValueForKey(constraint)
+                originalConstraintConstants.removeValue(forKey: constraint)
                 
-            } else if !isDismissing && firstOrSecondItemForConstraint(constraint, isEqualToView: view) {
+            } else if !isDismissing && firstOrSecondItem(forConstraint: constraint, isEqualTo: view) {
                 // Only replace contraints that don't already exist.
                 if originalConstant == nil {
                     originalConstraintConstants[constraint] = constraint.constant
                 }
                 
-                if constraint.secondAttribute == .Bottom {
+                if constraint.secondAttribute == .bottom {
                     constraint.constant += difference
-                } else if constraint.secondAttribute == .Top {
+                } else if constraint.secondAttribute == .top {
                     constraint.constant -= difference
                 }
             }
         }
     }
     
-    private func firstOrSecondItemForConstraint(constraint: NSLayoutConstraint, isEqualToView view: UIView) -> Bool {
+    private func firstOrSecondItem(forConstraint constraint: NSLayoutConstraint, isEqualTo view: UIView) -> Bool {
         return constraint.secondItem as? UIView == view || constraint.firstItem as? UIView == view
     }
 }

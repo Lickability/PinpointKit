@@ -9,14 +9,19 @@
 import UIKit
 
 /// The default box annotation view.
-public class BoxAnnotationView: AnnotationView {
+open class BoxAnnotationView: AnnotationView {
 
     // MARK: - Properties
     
     /// The corresponding annotation.
     var annotation: BoxAnnotation? {
         didSet {
-            layer.shadowPath = annotation.flatMap(PathForDrawingBoxAnnotation)?.CGPath
+            if let annotation = annotation {
+                layer.shadowPath = type(of: self).path(for: annotation)?.cgPath
+            } else {
+                layer.shadowPath = nil
+            }
+            
             setNeedsDisplay()
         }
     }
@@ -24,7 +29,6 @@ public class BoxAnnotationView: AnnotationView {
     override var annotationFrame: CGRect? {
         return annotation?.frame
     }
-
 
     // MARK: - Initializers
 
@@ -35,11 +39,11 @@ public class BoxAnnotationView: AnnotationView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        opaque = false
-        contentMode = .Redraw
+        isOpaque = false
+        contentMode = .redraw
 
         layer.shadowOffset = CGSize.zero
-        layer.shadowColor = UIColor.blackColor().CGColor
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 1
         layer.shadowRadius = 4
     }
@@ -48,89 +52,92 @@ public class BoxAnnotationView: AnnotationView {
         fatalError("init(coder:) has not been implemented")
     }
 
-
     // MARK: - UIView
 
-    override public func tintColorDidChange() {
+    override open func tintColorDidChange() {
         super.tintColorDidChange()
         setNeedsDisplay()
     }
 
-    override public func drawRect(rect: CGRect) {
-        tintColor.setFill()
-        annotation?.strokeColor.setStroke()
+    override open func draw(_ rect: CGRect) {
+        guard let annotation = annotation else { return }
 
-        let path = annotation.flatMap(PathForDrawingBoxAnnotation)
+        tintColor.setFill()
+        annotation.strokeColor.setStroke()
+
+        let path = type(of: self).path(for: annotation)
         path?.fill()
         path?.stroke()
     }
 
-    override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        return annotation.flatMap(PathForPointInsideBoxAnnotation).map { $0.containsPoint(point) } ?? false
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        guard let annotation = annotation else { return false }
+        
+        return type(of: self).path(forPointInside: annotation)?.contains(point) ?? false
     }
-
 
     // MARK: - AnnotationView
 
-    override func setSecondControlPoint(point: CGPoint) {
+    override func setSecondControlPoint(_ point: CGPoint) {
         guard let previousAnnotation = annotation else { return }
 
         annotation = BoxAnnotation(startLocation: previousAnnotation.startLocation, endLocation: point, strokeColor: previousAnnotation.strokeColor)
     }
 
-    override func moveControlPoints(translation: CGPoint) {
+    override func move(controlPointsBy translationAmount: CGPoint) {
         guard let previousAnnotation = annotation else { return }
-        let startLocation = CGPoint(x: previousAnnotation.startLocation.x + translation.x, y: previousAnnotation.startLocation.y + translation.y)
-        let endLocation = CGPoint(x: previousAnnotation.endLocation.x + translation.x, y: previousAnnotation.endLocation.y + translation.y)
+        let startLocation = CGPoint(x: previousAnnotation.startLocation.x + translationAmount.x, y: previousAnnotation.startLocation.y + translationAmount.y)
+        let endLocation = CGPoint(x: previousAnnotation.endLocation.x + translationAmount.x, y: previousAnnotation.endLocation.y + translationAmount.y)
         
         annotation = BoxAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: previousAnnotation.strokeColor)
     }
     
-    override func scaleControlPoints(scale: CGFloat) {
+    override func scale(controlPointsBy scaleFactor: CGFloat) {
         guard let previousAnnotation = annotation else { return }
-        let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scale)
-        let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scale)
+        let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scaleFactor)
+        let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scaleFactor)
         
         annotation = BoxAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: previousAnnotation.strokeColor)
     }
 }
 
-private func PathForDrawingBoxAnnotation(annotation: BoxAnnotation) -> UIBezierPath? {
-    let frame = annotation.frame
-    let strokeWidth = annotation.strokeWidth
-    let borderWidth = annotation.borderWidth
-    let cornerRadius = annotation.cornerRadius
+private extension BoxAnnotationView {
     
-    let outerBox = frame.insetBy(dx: strokeWidth, dy: strokeWidth)
-    let innerBox = outerBox.insetBy(dx: borderWidth + strokeWidth, dy: borderWidth + strokeWidth)
-    
-    if min(innerBox.size.height, innerBox.size.width) < (borderWidth + strokeWidth) * 2.0 {
-        return nil
-    }
-    
-    if min(innerBox.size.height, innerBox.size.width) < cornerRadius * 2.5 {
-        return nil
-    }
-    
-    let firstPath = CGPathCreateWithRoundedRect(innerBox, cornerRadius, cornerRadius, nil)
-    let secondPath = CGPathCreateCopyByStrokingPath(firstPath, nil, borderWidth + strokeWidth, .Butt, .Bevel, 100)
-    
-    guard let strokePath = secondPath else { return nil }
-    
-    let path = UIBezierPath(CGPath: strokePath)
-    path.lineWidth = strokeWidth
-    path.closePath()
-    return path
-}
-
-private func PathForPointInsideBoxAnnotation(annotation: BoxAnnotation) -> UIBezierPath? {
-    let outsideStrokeWidth = annotation.borderWidth * 2.0
-    
-    return PathForDrawingBoxAnnotation(annotation)
-        .flatMap { path in
-            CGPathCreateCopyByStrokingPath(path.CGPath, nil, outsideStrokeWidth, .Butt, .Bevel, 0)
+    static func path(for annotation: BoxAnnotation) -> UIBezierPath? {
+        let frame = annotation.frame
+        let strokeWidth = annotation.strokeWidth
+        let borderWidth = annotation.borderWidth
+        let cornerRadius = annotation.cornerRadius
+        
+        let outerBox = frame.insetBy(dx: strokeWidth, dy: strokeWidth)
+        let innerBox = outerBox.insetBy(dx: borderWidth + strokeWidth, dy: borderWidth + strokeWidth)
+        
+        if min(innerBox.size.height, innerBox.size.width) < (borderWidth + strokeWidth) * 2.0 {
+            return nil
         }
-        .map { path in
-            UIBezierPath(CGPath: path)
+        
+        if min(innerBox.size.height, innerBox.size.width) < cornerRadius * 2.5 {
+            return nil
+        }
+        
+        let firstPath = CGPath(roundedRect: innerBox, cornerWidth: cornerRadius, cornerHeight: cornerRadius, transform: nil)
+        let secondPath = firstPath.copy(strokingWithWidth: borderWidth + strokeWidth, lineCap: .butt, lineJoin: .bevel, miterLimit: 100)
+        
+        let path = UIBezierPath(cgPath: secondPath)
+        path.lineWidth = strokeWidth
+        path.close()
+        return path
+    }
+    
+    static func path(forPointInside annotation: BoxAnnotation) -> UIBezierPath? {
+        let outsideStrokeWidth = annotation.borderWidth * 2.0
+        
+        return path(for: annotation)
+            .flatMap { path in
+                path.cgPath.copy(strokingWithWidth: outsideStrokeWidth, lineCap: .butt, lineJoin: .bevel, miterLimit: 0)
+            }
+            .map { path in
+                UIBezierPath(cgPath: path)
+        }
     }
 }

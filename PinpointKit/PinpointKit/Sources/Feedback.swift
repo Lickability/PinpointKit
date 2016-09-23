@@ -14,22 +14,22 @@ public struct Feedback {
     /// An enum with assocated values that represents the screenshot.
     public enum ScreenshotType {
         /// The original, un-annotated screenshot.
-        case Original(image: UIImage)
+        case original(image: UIImage)
         
         /// An annotated screenshot.
-        case Annotated(image: UIImage)
+        case annotated(image: UIImage)
         
         /// Both the original and annotated screenshot.
-        case Combined(originalImage: UIImage, annotatedImage: UIImage)
+        case combined(originalImage: UIImage, annotatedImage: UIImage)
         
         /// Returns an image of the screenshot preferring the annotated image.
         var preferredImage: UIImage {
             switch self {
-            case let Original(image):
+            case let .original(image):
                 return image
-            case let Annotated(image):
+            case let .annotated(image):
                 return image
-            case let Combined(_, annotatedImage):
+            case let .combined(_, annotatedImage):
                 return annotatedImage
             }
         }
@@ -50,7 +50,7 @@ public struct Feedback {
         let bundleIdentifer: String?
         
         /// The operating system version of the OS in which the application is running.
-        let operatingSystemVersion: NSOperatingSystemVersion?
+        let operatingSystemVersion: OperatingSystemVersion?
     }
     
     /// A screenshot of the screen the feedback relates to.

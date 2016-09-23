@@ -11,7 +11,7 @@ import GLKit
 import CoreImage
 
 /// The default blur annotation view.
-public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
+open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
 
     // MARK: - Properties
 
@@ -26,7 +26,7 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
             
             let layer = CAShapeLayer()
             if let annotationFrame = annotationFrame {
-                layer.path = UIBezierPath(rect: annotationFrame).CGPath
+                layer.path = UIBezierPath(rect: annotationFrame).cgPath
             }
             
             GLKView.layer.mask = layer
@@ -65,87 +65,87 @@ public class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     public override init(frame: CGRect) {
         let bounds = CGRect(origin: CGPoint.zero, size: frame.size)
 
-        EAGLContext = OpenGLES.EAGLContext(API: .OpenGLES2)
+        EAGLContext = OpenGLES.EAGLContext(api: .openGLES2)
         GLKView = GLKit.GLKView(frame: bounds, context: EAGLContext)
-        CIContext = CoreImage.CIContext(EAGLContext: EAGLContext, options: [
+        CIContext = CoreImage.CIContext(eaglContext: EAGLContext, options: [
             kCIContextUseSoftwareRenderer: false
         ])
 
         super.init(frame: frame)
 
-        opaque = false
+        isOpaque = false
         
-        GLKView.userInteractionEnabled = false
+        GLKView.isUserInteractionEnabled = false
         GLKView.delegate = self
-        GLKView.contentMode = .Redraw
+        GLKView.contentMode = .redraw
         addSubview(GLKView)
     }
 
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-
+    
     // MARK: - UIView
 
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         GLKView.frame = bounds
     }
 
-    override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return touchTargetFrame?.contains(point) ?? false
     }
     
-    override public func drawRect(rect: CGRect) {
-        super.drawRect(rect)
+    override open func draw(_ rect: CGRect) {
+        super.draw(rect)
         
         if drawsBorder {
-            let context = UIGraphicsGetCurrentContext()
-            tintColor?.colorWithAlphaComponent(self.dynamicType.BorderAlpha).setStroke()
+            guard let context = UIGraphicsGetCurrentContext() else { return }
+            
+            tintColor?.withAlphaComponent(type(of: self).BorderAlpha).setStroke()
             
             // Since this draws under the GLKView, and strokes extend both inside and outside, we have to double the intended width.
             let strokeWidth: CGFloat = 1.0
-            CGContextSetLineWidth(context, strokeWidth * 2.0)
+            context.setLineWidth(strokeWidth * 2.0)
             
             let rect = annotationFrame ?? CGRect.zero
-            CGContextStrokeRect(context, rect)
+            context.stroke(rect)
         }
     }
         
     // MARK: - AnnotationView
 
-    override func setSecondControlPoint(point: CGPoint) {
+    override func setSecondControlPoint(_ point: CGPoint) {
         guard let previousAnnotation = annotation else { return }
         
         annotation = BlurAnnotation(startLocation: previousAnnotation.startLocation, endLocation: point, image: previousAnnotation.image)
     }
 
-    override func moveControlPoints(translation: CGPoint) {
+    override func move(controlPointsBy translationAmount: CGPoint) {
         guard let previousAnnotation = annotation else { return }
-        let startLocation = CGPoint(x: previousAnnotation.startLocation.x + translation.x, y: previousAnnotation.startLocation.y + translation.y)
-        let endLocation = CGPoint(x: previousAnnotation.endLocation.x + translation.x, y: previousAnnotation.endLocation.y + translation.y)
+        let startLocation = CGPoint(x: previousAnnotation.startLocation.x + translationAmount.x, y: previousAnnotation.startLocation.y + translationAmount.y)
+        let endLocation = CGPoint(x: previousAnnotation.endLocation.x + translationAmount.x, y: previousAnnotation.endLocation.y + translationAmount.y)
         
         annotation = BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: previousAnnotation.image)
     }
 
-    override func scaleControlPoints(scale: CGFloat) {
+    override func scale(controlPointsBy scaleFactor: CGFloat) {
         guard let previousAnnotation = annotation else { return }
-        let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scale)
-        let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scale)
+        let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scaleFactor)
+        let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scaleFactor)
         
         annotation = BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: previousAnnotation.image)
     }
 
     // MARK: - GLKViewDelegate
 
-    public func glkView(view: GLKit.GLKView, drawInRect rect: CGRect) {
+    open func glkView(_ view: GLKit.GLKView, drawIn rect: CGRect) {
         glClearColor(0, 0, 0, 0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
 
         if let image = annotation?.blurredImage {
             let drawableRect = CGRect(x: 0, y: 0, width: view.drawableWidth, height: view.drawableHeight)
-            CIContext.drawImage(image, inRect: drawableRect, fromRect: image.extent)
+            CIContext.draw(image, in: drawableRect, from: image.extent)
         }
     }
 }

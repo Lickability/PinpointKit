@@ -18,6 +18,6 @@ extension XCTestCase {
      - returns: A new XCTestExpectation with the given description.
      */
     func defaultExpectation(description: String = #function) -> XCTestExpectation {
-        return expectationWithDescription(description)
+        return expectation(description: description)
     }
 }

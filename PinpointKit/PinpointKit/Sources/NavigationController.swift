@@ -13,7 +13,7 @@ final class NavigationController: UINavigationController, UINavigationController
 
     // MARK: - Initializers
 
-    override init(nibName: String?, bundle nibBundle: NSBundle?) {
+    override init(nibName: String?, bundle nibBundle: Bundle?) {
         super.init(nibName: nibName, bundle: nibBundle)
         delegate = self
     }
@@ -21,7 +21,7 @@ final class NavigationController: UINavigationController, UINavigationController
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         delegate = self
-        modalPresentationStyle = .FullScreen // Necessary for proper transition rotation.
+        modalPresentationStyle = .fullScreen // Necessary for proper transition rotation.
         modalPresentationCapturesStatusBarAppearance = true
     }
 
@@ -32,23 +32,23 @@ final class NavigationController: UINavigationController, UINavigationController
 
     // MARK: - UIViewController
     
-    override func shouldAutorotate() -> Bool {
-        return topViewController?.shouldAutorotate() ?? false
+    override var shouldAutorotate: Bool {
+        return topViewController?.shouldAutorotate ?? false
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        return topViewController?.supportedInterfaceOrientations() ?? .All
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return topViewController?.supportedInterfaceOrientations ?? .all
     }
     
-    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
-        return topViewController?.preferredInterfaceOrientationForPresentation() ?? .Unknown
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return topViewController?.preferredInterfaceOrientationForPresentation ?? .unknown
     }
     
-    override func childViewControllerForStatusBarHidden() -> UIViewController? {
+    override var childViewControllerForStatusBarHidden: UIViewController? {
         return topViewController
     }
     
-    override func childViewControllerForStatusBarStyle() -> UIViewController? {
+    override var childViewControllerForStatusBarStyle: UIViewController? {
         return topViewController
     }
 }

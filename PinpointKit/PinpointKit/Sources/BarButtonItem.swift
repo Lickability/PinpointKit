@@ -19,7 +19,8 @@ extension UIBarButtonItem {
      - parameter action: The bar button item’s action.
      */
     convenience init(doneButtonWithTarget target: AnyObject?, title: String, font: UIFont, action: Selector) {
-        self.init(title: title, style: .Done, target: target, action: action)
-        setTitleTextAttributes([NSFontAttributeName: font], forState: .Normal)
+        self.init(title: title, style: .done, target: target, action: action)
+        
+        setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState())
     }
 }

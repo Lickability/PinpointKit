@@ -83,19 +83,19 @@ public struct InterfaceCustomization {
          - parameter editorTextAnnotationSegmentFont:    The font used for the text annotation tool segment in the editor.
          - parameter editorTextAnnotationDoneButtonFont: The font used for the done button in the editor displayed while editing a text annotation.
          */
-        public init(tintColor: UIColor? = UIColor.pinpointOrangeColor(),
+        public init(tintColor: UIColor? = .pinpointOrange(),
                     annotationFillColor: UIColor? = nil,
-                    annotationStrokeColor: UIColor = .whiteColor(),
+                    annotationStrokeColor: UIColor = .white,
                     annotationTextAttributes: [String: AnyObject]? = nil,
-                    navigationTitleFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold),
-                    feedbackSendButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold),
-                    feedbackCancelButtonFont: UIFont = .sourceSansProFontOfSize(19),
-                    feedbackEditHintFont: UIFont = .sourceSansProFontOfSize(14),
-                    feedbackBackButtonFont: UIFont = .sourceSansProFontOfSize(19),
-                    logCollectionPermissionFont: UIFont = .sourceSansProFontOfSize(19),
-                    logFont: UIFont = .menloRegularFontOfSize(10),
-                    editorTextAnnotationSegmentFont: UIFont = .sourceSansProFontOfSize(18),
-                    editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFontOfSize(19, weight: .Semibold)) {
+                    navigationTitleFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
+                    feedbackSendButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
+                    feedbackCancelButtonFont: UIFont = .sourceSansProFont(ofSize: 19),
+                    feedbackEditHintFont: UIFont = .sourceSansProFont(ofSize: 14),
+                    feedbackBackButtonFont: UIFont = .sourceSansProFont(ofSize: 19),
+                    logCollectionPermissionFont: UIFont = .sourceSansProFont(ofSize: 19),
+                    logFont: UIFont = .menloRegularFont(ofSize: 10),
+                    editorTextAnnotationSegmentFont: UIFont = .sourceSansProFont(ofSize: 18),
+                    editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold)) {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor
@@ -104,11 +104,11 @@ public struct InterfaceCustomization {
             if var customAnnotationTextAttributes = annotationTextAttributes {
                 // Ensure annotation font is set, if not use default font
                 if customAnnotationTextAttributes[NSFontAttributeName] == nil {
-                    customAnnotationTextAttributes[NSFontAttributeName] = self.dynamicType.DefaultAnnotationTextFont
+                    customAnnotationTextAttributes[NSFontAttributeName] = type(of: self).DefaultAnnotationTextFont
                 }
                 self.annotationTextAttributes = customAnnotationTextAttributes
             } else {
-                self.annotationTextAttributes = self.dynamicType.defaultTextAnnotationAttributes
+                self.annotationTextAttributes = type(of: self).defaultTextAnnotationAttributes
             }
             
             self.logFont = logFont
@@ -195,13 +195,13 @@ private extension InterfaceCustomization.Appearance {
     static var defaultTextAnnotationAttributes: [String: AnyObject] {
         let shadow = NSShadow()
         shadow.shadowBlurRadius = 5
-        shadow.shadowColor = UIColor.blackColor()
+        shadow.shadowColor = UIColor.black
         shadow.shadowOffset = .zero
 
         return [NSFontAttributeName: DefaultAnnotationTextFont,
                 NSShadowAttributeName: shadow,
-                NSKernAttributeName: 1.3]
+                NSKernAttributeName: 1.3 as NSNumber]
     }
     
-    static let DefaultAnnotationTextFont = UIFont.sourceSansProFontOfSize(32, weight: .Semibold)
+    static let DefaultAnnotationTextFont = UIFont.sourceSansProFont(ofSize: 32, weight: .semibold)
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 /// The default arrow annotation view.
-public class ArrowAnnotationView: AnnotationView {
+open class ArrowAnnotationView: AnnotationView {
 
     // MARK: - Properties
 
@@ -17,7 +17,7 @@ public class ArrowAnnotationView: AnnotationView {
     var annotation: ArrowAnnotation? {
         didSet {
             setNeedsDisplay()
-            layer.shadowPath = annotation?.path?.CGPath
+            layer.shadowPath = annotation?.path?.cgPath
         }
     }
 
@@ -34,11 +34,11 @@ public class ArrowAnnotationView: AnnotationView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        opaque = false
-        contentMode = .Redraw
+        isOpaque = false
+        contentMode = .redraw
 
         layer.shadowOffset = CGSize.zero
-        layer.shadowColor = UIColor.blackColor().CGColor
+        layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 1
         layer.shadowRadius = 4
     }
@@ -50,12 +50,12 @@ public class ArrowAnnotationView: AnnotationView {
 
     // MARK: - UIView
 
-    override public func tintColorDidChange() {
+    override open func tintColorDidChange() {
         super.tintColorDidChange()
         setNeedsDisplay()
     }
 
-    override public func drawRect(rect: CGRect) {
+    override open func draw(_ rect: CGRect) {
         tintColor.setFill()
         annotation?.strokeColor.setStroke()
 
@@ -64,31 +64,31 @@ public class ArrowAnnotationView: AnnotationView {
         path?.stroke()
     }
 
-    override public func pointInside(point: CGPoint, withEvent event: UIEvent?) -> Bool {
-        return annotation?.touchTargetPath?.containsPoint(point) ?? false
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        return annotation?.touchTargetPath?.contains(point) ?? false
     }
 
 
     // MARK: - AnnotationView
 
-    override func setSecondControlPoint(point: CGPoint) {
+    override func setSecondControlPoint(_ point: CGPoint) {
         guard let previousAnnotation = annotation else { return }
         
         annotation = ArrowAnnotation(startLocation: previousAnnotation.startLocation, endLocation: point, strokeColor: previousAnnotation.strokeColor)
     }
 
-    override func moveControlPoints(translation: CGPoint) {
+    override func move(controlPointsBy translationAmount: CGPoint) {
         guard let previousAnnotation = annotation else { return }
-        let startLocation = CGPoint(x: previousAnnotation.startLocation.x + translation.x, y: previousAnnotation.startLocation.y + translation.y)
-        let endLocation = CGPoint(x: previousAnnotation.endLocation.x + translation.x, y: previousAnnotation.endLocation.y + translation.y)
+        let startLocation = CGPoint(x: previousAnnotation.startLocation.x + translationAmount.x, y: previousAnnotation.startLocation.y + translationAmount.y)
+        let endLocation = CGPoint(x: previousAnnotation.endLocation.x + translationAmount.x, y: previousAnnotation.endLocation.y + translationAmount.y)
         
         annotation = ArrowAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: previousAnnotation.strokeColor)
     }
     
-    override func scaleControlPoints(scale: CGFloat) {
+    override func scale(controlPointsBy scaleFactor: CGFloat) {
         guard let previousAnnotation = annotation else { return }
-        let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scale)
-        let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scale)
+        let startLocation = previousAnnotation.scaledPoint(previousAnnotation.startLocation, scale: scaleFactor)
+        let endLocation = previousAnnotation.scaledPoint(previousAnnotation.endLocation, scale: scaleFactor)
         
         annotation = ArrowAnnotation(startLocation: startLocation, endLocation: endLocation, strokeColor: previousAnnotation.strokeColor)
     }
@@ -101,10 +101,7 @@ private extension ArrowAnnotation {
             return nil
         }
         
-        let path = UIBezierPath.arrowBezierPath(
-            startPoint: startLocation,
-            endPoint: endLocation
-        )
+        let path = UIBezierPath.arrowBezierPath(startLocation, endPoint: endLocation)
         
         path.lineWidth = strokeWidth
         return path
@@ -114,8 +111,9 @@ private extension ArrowAnnotation {
         guard let path = path else { return nil }
         
         let outsideStrokeWidth = strokeWidth * 5.0
-        guard let strokedPath = CGPathCreateCopyByStrokingPath(path.CGPath, nil, outsideStrokeWidth, .Butt, .Bevel, 0) else { return nil }
         
-        return UIBezierPath(CGPath: strokedPath)
+        let strokedPath = path.cgPath.copy(strokingWithWidth: outsideStrokeWidth, lineCap: .butt, lineJoin: .bevel, miterLimit: 0)
+        
+        return UIBezierPath(cgPath: strokedPath)
     }
 }

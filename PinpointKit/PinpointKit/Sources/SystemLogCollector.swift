@@ -7,26 +7,26 @@
 //
 
 /// A log collector that uses [Apple System Logger](https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/LoggingErrorsAndWarnings.html) API to retrieve messages logged to the console with `NSLog`.
-public class SystemLogCollector: LogCollector {
+open class SystemLogCollector: LogCollector {
     
     /**
      The type of logs to collect.
      */
     public enum LoggingType {
         /// Logs from the application target.
-        case Application
+        case application
         
         /// Logs from the testing target.
-        case Testing
+        case testing
     }
     
     private let logger: ASLLogger
     
-    public init(loggingType: LoggingType = .Application) {
+    public init(loggingType: LoggingType = .application) {
         switch loggingType {
-        case .Application:
-            logger = ASLLogger(bundleIdentifier: NSBundle.mainBundle().bundleIdentifier ?? "")
-        case .Testing:
+        case .application:
+            logger = ASLLogger(bundleIdentifier: Bundle.main.bundleIdentifier ?? "")
+        case .testing:
             logger = ASLLogger(senderName: "xctest")
         }
     }
@@ -38,7 +38,7 @@ public class SystemLogCollector: LogCollector {
           
      - returns: Logs as an ordered list of strings, sorted by descending recency.
      */
-    public func retrieveLogs() -> [String] {
+    open func retrieveLogs() -> [String] {
         return logger.retrieveLogs()
     }
 }

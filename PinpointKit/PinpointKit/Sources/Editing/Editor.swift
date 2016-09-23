@@ -20,7 +20,7 @@ public protocol Editor: class, InterfaceCustomizable {
      
      - parameter screenshot: The screenshot to be edited.
      */
-    func setScreenshot(screenshot: UIImage)
+    func setScreenshot(_ screenshot: UIImage)
 }
 
 extension Editor where Self: UIViewController {

@@ -14,14 +14,14 @@ final class CheckmarkCell: UITableViewCell {
     /// Controls whether the receiver displays a checkmark in `imageView`.
     var isChecked: Bool = false {
         didSet {
-            imageView?.hidden = !isChecked
+            imageView?.isHidden = !isChecked
         }
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        imageView?.image = UIImage(named: "Checkmark", inBundle: NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection: nil)
+        imageView?.image = UIImage(named: "Checkmark", in: Bundle(for: type(of: self)), compatibleWith: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {

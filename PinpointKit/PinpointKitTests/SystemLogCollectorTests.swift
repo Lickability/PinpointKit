@@ -13,7 +13,7 @@ class SystemLogCollectorTests: XCTestCase {
     
     func testLogCollectorCollectsLogs() {
         let testString = "TestLog"
-        let systemLogCollector = SystemLogCollector(loggingType: .Testing)
+        let systemLogCollector = SystemLogCollector(loggingType: .testing)
         
         NSLog(testString)
         NSLog(testString)
@@ -21,18 +21,18 @@ class SystemLogCollectorTests: XCTestCase {
         
         let expectation = defaultExpectation()
         
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+            
             let logs = systemLogCollector.retrieveLogs()
             
             guard let firstLog = logs.first else { return XCTFail("There should be at least 1 log.") }
             
             XCTAssertEqual(logs.count, 3)
-            XCTAssertTrue(firstLog.containsString(testString))
+            XCTAssertTrue(firstLog.contains(testString))
             expectation.fulfill()
         }
         
-        waitForExpectationsWithTimeout(5, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testLogCollectorCollecsLogInOrder() {
@@ -40,7 +40,7 @@ class SystemLogCollectorTests: XCTestCase {
         let testString2 = "Second"
         let testString3 = "Third"
         
-        let systemLogCollector = SystemLogCollector(loggingType: .Testing)
+        let systemLogCollector = SystemLogCollector(loggingType: .testing)
         
         NSLog(testString1)
         NSLog(testString2)
@@ -48,8 +48,7 @@ class SystemLogCollectorTests: XCTestCase {
         
         let expectation = defaultExpectation()
         
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.1 * Double(NSEC_PER_SEC)))
-        dispatch_after(delayTime, dispatch_get_main_queue()) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             let logs = systemLogCollector.retrieveLogs()
             
             guard logs.count == 3 else { return XCTFail("Count should be 3.") }
@@ -59,27 +58,27 @@ class SystemLogCollectorTests: XCTestCase {
             let thirdLog = logs[2]
             
             XCTAssertEqual(logs.count, 3)
-            XCTAssertTrue(firstLog.containsString(testString1))
-            XCTAssertTrue(secondLog.containsString(testString2))
-            XCTAssertTrue(thirdLog.containsString(testString3))
+            XCTAssertTrue(firstLog.contains(testString1))
+            XCTAssertTrue(secondLog.contains(testString2))
+            XCTAssertTrue(thirdLog.contains(testString3))
             
             expectation.fulfill()
         }
         
-        waitForExpectationsWithTimeout(5, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testLogCollectorDoesNotCollectPreviousLogs() {
         NSLog("Hey")
         NSLog("I'm a log!")
 
-        let systemLogCollector = SystemLogCollector(loggingType: .Testing)
+        let systemLogCollector = SystemLogCollector(loggingType: .testing)
         
         XCTAssertEqual(systemLogCollector.retrieveLogs().count, 0)
     }
     
     func testLogCollectorHasNoLogsInitially() {
-        let systemLogCollector = SystemLogCollector(loggingType: .Testing)
+        let systemLogCollector = SystemLogCollector(loggingType: .testing)
         
         let logs = systemLogCollector.retrieveLogs()
         

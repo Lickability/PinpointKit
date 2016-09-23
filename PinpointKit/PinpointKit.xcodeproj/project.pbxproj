@@ -30,7 +30,6 @@
 		2CACDFCF1C9C8AFB0002ECBF /* PinpointKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */; };
 		2CB63F1B1C77B1B6000CEFC6 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */; };
 		2CB63F1D1C77B50D000CEFC6 /* Screenshotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */; };
-		2CB63F1F1C77C38B000CEFC6 /* ScreenshotHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1E1C77C38B000CEFC6 /* ScreenshotHeaderView.swift */; };
 		2CB63F211C77CBE9000CEFC6 /* FeedbackTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F201C77CBE9000CEFC6 /* FeedbackTableViewDataSource.swift */; };
 		2CB6C1F21C652D6400022CEB /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F11C652D6400022CEB /* Feedback.swift */; };
 		2CB6C1F61C65361900022CEB /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */; };
@@ -38,6 +37,7 @@
 		2CE6D4011C6E5DA400DD8189 /* SuccessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE6D4001C6E5DA400DD8189 /* SuccessType.swift */; };
 		2CEAF65C1C779C8D009368B8 /* FeedbackNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEAF65B1C779C8D009368B8 /* FeedbackNavigationController.swift */; };
 		2CF3B9321CAF142400C8B29B /* NSBundle+PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF3B9311CAF142400C8B29B /* NSBundle+PinpointKit.swift */; };
+		4C2ADA5F1D95B5EB00B32161 /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2ADA5E1D95B5EB00B32161 /* ScreenshotCell.swift */; };
 		B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B929017D1C555F86007CCA5E /* EditImageViewController.swift */; };
 		B92901811C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */; };
 		B92901841C55639B007CCA5E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901831C55639B007CCA5E /* Fonts.swift */; };
@@ -102,7 +102,6 @@
 		2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = PinpointKit.xcassets; path = ../Resources/PinpointKit.xcassets; sourceTree = "<group>"; };
 		2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screenshotter.swift; sourceTree = "<group>"; };
-		2CB63F1E1C77C38B000CEFC6 /* ScreenshotHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotHeaderView.swift; sourceTree = "<group>"; };
 		2CB63F201C77CBE9000CEFC6 /* FeedbackTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackTableViewDataSource.swift; sourceTree = "<group>"; };
 		2CB6C1F11C652D6400022CEB /* Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotDetector.swift; sourceTree = "<group>"; };
@@ -110,6 +109,7 @@
 		2CE6D4001C6E5DA400DD8189 /* SuccessType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuccessType.swift; sourceTree = "<group>"; };
 		2CEAF65B1C779C8D009368B8 /* FeedbackNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackNavigationController.swift; sourceTree = "<group>"; };
 		2CF3B9311CAF142400C8B29B /* NSBundle+PinpointKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBundle+PinpointKit.swift"; sourceTree = "<group>"; };
+		4C2ADA5E1D95B5EB00B32161 /* ScreenshotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
 		B929017D1C555F86007CCA5E /* EditImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditImageViewController.swift; path = Editing/EditImageViewController.swift; sourceTree = "<group>"; };
 		B92901801C556185007CCA5E /* UIGestureRecognizer+FailRecognizing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+FailRecognizing.swift"; sourceTree = "<group>"; };
 		B92901831C55639B007CCA5E /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
@@ -203,7 +203,7 @@
 				12580A461C65339F00ADC01C /* FeedbackViewController.swift */,
 				2CEAF65B1C779C8D009368B8 /* FeedbackNavigationController.swift */,
 				2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */,
-				2CB63F1E1C77C38B000CEFC6 /* ScreenshotHeaderView.swift */,
+				4C2ADA5E1D95B5EB00B32161 /* ScreenshotCell.swift */,
 				F4F501101D40E5640092AADE /* FeedbackConfiguration.swift */,
 				2CB63F201C77CBE9000CEFC6 /* FeedbackTableViewDataSource.swift */,
 				2CACDFCC1C9C83CE0002ECBF /* CheckmarkCell.swift */,
@@ -422,14 +422,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Lickability;
 				TargetAttributes = {
 					DA0DA6011C53049B0012ADBE = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 					DA0DA60B1C53049B0012ADBE = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -477,7 +479,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CB63F1F1C77C38B000CEFC6 /* ScreenshotHeaderView.swift in Sources */,
 				12580A431C65332C00ADC01C /* MailSender.swift in Sources */,
 				DA7B94F01CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift in Sources */,
 				F4F501111D40E5640092AADE /* FeedbackConfiguration.swift in Sources */,
@@ -523,6 +524,7 @@
 				B92901A51C556791007CCA5E /* Annotations.swift in Sources */,
 				F2BF24061CB9A69200867E01 /* ASLLogger.m in Sources */,
 				F2ACE95F1CE6532000A461E5 /* LogSupporting.swift in Sources */,
+				4C2ADA5F1D95B5EB00B32161 /* ScreenshotCell.swift in Sources */,
 				2C5C41141C6568D60033ED3D /* (null) in Sources */,
 				2CF3B9321CAF142400C8B29B /* NSBundle+PinpointKit.swift in Sources */,
 				12580A471C65339F00ADC01C /* FeedbackViewController.swift in Sources */,
@@ -565,8 +567,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -613,8 +617,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -634,6 +640,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -645,6 +652,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -657,6 +665,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -664,6 +673,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -675,6 +685,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.Lickability.PinpointKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -685,6 +696,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.Lickability.PinpointKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -695,6 +707,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.Lickability.PinpointKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

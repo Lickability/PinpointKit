@@ -12,25 +12,25 @@ import Photos
 /// A class that detects when the user has taken a screenshot and provides it via a delegate callback.
 
 @available(iOS 9.0, *)
-public class ScreenshotDetector: NSObject {
+open class ScreenshotDetector: NSObject {
     
     /// An error encountered when detecting and retreiving a screenshot.
-    enum Error: ErrorType {
+    enum Error: Swift.Error {
         /// The user did not give authorization to this application to their Photo Library.
-        case Unauthorized(status: PHAuthorizationStatus)
+        case unauthorized(status: PHAuthorizationStatus)
         
         /// The screenshot metadata could not be fetched from the library.
-        case FetchFailure
+        case fetchFailure
         
         /// The screenshot image data could not be loaded from the library.
-        case LoadFailure
+        case loadFailure
     }
     
     /// A boolean value indicating whether the detector is enabled. When set to true, the detector will request photo access whenever a screenshot is taken by the user and deliver screenshots to its delegate.
-    public var detectionEnabled: Bool = true
+    open var detectionEnabled: Bool = true
     
     private weak var delegate: ScreenshotDetectorDelegate?
-    private let notificationCenter: NSNotificationCenter
+    private let notificationCenter: NotificationCenter
     private let application: UIApplication
     private let imageManager: PHImageManager
     
@@ -42,7 +42,7 @@ public class ScreenshotDetector: NSObject {
      - parameter application:        An application that will be the `object` of the notification observer.
      - parameter imageManager:       An image manager used to fetch the image data of the screenshot.
      */
-    init(delegate: ScreenshotDetectorDelegate, notificationCenter: NSNotificationCenter = .defaultCenter(), application: UIApplication = .sharedApplication(), imageManager: PHImageManager = .defaultManager()) {
+    init(delegate: ScreenshotDetectorDelegate, notificationCenter: NotificationCenter = .default, application: UIApplication = .shared, imageManager: PHImageManager = .default()) {
         self.delegate = delegate
         self.notificationCenter = notificationCenter
         self.application = application
@@ -50,10 +50,10 @@ public class ScreenshotDetector: NSObject {
         
         super.init()
         
-        notificationCenter.addObserver(self, selector: #selector(ScreenshotDetector.userTookScreenshot(_:)), name: UIApplicationUserDidTakeScreenshotNotification, object: application)
+        notificationCenter.addObserver(self, selector: #selector(ScreenshotDetector.userTookScreenshot(_:)), name: .UIApplicationUserDidTakeScreenshot, object: application)
     }
     
-    @objc private func userTookScreenshot(notification: NSNotification) {
+    @objc private func userTookScreenshot(_ notification: Notification) {
         guard detectionEnabled else { return }
         
         requestPhotosAuthorization()
@@ -61,62 +61,62 @@ public class ScreenshotDetector: NSObject {
     
     private func requestPhotosAuthorization() {
         PHPhotoLibrary.requestAuthorization { authorizationStatus in
-            NSOperationQueue.mainQueue().addOperationWithBlock {
+            OperationQueue.main.addOperation {
                 switch authorizationStatus {
-                case .Authorized:
+                case .authorized:
                     self.findScreenshot()
-                case .Denied, .NotDetermined, .Restricted:
-                    self.fail(.Unauthorized(status: authorizationStatus))
+                case .denied, .notDetermined, .restricted:
+                    self.fail(with: .unauthorized(status: authorizationStatus))
                 }
             }
         }
     }
     
     private func findScreenshot() {
-        guard let screenshot = PHAsset.fetchLastScreenshot() else { fail(.FetchFailure); return }
+        guard let screenshot = PHAsset.fetchLastScreenshot() else { fail(with: .fetchFailure); return }
         
-        imageManager.requestImageForAsset(screenshot,
+        imageManager.requestImage(for: screenshot,
             targetSize: PHImageManagerMaximumSize,
-            contentMode: PHImageContentMode.Default,
+            contentMode: .default,
             options: PHImageRequestOptions.highQualitySynchronousLocalOptions()) { [weak self] image, info in
-            NSOperationQueue.mainQueue().addOperationWithBlock {
+            OperationQueue.main.addOperation {
                 guard let strongSelf = self else { return }
-                guard let image = image else { strongSelf.fail(.LoadFailure); return }
+                guard let image = image else { strongSelf.fail(with: .loadFailure); return }
                 
-                strongSelf.succeed(image)
+                strongSelf.succeed(with: image)
             }
         }
     }
     
-    private func succeed(image: UIImage) {
-        delegate?.screenshotDetector(self, didDetectScreenshot: image)
+    private func succeed(with image: UIImage) {
+        delegate?.screenshotDetector(self, didDetect: image)
     }
     
-    private func fail(error: Error) {
-        delegate?.screenshotDetector(self, didFailWithError: error)
+    private func fail(with error: Error) {
+        delegate?.screenshotDetector(self, didFailWith: error)
     }
 }
 
-/// A protocol that `ScreenshotDetector` uses to inform its delegate of sucessful and failed screenshot detection events.
+/// A protocol that `ScreenshotDetector` uses to inform its delegate of successful and failed screenshot detection events.
 
 @available(iOS 9.0, *)
 protocol ScreenshotDetectorDelegate: class {
     
     /**
-     Notifies the delegate that the detector did sucessfully detect a screenshot.
+     Notifies the delegate that the detector did successfully detect a screenshot.
      
      - parameter screenshotDetector: The detector responsible for the message.
-     - parameter screenshot:         The screeenshot that was detected.
+     - parameter screenshot:         The screenshot that was detected.
      */
-    func screenshotDetector(screenshotDetector: ScreenshotDetector, didDetectScreenshot screenshot: UIImage)
+    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didDetect screenshot: UIImage)
     
     /**
      Notifies the delegate that the detector failed to detect a screenshot.
      
      - parameter screenshotDetector: The detector responsible for the message.
-     - parameter error:              The error that occurred while attempting to detecting the screenshot.
+     - parameter error:              The error that occurred while attempting to detect the screenshot.
      */
-    func screenshotDetector(screenshotDetector: ScreenshotDetector, didFailWithError error: ScreenshotDetector.Error)
+    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didFailWith error: ScreenshotDetector.Error)
 }
 
 @available(iOS 9.0, *)
@@ -126,12 +126,12 @@ private extension PHAsset {
         let options = PHFetchOptions()
         
         options.fetchLimit = 1
-        options.includeAssetSourceTypes = [.TypeUserLibrary]
+        options.includeAssetSourceTypes = [.typeUserLibrary]
         options.wantsIncrementalChangeDetails = false
-        options.predicate = NSPredicate(format: "(mediaSubtype & %d) != 0", PHAssetMediaSubtype.PhotoScreenshot.rawValue)
+        options.predicate = NSPredicate(format: "(mediaSubtype & %d) != 0", PHAssetMediaSubtype.photoScreenshot.rawValue)
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
-        return PHAsset.fetchAssetsWithMediaType(.Image, options: options).firstObject as? PHAsset
+        return PHAsset.fetchAssets(with: .image, options: options).firstObject
     }
 }
 
@@ -140,9 +140,9 @@ private extension PHImageRequestOptions {
     
     static func highQualitySynchronousLocalOptions() -> PHImageRequestOptions {
         let options = PHImageRequestOptions()
-        options.deliveryMode = .HighQualityFormat
-        options.networkAccessAllowed = false
-        options.synchronous = true
+        options.deliveryMode = .highQualityFormat
+        options.isNetworkAccessAllowed = false
+        options.isSynchronous = true
         
         return options
     }

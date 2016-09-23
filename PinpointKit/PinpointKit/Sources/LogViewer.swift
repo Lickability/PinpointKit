@@ -15,5 +15,5 @@ public protocol LogViewer: InterfaceCustomizable {
      - parameter collector:      The collector which has the logs to view.
      - parameter viewController: A view controller from which to present an interface for log viewing.
      */
-    func viewLog(collector: LogCollector, fromViewController viewController: UIViewController)
+    func viewLog(in collector: LogCollector, from viewController: UIViewController)
 }

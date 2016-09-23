@@ -13,13 +13,13 @@ import UIKit
 public enum FontWeight: Int {
     
     /// Regular weight.
-    case Regular
+    case regular
     
     /// Semibold weight.
-    case Semibold
+    case semibold
     
     /// Bold weight.
-    case Bold
+    case bold
 }
 
 public extension UIFont {
@@ -32,23 +32,23 @@ public extension UIFont {
      
      - returns: A Source Sans Pro `UIFont` at the specified size and weight.
      */
-    public static func sourceSansProFontOfSize(fontSize: CGFloat, weight: FontWeight = .Regular) -> UIFont {
+    public static func sourceSansProFont(ofSize fontSize: CGFloat, weight: FontWeight = .regular) -> UIFont {
         let fontName: String = {
             switch weight {
-            case .Regular:
+            case .regular:
                 return "SourceSansPro-Regular"
-            case .Semibold:
+            case .semibold:
                 return "SourceSansPro-Semibold"
-            case .Bold:
+            case .bold:
                 return "SourceSansPro-Bold"
             }
         }()
         
-        if let fontURL = NSBundle.pinpointKitBundle().URLForResource(fontName, withExtension: "ttf") {
-            CTFontManagerRegisterFontsForURL(fontURL, .Process, nil)
+        if let fontURL = Bundle.pinpointKitBundle().url(forResource: fontName, withExtension: "ttf") {
+            CTFontManagerRegisterFontsForURL(fontURL as CFURL, .process, nil)
         }
         
-        return UIFont(name: fontName, size: fontSize) ?? UIFont.systemFontOfSize(fontSize)
+        return UIFont(name: fontName, size: fontSize) ?? .systemFont(ofSize: fontSize)
     }
     
     /**
@@ -58,7 +58,7 @@ public extension UIFont {
      
      - returns: A `UIFont` representing Menlo Regular at the specified size.
      */
-    public static func menloRegularFontOfSize(fontSize: CGFloat) -> UIFont {
-        return UIFont(name: "Menlo-Regular", size: fontSize) ?? UIFont.systemFontOfSize(fontSize)
+    public static func menloRegularFont(ofSize fontSize: CGFloat) -> UIFont {
+        return UIFont(name: "Menlo-Regular", size: fontSize) ?? .systemFont(ofSize: fontSize)
     }
 }

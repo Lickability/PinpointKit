@@ -14,13 +14,13 @@ extension PinpointKit: ShakeDetectingWindowDelegate {
     
     // MARK: - ShakeDetectingWindowDelegate
     
-    public func shakeDetectingWindowDidDetectShake(shakeDetectingWindow: ShakeDetectingWindow) {
+    public func shakeDetectingWindowDidDetectShake(_ shakeDetectingWindow: ShakeDetectingWindow) {
         guard let viewController = shakeDetectingWindow.rootViewController?.pinpointTopModalViewController() else {
             NSLog("PinpointPresentingShakeDetectingWindowDelegate couldn't find a root view controller to present on.")
             return
         }
         
-        show(fromViewController: viewController)
+        show(from: viewController)
     }
 }
 

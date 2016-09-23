@@ -46,8 +46,8 @@ class Annotation {
      
      - returns: The scaled point.
      */
-    func scaledPoint(point: CGPoint, scale: CGFloat) -> CGPoint {
-        var scaledRect = CGRectApplyAffineTransform(frame, CGAffineTransformMakeScale(scale, scale))
+    func scaledPoint(_ point: CGPoint, scale: CGFloat) -> CGPoint {
+        var scaledRect = frame.applying(CGAffineTransform(scaleX: scale, y: scale))
         
         let centeredXDistance = scaledRect.width / 2.0 - frame.width / 2.0
         let centeredYDistance = scaledRect.height / 2.0 - frame.height / 2.0
@@ -160,25 +160,25 @@ class BlurAnnotation: Annotation {
         var image: CIImage? = self.image
         let extent = image?.extent
 
-        let transform = NSValue(CGAffineTransform: CGAffineTransformIdentity)
+        let transform = NSValue(cgAffineTransform: CGAffineTransform.identity)
         let affineClampFilter = CIFilter(name: "CIAffineClamp")
         affineClampFilter?.setValue(image, forKey: kCIInputImageKey)
         affineClampFilter?.setValue(transform, forKey: kCIInputTransformKey)
-        image = affineClampFilter?.valueForKey(kCIOutputImageKey) as? CIImage
+        image = affineClampFilter?.value(forKey: kCIOutputImageKey) as? CIImage
 
         let pixellateFilter = CIFilter(name: "CIPixellate")
         pixellateFilter?.setValue(image, forKey: kCIInputImageKey)
         
         let inputScale = 16
         pixellateFilter?.setValue(inputScale, forKey: kCIInputScaleKey)
-        image = pixellateFilter?.valueForKey(kCIOutputImageKey) as? CIImage
+        image = pixellateFilter?.value(forKey: kCIOutputImageKey) as? CIImage
 
-        if let imageValue = image, extentValue = extent {
-            let vector = CIVector(CGRect: extentValue)
+        if let imageValue = image, let extentValue = extent {
+            let vector = CIVector(cgRect: extentValue)
             let filter: CIFilter? = CIFilter(name: "CICrop")
             filter?.setValue(imageValue, forKey: kCIInputImageKey)
             filter?.setValue(vector, forKey: "inputRectangle")
-            image = filter?.valueForKey(kCIOutputImageKey) as? CIImage
+            image = filter?.value(forKey: kCIOutputImageKey) as? CIImage
         }
 
         return image
@@ -195,6 +195,6 @@ class BlurAnnotation: Annotation {
      */
     init(startLocation: CGPoint, endLocation: CGPoint, image: CIImage) {
         self.image = image
-        super.init(startLocation: startLocation, endLocation: endLocation, strokeColor: .clearColor())
+        super.init(startLocation: startLocation, endLocation: endLocation, strokeColor: .clear)
     }
 }

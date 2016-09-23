@@ -12,45 +12,45 @@ import UIKit
 enum Tool: Int {
     
     /// The arrow tool.
-    case Arrow
+    case arrow
     
     /// The box tool.
-    case Box
+    case box
     
     /// The text tool.
-    case Text
+    case text
     
     /// The blur tool.
-    case Blur
+    case blur
     
     /// The name of the tool.
     var name: String {
         switch self {
-        case .Arrow:
+        case .arrow:
             return "Arrow Tool"
-        case .Box:
+        case .box:
             return "Box Tool"
-        case .Text:
+        case .text:
             return "Text Tool"
-        case .Blur:
+        case .blur:
             return "Blur Tool"
         }
     }
     
     /// The image for the tool.
     var image: UIImage {
-        let bundle = NSBundle.pinpointKitBundle()
+        let bundle = Bundle.pinpointKitBundle()
         
         func loadImage() -> UIImage? {
             switch self {
-            case .Arrow:
-                return UIImage(named: "ArrowIcon", inBundle: bundle, compatibleWithTraitCollection: nil)
-            case .Box:
-                return UIImage(named: "BoxIcon", inBundle: bundle, compatibleWithTraitCollection: nil)
-            case .Text:
+            case .arrow:
+                return UIImage(named: "ArrowIcon", in: bundle, compatibleWith: nil)
+            case .box:
+                return UIImage(named: "BoxIcon", in: bundle, compatibleWith: nil)
+            case .text:
                 return UIImage()
-            case .Blur:
-                return UIImage(named: "BlurIcon", inBundle: bundle, compatibleWithTraitCollection: nil)
+            case .blur:
+                return UIImage(named: "BlurIcon", in: bundle, compatibleWith: nil)
             }
         }
         
@@ -60,12 +60,12 @@ enum Tool: Int {
     /// The item to use for a segmented control.
     var segmentedControlItem: AnyObject {
         switch self {
-        case .Arrow, .Box, .Blur:
+        case .arrow, .box, .blur:
             let image = self.image
             image.accessibilityLabel = self.name
             return image
-        case .Text:
-            return NSLocalizedString("Aa", comment: "The text tool’s button label.")
+        case .text:
+            return NSLocalizedString("Aa", comment: "The text tool’s button label.") as AnyObject
         }
     }
 }
