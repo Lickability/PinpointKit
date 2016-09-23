@@ -167,6 +167,11 @@ public final class FeedbackViewController: UITableViewController {
     
     @objc private func sendButtonTapped() {
         
+        guard let feedbackConfiguration = feedbackConfiguration else {
+            assertionFailure("You must set `feedbackConfiguration` before attempting to send feedback.")
+            return
+        }
+        
         let logs = userEnabledLogCollection ? logCollector?.retrieveLogs() : nil
         
         let feedback: Feedback?
