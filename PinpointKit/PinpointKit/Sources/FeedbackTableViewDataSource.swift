@@ -12,16 +12,20 @@ import UIKit
 final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     
     private let sections: [Section]
+    private weak var delegate: FeedbackTableViewDataSourceDelegate?
     
     /**
      Initializes the data source with a configuration and a boolean value indicating whether the user has enabled log collection.
      
      - parameter interfaceCustomization:   The interface customization used to set up the data source.
+     - parameter screenshot:               The screenshot to display for annotating.
      - parameter logSupporting:            The object the controls the support of logging.
      - parameter userEnabledLogCollection: A boolean value indicating whether the user has enabled log collection.
+     - parameter delegate:                 The object informed when a screenshot is tapped.
      */
-    init(interfaceCustomization: InterfaceCustomization, logSupporting: LogSupporting, userEnabledLogCollection: Bool) {
-        sections = type(of: self).sectionsFromConfiguration(interfaceCustomization, logSupporting: logSupporting, userEnabledLogCollection: userEnabledLogCollection)
+    init(interfaceCustomization: InterfaceCustomization, screenshot: UIImage, logSupporting: LogSupporting, userEnabledLogCollection: Bool, delegate: FeedbackTableViewDataSourceDelegate? = nil) {
+        sections = type(of: self).sectionsFromConfiguration(interfaceCustomization, screenshot: screenshot, logSupporting: logSupporting, userEnabledLogCollection: userEnabledLogCollection)
+        self.delegate = delegate
     }
     
     private enum Section {
@@ -36,18 +40,56 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     private enum Row {
+        case screenshot(screensot: UIImage, hintText: String?, hintFont: UIFont)
         case collectLogs(enabled: Bool, title: String, font: UIFont, canView: Bool)
     }
     
     // MARK: - FeedbackTableViewDataSource
     
-    private static func sectionsFromConfiguration(_ interfaceCustomization: InterfaceCustomization, logSupporting: LogSupporting, userEnabledLogCollection: Bool) -> [Section] {
+    private static func sectionsFromConfiguration(_ interfaceCustomization: InterfaceCustomization, screenshot: UIImage, logSupporting: LogSupporting, userEnabledLogCollection: Bool) -> [Section] {
         guard logSupporting.logCollector != nil else { return [] }
         
-        let collectLogsRow = Row.collectLogs(enabled: userEnabledLogCollection, title: interfaceCustomization.interfaceText.logCollectionPermissionTitle, font: interfaceCustomization.appearance.logCollectionPermissionFont, canView: logSupporting.logViewer != nil)
-        let feedbackSection = Section.feedback(rows: [collectLogsRow])
+        let screenshotRow = Row.screenshot(screensot: screenshot, hintText: interfaceCustomization.interfaceText.feedbackEditHint, hintFont: interfaceCustomization.appearance.feedbackEditHintFont)
+        let screenshotSection = Section.feedback(rows: [screenshotRow])
         
-        return [feedbackSection]
+        let collectLogsRow = Row.collectLogs(enabled: userEnabledLogCollection, title: interfaceCustomization.interfaceText.logCollectionPermissionTitle, font: interfaceCustomization.appearance.logCollectionPermissionFont, canView: logSupporting.logViewer != nil)
+        let collectLogsSection = Section.feedback(rows: [collectLogsRow])
+        
+        return [screenshotSection, collectLogsSection]
+    }
+    
+    private func checkmarkCell(for row: Row) -> CheckmarkCell {
+        let cell = CheckmarkCell()
+
+        guard case let .collectLogs(enabled, title, font, canView) = row else {
+            assertionFailure("Found unexpected row type when creating checkmark cell.")
+            return cell
+        }
+        
+        cell.textLabel?.text = title
+        cell.textLabel?.font = font
+        cell.accessoryType = canView ? .detailButton : .none
+        cell.isChecked = enabled
+        
+        return cell
+    }
+    
+    private func screenshotCell(for row: Row) -> ScreenshotCell {
+        let cell = ScreenshotCell()
+        
+        guard case let .screenshot(screenshot, hintText, hintFont) = row else {
+            assertionFailure("Found unexpected row type when creating screenshot cell.")
+            return cell
+        }
+        
+        cell.viewModel = ScreenshotCell.ViewModel(screenshot: screenshot, hintText: hintText, hintFont: hintFont)
+        cell.screenshotButtonTapHandler = { [weak self] button in
+            guard let strongSelf = self else { return }
+            
+            strongSelf.delegate?.feedbackTableViewDataSource(feedbackTableViewDataSource: strongSelf, didTapScreenshot: screenshot)
+        }
+        
+        return cell
     }
     
     // MARK: - UITableViewDataSource
@@ -61,22 +103,29 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = CheckmarkCell()
         let section = sections[indexPath.section]
         
-        switch section {
+        switch sections[indexPath.section] {
         case let .feedback(rows):
             let row = rows[indexPath.row]
-            
             switch row {
-            case let .collectLogs(enabled, title, font, canView):
-                cell.textLabel?.text = title
-                cell.textLabel?.font = font
-                cell.accessoryType = canView ? .detailButton : .none
-                cell.isChecked = enabled
+            case .screenshot:
+                return screenshotCell(for: row)
+            case .collectLogs:
+                return checkmarkCell(for: row)
             }
         }
-        
-        return cell
     }
+}
+
+/// Delegate protocol describing a type that is informed of screenshot tapping events.
+protocol FeedbackTableViewDataSourceDelegate: class {
+    
+    /**
+     Notifies the delegate when a screenshot is tapped.
+     
+     - parameter feedbackTableViewDataSource: The feedback table view data source that sent the message.
+     - parameter screenshot:                  The screenshot that was tapped.
+     */
+    func feedbackTableViewDataSource(feedbackTableViewDataSource: FeedbackTableViewDataSource, didTapScreenshot screenshot: UIImage)
 }
