@@ -56,20 +56,20 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         return view
         }()
     
-    private let imageView: UIImageView = {
+    fileprivate let imageView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private let annotationsView: AnnotationsView = {
+    fileprivate let annotationsView: AnnotationsView = {
         let view = AnnotationsView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private var shouldPromptBeforeDismissal: Bool {
-        return !hasACopyOfCurrentComposition && annotationsView.subviews.count >= self.dynamicType.MinimumAnnotationsNeededToPromptBeforeDismissal
+        return !hasACopyOfCurrentComposition && annotationsView.subviews.count >= type(of: self).MinimumAnnotationsNeededToPromptBeforeDismissal
     }
     
     private var createAnnotationPanGestureRecognizer: UIPanGestureRecognizer! = nil
@@ -93,7 +93,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     private lazy var doneBarButtonItem: UIBarButtonItem = {
         guard let doneButtonFont = self.interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return UIBarButtonItem() }
-        return UIBarButtonItem(doneButtonWithTarget: self, font: doneButtonFont, action: #selector(EditImageViewController.doneButtonTapped(_:)))
+        guard let doneButtonTitle = self.interfaceCustomization?.interfaceText.textEditingDoneButtonTitle else { assertionFailure(); return UIBarButtonItem() }
+        return UIBarButtonItem(doneButtonWithTarget: self, title: doneButtonTitle, font: doneButtonFont, action: #selector(EditImageViewController.doneButtonTapped(_:)))
     }()
     
     private var currentTool: Tool? {
@@ -173,7 +174,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         return true
     }
     
-    public override func canPerformAction(_ action: Selector, withSender sender: AnyObject?) -> Bool {
+    public override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         let textViewIsEditing = currentTextAnnotationView?.textView.isFirstResponder ?? false
         return action == #selector(EditImageViewController.deleteSelectedAnnotationView) && !textViewIsEditing
     }
@@ -420,7 +421,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func endEditingTextView(_ checksFirstResponder: Bool = true) {
-        if let textView = currentTextAnnotationView?.textView where !checksFirstResponder || textView.isFirstResponder {
+        if let textView = currentTextAnnotationView?.textView, !checksFirstResponder || textView.isFirstResponder {
             textView.resignFirstResponder()
             
             if !textView.hasText {
@@ -450,7 +451,9 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private func updateInterfaceCustomization() {
         guard let appearance = interfaceCustomization?.appearance else { assertionFailure(); return }
         segmentedControl.setTitleTextAttributes([NSFontAttributeName: appearance.editorTextAnnotationSegmentFont], for: UIControlState())
-        UITextView.appearance(whenContainedInInstancesOf: [TextAnnotationView.self]).font = appearance.editorTextAnnotationFont
+        
+        guard let annotationFont = appearance.annotationTextAttributes[NSFontAttributeName] as? UIFont else { assertionFailure(); return }
+        UITextView.appearance(whenContainedInInstancesOf: [TextAnnotationView.self]).font = annotationFont
         
         if let annotationFillColor = appearance.annotationFillColor {
             annotationsView.tintColor = annotationFillColor
@@ -475,10 +478,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     private func handleCreateAnnotationGestureRecognizerBegan(_ gestureRecognizer: UIGestureRecognizer) {
         guard let currentTool = currentTool else { return }
         guard let annotationStrokeColor = interfaceCustomization?.appearance.annotationStrokeColor else { return }
+        guard let annotationTextAttributes = interfaceCustomization?.appearance.annotationTextAttributes else { return }
         
         let currentLocation = gestureRecognizer.location(in: annotationsView)
         
-        let factory = AnnotationViewFactory(image: imageView.image?.cgImage, currentLocation: currentLocation, tool: currentTool, strokeColor: annotationStrokeColor)
+        let factory = AnnotationViewFactory(image: imageView.image?.cgImage, currentLocation: currentLocation, tool: currentTool, strokeColor: annotationStrokeColor, textAttributes: annotationTextAttributes)
         
         let view: AnnotationView = factory.annotationView()
         

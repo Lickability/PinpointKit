@@ -9,7 +9,7 @@
 import Foundation
 
 /// A class responsible for generating a screenshot image of all windows shown by a `UIApplication` on a given `UIScreen`.
-public class Screenshotter {
+open class Screenshotter {
 
     /**
      Takes and returns a screenshot of all of an application’s windows displayed on a given screen.
@@ -19,7 +19,7 @@ public class Screenshotter {
      
      - returns: A screenshot as a `UIImage`.
      */
-    public static func takeScreenshot(of application: UIApplication = UIApplication.shared, on screen: UIScreen = UIScreen.main) -> UIImage {
+    open static func takeScreenshot(of application: UIApplication = UIApplication.shared, on screen: UIScreen = UIScreen.main) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(screen.bounds.size, true, 0)
         
         application.windows.forEach { window in

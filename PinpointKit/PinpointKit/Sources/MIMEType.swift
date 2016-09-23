@@ -21,7 +21,7 @@ enum MIMEType: String {
     /// The file extension associated with the MIME type including the leading `.`.
     var fileExtension: String {
         switch self {
-        case PNG:
+        case .PNG:
             return ".png"
         case .JSON:
             return ".json"

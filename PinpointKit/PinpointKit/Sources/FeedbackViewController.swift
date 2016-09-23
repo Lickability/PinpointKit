@@ -30,7 +30,7 @@ public final class FeedbackViewController: UITableViewController {
     // MARK: - FeedbackCollector
     
     public weak var feedbackDelegate: FeedbackCollectorDelegate?
-    public var feedbackRecipients: [String]?
+    public var feedbackConfiguration: FeedbackConfiguration?
     
     // MARK: - FeedbackViewController
     
@@ -57,7 +57,7 @@ public final class FeedbackViewController: UITableViewController {
         }
     }
     
-    private var userEnabledLogCollection = true {
+    fileprivate var userEnabledLogCollection = true {
         didSet {
             updateDataSource()
         }
@@ -82,7 +82,6 @@ public final class FeedbackViewController: UITableViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         editor?.delegate = self
-        updateInterfaceCustomization()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -90,6 +89,7 @@ public final class FeedbackViewController: UITableViewController {
         
         // Since this view controller could be reused in another orientation, update the table header view on every appearance to reflect the current orientation sizing.
         updateTableHeaderView()
+        updateInterfaceCustomization()
     }
     
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -109,8 +109,8 @@ public final class FeedbackViewController: UITableViewController {
         dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, logSupporting: self, userEnabledLogCollection: userEnabledLogCollection)
     }
     
-    private func updateTableHeaderView() {
-        guard let screenshot = screenshot, editor = editor else { return }
+    fileprivate func updateTableHeaderView() {
+        guard let screenshot = screenshot, let editor = editor else { return }
         let screenshotToDisplay = annotatedScreenshot ?? screenshot
         
         // We must set the screenshot before showing the view controller.
@@ -153,7 +153,12 @@ public final class FeedbackViewController: UITableViewController {
         }
         
         cancelBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackCancelButtonFont], for: UIControlState())
-        navigationItem.leftBarButtonItem = cancelBarButtonItem
+        
+        if presentingViewController != nil {
+            navigationItem.leftBarButtonItem = cancelBarButtonItem
+        } else {
+            navigationItem.leftBarButtonItem = nil
+        }
         
         view.tintColor = appearance.tintColor
         updateTableHeaderView()
@@ -167,9 +172,9 @@ public final class FeedbackViewController: UITableViewController {
         let feedback: Feedback?
         
         if let screenshot = annotatedScreenshot {
-            feedback = Feedback(screenshot: .annotated(image: screenshot), recipients: feedbackRecipients, logs: logs)
+            feedback = Feedback(screenshot: .annotated(image: screenshot), logs: logs, configuration: feedbackConfiguration)
         } else if let screenshot = screenshot {
-            feedback = Feedback(screenshot: .original(image: screenshot), recipients: feedbackRecipients, logs: logs)
+            feedback = Feedback(screenshot: .original(image: screenshot), logs: logs, configuration: feedbackConfiguration)
         } else {
             feedback = nil
         }
@@ -179,7 +184,12 @@ public final class FeedbackViewController: UITableViewController {
         feedbackDelegate?.feedbackCollector(self, didCollect: feedbackToSend)
     }
     
-    @objc private func cancelButtonTapped() {        
+    @objc private func cancelButtonTapped() {
+        guard presentingViewController != nil else {
+            assertionFailure("Attempting to dismiss `FeedbackViewController` in unexpected presentation context.")
+            return
+        }
+        
         dismiss(animated: true, completion: nil)
     }
 }

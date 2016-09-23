@@ -9,7 +9,7 @@
 import UIKit
 
 /// The default text annotation view.
-public class TextAnnotationView: AnnotationView, UITextViewDelegate {
+open class TextAnnotationView: AnnotationView, UITextViewDelegate {
     private static let TextViewInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
     private static let TextViewLineFragmentPadding: CGFloat = 5.0
     
@@ -66,7 +66,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     
     // MARK: - UIView
     
-    override public func tintColorDidChange() {
+    override open func tintColorDidChange() {
         textView.typingAttributes = {
             var attributes = self.textView.typingAttributes
             attributes[NSForegroundColorAttributeName] = self.tintColor
@@ -74,7 +74,7 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
         }()
     }
     
-    override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return annotationFrame?.contains(point) ?? false
     }
         
@@ -91,18 +91,11 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     // MARK: - TextAnnotationView
     
     /// The attributes of the text to use for an `NSAttributedString`.
-    var textAttributes: [String: AnyObject] {
-        let shadow = NSShadow()
-        shadow.shadowBlurRadius = 5
-        shadow.shadowColor = UIColor(white: 0.0, alpha: 1.0)
-        shadow.shadowOffset = CGSize.zero
-        
-        return [
-            NSFontAttributeName: font,
-            NSForegroundColorAttributeName: tintColor,
-            NSShadowAttributeName: shadow,
-            NSKernAttributeName: 1.3
-        ]
+    var textAttributes: [String: AnyObject] = [:] {
+        didSet {
+            textAttributes[NSFontAttributeName] = font
+            textView.typingAttributes = textAttributes
+        }
     }
     
     private var font: UIFont {
@@ -155,17 +148,17 @@ public class TextAnnotationView: AnnotationView, UITextViewDelegate {
     
     // MARK: - UITextViewDelegate
     
-    public func textViewDidChange(_ textView: UITextView) {
+    open func textViewDidChange(_ textView: UITextView) {
         updateTextViewFrame()
     }
     
-    public func textViewDidBeginEditing(_ textView: UITextView) {
+    open func textViewDidBeginEditing(_ textView: UITextView) {
         textView.backgroundColor = UIColor(white: 1.0, alpha: 0.3)
         textView.layer.borderWidth = 1
-        textView.layer.borderColor = tintColor.withAlphaComponent(self.dynamicType.BorderAlpha).cgColor
+        textView.layer.borderColor = tintColor.withAlphaComponent(type(of: self).BorderAlpha).cgColor
     }
     
-    public func textViewDidEndEditing(_ textView: UITextView) {
+    open func textViewDidEndEditing(_ textView: UITextView) {
         textView.isSelectable = false
         textView.isEditable = false
         

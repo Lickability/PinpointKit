@@ -9,7 +9,7 @@
 import UIKit
 
 /// The base annotation `UIView` subclass.
-public class AnnotationView: UIView {
+open class AnnotationView: UIView {
     
     /// The alpha value used for annotation borders.
     static let BorderAlpha: CGFloat = 0.7

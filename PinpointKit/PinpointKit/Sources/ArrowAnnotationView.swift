@@ -9,7 +9,7 @@
 import UIKit
 
 /// The default arrow annotation view.
-public class ArrowAnnotationView: AnnotationView {
+open class ArrowAnnotationView: AnnotationView {
 
     // MARK: - Properties
 
@@ -50,12 +50,12 @@ public class ArrowAnnotationView: AnnotationView {
 
     // MARK: - UIView
 
-    override public func tintColorDidChange() {
+    override open func tintColorDidChange() {
         super.tintColorDidChange()
         setNeedsDisplay()
     }
 
-    override public func draw(_ rect: CGRect) {
+    override open func draw(_ rect: CGRect) {
         tintColor.setFill()
         annotation?.strokeColor.setStroke()
 
@@ -64,7 +64,7 @@ public class ArrowAnnotationView: AnnotationView {
         path?.stroke()
     }
 
-    override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         return annotation?.touchTargetPath?.contains(point) ?? false
     }
 
@@ -111,7 +111,8 @@ private extension ArrowAnnotation {
         guard let path = path else { return nil }
         
         let outsideStrokeWidth = strokeWidth * 5.0
-        guard let strokedPath = CGPath(copyByStroking: path.cgPath, transform: nil, lineWidth: outsideStrokeWidth, lineCap: .butt, lineJoin: .bevel, miterLimit: 0) else { return nil }
+        
+        let strokedPath = path.cgPath.copy(strokingWithWidth: outsideStrokeWidth, lineCap: .butt, lineJoin: .bevel, miterLimit: 0)
         
         return UIBezierPath(cgPath: strokedPath)
     }

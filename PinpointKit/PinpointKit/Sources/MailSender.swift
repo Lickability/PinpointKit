@@ -9,7 +9,7 @@
 import MessageUI
 
 /// A `Sender` that uses `MessageUI` to send an email containing the feedback.
-public class MailSender: NSObject, Sender {
+open class MailSender: NSObject, Sender {
 
     /// An error in sending feedback.
     enum Error: Swift.Error {
@@ -51,7 +51,7 @@ public class MailSender: NSObject, Sender {
     // MARK: - Sender
     
     /// A delegate that is informed of successful or failed feedback sending.
-    weak public var delegate: SenderDelegate?
+    weak open var delegate: SenderDelegate?
     
     /**
      Sends the feedback using the provided view controller as a presenting view controller.
@@ -59,7 +59,7 @@ public class MailSender: NSObject, Sender {
      - parameter feedback:       The feedback to send.
      - parameter viewController: The view controller from which to present any of the sender’s necessary views.
      */
-    public func send(_ feedback: Feedback, from viewController: UIViewController?) {
+    open func send(_ feedback: Feedback, from viewController: UIViewController?) {
         guard let viewController = viewController else { fail(with: .noViewControllerProvided); return }
         
         guard MFMailComposeViewController.canSendMail() else { fail(with: .mailCannotSend); return }
@@ -82,12 +82,12 @@ public class MailSender: NSObject, Sender {
     
     // MARK: - MailSender
     
-    private func fail(with error: Error) {
+    fileprivate func fail(with error: Error) {
         delegate?.sender(self, didFailToSend: feedback, error: error)
         feedback = nil
     }
     
-    private func succeed(with success: Success) {
+    fileprivate func succeed(with success: Success) {
         delegate?.sender(self, didSend: feedback, success: success)
         feedback = nil
     }
@@ -96,24 +96,24 @@ public class MailSender: NSObject, Sender {
 private extension MFMailComposeViewController {
     
     func attach(_ feedback: Feedback) throws {
-        setToRecipients(feedback.recipients)
+        setToRecipients(feedback.configuration?.recipients)
         
-        if let subject = feedback.title {
+        if let subject = feedback.configuration?.title {
             setSubject(subject)
         }
         
-        if let body = feedback.body {
+        if let body = feedback.configuration?.body {
            setMessageBody(body, isHTML: false)
         }
         
-        try attach(feedback.screenshot, screenshotFileName: feedback.screenshotFileName)
+        try attach(feedback.screenshot, screenshotFileName: feedback.configuration?.screenshotFileName ?? "Screenshot")
         
         if let logs = feedback.logs {
-            try attach(logs, logsFileName: feedback.logsFileName)
+            try attach(logs, logsFileName: feedback.configuration?.logsFileName ?? "logs")
         }
         
-        if let additionalInformation = feedback.additionalInformation {
-            attach(additionalInformation: additionalInformation)
+        if let additionalInformation = feedback.configuration?.additionalInformation {
+            attach(additionalInformation)
         }
     }
     
@@ -138,7 +138,7 @@ private extension MFMailComposeViewController {
         addAttachmentData(textData, mimeType: MIMEType.PlainText.rawValue, fileName: filename)
     }
     
-    func attach(additionalInformation: [String: AnyObject]) {
+    func attach(_ additionalInformation: [String: AnyObject]) {
         let data = try? JSONSerialization.data(withJSONObject: additionalInformation, options: .prettyPrinted)
         
         if let data = data {

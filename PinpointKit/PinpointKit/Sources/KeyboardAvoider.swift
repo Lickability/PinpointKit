@@ -73,7 +73,7 @@ final class KeyboardAvoider {
         for constraint in constraints {
             let originalConstant = originalConstraintConstants[constraint]
             
-            if let originalConstant = originalConstant where isDismissing {
+            if let originalConstant = originalConstant, isDismissing {
                 constraint.constant = originalConstant
                 originalConstraintConstants.removeValue(forKey: constraint)
                 
