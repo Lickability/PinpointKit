@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Photos
+//import Photos
 import CoreImage
 
 /// The default view controller responsible for editing an image.
