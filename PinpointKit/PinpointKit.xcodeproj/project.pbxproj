@@ -10,7 +10,6 @@
 		2C5C41121C6560AD0033ED3D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2C5C41141C6568D60033ED3D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2CACDFCF1C9C8AFB0002ECBF /* PinpointKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */; };
-		4C4037BF1D9EAE5200305A6E /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4037BE1D9EAE5200305A6E /* ScreenshotDetector.swift */; };
 		4C4037C41D9EAE9500305A6E /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4037C01D9EAE9500305A6E /* Configuration.swift */; };
 		4C4037C51D9EAE9500305A6E /* InterfaceCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4037C11D9EAE9500305A6E /* InterfaceCustomizable.swift */; };
 		4C4037C61D9EAE9500305A6E /* InterfaceCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4037C21D9EAE9500305A6E /* InterfaceCustomization.swift */; };
@@ -62,6 +61,7 @@
 		4C4038211D9EB14600305A6E /* ASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C40381F1D9EB14600305A6E /* ASLLogger.m */; };
 		4C4038261D9EB1B700305A6E /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C4038251D9EB1B700305A6E /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C4038281D9EB27A00305A6E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4038271D9EB27A00305A6E /* NavigationController.swift */; };
+		4C40382C1D9EB7A800305A6E /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C40382B1D9EB7A800305A6E /* ScreenshotDetector.swift */; };
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
 		F24381121D54CBAB004CC87F /* SystemLogCollectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24381111D54CBAB004CC87F /* SystemLogCollectorTests.swift */; };
 		F24381151D54ECD2004CC87F /* XCTestCaseExpectationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24381141D54ECD2004CC87F /* XCTestCaseExpectationExtensions.swift */; };
@@ -79,7 +79,6 @@
 
 /* Begin PBXFileReference section */
 		2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = PinpointKit.xcassets; path = ../Resources/PinpointKit.xcassets; sourceTree = "<group>"; };
-		4C4037BE1D9EAE5200305A6E /* ScreenshotDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotDetector.swift; path = ScreenshotDetetor/ScreenshotDetector.swift; sourceTree = "<group>"; };
 		4C4037C01D9EAE9500305A6E /* Configuration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = Core/Configuration.swift; sourceTree = "<group>"; };
 		4C4037C11D9EAE9500305A6E /* InterfaceCustomizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterfaceCustomizable.swift; path = Core/InterfaceCustomizable.swift; sourceTree = "<group>"; };
 		4C4037C21D9EAE9500305A6E /* InterfaceCustomization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterfaceCustomization.swift; path = Core/InterfaceCustomization.swift; sourceTree = "<group>"; };
@@ -134,6 +133,7 @@
 		4C4038241D9EB19400305A6E /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Semibold.ttf"; path = "Core/SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
 		4C4038251D9EB1B700305A6E /* PinpointKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PinpointKit.h; path = PinpointKit/Sources/Core/PinpointKit.h; sourceTree = "<group>"; };
 		4C4038271D9EB27A00305A6E /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = Core/NavigationController.swift; sourceTree = "<group>"; };
+		4C40382B1D9EB7A800305A6E /* ScreenshotDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotDetector.swift; path = ScreenshotDetector/ScreenshotDetector.swift; sourceTree = "<group>"; };
 		DA0DA6021C53049B0012ADBE /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PinpointKit/Info.plist; sourceTree = "<group>"; };
 		DA0DA60C1C53049B0012ADBE /* PinpointKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinpointKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -219,7 +219,7 @@
 		2C5C41101C655B7D0033ED3D /* Screenshot Detection */ = {
 			isa = PBXGroup;
 			children = (
-				4C4037BE1D9EAE5200305A6E /* ScreenshotDetector.swift */,
+				4C40382B1D9EB7A800305A6E /* ScreenshotDetector.swift */,
 			);
 			name = "Screenshot Detection";
 			sourceTree = "<group>";
@@ -475,13 +475,13 @@
 				4C4037C61D9EAE9500305A6E /* InterfaceCustomization.swift in Sources */,
 				4C4037E51D9EAFA000305A6E /* AnnotationView.swift in Sources */,
 				4C4038091D9EB0CB00305A6E /* UIView+PinpointKit.swift in Sources */,
+				4C40382C1D9EB7A800305A6E /* ScreenshotDetector.swift in Sources */,
 				4C4038011D9EB07000305A6E /* LogViewer.swift in Sources */,
 				4C4037FF1D9EB06900305A6E /* BasicLogViewController.swift in Sources */,
 				4C4037D51D9EAF0D00305A6E /* Editor.swift in Sources */,
 				4C4038191D9EB11500305A6E /* StrokeLayoutManager.swift in Sources */,
 				4C4037D71D9EAF0D00305A6E /* Tool.swift in Sources */,
 				4C4037F51D9EB01800305A6E /* FeedbackNavigationController.swift in Sources */,
-				4C4037BF1D9EAE5200305A6E /* ScreenshotDetector.swift in Sources */,
 				4C4037D91D9EAF1F00305A6E /* EditImageViewController.swift in Sources */,
 				4C4037F71D9EB01800305A6E /* FeedbackViewController.swift in Sources */,
 				4C4037CD1D9EAEBD00305A6E /* SystemLogCollector.swift in Sources */,
