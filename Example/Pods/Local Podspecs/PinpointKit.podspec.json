@@ -28,12 +28,12 @@
     "UIKit",
     "MessageUI"
   ],
-  "resources": "PinpointKit/PinpointKit/Resources/*",
   "dependencies": {
   },
   "subspecs": [
     {
       "name": "Core",
+      "resources": "PinpointKit/PinpointKit/Resources/*",
       "source_files": "PinpointKit/PinpointKit/Sources/Core/**/*.{h,m,swift}"
     },
     {
