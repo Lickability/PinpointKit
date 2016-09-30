@@ -28,7 +28,16 @@
     "UIKit",
     "MessageUI"
   ],
-  "source_files": "PinpointKit/PinpointKit/Sources/**/*.{h,m,swift}",
+  "subspecs": [
+    {
+      "name": "Core",
+      "source_files": "PinpointKit/PinpointKit/Sources/Core/**/*.{h,m,swift}"
+    },
+    {
+      "name": "ScreenshotDetector",
+      "source_files": "PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift"
+  	}
+  ],
   "resources": "PinpointKit/PinpointKit/Resources/*",
   "dependencies": { }
 }

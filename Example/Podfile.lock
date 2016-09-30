@@ -1,5 +1,9 @@
 PODS:
-  - PinpointKit (0.9)
+  - PinpointKit (0.9):
+    - PinpointKit/Core (= 0.9)
+    - PinpointKit/ScreenshotDetector (= 0.9)
+  - PinpointKit/Core (0.9)
+  - PinpointKit/ScreenshotDetector (0.9)
 
 DEPENDENCIES:
   - PinpointKit (from `../`)
@@ -9,7 +13,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  PinpointKit: dfbff1b4a95c5b71142a7c098717c2af082e2569
+  PinpointKit: 05b43c8e211c2c5ed8cca77c2df495991fcf9a7c
 
 PODFILE CHECKSUM: 57140b686c94ba1e5869bbc5b91a657c508da681
 
