@@ -136,15 +136,15 @@ let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
 To display a feedback view controller, add the following code where you want the feedback to display, passing the view controller from which [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) should present:
 
 ```swift
-pinpointKit.show(fromViewController: viewController)
+pinpointKit.show(from: viewController)
 ```
 > **Note:** Be sure to keep a strong reference to your instance of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) for the duration of its use.
 
-If you want to have the feedback view display from a shake gesture, simply add the following to your application delegate, replacing `["feedback@example.com"]` with your array of email recipients:
+If you want to have the feedback view display from a shake gesture, simply add the following to your application delegate, replacing `["feedback@example.com"]` with your array of email recipients and `AppDelegate` with your application delegate’s name:
 
 ```swift
-private let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
-lazy var window: UIWindow? = ShakeDetectingWindow(frame: UIScreen.mainScreen().bounds, delegate: self.pinpointKit)
+private static let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
+var window: UIWindow? = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
 ```
 
 If you don’t want to use [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift)’s default configuration, you can specify both [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) and [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) instances on initialization of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift).
