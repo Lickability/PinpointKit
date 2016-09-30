@@ -25,19 +25,24 @@
   "requires_arc": true,
   "frameworks": [
     "Foundation",
-    "UIKit",
-    "MessageUI"
+    "UIKit"
   ],
   "subspecs": [
     {
       "name": "Core",
       "resources": "PinpointKit/PinpointKit/Resources/*",
-      "source_files": "PinpointKit/PinpointKit/Sources/Core/**/*.{h,m,swift}"
+      "source_files": "PinpointKit/PinpointKit/Sources/Core/**/*.{h,m,swift}",
+      "frameworks": [
+        "MessageUI"
+      ]
     },
     {
       "name": "ScreenshotDetector",
-      "source_files": "PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift"
-  	}
+      "source_files": "PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift",
+      "frameworks": [
+        "Photos"
+      ]
+    }
   ],
   "dependencies": { }
 }
