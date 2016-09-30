@@ -8,69 +8,69 @@
 
 /* Begin PBXBuildFile section */
 		00CE9FE8A6A16A6B1EFE7B9601EACA54 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 114AC180CB4E848C4C81449DAFA9C175 /* SourceSansPro-Bold.ttf */; };
-		05154F94D9A26E8310F20C864EAAECAE /* ShakeDetectingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C75440F9838D99F31FCA80071EB31C /* ShakeDetectingWindowDelegate.swift */; };
-		0A47A9656E0F2BEF5142F180780092AF /* CheckmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DAC06992D6A31CC7D9152323C98972 /* CheckmarkCell.swift */; };
+		05154F94D9A26E8310F20C864EAAECAE /* ShakeDetectingWindowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E48F3453FF7870488B774D60756E0A /* ShakeDetectingWindowDelegate.swift */; };
+		0A47A9656E0F2BEF5142F180780092AF /* CheckmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0791D0276D8DA84BB247E30966D705 /* CheckmarkCell.swift */; };
 		0B4C5282AFCC21BDA051C32656FD73F3 /* PinpointKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FA3A013B33F2A51586C9688B165DF1E /* PinpointKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0BE10BACEC2D150E7F37D0942F410065 /* FeedbackCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE9BB65C6798DA25E86CC10B372EA3D /* FeedbackCollector.swift */; };
+		0BE10BACEC2D150E7F37D0942F410065 /* FeedbackCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C55E357810C049C7E8F5B77B09CCF17 /* FeedbackCollector.swift */; };
 		0D958AB08F4BCB483E62B27AEA941426 /* Pods-PinpointKitExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 63CB56BD873C4BB171888105C6F1B545 /* Pods-PinpointKitExample-dummy.m */; };
-		0DAF68E778ADCD3769479C80C2C06781 /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA442624901750CFA3773194DBBAC681 /* ScreenshotCell.swift */; };
+		0DAF68E778ADCD3769479C80C2C06781 /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5058165AABAA3B24BAC7BA3BECE6E367 /* ScreenshotCell.swift */; };
 		122AAFA4ABCF844F32C53DB33C4CF5B1 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2E9D9A1E5A484B9629EFB4384002E67 /* SourceSansPro-Regular.ttf */; };
-		127BED31B4E2968F86A49991FD275468 /* BoxAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E8A690F25D26E37C439EB40EBF9AD0 /* BoxAnnotationView.swift */; };
-		19746F0D069C80D16A15590C0D10E8AD /* LogSupporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4343045B2FCF8BA14727637F9A5B5A1 /* LogSupporting.swift */; };
-		1E37A225E4935F8A617497286723C414 /* ASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 404B84433D9BCE4EA7B7852430873008 /* ASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		22F8FA3B93FB273C0E6E7B6019020100 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BD5DDED37FAAFE9A28F205B7BD6379 /* NavigationController.swift */; };
-		2584A99BCC164E895FDEAA973F893324 /* Screenshotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F90C3A1EA11E30DBB2B9654336C84A7 /* Screenshotter.swift */; };
-		2D46EE760EA9331D51F602F5668AF409 /* UIGestureRecognizer+FailRecognizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42EA4CBF12484A14B588C6D714CF0C8A /* UIGestureRecognizer+FailRecognizing.swift */; };
-		3120B763F3B04F729D3F9B93842D1793 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 033BA3998C6E272A462976AC19BF3ED0 /* Tool.swift */; };
-		35639F56E899975B378BE9C530D0B896 /* BasicLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E36D80FEF397BE56773A862261AB26 /* BasicLogViewController.swift */; };
-		36E0BBD172FFD1474F105AD9C932C858 /* FeedbackConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7F6EA890F562814133802A5AF77FF /* FeedbackConfiguration.swift */; };
-		3A27AF2F65EFE6EF515C3CD378178F66 /* PinpointKit+ShakePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDDADDF89F2F16BBB8816BB7702B5583 /* PinpointKit+ShakePresentation.swift */; };
-		3AA8C26BD00700B1F240F99C88C0E988 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9108A1275C50BBEC3F29164B192332BE /* Editor.swift */; };
-		42B285BCD6FBA093BB7E8591E4BD434B /* InterfaceCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C03CC63FAC2110FE5A2336B9FC30774 /* InterfaceCustomizable.swift */; };
-		468CEF73A78DB9016B5552D47B4880DF /* SuccessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED240B9C7FC0CEEC22B86BF61667D31 /* SuccessType.swift */; };
-		495F917F43F20D09E36CC00699288E1B /* EditorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B76ED16C2DE3231B5299605ED9E5BD3 /* EditorDelegate.swift */; };
-		4B4BE780ADE8FA8481720287617F9E4E /* MailSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957A33C970DA35E93E8DF5CD6B86F8FE /* MailSender.swift */; };
-		4CBE4F500DF26BF8882DD18124FCF442 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97EDE32806A0ED6DF1F456A81852444 /* FeedbackViewController.swift */; };
-		4DB87B7E1FA7A762A8D0B54DAB274E5C /* FeedbackTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 799D688A2D4D0B195B1004855B2E4B20 /* FeedbackTableViewDataSource.swift */; };
-		4EBC9F794F15B9C9ADE2CF5A560DEF10 /* ArrowAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8954428B13E18C6FE6410A2046020589 /* ArrowAnnotationView.swift */; };
-		5841795039ABED39AC655E996E912536 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DB27D7E09737D83AD83CA67119379CB /* Configuration.swift */; };
+		127BED31B4E2968F86A49991FD275468 /* BoxAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A4487DF0464F1701CD1543B5B5AA54 /* BoxAnnotationView.swift */; };
+		19746F0D069C80D16A15590C0D10E8AD /* LogSupporting.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEDF8CB4916BA725ED56B8EFC6DAE4F9 /* LogSupporting.swift */; };
+		1E37A225E4935F8A617497286723C414 /* ASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 5257D73E2616667CC2CAC77A23722A7F /* ASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		22F8FA3B93FB273C0E6E7B6019020100 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9681AA4E5661F19AB740F9F219A9542 /* NavigationController.swift */; };
+		2584A99BCC164E895FDEAA973F893324 /* Screenshotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8C91C292BAF72A8581E41D8777E68D /* Screenshotter.swift */; };
+		2D46EE760EA9331D51F602F5668AF409 /* UIGestureRecognizer+FailRecognizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54CC7237E11C98A36CAF476ED9B89B /* UIGestureRecognizer+FailRecognizing.swift */; };
+		3120B763F3B04F729D3F9B93842D1793 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9E4059E35E609072A5E285FD396A80 /* Tool.swift */; };
+		35639F56E899975B378BE9C530D0B896 /* BasicLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F383EA49C51F69260280B42916FE64F /* BasicLogViewController.swift */; };
+		36E0BBD172FFD1474F105AD9C932C858 /* FeedbackConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E52A831E2F359BC9C0308EC87A599 /* FeedbackConfiguration.swift */; };
+		3A27AF2F65EFE6EF515C3CD378178F66 /* PinpointKit+ShakePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68AC79139BB830BDED9B010E6F8B045 /* PinpointKit+ShakePresentation.swift */; };
+		3AA8C26BD00700B1F240F99C88C0E988 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92BDEDAD833B4B274D36CE57565881F /* Editor.swift */; };
+		42B285BCD6FBA093BB7E8591E4BD434B /* InterfaceCustomizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE6812A909195E30B952B33B2D846A7 /* InterfaceCustomizable.swift */; };
+		468CEF73A78DB9016B5552D47B4880DF /* SuccessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ABABE8C2CD6E796ED24D2665C31649 /* SuccessType.swift */; };
+		495F917F43F20D09E36CC00699288E1B /* EditorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F00806885936767FCBDAA5B474AA5EB /* EditorDelegate.swift */; };
+		4B4BE780ADE8FA8481720287617F9E4E /* MailSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F329F0609EEC9D5E70B08FF1FF83A5A7 /* MailSender.swift */; };
+		4CBE4F500DF26BF8882DD18124FCF442 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04FBC2969B19E1E64AABDFE70414AF6 /* FeedbackViewController.swift */; };
+		4DB87B7E1FA7A762A8D0B54DAB274E5C /* FeedbackTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7F9309DFE11431B55E6751E66C7981 /* FeedbackTableViewDataSource.swift */; };
+		4EBC9F794F15B9C9ADE2CF5A560DEF10 /* ArrowAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411F303589C4982B4B58D8F0AC5AFE95 /* ArrowAnnotationView.swift */; };
+		5841795039ABED39AC655E996E912536 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317729477BFE764069116CE2ACFB5C62 /* Configuration.swift */; };
 		594E04C550D2EEE96ECAA2C1B2845793 /* SourceSansPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCEF62B55C3639F9F95A136036C883BE /* SourceSansPro-Semibold.ttf */; };
-		5F2FA941F1C44128D9335FEEC8EBEC49 /* FeedbackNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8684BDF9887D45983C7CFF9C6E12E0B4 /* FeedbackNavigationController.swift */; };
-		6543BB92B9AB3D119E012ADFDC5D22EA /* BlurAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725A9CE5CCF5B3BB61B8260BE42F2F5D /* BlurAnnotationView.swift */; };
-		65DFABD276B505EF11346F4D8A0D76DD /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9B1BA02BA670A86327D651CA350DEC /* AnnotationView.swift */; };
-		7013B1A26C0E079FC81C9D5E7FA2F198 /* ShakeDetectingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D2CDD32371E471AE3C24321D323383E /* ShakeDetectingWindow.swift */; };
-		7497B97A89F177ECC468144B0518B0B8 /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7CB508C3B1EC5C3B95A20FA3B1D1B9 /* MIMEType.swift */; };
-		74E3569D52171E52FC1E203BD79292E2 /* PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B73AB34C12EEDAC72270868EAD964D /* PinpointKit.swift */; };
-		75A6F9FA845D7076FB2F4C1B2665FCAA /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA483E159B2FD61679A0BF82F088F377 /* BezierPath.swift */; };
-		8319EE9BCE665B9B142FB72C94E91178 /* LogCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C82CA09319B77E06483565FE3A84A2B /* LogCollector.swift */; };
+		5F2FA941F1C44128D9335FEEC8EBEC49 /* FeedbackNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C559165AA092950E28B88AB471B489AB /* FeedbackNavigationController.swift */; };
+		6543BB92B9AB3D119E012ADFDC5D22EA /* BlurAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6771A395C94904B7AEDEBDE646D900 /* BlurAnnotationView.swift */; };
+		65DFABD276B505EF11346F4D8A0D76DD /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689BF2C388FB66D511E55FC7A86F6959 /* AnnotationView.swift */; };
+		7013B1A26C0E079FC81C9D5E7FA2F198 /* ShakeDetectingWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF3450B96AFFC4968BCBFF8F205C0073 /* ShakeDetectingWindow.swift */; };
+		7497B97A89F177ECC468144B0518B0B8 /* MIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DACC140174E86A07425DD071AC7242 /* MIMEType.swift */; };
+		74E3569D52171E52FC1E203BD79292E2 /* PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9110761A24A302719FE9F5548776667 /* PinpointKit.swift */; };
+		75A6F9FA845D7076FB2F4C1B2665FCAA /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E42C05114598D89CEF3F3291866461 /* BezierPath.swift */; };
+		8319EE9BCE665B9B142FB72C94E91178 /* LogCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0471C5086F8A8C9C11663F956AF1BA95 /* LogCollector.swift */; };
 		85E713DC0E74AD5789ABFBFB0C8ADF55 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E4C26A72D50DB44D17501848286B727 /* Foundation.framework */; };
-		866D0DD3D4183E60C54BD47E99B3D2E4 /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8E1FF26E5C5CFD39A439CFB2EF1517 /* Annotations.swift */; };
+		866D0DD3D4183E60C54BD47E99B3D2E4 /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BF58E75455CE789FD1608E8D5D905B /* Annotations.swift */; };
 		870A499C128F005FC04B17B92E6FBA77 /* PinpointKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6207788D80D5F34F8E7DB00DE24A8F3E /* PinpointKit-dummy.m */; };
-		887C363EA5A8695A9CDF989A58F30ADC /* SystemLogCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67836B98955B740BD6993C9B471A90A7 /* SystemLogCollector.swift */; };
-		8C8AE0C5DD9C99D2B3299D7E7FA2D28E /* AnnotationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B36AA67A1FBC57DA500D61F2F41BF0 /* AnnotationViewFactory.swift */; };
-		942E5C454B810447FBEF251FCC5F2289 /* LogViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E3BB2CC347AC737EFF7CF4A7F853CE /* LogViewer.swift */; };
-		99B4033136F95E950F412CF4BFDF8FDD /* AnnotationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE13803DBC8D12117BD942C6AE71BC7 /* AnnotationsView.swift */; };
-		A0D1FB6E28F2C05B8D9A388E66B9ED33 /* UIView+PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A1F8E88C11EC4E58109D18E60F0C4 /* UIView+PinpointKit.swift */; };
-		A1710706C514E3A0A9CF927A4903736C /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7BC9EC2D82A7832D28F08AEE84B71B /* ScreenshotDetector.swift */; };
+		887C363EA5A8695A9CDF989A58F30ADC /* SystemLogCollector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB705D02384C727E4525254061BBF5C /* SystemLogCollector.swift */; };
+		8C8AE0C5DD9C99D2B3299D7E7FA2D28E /* AnnotationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29358846A16DF9E67B99F92FF8E49EA5 /* AnnotationViewFactory.swift */; };
+		942E5C454B810447FBEF251FCC5F2289 /* LogViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B41D5E56DA561BA6E52802C3E69B877 /* LogViewer.swift */; };
+		99B4033136F95E950F412CF4BFDF8FDD /* AnnotationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9085181271527D7355F4628253CBCA11 /* AnnotationsView.swift */; };
+		A0D1FB6E28F2C05B8D9A388E66B9ED33 /* UIView+PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A38A8B9480B05F587465DE8B9AA33 /* UIView+PinpointKit.swift */; };
+		A1710706C514E3A0A9CF927A4903736C /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D0F5791FCFEA09123775316CE827FB /* ScreenshotDetector.swift */; };
 		A323649375E296BCA2328D50A70DACFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42A9844F76F9E28FEEC5A0F0037FF76 /* UIKit.framework */; };
-		A3400E3CF05689E87CC8FF19BA7FDC69 /* EditImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7E8D069B765F1CB1C3EE8F08ACDE92 /* EditImageViewController.swift */; };
-		A7FBA3B96186C929895F946A6884ADAE /* ASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C973E023B93ED6B2C28F7F1FB39EB1D /* ASLLogger.m */; };
-		ADF4AF67F0025101B4E75A829FD9131A /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68072DDAC1939F6CB1D8FA07A39F0E80 /* Screen.swift */; };
-		AED947A9E1174296DD75990711A5EFB8 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D60DF37C1D176CF57D121993C5E261E /* Sender.swift */; };
-		B1955F408A0CD84BB3032877578BFF5A /* KeyboardAvoider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5609DE246B1B61C4C74ABD3C7FC2C26 /* KeyboardAvoider.swift */; };
-		B58867602F5028EF2A96ABDA4D6D6ADD /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EAEFA6A5E3077F1F0F4A76819FE2C01A /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B836F60999AFEAD151C509220F922274 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E419E5AC86A82283250CAC89AA784F /* Feedback.swift */; };
+		A3400E3CF05689E87CC8FF19BA7FDC69 /* EditImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D040E39FDE1CE9D817C41D044B55E896 /* EditImageViewController.swift */; };
+		A7FBA3B96186C929895F946A6884ADAE /* ASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 426930B17B3D0F715A0652870CE4B28B /* ASLLogger.m */; };
+		ADF4AF67F0025101B4E75A829FD9131A /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D566078978B9E809011A053BE886B /* Screen.swift */; };
+		AED947A9E1174296DD75990711A5EFB8 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944D920F8174427723D406BE8E7A8DE8 /* Sender.swift */; };
+		B1955F408A0CD84BB3032877578BFF5A /* KeyboardAvoider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E860A9DCD30DE4E5E0429B6E6417BA53 /* KeyboardAvoider.swift */; };
+		B58867602F5028EF2A96ABDA4D6D6ADD /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = C04A035D4F3CB8D8BF99BD102A415510 /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B836F60999AFEAD151C509220F922274 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8144547317E82B09529A89CBA05DA5D /* Feedback.swift */; };
 		BB14C7245EF8C5C53A329FDFC33C87A7 /* PinpointKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AF939EA575E5EEA924172E930A87A9B /* PinpointKit.xcassets */; };
-		C72F6CB049DA5579351662C772133725 /* NSBundle+PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70CE10A213D87D256003F90C677C43C7 /* NSBundle+PinpointKit.swift */; };
-		D0F832BB8A34F14574856D0E9854E630 /* StrokeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1CAC2DF737B09C742CDE123B60DCC6 /* StrokeLayoutManager.swift */; };
-		D188E46EC633E5B6FB5C8CDF9CB04126 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0275517A9579988AEDFB27D641D8364 /* Fonts.swift */; };
+		C72F6CB049DA5579351662C772133725 /* NSBundle+PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF882ED8933EB8BD2733BF07B47E409C /* NSBundle+PinpointKit.swift */; };
+		D0F832BB8A34F14574856D0E9854E630 /* StrokeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50C5A351A9142BE0A45930D47855048 /* StrokeLayoutManager.swift */; };
+		D188E46EC633E5B6FB5C8CDF9CB04126 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8667815676A7E4DFA0FD868DF16ECC35 /* Fonts.swift */; };
 		D6324554C0F4E161D592D1BB3441C6FB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3B899A0B12DE8854651E7B38551B012 /* MessageUI.framework */; };
-		E54A17D3A97F6EE00551FBC3B8EDDBF6 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F310663DCD6CE7605E828E00123479B3 /* UIColor+Palette.swift */; };
+		E54A17D3A97F6EE00551FBC3B8EDDBF6 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1494B1F44E3FAA4E039A0D5A120F7C35 /* UIColor+Palette.swift */; };
 		E56F9677A0979CF7F796282F9DA8CD80 /* Pods-PinpointKitExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C29D51E4E8E93994310ADCA633D301E6 /* Pods-PinpointKitExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F10D6F308264A0A591F2589A0C3E0490 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E4C26A72D50DB44D17501848286B727 /* Foundation.framework */; };
-		F3BBB2F4F9E2832ECFB62570CCA71554 /* InterfaceCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110BA033231DEFDB40C7BE0D1D3EEDA /* InterfaceCustomization.swift */; };
-		FB90C019E936CD7F207CA334BB65272B /* TextAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 449EC05C60F5994A556AE51A5BFB86CA /* TextAnnotationView.swift */; };
-		FD3A461CB48E36315D010B4FA934FDCF /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF161ECE478009A7B910C1951E07AADB /* BarButtonItem.swift */; };
+		F3BBB2F4F9E2832ECFB62570CCA71554 /* InterfaceCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4173603615A084A90E0CF832CF5910E /* InterfaceCustomization.swift */; };
+		FB90C019E936CD7F207CA334BB65272B /* TextAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 693A252224C0CB66252AB653A55ACD2E /* TextAnnotationView.swift */; };
+		FD3A461CB48E36315D010B4FA934FDCF /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFEE205B0F9F0B82D3A8DDC00687A25 /* BarButtonItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,82 +85,82 @@
 
 /* Begin PBXFileReference section */
 		0148F29BAA8B901AF499610F69E21EB0 /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		033BA3998C6E272A462976AC19BF3ED0 /* Tool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
-		0DB27D7E09737D83AD83CA67119379CB /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
-		0F90C3A1EA11E30DBB2B9654336C84A7 /* Screenshotter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Screenshotter.swift; sourceTree = "<group>"; };
+		0471C5086F8A8C9C11663F956AF1BA95 /* LogCollector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogCollector.swift; sourceTree = "<group>"; };
 		0FA3A013B33F2A51586C9688B165DF1E /* PinpointKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PinpointKit-umbrella.h"; sourceTree = "<group>"; };
 		114AC180CB4E848C4C81449DAFA9C175 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = "SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
+		13BF58E75455CE789FD1608E8D5D905B /* Annotations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Annotations.swift; sourceTree = "<group>"; };
+		1494B1F44E3FAA4E039A0D5A120F7C35 /* UIColor+Palette.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		1B5B6A4B3BF2B3CF780CDC82754080EF /* Pods-PinpointKitExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PinpointKitExample.release.xcconfig"; sourceTree = "<group>"; };
-		1D2CDD32371E471AE3C24321D323383E /* ShakeDetectingWindow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindow.swift; sourceTree = "<group>"; };
-		22E3BB2CC347AC737EFF7CF4A7F853CE /* LogViewer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogViewer.swift; sourceTree = "<group>"; };
-		23E36D80FEF397BE56773A862261AB26 /* BasicLogViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BasicLogViewController.swift; sourceTree = "<group>"; };
-		2B76ED16C2DE3231B5299605ED9E5BD3 /* EditorDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditorDelegate.swift; sourceTree = "<group>"; };
-		34C75440F9838D99F31FCA80071EB31C /* ShakeDetectingWindowDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindowDelegate.swift; sourceTree = "<group>"; };
-		39B73AB34C12EEDAC72270868EAD964D /* PinpointKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinpointKit.swift; sourceTree = "<group>"; };
+		29358846A16DF9E67B99F92FF8E49EA5 /* AnnotationViewFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnnotationViewFactory.swift; sourceTree = "<group>"; };
+		2F6771A395C94904B7AEDEBDE646D900 /* BlurAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BlurAnnotationView.swift; sourceTree = "<group>"; };
+		30D0F5791FCFEA09123775316CE827FB /* ScreenshotDetector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScreenshotDetector.swift; sourceTree = "<group>"; };
+		317729477BFE764069116CE2ACFB5C62 /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		38E42C05114598D89CEF3F3291866461 /* BezierPath.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BezierPath.swift; sourceTree = "<group>"; };
 		3AF939EA575E5EEA924172E930A87A9B /* PinpointKit.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = PinpointKit.xcassets; sourceTree = "<group>"; };
 		3B86491F230EF531B54484A2818BDAAE /* Pods-PinpointKitExample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PinpointKitExample-resources.sh"; sourceTree = "<group>"; };
-		404B84433D9BCE4EA7B7852430873008 /* ASLLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ASLLogger.h; sourceTree = "<group>"; };
-		42EA4CBF12484A14B588C6D714CF0C8A /* UIGestureRecognizer+FailRecognizing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+FailRecognizing.swift"; sourceTree = "<group>"; };
-		449EC05C60F5994A556AE51A5BFB86CA /* TextAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextAnnotationView.swift; sourceTree = "<group>"; };
+		411F303589C4982B4B58D8F0AC5AFE95 /* ArrowAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArrowAnnotationView.swift; sourceTree = "<group>"; };
+		426930B17B3D0F715A0652870CE4B28B /* ASLLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ASLLogger.m; sourceTree = "<group>"; };
 		46808D8DD82EBD9B48A30EB1E7344CF1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		48E8A690F25D26E37C439EB40EBF9AD0 /* BoxAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BoxAnnotationView.swift; sourceTree = "<group>"; };
-		4C82CA09319B77E06483565FE3A84A2B /* LogCollector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogCollector.swift; sourceTree = "<group>"; };
-		4C9B1BA02BA670A86327D651CA350DEC /* AnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
-		4D60DF37C1D176CF57D121993C5E261E /* Sender.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
-		5A7E8D069B765F1CB1C3EE8F08ACDE92 /* EditImageViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditImageViewController.swift; sourceTree = "<group>"; };
+		5058165AABAA3B24BAC7BA3BECE6E367 /* ScreenshotCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
+		5257D73E2616667CC2CAC77A23722A7F /* ASLLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ASLLogger.h; sourceTree = "<group>"; };
+		557E52A831E2F359BC9C0308EC87A599 /* FeedbackConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeedbackConfiguration.swift; sourceTree = "<group>"; };
+		5C8C91C292BAF72A8581E41D8777E68D /* Screenshotter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Screenshotter.swift; sourceTree = "<group>"; };
+		5F383EA49C51F69260280B42916FE64F /* BasicLogViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BasicLogViewController.swift; sourceTree = "<group>"; };
+		5F7F9309DFE11431B55E6751E66C7981 /* FeedbackTableViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeedbackTableViewDataSource.swift; sourceTree = "<group>"; };
 		6207788D80D5F34F8E7DB00DE24A8F3E /* PinpointKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PinpointKit-dummy.m"; sourceTree = "<group>"; };
 		624639227B49043215FCD240C6AC0F95 /* PinpointKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PinpointKit.xcconfig; sourceTree = "<group>"; };
-		63B36AA67A1FBC57DA500D61F2F41BF0 /* AnnotationViewFactory.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnnotationViewFactory.swift; sourceTree = "<group>"; };
 		63CB56BD873C4BB171888105C6F1B545 /* Pods-PinpointKitExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PinpointKitExample-dummy.m"; sourceTree = "<group>"; };
-		67836B98955B740BD6993C9B471A90A7 /* SystemLogCollector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SystemLogCollector.swift; sourceTree = "<group>"; };
-		68072DDAC1939F6CB1D8FA07A39F0E80 /* Screen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		689BF2C388FB66D511E55FC7A86F6959 /* AnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnnotationView.swift; sourceTree = "<group>"; };
+		693A252224C0CB66252AB653A55ACD2E /* TextAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TextAnnotationView.swift; sourceTree = "<group>"; };
 		6B5563D240AA97D9C97E09A47C540FE8 /* PinpointKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PinpointKit-prefix.pch"; sourceTree = "<group>"; };
-		6C03CC63FAC2110FE5A2336B9FC30774 /* InterfaceCustomizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InterfaceCustomizable.swift; sourceTree = "<group>"; };
-		6ED240B9C7FC0CEEC22B86BF61667D31 /* SuccessType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SuccessType.swift; sourceTree = "<group>"; };
-		70CE10A213D87D256003F90C677C43C7 /* NSBundle+PinpointKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSBundle+PinpointKit.swift"; sourceTree = "<group>"; };
-		725A9CE5CCF5B3BB61B8260BE42F2F5D /* BlurAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BlurAnnotationView.swift; sourceTree = "<group>"; };
 		747F01800B94931AC66C2CC8643AAB7E /* Pods-PinpointKitExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PinpointKitExample-acknowledgements.plist"; sourceTree = "<group>"; };
 		74D6182912AA7B120B288E116A905177 /* Pods-PinpointKitExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PinpointKitExample.debug.xcconfig"; sourceTree = "<group>"; };
-		74E419E5AC86A82283250CAC89AA784F /* Feedback.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
-		799D688A2D4D0B195B1004855B2E4B20 /* FeedbackTableViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeedbackTableViewDataSource.swift; sourceTree = "<group>"; };
-		7C973E023B93ED6B2C28F7F1FB39EB1D /* ASLLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ASLLogger.m; sourceTree = "<group>"; };
-		7F5A1F8E88C11EC4E58109D18E60F0C4 /* UIView+PinpointKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+PinpointKit.swift"; sourceTree = "<group>"; };
-		8684BDF9887D45983C7CFF9C6E12E0B4 /* FeedbackNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeedbackNavigationController.swift; sourceTree = "<group>"; };
-		8954428B13E18C6FE6410A2046020589 /* ArrowAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArrowAnnotationView.swift; sourceTree = "<group>"; };
+		7C54CC7237E11C98A36CAF476ED9B89B /* UIGestureRecognizer+FailRecognizing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+FailRecognizing.swift"; sourceTree = "<group>"; };
+		7C55E357810C049C7E8F5B77B09CCF17 /* FeedbackCollector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeedbackCollector.swift; sourceTree = "<group>"; };
+		7E0791D0276D8DA84BB247E30966D705 /* CheckmarkCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckmarkCell.swift; sourceTree = "<group>"; };
+		7F00806885936767FCBDAA5B474AA5EB /* EditorDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditorDelegate.swift; sourceTree = "<group>"; };
+		8667815676A7E4DFA0FD868DF16ECC35 /* Fonts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		86DACC140174E86A07425DD071AC7242 /* MIMEType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIMEType.swift; sourceTree = "<group>"; };
+		8B41D5E56DA561BA6E52802C3E69B877 /* LogViewer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogViewer.swift; sourceTree = "<group>"; };
 		8E4C26A72D50DB44D17501848286B727 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		9108A1275C50BBEC3F29164B192332BE /* Editor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
+		9085181271527D7355F4628253CBCA11 /* AnnotationsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnnotationsView.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		957A33C970DA35E93E8DF5CD6B86F8FE /* MailSender.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MailSender.swift; sourceTree = "<group>"; };
-		9E7BC9EC2D82A7832D28F08AEE84B71B /* ScreenshotDetector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScreenshotDetector.swift; sourceTree = "<group>"; };
-		9EE13803DBC8D12117BD942C6AE71BC7 /* AnnotationsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnnotationsView.swift; sourceTree = "<group>"; };
-		9F1CAC2DF737B09C742CDE123B60DCC6 /* StrokeLayoutManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StrokeLayoutManager.swift; sourceTree = "<group>"; };
-		A0DAC06992D6A31CC7D9152323C98972 /* CheckmarkCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CheckmarkCell.swift; sourceTree = "<group>"; };
-		A110BA033231DEFDB40C7BE0D1D3EEDA /* InterfaceCustomization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InterfaceCustomization.swift; sourceTree = "<group>"; };
-		AA483E159B2FD61679A0BF82F088F377 /* BezierPath.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BezierPath.swift; sourceTree = "<group>"; };
-		AAE9BB65C6798DA25E86CC10B372EA3D /* FeedbackCollector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeedbackCollector.swift; sourceTree = "<group>"; };
+		944D920F8174427723D406BE8E7A8DE8 /* Sender.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		A7E48F3453FF7870488B774D60756E0A /* ShakeDetectingWindowDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindowDelegate.swift; sourceTree = "<group>"; };
 		B3B899A0B12DE8854651E7B38551B012 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
-		B4343045B2FCF8BA14727637F9A5B5A1 /* LogSupporting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogSupporting.swift; sourceTree = "<group>"; };
+		B50C5A351A9142BE0A45930D47855048 /* StrokeLayoutManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StrokeLayoutManager.swift; sourceTree = "<group>"; };
+		B68AC79139BB830BDED9B010E6F8B045 /* PinpointKit+ShakePresentation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "PinpointKit+ShakePresentation.swift"; sourceTree = "<group>"; };
 		BCEF62B55C3639F9F95A136036C883BE /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = "SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
+		BD5A38A8B9480B05F587465DE8B9AA33 /* UIView+PinpointKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIView+PinpointKit.swift"; sourceTree = "<group>"; };
+		BE9E4059E35E609072A5E285FD396A80 /* Tool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
+		BEDF8CB4916BA725ED56B8EFC6DAE4F9 /* LogSupporting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogSupporting.swift; sourceTree = "<group>"; };
+		BF882ED8933EB8BD2733BF07B47E409C /* NSBundle+PinpointKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSBundle+PinpointKit.swift"; sourceTree = "<group>"; };
+		BFFEE205B0F9F0B82D3A8DDC00687A25 /* BarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BarButtonItem.swift; sourceTree = "<group>"; };
+		C04A035D4F3CB8D8BF99BD102A415510 /* PinpointKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PinpointKit.h; sourceTree = "<group>"; };
+		C04FBC2969B19E1E64AABDFE70414AF6 /* FeedbackViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
 		C29D51E4E8E93994310ADCA633D301E6 /* Pods-PinpointKitExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PinpointKitExample-umbrella.h"; sourceTree = "<group>"; };
+		C42D566078978B9E809011A053BE886B /* Screen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		C4A6908DFBA7072A43C5A5B9C0AEBFAF /* Pods-PinpointKitExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PinpointKitExample.modulemap"; sourceTree = "<group>"; };
+		C559165AA092950E28B88AB471B489AB /* FeedbackNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeedbackNavigationController.swift; sourceTree = "<group>"; };
 		CDC3A4BF8774A7DEE2316927BCA8BA3A /* Pods-PinpointKitExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PinpointKitExample-frameworks.sh"; sourceTree = "<group>"; };
-		D0275517A9579988AEDFB27D641D8364 /* Fonts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		D0A7F6EA890F562814133802A5AF77FF /* FeedbackConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeedbackConfiguration.swift; sourceTree = "<group>"; };
+		CFE6812A909195E30B952B33B2D846A7 /* InterfaceCustomizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InterfaceCustomizable.swift; sourceTree = "<group>"; };
+		D040E39FDE1CE9D817C41D044B55E896 /* EditImageViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditImageViewController.swift; sourceTree = "<group>"; };
 		D37B3CC579D24F19F07B469C5B0CBF69 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3978111B9A4397C306BABFDB5B20D6E /* Pods-PinpointKitExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PinpointKitExample-acknowledgements.markdown"; sourceTree = "<group>"; };
+		D3ABABE8C2CD6E796ED24D2665C31649 /* SuccessType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SuccessType.swift; sourceTree = "<group>"; };
 		D6CBD235F703EBBB5342501A1E5A09BF /* PinpointKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PinpointKit.modulemap; sourceTree = "<group>"; };
-		DA442624901750CFA3773194DBBAC681 /* ScreenshotCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
-		DDDADDF89F2F16BBB8816BB7702B5583 /* PinpointKit+ShakePresentation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "PinpointKit+ShakePresentation.swift"; sourceTree = "<group>"; };
-		DF8E1FF26E5C5CFD39A439CFB2EF1517 /* Annotations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Annotations.swift; sourceTree = "<group>"; };
-		E2BD5DDED37FAAFE9A28F205B7BD6379 /* NavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		D8144547317E82B09529A89CBA05DA5D /* Feedback.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
+		DBB705D02384C727E4525254061BBF5C /* SystemLogCollector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SystemLogCollector.swift; sourceTree = "<group>"; };
 		E2E9D9A1E5A484B9629EFB4384002E67 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		E4173603615A084A90E0CF832CF5910E /* InterfaceCustomization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InterfaceCustomization.swift; sourceTree = "<group>"; };
 		E42A9844F76F9E28FEEC5A0F0037FF76 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		E5609DE246B1B61C4C74ABD3C7FC2C26 /* KeyboardAvoider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyboardAvoider.swift; sourceTree = "<group>"; };
-		E97EDE32806A0ED6DF1F456A81852444 /* FeedbackViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeedbackViewController.swift; sourceTree = "<group>"; };
-		EAEFA6A5E3077F1F0F4A76819FE2C01A /* PinpointKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PinpointKit.h; sourceTree = "<group>"; };
-		EC7CB508C3B1EC5C3B95A20FA3B1D1B9 /* MIMEType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MIMEType.swift; sourceTree = "<group>"; };
-		EF161ECE478009A7B910C1951E07AADB /* BarButtonItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BarButtonItem.swift; sourceTree = "<group>"; };
-		F310663DCD6CE7605E828E00123479B3 /* UIColor+Palette.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
+		E6A4487DF0464F1701CD1543B5B5AA54 /* BoxAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BoxAnnotationView.swift; sourceTree = "<group>"; };
+		E860A9DCD30DE4E5E0429B6E6417BA53 /* KeyboardAvoider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyboardAvoider.swift; sourceTree = "<group>"; };
+		EF3450B96AFFC4968BCBFF8F205C0073 /* ShakeDetectingWindow.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindow.swift; sourceTree = "<group>"; };
+		F329F0609EEC9D5E70B08FF1FF83A5A7 /* MailSender.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MailSender.swift; sourceTree = "<group>"; };
+		F9110761A24A302719FE9F5548776667 /* PinpointKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PinpointKit.swift; sourceTree = "<group>"; };
+		F92BDEDAD833B4B274D36CE57565881F /* Editor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
+		F9681AA4E5661F19AB740F9F219A9542 /* NavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		FFC218B076577FDDB35FED8A4C0FBB33 /* Pods_PinpointKitExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinpointKitExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -197,18 +197,9 @@
 		05B87D8740300FE8B32733D0F07C9E21 /* PinpointKit */ = {
 			isa = PBXGroup;
 			children = (
-				117931653C544A6B76095C7333A5CA9A /* Sources */,
+				E03B25680D735FC35942F6295094FBB6 /* Sources */,
 			);
 			path = PinpointKit;
-			sourceTree = "<group>";
-		};
-		117931653C544A6B76095C7333A5CA9A /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				7E941D04A4DFDB254F750A97E0C893B3 /* Core */,
-				14543F61BCEC7788ABA29B88F2C75791 /* ScreenshotDetetor */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
@@ -217,26 +208,6 @@
 				8A50A9293DF7E0690673BA8E7D29ABB4 /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		14543F61BCEC7788ABA29B88F2C75791 /* ScreenshotDetetor */ = {
-			isa = PBXGroup;
-			children = (
-				9E7BC9EC2D82A7832D28F08AEE84B71B /* ScreenshotDetector.swift */,
-			);
-			path = ScreenshotDetetor;
-			sourceTree = "<group>";
-		};
-		19618715C0F21333691C52A8C1BFD882 /* Editing */ = {
-			isa = PBXGroup;
-			children = (
-				63B36AA67A1FBC57DA500D61F2F41BF0 /* AnnotationViewFactory.swift */,
-				5A7E8D069B765F1CB1C3EE8F08ACDE92 /* EditImageViewController.swift */,
-				9108A1275C50BBEC3F29164B192332BE /* Editor.swift */,
-				2B76ED16C2DE3231B5299605ED9E5BD3 /* EditorDelegate.swift */,
-				033BA3998C6E272A462976AC19BF3ED0 /* Tool.swift */,
-			);
-			path = Editing;
 			sourceTree = "<group>";
 		};
 		30A11B98866A150C86C000702258E0F1 /* Pods-PinpointKitExample */ = {
@@ -309,60 +280,6 @@
 			);
 			sourceTree = "<group>";
 		};
-		7E941D04A4DFDB254F750A97E0C893B3 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				DF8E1FF26E5C5CFD39A439CFB2EF1517 /* Annotations.swift */,
-				9EE13803DBC8D12117BD942C6AE71BC7 /* AnnotationsView.swift */,
-				4C9B1BA02BA670A86327D651CA350DEC /* AnnotationView.swift */,
-				8954428B13E18C6FE6410A2046020589 /* ArrowAnnotationView.swift */,
-				404B84433D9BCE4EA7B7852430873008 /* ASLLogger.h */,
-				7C973E023B93ED6B2C28F7F1FB39EB1D /* ASLLogger.m */,
-				EF161ECE478009A7B910C1951E07AADB /* BarButtonItem.swift */,
-				23E36D80FEF397BE56773A862261AB26 /* BasicLogViewController.swift */,
-				AA483E159B2FD61679A0BF82F088F377 /* BezierPath.swift */,
-				725A9CE5CCF5B3BB61B8260BE42F2F5D /* BlurAnnotationView.swift */,
-				48E8A690F25D26E37C439EB40EBF9AD0 /* BoxAnnotationView.swift */,
-				A0DAC06992D6A31CC7D9152323C98972 /* CheckmarkCell.swift */,
-				0DB27D7E09737D83AD83CA67119379CB /* Configuration.swift */,
-				74E419E5AC86A82283250CAC89AA784F /* Feedback.swift */,
-				AAE9BB65C6798DA25E86CC10B372EA3D /* FeedbackCollector.swift */,
-				D0A7F6EA890F562814133802A5AF77FF /* FeedbackConfiguration.swift */,
-				8684BDF9887D45983C7CFF9C6E12E0B4 /* FeedbackNavigationController.swift */,
-				799D688A2D4D0B195B1004855B2E4B20 /* FeedbackTableViewDataSource.swift */,
-				E97EDE32806A0ED6DF1F456A81852444 /* FeedbackViewController.swift */,
-				D0275517A9579988AEDFB27D641D8364 /* Fonts.swift */,
-				6C03CC63FAC2110FE5A2336B9FC30774 /* InterfaceCustomizable.swift */,
-				A110BA033231DEFDB40C7BE0D1D3EEDA /* InterfaceCustomization.swift */,
-				E5609DE246B1B61C4C74ABD3C7FC2C26 /* KeyboardAvoider.swift */,
-				4C82CA09319B77E06483565FE3A84A2B /* LogCollector.swift */,
-				B4343045B2FCF8BA14727637F9A5B5A1 /* LogSupporting.swift */,
-				22E3BB2CC347AC737EFF7CF4A7F853CE /* LogViewer.swift */,
-				957A33C970DA35E93E8DF5CD6B86F8FE /* MailSender.swift */,
-				EC7CB508C3B1EC5C3B95A20FA3B1D1B9 /* MIMEType.swift */,
-				E2BD5DDED37FAAFE9A28F205B7BD6379 /* NavigationController.swift */,
-				70CE10A213D87D256003F90C677C43C7 /* NSBundle+PinpointKit.swift */,
-				EAEFA6A5E3077F1F0F4A76819FE2C01A /* PinpointKit.h */,
-				39B73AB34C12EEDAC72270868EAD964D /* PinpointKit.swift */,
-				DDDADDF89F2F16BBB8816BB7702B5583 /* PinpointKit+ShakePresentation.swift */,
-				68072DDAC1939F6CB1D8FA07A39F0E80 /* Screen.swift */,
-				DA442624901750CFA3773194DBBAC681 /* ScreenshotCell.swift */,
-				0F90C3A1EA11E30DBB2B9654336C84A7 /* Screenshotter.swift */,
-				4D60DF37C1D176CF57D121993C5E261E /* Sender.swift */,
-				1D2CDD32371E471AE3C24321D323383E /* ShakeDetectingWindow.swift */,
-				34C75440F9838D99F31FCA80071EB31C /* ShakeDetectingWindowDelegate.swift */,
-				9F1CAC2DF737B09C742CDE123B60DCC6 /* StrokeLayoutManager.swift */,
-				6ED240B9C7FC0CEEC22B86BF61667D31 /* SuccessType.swift */,
-				67836B98955B740BD6993C9B471A90A7 /* SystemLogCollector.swift */,
-				449EC05C60F5994A556AE51A5BFB86CA /* TextAnnotationView.swift */,
-				F310663DCD6CE7605E828E00123479B3 /* UIColor+Palette.swift */,
-				42EA4CBF12484A14B588C6D714CF0C8A /* UIGestureRecognizer+FailRecognizing.swift */,
-				7F5A1F8E88C11EC4E58109D18E60F0C4 /* UIView+PinpointKit.swift */,
-				19618715C0F21333691C52A8C1BFD882 /* Editing */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
 		7EDB98DB12016E714DD1942B2E5F7E90 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,12 +315,33 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		D26D7D6D1D090A32D5D39964F7BF4105 /* Editing */ = {
+			isa = PBXGroup;
+			children = (
+				29358846A16DF9E67B99F92FF8E49EA5 /* AnnotationViewFactory.swift */,
+				D040E39FDE1CE9D817C41D044B55E896 /* EditImageViewController.swift */,
+				F92BDEDAD833B4B274D36CE57565881F /* Editor.swift */,
+				7F00806885936767FCBDAA5B474AA5EB /* EditorDelegate.swift */,
+				BE9E4059E35E609072A5E285FD396A80 /* Tool.swift */,
+			);
+			path = Editing;
+			sourceTree = "<group>";
+		};
 		D8956B217F59924AFC43DED78D48556A /* PinpointKit */ = {
 			isa = PBXGroup;
 			children = (
 				05B87D8740300FE8B32733D0F07C9E21 /* PinpointKit */,
 			);
 			path = PinpointKit;
+			sourceTree = "<group>";
+		};
+		E03B25680D735FC35942F6295094FBB6 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F7CD7617A898DBCC8D474F9F7F2208C0 /* Core */,
+				FC20E05DF6D6C52AB85DC7CE4938D85F /* ScreenshotDetector */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		EB6171513854CF5145AEE492F8A60E1A /* Resources */ = {
@@ -415,6 +353,68 @@
 				BCEF62B55C3639F9F95A136036C883BE /* SourceSansPro-Semibold.ttf */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F7CD7617A898DBCC8D474F9F7F2208C0 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				13BF58E75455CE789FD1608E8D5D905B /* Annotations.swift */,
+				9085181271527D7355F4628253CBCA11 /* AnnotationsView.swift */,
+				689BF2C388FB66D511E55FC7A86F6959 /* AnnotationView.swift */,
+				411F303589C4982B4B58D8F0AC5AFE95 /* ArrowAnnotationView.swift */,
+				5257D73E2616667CC2CAC77A23722A7F /* ASLLogger.h */,
+				426930B17B3D0F715A0652870CE4B28B /* ASLLogger.m */,
+				BFFEE205B0F9F0B82D3A8DDC00687A25 /* BarButtonItem.swift */,
+				5F383EA49C51F69260280B42916FE64F /* BasicLogViewController.swift */,
+				38E42C05114598D89CEF3F3291866461 /* BezierPath.swift */,
+				2F6771A395C94904B7AEDEBDE646D900 /* BlurAnnotationView.swift */,
+				E6A4487DF0464F1701CD1543B5B5AA54 /* BoxAnnotationView.swift */,
+				7E0791D0276D8DA84BB247E30966D705 /* CheckmarkCell.swift */,
+				317729477BFE764069116CE2ACFB5C62 /* Configuration.swift */,
+				D8144547317E82B09529A89CBA05DA5D /* Feedback.swift */,
+				7C55E357810C049C7E8F5B77B09CCF17 /* FeedbackCollector.swift */,
+				557E52A831E2F359BC9C0308EC87A599 /* FeedbackConfiguration.swift */,
+				C559165AA092950E28B88AB471B489AB /* FeedbackNavigationController.swift */,
+				5F7F9309DFE11431B55E6751E66C7981 /* FeedbackTableViewDataSource.swift */,
+				C04FBC2969B19E1E64AABDFE70414AF6 /* FeedbackViewController.swift */,
+				8667815676A7E4DFA0FD868DF16ECC35 /* Fonts.swift */,
+				CFE6812A909195E30B952B33B2D846A7 /* InterfaceCustomizable.swift */,
+				E4173603615A084A90E0CF832CF5910E /* InterfaceCustomization.swift */,
+				E860A9DCD30DE4E5E0429B6E6417BA53 /* KeyboardAvoider.swift */,
+				0471C5086F8A8C9C11663F956AF1BA95 /* LogCollector.swift */,
+				BEDF8CB4916BA725ED56B8EFC6DAE4F9 /* LogSupporting.swift */,
+				8B41D5E56DA561BA6E52802C3E69B877 /* LogViewer.swift */,
+				F329F0609EEC9D5E70B08FF1FF83A5A7 /* MailSender.swift */,
+				86DACC140174E86A07425DD071AC7242 /* MIMEType.swift */,
+				F9681AA4E5661F19AB740F9F219A9542 /* NavigationController.swift */,
+				BF882ED8933EB8BD2733BF07B47E409C /* NSBundle+PinpointKit.swift */,
+				C04A035D4F3CB8D8BF99BD102A415510 /* PinpointKit.h */,
+				F9110761A24A302719FE9F5548776667 /* PinpointKit.swift */,
+				B68AC79139BB830BDED9B010E6F8B045 /* PinpointKit+ShakePresentation.swift */,
+				C42D566078978B9E809011A053BE886B /* Screen.swift */,
+				5058165AABAA3B24BAC7BA3BECE6E367 /* ScreenshotCell.swift */,
+				5C8C91C292BAF72A8581E41D8777E68D /* Screenshotter.swift */,
+				944D920F8174427723D406BE8E7A8DE8 /* Sender.swift */,
+				EF3450B96AFFC4968BCBFF8F205C0073 /* ShakeDetectingWindow.swift */,
+				A7E48F3453FF7870488B774D60756E0A /* ShakeDetectingWindowDelegate.swift */,
+				B50C5A351A9142BE0A45930D47855048 /* StrokeLayoutManager.swift */,
+				D3ABABE8C2CD6E796ED24D2665C31649 /* SuccessType.swift */,
+				DBB705D02384C727E4525254061BBF5C /* SystemLogCollector.swift */,
+				693A252224C0CB66252AB653A55ACD2E /* TextAnnotationView.swift */,
+				1494B1F44E3FAA4E039A0D5A120F7C35 /* UIColor+Palette.swift */,
+				7C54CC7237E11C98A36CAF476ED9B89B /* UIGestureRecognizer+FailRecognizing.swift */,
+				BD5A38A8B9480B05F587465DE8B9AA33 /* UIView+PinpointKit.swift */,
+				D26D7D6D1D090A32D5D39964F7BF4105 /* Editing */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		FC20E05DF6D6C52AB85DC7CE4938D85F /* ScreenshotDetector */ = {
+			isa = PBXGroup;
+			children = (
+				30D0F5791FCFEA09123775316CE827FB /* ScreenshotDetector.swift */,
+			);
+			path = ScreenshotDetector;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
