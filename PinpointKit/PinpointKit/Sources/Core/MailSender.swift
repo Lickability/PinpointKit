@@ -30,10 +30,10 @@ open class MailSender: NSObject, Sender {
         case mailCannotSend
         
         /// Email composing was canceled by the user.
-        case mailCanceled(underlyingError: NSError?)
+        case mailCanceled(underlyingError: Swift.Error?)
         
         /// Email sending failed.
-        case mailFailed(underlyingError: NSError?)
+        case mailFailed(underlyingError: Swift.Error?)
     }
     
     /// A success in sending feedback.
@@ -150,13 +150,13 @@ private extension MFMailComposeViewController {
 }
 
 extension MailSender: MFMailComposeViewControllerDelegate {
-    public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: NSError?) {
+    public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Swift.Error?) {
         controller.dismiss(animated: true) {
             self.completeWithResult(result, error: error)
         }
     }
     
-    private func completeWithResult(_ result: MFMailComposeResult, error: NSError?) {
+    private func completeWithResult(_ result: MFMailComposeResult, error: Swift.Error?) {
         switch result {
         case .cancelled:
             fail(with: .mailCanceled(underlyingError: error))
