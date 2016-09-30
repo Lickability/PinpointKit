@@ -31,6 +31,7 @@
   "subspecs": [
     {
       "name": "Core",
+      "resources": "PinpointKit/PinpointKit/Resources/*",
       "source_files": "PinpointKit/PinpointKit/Sources/Core/**/*.{h,m,swift}"
     },
     {
@@ -38,6 +39,5 @@
       "source_files": "PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift"
   	}
   ],
-  "resources": "PinpointKit/PinpointKit/Resources/*",
   "dependencies": { }
 }
