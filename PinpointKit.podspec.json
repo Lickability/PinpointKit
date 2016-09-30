@@ -44,5 +44,6 @@
       ]
     }
   ],
+  "default_subspec": "Core",
   "dependencies": { }
 }
