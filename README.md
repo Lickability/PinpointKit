@@ -59,7 +59,10 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '9.0'
 use_frameworks!
 
-pod 'PinpointKit', :branch => 'develop'
+target 'YOUR_TARGET_NAME' do
+    pod 'PinpointKit', :git => 'https://github.com/Lickability/PinpointKit.git', :branch => 'develop'
+end
+
 ```
 
 Then, run the following command:
@@ -71,7 +74,7 @@ $ pod install
 We also offer a convenience class, [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/develop/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift) that is available via the `ScreenshotDetector` subspec. This class provides delegate callbacks when the user takes a screenshot while using your app. Please see the [Requirements](#requirements) section regarding inclusion of [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/develop/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift). You can add this to your project by adding the following line in your `Podfile`, in addition to the one for `PinpointKit` above:
 
 ```ruby
-pod 'PinpointKit/ScreenshotDetector', :branch => 'develop'
+pod 'PinpointKit/ScreenshotDetector', :git => 'https://github.com/Lickability/PinpointKit.git', :branch => 'develop'
 ```
 
 ### Carthage
