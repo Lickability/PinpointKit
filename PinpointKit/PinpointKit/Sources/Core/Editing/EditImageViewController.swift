@@ -56,9 +56,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }()
     
     fileprivate let imageView: UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        
+        return imageView
     }()
     
     fileprivate let annotationsView: AnnotationsView = {
