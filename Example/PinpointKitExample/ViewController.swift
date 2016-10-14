@@ -24,20 +24,5 @@ final class ViewController: UITableViewController {
         super.viewDidAppear(animated)
         
         pinpointKit.show(from: self)
-        
-        let screenshotType = Feedback.ScreenshotType.original(image: #imageLiteral(resourceName: "liberatore"))
-        let preferredImage = screenshotType.preferredImage
-        let applicationInformation: Feedback.ApplicationInformation = Feedback.ApplicationInformation(version: nil, build: nil, name: nil, bundleIdentifier: nil, operatingSystemVersion: nil)
-        
-        let feedbackConfiguration = FeedbackConfiguration(recipients: ["feedback@example.com"])
-        
-        let feedback = Feedback(screenshot: screenshotType, applicationInformation: applicationInformation, configuration: feedbackConfiguration)
-        
-        let mimeType = MIMEType.PlainText
-        print(mimeType.fileExtension)
-        
-        // Just to silence warnings of unused variables.
-        print(preferredImage)
-        print(feedback)
     }
 }
