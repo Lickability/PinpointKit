@@ -23,7 +23,7 @@ public struct Feedback {
         case combined(originalImage: UIImage, annotatedImage: UIImage)
         
         /// Returns an image of the screenshot preferring the annotated image.
-        var preferredImage: UIImage {
+        public var preferredImage: UIImage {
             switch self {
             case let .original(image):
                 return image
@@ -36,21 +36,38 @@ public struct Feedback {
     }
     
     /// A substructure containing information about the application and its environment.
-    struct ApplicationInformation {
+    public struct ApplicationInformation {
         /// The application’s marketing version.
-        let version: String?
+        public let version: String?
         
         /// The application’s build number.
-        let build: String?
+        public let build: String?
         
         /// The application’s display name.
-        let name: String?
+        public let name: String?
         
-        /// The application’s bundle identifer.
-        let bundleIdentifer: String?
+        /// The application’s bundle identifier.
+        public let bundleIdentifier: String?
         
         /// The operating system version of the OS in which the application is running.
-        let operatingSystemVersion: OperatingSystemVersion?
+        public let operatingSystemVersion: OperatingSystemVersion?
+        
+        /**
+         Initializes a new `ApplicationInformation`.
+         
+         - parameter version:                The application’s marketing version.
+         - parameter build:                  The application’s build number.
+         - parameter name:                   The application’s display name.
+         - parameter bundleIdentifier:       The application’s bundle identifier.
+         - parameter operatingSystemVersion: The operating system version of the OS in which the application is running.
+         */
+        public init(version: String?, build: String?, name: String?, bundleIdentifier: String?, operatingSystemVersion: OperatingSystemVersion?) {
+            self.version = version
+            self.build = build
+            self.name = name
+            self.bundleIdentifier = bundleIdentifier
+            self.operatingSystemVersion = operatingSystemVersion
+        }
     }
     
     /// A screenshot of the screen the feedback relates to.
@@ -60,7 +77,7 @@ public struct Feedback {
     public let logs: [String]?
     
     /// A struct containing information about the application and its environment.
-    let applicationInformation: ApplicationInformation?
+    public let applicationInformation: ApplicationInformation?
     
     /// Specifies configurable properties for feedback.
     public var configuration: FeedbackConfiguration
@@ -73,13 +90,13 @@ public struct Feedback {
      - parameter applicationInformation: Information about the application to be captured.
      - parameter configuration:          Configurable properties for feedback.
      */
-    init(screenshot: ScreenshotType,
-        logs: [String]? = nil,
-        applicationInformation: ApplicationInformation? = nil,
-        configuration: FeedbackConfiguration) {
-            self.screenshot = screenshot
-            self.logs = logs
-            self.applicationInformation = applicationInformation
-            self.configuration = configuration
+    public init(screenshot: ScreenshotType,
+                logs: [String]? = nil,
+                applicationInformation: ApplicationInformation? = nil,
+                configuration: FeedbackConfiguration) {
+        self.screenshot = screenshot
+        self.logs = logs
+        self.applicationInformation = applicationInformation
+        self.configuration = configuration
     }
 }
