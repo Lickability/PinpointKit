@@ -56,9 +56,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }()
     
     fileprivate let imageView: UIImageView = {
-        let view = UIImageView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        
+        return imageView
     }()
     
     fileprivate let annotationsView: AnnotationsView = {
@@ -666,7 +668,7 @@ extension EditImageViewController: Editor {
         }
     }
     
-    private func clearAllAnnotations() {
+    public func clearAllAnnotations() {
         for annotationView in annotationsView.subviews where annotationView is AnnotationView {
             annotationView.removeFromSuperview()
         }

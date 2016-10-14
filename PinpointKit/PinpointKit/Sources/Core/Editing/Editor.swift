@@ -21,6 +21,11 @@ public protocol Editor: class, InterfaceCustomizable {
      - parameter screenshot: The screenshot to be edited.
      */
     func setScreenshot(_ screenshot: UIImage)
+    
+    /**
+     Removes all annotations added to the editor.
+     */
+    func clearAllAnnotations()
 }
 
 extension Editor where Self: UIViewController {
