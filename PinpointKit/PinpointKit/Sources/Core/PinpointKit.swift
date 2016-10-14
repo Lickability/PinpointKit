@@ -57,7 +57,7 @@ open class PinpointKit {
      */
     open func show(from viewController: UIViewController, screenshot: UIImage = Screenshotter.takeScreenshot()) {
         displayingViewController = viewController
-        
+        configuration.editor.clearAllAnnotations()
         configuration.feedbackCollector.collectFeedback(with: screenshot, from: viewController)
     }
 }

@@ -668,7 +668,7 @@ extension EditImageViewController: Editor {
         }
     }
     
-    private func clearAllAnnotations() {
+    public func clearAllAnnotations() {
         for annotationView in annotationsView.subviews where annotationView is AnnotationView {
             annotationView.removeFromSuperview()
         }
