@@ -23,6 +23,6 @@ final class ViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        pinpointKit.show(from: self, screenshot: #imageLiteral(resourceName: "liberatore"))
+        pinpointKit.show(from: self)
     }
 }
