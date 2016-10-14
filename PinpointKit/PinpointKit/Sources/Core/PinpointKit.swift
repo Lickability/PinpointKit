@@ -53,7 +53,7 @@ open class PinpointKit {
      Shows PinpointKit’s feedback collection UI from a given view controller.
      
      - parameter viewController: The view controller from which to present.
-     - parameter screenshot:     The screenshot to be annotated. The default value is a screenshot taken at the time this method is called.
+     - parameter screenshot:     The screenshot to be annotated. The default value is a screenshot taken at the time this method is called. This image is intended to match the device’s screen size in points.
      */
     open func show(from viewController: UIViewController, screenshot: UIImage = Screenshotter.takeScreenshot()) {
         displayingViewController = viewController
