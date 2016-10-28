@@ -26,7 +26,7 @@
 		28C00E4BDBE22EB4BBEC9CEEF5BC2DE6 /* CheckmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28F338345D142EFBFB293D525C33A24 /* CheckmarkCell.swift */; };
 		2BF2DDFACD0DAD14A2AABE13E1213119 /* AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F34DC149C68E3D001FE95ADAB03416 /* AnnotationView.swift */; };
 		2F6D8C4A8D2279A30C4766FD64F9D7CB /* InterfaceCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 227DBC70734B340C20B25880392673A2 /* InterfaceCustomization.swift */; };
-		34194259F73BE7AB550BC1566EE08814 /* ScreenshotHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C1484541D21C4281BA3ED93971A21 /* ScreenshotHeaderView.swift */; };
+		34194259F73BE7AB550BC1566EE08814 /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A89C1484541D21C4281BA3ED93971A21 /* ScreenshotCell.swift */; };
 		35F0122E6A12F0BE7C52499E6089D902 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F5AA4FD467BB51C36043607DA27DA3 /* Configuration.swift */; };
 		392F121A5726514F9E1F9137F4BA3050 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81989FFD3ABDA38A0D39F333101537A9 /* Fonts.swift */; };
 		398B99C91925A9B4E41A5B6EAAC0228F /* PinpointKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1851531A8ED6419FF3F0CE6020D5F12 /* PinpointKit.swift */; };
@@ -134,7 +134,7 @@
 		A0C594DAC52E5B086F8E2DEE8C7280E4 /* Screenshotter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Screenshotter.swift; sourceTree = "<group>"; };
 		A51C66D65E5AF88B6EEEFF7A107D7651 /* FeedbackConfiguration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FeedbackConfiguration.swift; sourceTree = "<group>"; };
 		A671B8F35D77D0BE69BA2C89E87F614F /* SystemLogCollector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SystemLogCollector.swift; sourceTree = "<group>"; };
-		A89C1484541D21C4281BA3ED93971A21 /* ScreenshotHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScreenshotHeaderView.swift; sourceTree = "<group>"; };
+		A89C1484541D21C4281BA3ED93971A21 /* ScreenshotCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
 		AF882FD6DA5B6EE31D5682A092FC9799 /* ASLLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ASLLogger.m; sourceTree = "<group>"; };
 		B3B899A0B12DE8854651E7B38551B012 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
 		BCEF62B55C3639F9F95A136036C883BE /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = "SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
@@ -361,7 +361,7 @@
 				78BE17CC17A940358625098ABA7F70EB /* PinpointKit+ShakePresentation.swift */,
 				D55BACDCA6375FB67E334AD4C239257D /* Screen.swift */,
 				26347F54419B3F4E3467C55160FA800C /* ScreenshotDetector.swift */,
-				A89C1484541D21C4281BA3ED93971A21 /* ScreenshotHeaderView.swift */,
+				A89C1484541D21C4281BA3ED93971A21 /* ScreenshotCell.swift */,
 				A0C594DAC52E5B086F8E2DEE8C7280E4 /* Screenshotter.swift */,
 				8B6FB4763E282677F56C8288F0B396C1 /* Sender.swift */,
 				44ACB9AF788D5E295E169BC7A760A86F /* ShakeDetectingWindow.swift */,
@@ -561,7 +561,7 @@
 				398B99C91925A9B4E41A5B6EAAC0228F /* PinpointKit.swift in Sources */,
 				229383B182F6B754B745B8FCEF71D7D8 /* Screen.swift in Sources */,
 				BBD7301E7AEF029ACFA45662098779B2 /* ScreenshotDetector.swift in Sources */,
-				34194259F73BE7AB550BC1566EE08814 /* ScreenshotHeaderView.swift in Sources */,
+				34194259F73BE7AB550BC1566EE08814 /* ScreenshotCell.swift in Sources */,
 				AEC384A90C20C186F0BE8C7E40C9C6F2 /* Screenshotter.swift in Sources */,
 				E829B409D59574D91BDDE621962DA38F /* Sender.swift in Sources */,
 				C546C94D0D92EBDF865FBAE94476F04D /* ShakeDetectingWindow.swift in Sources */,
