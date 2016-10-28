@@ -49,7 +49,7 @@
 $ gem install cocoapods
 ```
 
-> CocoaPods 1.0.0+ is required to build PinpointKit.
+> CocoaPods 1.1.0+ is required to build PinpointKit.
 
 To integrate PinpointKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
