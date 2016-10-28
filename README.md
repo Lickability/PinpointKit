@@ -36,9 +36,8 @@
 ## Requirements
 
 * iOS 9.0+
-* Xcode 7.3+
-
-> **Note:** Branches for Swift 2.3 ([`swift-2.3`](https://github.com/Lickability/PinpointKit/tree/swift-2.3)) and 3.0 ([`swift-3.0`](https://github.com/Lickability/PinpointKit/tree/swift-3.0)) are being kept up-to-date as Xcode 8 betas are released.
+* Xcode 8.0+
+* Swift 2.3
 
 ## Installation
 
@@ -84,13 +83,15 @@ $ brew install carthage
 To integrate PinpointKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "Lickability/PinpointKit" ~> "swift-2.3"
+github "Lickability/PinpointKit" "swift-2.3"
 ```
 
 - Run `carthage update` to build the framework.
 - Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the “Targets” heading in the sidebar.
 - In the tab bar at the top of that window, open the “General” panel.
 - Drag the built `PinpointKit.framework` from the Carthage build folder into the “Embedded Binaries” section.
+- In the tab bar at the top of the window, open the "Build Settings" panel.
+- Ensure that "Use Legacy Swift Version" is set to "Yes"
 
 ### Manually
 
@@ -120,6 +121,8 @@ $ git submodule add -b swift-2.3 https://github.com/Lickability/PinpointKit.git
 - Click on the `+` button under the “Embedded Binaries” section.    
 - You will see two different `PinpointKit.xcodeproj` folders each with two different versions of the `PinpointKit.framework` nested inside a Products folder.
 - Select the top `PinpointKit.framework` for iOS.
+- In the tab bar at the top of the window, open the "Build Settings" panel.
+- Ensure that "Use Legacy Swift Version" is set to "Yes"
 
 - And that’s it!
 
