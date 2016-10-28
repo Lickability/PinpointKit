@@ -63,7 +63,7 @@ public struct Feedback {
     let applicationInformation: ApplicationInformation?
     
     /// Specifies configurable properties for feedback.
-    public var configuration: FeedbackConfiguration?
+    public var configuration: FeedbackConfiguration
     
     /**
      Initializes a `Feedback` with optional default values.
@@ -76,7 +76,7 @@ public struct Feedback {
     init(screenshot: ScreenshotType,
         logs: [String]? = nil,
         applicationInformation: ApplicationInformation? = nil,
-        configuration: FeedbackConfiguration? = nil) {
+        configuration: FeedbackConfiguration) {
             self.screenshot = screenshot
             self.logs = logs
             self.applicationInformation = applicationInformation
