@@ -404,10 +404,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         let isEditingTextView = currentTextAnnotationView?.textView.isFirstResponder ?? false
         currentAnnotationView = isEditingTextView ? currentAnnotationView : nil
         
-        if let delegate = delegate {
-            guard let image = imageView.image else { assertionFailure(); return }
-            delegate.editorDidMakeChanges(self, to: image)
-        }
+        informDelegateOfChange()
     }
     
     @objc private func toolChanged(_ segmentedControl: UISegmentedControl) {
@@ -574,6 +571,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         let removeAnnotationView = {
             self.endEditingTextView()
             annotationView.removeFromSuperview()
+            
+            self.informDelegateOfChange()
         }
         
         if animated {
@@ -590,6 +589,13 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         if let selectedAnnotationView = selectedAnnotationView {
             deleteAnnotationView(selectedAnnotationView, animated: true)
         }
+    }
+    
+    private func informDelegateOfChange() {
+        guard let delegate = delegate else { return }
+        guard let image = imageView.image else { assertionFailure(); return }
+        
+        delegate.editorDidMakeChanges(self, to: image)
     }
     
     // MARK: - UIGestureRecognizerDelegate
