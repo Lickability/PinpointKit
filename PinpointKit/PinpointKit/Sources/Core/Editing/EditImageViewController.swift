@@ -279,14 +279,19 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     @objc private func doneButtonTapped(_ button: UIBarButtonItem) {
-        if let delegate = self.delegate {
-            if delegate.editorShouldDismiss(self, with: self.view.pinpoint_screenshot) {
-                self.delegate?.editorWillDismiss(self, with: self.view.pinpoint_screenshot)
-                
-                dismiss(animated: true, completion: nil)
-            }
-        } else {
+        guard let delegate = delegate else {
             dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        let screenshot = self.view.pinpoint_screenshot
+        if delegate.editorShouldDismiss(self, with: screenshot) {
+            delegate.editorWillDismiss(self, with: screenshot)
+            
+            dismiss(animated: true) { [weak self] in
+                guard let strongSelf = self else { return }
+                delegate.editorDidDismiss(strongSelf, with: screenshot)
+            }
         }
     }
     
@@ -398,6 +403,11 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         currentBlurAnnotationView?.drawsBorder = false
         let isEditingTextView = currentTextAnnotationView?.textView.isFirstResponder ?? false
         currentAnnotationView = isEditingTextView ? currentAnnotationView : nil
+        
+        if let delegate = delegate {
+            guard let image = imageView.image else { assertionFailure(); return }
+            delegate.editorDidMakeChanges(self, to: image)
+        }
     }
     
     @objc private func toolChanged(_ segmentedControl: UISegmentedControl) {
