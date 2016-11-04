@@ -15,12 +15,11 @@ public protocol Editor: class, InterfaceCustomizable {
     /// The view controller that displays the image being edited.
     var viewController: UIViewController { get }
     
-    /**
-     Sets the screenshot to be edited.
-     
-     - parameter screenshot: The screenshot to be edited.
-     */
-    func setScreenshot(_ screenshot: UIImage)
+    /// The number of annotations added to the editor.
+    var numberOfAnnotations: Int { get }
+    
+    /// The screenshot, without annotations.
+    var screenshot: UIImage? { get set }
     
     /**
      Removes all annotations added to the editor.
