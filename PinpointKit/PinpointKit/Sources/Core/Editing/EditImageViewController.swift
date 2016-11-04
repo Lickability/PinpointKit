@@ -633,6 +633,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
 
 extension EditImageViewController: Editor {
 
+    /// The screenshot, without annotations. Note that setting a new image will clear all annotations in the editor. 
     public var screenshot: UIImage? {
         get {
             return imageView.image
