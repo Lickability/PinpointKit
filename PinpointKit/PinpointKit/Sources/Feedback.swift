@@ -23,7 +23,7 @@ public struct Feedback {
         case combined(originalImage: UIImage, annotatedImage: UIImage)
         
         /// Returns an image of the screenshot preferring the annotated image.
-        var preferredImage: UIImage {
+        public var preferredImage: UIImage {
             switch self {
             case let .original(image):
                 return image
