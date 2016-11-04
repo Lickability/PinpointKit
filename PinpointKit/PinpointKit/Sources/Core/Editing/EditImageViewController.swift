@@ -12,12 +12,6 @@ import CoreImage
 /// The default view controller responsible for editing an image.
 public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
     static let TextViewEditingBarAnimationDuration = 0.25
-    static let MinimumAnnotationsNeededToPromptBeforeDismissal = 3
-    
-    // Defaults to true since all compositions comes from the Photo Library to start.
-    private var hasACopyOfCurrentComposition: Bool = true
-    
-    private var hasSavedOrSharedAnyComposion: Bool = false
     
     public weak var delegate: EditorDelegate?
     
@@ -69,10 +63,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         return view
     }()
     
-    private var shouldPromptBeforeDismissal: Bool {
-        return !hasACopyOfCurrentComposition && annotationsView.subviews.count >= type(of: self).MinimumAnnotationsNeededToPromptBeforeDismissal
-    }
-    
     private var createAnnotationPanGestureRecognizer: UIPanGestureRecognizer! = nil
     private var updateAnnotationPanGestureRecognizer: UIPanGestureRecognizer! = nil
     private var createOrUpdateAnnotationTapGestureRecognizer: UITapGestureRecognizer! = nil
@@ -86,10 +76,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         guard let window = UIApplication.shared.keyWindow else { assertionFailure("PinpointKit did not find a keyWindow."); return nil }
         
         return KeyboardAvoider(window: window)
-    }()
-    
-    private lazy var closeBarButtonItem: UIBarButtonItem = {
-        UIBarButtonItem(image: UIImage(named: "CloseButtonX", in: .pinpointKitBundle(), compatibleWith: nil), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(EditImageViewController.closeButtonTapped(_:)))
     }()
     
     private lazy var doneBarButtonItem: UIBarButtonItem = {
@@ -151,8 +137,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         annotationsView.isAccessibilityElement = true
         annotationsView.accessibilityTraits = annotationsView.accessibilityTraits | UIAccessibilityTraitAllowsDirectInteraction
-        
-        closeBarButtonItem.accessibilityLabel = "Close"
     }
     
     @available(*, unavailable)
@@ -294,31 +278,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[annotationsView]|", options: [], metrics: nil, views: views))
     }
     
-    private func newCloseScreenshotAlert() -> UIAlertController {
-        let alert = UIAlertController(title: nil, message: NSLocalizedString("Your edits to this screenshot will be lost unless you share it or save a copy.", comment: "Alert title for closing a screenshot that has annotations that hasn’t been shared."), preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Discard", comment: "Alert button title to close a screenshot and discard edits"), style: .destructive) { action in
-            self.delegate?.editorWillDismiss(self, with: self.view.pinpoint_screenshot)
-            self.dismiss(animated: true, completion: nil)
-        })
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Alert button title to cancel the alert."), style: .cancel, handler: nil))
-        return alert
-    }
-    
-    @objc private func closeButtonTapped(_ button: UIBarButtonItem) {
-        guard let image = imageView.image else { assertionFailure(); return }
-        
-        if let delegate = self.delegate {
-            if delegate.editorShouldDismiss(self, with: image) {
-                delegate.editorWillDismiss(self, with: image)
-                
-                dismiss(animated: true, completion: nil)
-            }
-        } else {
-            dismiss(animated: true, completion: nil)
-        }
-    }
-    
     @objc private func doneButtonTapped(_ button: UIBarButtonItem) {
         if let delegate = self.delegate {
             if delegate.editorShouldDismiss(self, with: self.view.pinpoint_screenshot) {
@@ -436,7 +395,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     private func handleGestureRecognizerFinished() {
-        hasACopyOfCurrentComposition = false
         currentBlurAnnotationView?.drawsBorder = false
         let isEditingTextView = currentTextAnnotationView?.textView.isFirstResponder ?? false
         currentAnnotationView = isEditingTextView ? currentAnnotationView : nil
