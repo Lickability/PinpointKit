@@ -232,7 +232,7 @@ extension FeedbackViewController: FeedbackTableViewDataSourceDelegate {
         guard let editor = editor else { return }
         guard let screenshotToEdit = self.screenshot else { return }
         
-        editor.setScreenshot(screenshotToEdit)
+        editor.screenshot = screenshotToEdit
         
         let editImageViewController = NavigationController(rootViewController: editor.viewController)
         editImageViewController.view.tintColor = interfaceCustomization?.appearance.tintColor
