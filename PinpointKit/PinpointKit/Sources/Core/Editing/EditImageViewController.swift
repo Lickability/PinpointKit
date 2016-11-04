@@ -595,7 +595,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         guard let delegate = delegate else { return }
         guard let image = imageView.image else { assertionFailure(); return }
         
-        delegate.editorDidMakeChanges(self, to: image)
+        delegate.editorDidMakeChange(self, to: image)
     }
     
     // MARK: - UIGestureRecognizerDelegate

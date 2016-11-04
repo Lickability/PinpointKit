@@ -41,7 +41,7 @@ public protocol EditorDelegate: class {
      - parameter editor: The editor resonsible for editing the image.
      - parameter screenshot: The edited image of a screenshot.
      */
-    func editorDidMakeChanges(_ editor: Editor, to screenshot: UIImage)
+    func editorDidMakeChange(_ editor: Editor, to screenshot: UIImage)
 }
 
 /// Extends editor delegate with base implementation for functions.
@@ -55,7 +55,7 @@ extension EditorDelegate {
         return true
     }
     
-    public func editorDidMakeChanges(_ editor: Editor, to screenshot: UIImage) {
+    public func editorDidMakeChange(_ editor: Editor, to screenshot: UIImage) {
         // Do nothing
     }
 }
