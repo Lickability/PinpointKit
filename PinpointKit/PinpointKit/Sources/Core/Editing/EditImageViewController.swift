@@ -11,7 +11,9 @@ import CoreImage
 
 /// The default view controller responsible for editing an image.
 public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
-    static let TextViewEditingBarAnimationDuration = 0.25
+    private static let TextViewEditingBarAnimationDuration = 0.25
+    
+    // MARK: - Editor
     
     public weak var delegate: EditorDelegate?
     
@@ -26,6 +28,24 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     // MARK: - Properties
+    
+    /// The bar button item provider that specifies the left and right bar button items.
+    public var barButtonItemProvider: EditImageViewControllerBarButtonItemProviding? {
+        get {
+            return barButtonItemProviderBackingStore ?? defaultBarButtonItemProvider
+        }
+        set {
+            barButtonItemProviderBackingStore = newValue
+        }
+    }
+    
+    private lazy var defaultBarButtonItemProvider: EditImageViewControllerBarButtonItemProviding? = {
+        guard let interfaceCustomization = self.interfaceCustomization else { assertionFailure(); return nil }
+        
+        return DefaultBarButtonItemProvider(interfaceCustomization: interfaceCustomization, rightBarButtonItemTarget: self, rightBarButtonItemSelector: #selector(EditImageViewController.doneButtonTapped(_:)))
+    }()
+    
+    private var barButtonItemProviderBackingStore: EditImageViewControllerBarButtonItemProviding? = nil
     
     private lazy var segmentedControl: UISegmentedControl = { [unowned self] in
         let segmentArray = [Tool.arrow, Tool.box, Tool.text, Tool.blur]
@@ -76,12 +96,6 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         guard let window = UIApplication.shared.keyWindow else { assertionFailure("PinpointKit did not find a keyWindow."); return nil }
         
         return KeyboardAvoider(window: window)
-    }()
-    
-    private lazy var doneBarButtonItem: UIBarButtonItem = {
-        guard let doneButtonFont = self.interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return UIBarButtonItem() }
-        guard let doneButtonTitle = self.interfaceCustomization?.interfaceText.textEditingDoneButtonTitle else { assertionFailure(); return UIBarButtonItem() }
-        return UIBarButtonItem(doneButtonWithTarget: self, title: doneButtonTitle, font: doneButtonFont, action: #selector(EditImageViewController.doneButtonTapped(_:)))
     }()
     
     private var currentTool: Tool? {
@@ -171,7 +185,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         assert(imageView.image != nil, "A screenshot must be set using `setScreenshot(_:)` before loading the view.")
         
-        navigationItem.rightBarButtonItem = doneBarButtonItem
+        navigationItem.rightBarButtonItem = barButtonItemProvider?.rightBarButtonItem
+        navigationItem.leftBarButtonItem = barButtonItemProvider?.leftBarButtonItem
         
         view.backgroundColor = .white
         view.addSubview(imageView)
@@ -261,6 +276,28 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }
         
         return imageIsLandscape() ? landscapeOrientation : portraitOrientation
+    }
+    
+    // MARK: - EditImageViewController
+    
+    /**
+     Dismisses the receiver if `delegate` is `nil` or returns `true` for `editorShouldDismiss(_:with:)`. If `delegate` returns `true`, `editorWillDismiss(_:with:)` and `editorDidDismiss(_:with:)` will be called.
+     */
+    public func attemptToDismiss(animated: Bool) {
+        guard let delegate = delegate else {
+            dismiss(animated: animated, completion: nil)
+            return
+        }
+        
+        let screenshot = self.view.pinpoint_screenshot
+        if delegate.editorShouldDismiss(self, with: screenshot) {
+            delegate.editorWillDismiss(self, with: screenshot)
+            
+            dismiss(animated: animated) { [weak self] in
+                guard let strongSelf = self else { return }
+                delegate.editorDidDismiss(strongSelf, with: screenshot)
+            }
+        }
     }
     
     // MARK: - Private
@@ -369,6 +406,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         guard let currentTextAnnotationView = currentTextAnnotationView else { return }
         currentTextAnnotationView.beginEditing()
         
+        guard barButtonItemProvider?.allowsHidingBarButtonItemsWhileEditingTextAnnotations == true else { return }
+        
         guard let buttonFont = interfaceCustomization?.appearance.editorTextAnnotationDoneButtonFont else { assertionFailure(); return }
         let dismissButton = UIBarButtonItem(title: interfaceCustomization?.interfaceText.textEditingDismissButtonTitle, style: .done, target: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
         dismissButton.setTitleTextAttributes([NSFontAttributeName: buttonFont], for: UIControlState())
@@ -393,7 +432,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
                 currentTextAnnotationView?.removeFromSuperview()
             }
             
-            navigationItem.setRightBarButton(doneBarButtonItem, animated: true)
+            navigationItem.setRightBarButton(barButtonItemProvider?.rightBarButtonItem, animated: true)
+            navigationItem.setLeftBarButton(barButtonItemProvider?.leftBarButtonItem, animated: true)
             
             currentAnnotationView = nil
         }
@@ -657,5 +697,19 @@ extension EditImageViewController: Editor {
         for annotationView in annotationsView.subviews where annotationView is AnnotationView {
             annotationView.removeFromSuperview()
         }
+    }
+}
+
+private class DefaultBarButtonItemProvider: EditImageViewControllerBarButtonItemProviding {
+    
+    public let leftBarButtonItem: UIBarButtonItem? = nil
+    public let rightBarButtonItem: UIBarButtonItem?
+    
+    public var allowsHidingBarButtonItemsWhileEditingTextAnnotations: Bool {
+        return true
+    }
+    
+    public init(interfaceCustomization: InterfaceCustomization, rightBarButtonItemTarget: AnyObject?, rightBarButtonItemSelector: Selector) {
+        rightBarButtonItem = UIBarButtonItem(doneButtonWithTarget: rightBarButtonItemTarget, title: interfaceCustomization.interfaceText.editorDoneButtonTitle, font: interfaceCustomization.appearance.editorDoneButtonFont, action: rightBarButtonItemSelector)
     }
 }
