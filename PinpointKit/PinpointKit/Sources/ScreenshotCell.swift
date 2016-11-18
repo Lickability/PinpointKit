@@ -1,5 +1,5 @@
 //
-//  ScreenshotHeaderView.swift
+//  ScreenshotCell.swift
 //  PinpointKit
 //
 //  Created by Matthew Bischoff on 2/19/16.
@@ -9,7 +9,7 @@
 import UIKit
 
 /// A view that displays a screenshot and hint text about how to edit it.
-class ScreenshotHeaderView: UIView {
+class ScreenshotCell: UITableViewCell {
     
     /// A type of closure that is invoked when a button is tapped.
     typealias TapHandler = (button: UIButton) -> Void
@@ -70,7 +70,7 @@ class ScreenshotHeaderView: UIView {
     
     private let hintLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.lightGrayColor()
+        label.textColor = .lightGrayColor()
         return label
     }()
     
@@ -81,15 +81,16 @@ class ScreenshotHeaderView: UIView {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setUp()
     }
     
-    @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    public required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        setUp()
     }
     
     // MARK: - UIView
@@ -100,9 +101,22 @@ class ScreenshotHeaderView: UIView {
         screenshotButton.layer.borderColor = tintColor.CGColor
     }
     
-    // MARK: - ScreenshotHeaderView
+    override func addSubview(_ view: UIView) {
+        // Prevents the adding of separators to this cell.
+        let separatorHeight = UIScreen.mainScreen().pixelHeight
+        guard view.frame.height != separatorHeight else {
+            return
+        }
+        
+        super.addSubview(view)
+    }
+    
+    // MARK: - ScreenshotCell
     
     private func setUp() {
+        backgroundColor = .clearColor()
+        selectionStyle = .None
+        
         addSubview(stackView)
         
         stackView.topAnchor.constraintEqualToAnchor(topAnchor).active = true
@@ -122,7 +136,7 @@ class ScreenshotHeaderView: UIView {
         
         screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraintEqualToAnchor(screenshotButton.widthAnchor, multiplier: 1.0)
         
-        screenshotButton.addTarget(self, action: #selector(ScreenshotHeaderView.screenshotButtonTapped(_:)), forControlEvents: .TouchUpInside)
+        screenshotButton.addTarget(self, action: #selector(ScreenshotCell.screenshotButtonTapped(_:)), forControlEvents: .TouchUpInside)
     }
     
     @objc private func screenshotButtonTapped(sender: UIButton) {
