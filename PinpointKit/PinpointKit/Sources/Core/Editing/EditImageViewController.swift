@@ -395,7 +395,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         guard let currentTextAnnotationView = currentTextAnnotationView else { return }
         currentTextAnnotationView.beginEditing()
         
-        guard barButtonItemProvider?.allowsHidingBarButtonItemsWhileEditingTextAnnotations == true else { return }
+        guard barButtonItemProvider?.hidesBarButtonItemsWhileEditingTextAnnotations == true else { return }
         
         guard let buttonFont = interfaceCustomization?.appearance.editorTextAnnotationDismissButtonFont else { assertionFailure(); return }
         let dismissButton = UIBarButtonItem(title: interfaceCustomization?.interfaceText.textEditingDismissButtonTitle, style: .done, target: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
@@ -692,7 +692,7 @@ extension EditImageViewController: Editor {
 private class DefaultBarButtonItemProvider: EditImageViewControllerBarButtonItemProviding {
     public let leftBarButtonItem: UIBarButtonItem? = nil
     public let rightBarButtonItem: UIBarButtonItem?
-    public let allowsHidingBarButtonItemsWhileEditingTextAnnotations = true
+    public let hidesBarButtonItemsWhileEditingTextAnnotations = true
     
     public init(interfaceCustomization: InterfaceCustomization, rightBarButtonItemTarget: AnyObject?, rightBarButtonItemSelector: Selector) {
         rightBarButtonItem = UIBarButtonItem(doneButtonWithTarget: rightBarButtonItemTarget, title: interfaceCustomization.interfaceText.editorDoneButtonTitle, font: interfaceCustomization.appearance.editorDoneButtonFont, action: rightBarButtonItemSelector)

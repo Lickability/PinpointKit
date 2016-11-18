@@ -17,6 +17,6 @@ public protocol EditImageViewControllerBarButtonItemProviding {
     /// The right bar button item.
     var rightBarButtonItem: UIBarButtonItem? { get }
     
-    /// Whether the `EditImageViewController` can hide the bar button items while editing a text annotation and display its own dismiss button for ending the editing of text.
-    var allowsHidingBarButtonItemsWhileEditingTextAnnotations: Bool { get }
+    /// Whether the `EditImageViewController` hides the bar button items while editing a text annotation to display its own dismiss button for ending the editing of text.
+    var hidesBarButtonItemsWhileEditingTextAnnotations: Bool { get }
 }
