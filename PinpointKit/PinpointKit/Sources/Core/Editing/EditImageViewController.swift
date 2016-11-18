@@ -703,13 +703,9 @@ extension EditImageViewController: Editor {
 }
 
 private class DefaultBarButtonItemProvider: EditImageViewControllerBarButtonItemProviding {
-    
     public let leftBarButtonItem: UIBarButtonItem? = nil
     public let rightBarButtonItem: UIBarButtonItem?
-    
-    public var allowsHidingBarButtonItemsWhileEditingTextAnnotations: Bool {
-        return true
-    }
+    public let allowsHidingBarButtonItemsWhileEditingTextAnnotations = true
     
     public init(interfaceCustomization: InterfaceCustomization, rightBarButtonItemTarget: AnyObject?, rightBarButtonItemSelector: Selector) {
         rightBarButtonItem = UIBarButtonItem(doneButtonWithTarget: rightBarButtonItemTarget, title: interfaceCustomization.interfaceText.editorDoneButtonTitle, font: interfaceCustomization.appearance.editorDoneButtonFont, action: rightBarButtonItemSelector)
