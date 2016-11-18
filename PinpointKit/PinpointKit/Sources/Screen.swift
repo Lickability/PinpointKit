@@ -11,6 +11,11 @@ import UIKit
 /// Extends `UIScreen` to identify the pixel size for a screen.
 extension UIScreen {
     
+    /// The height of a single pixel on the screen, in points.
+    var pixelHeight: CGFloat {
+        return 1.0 / scale
+    }
+    
     /**
      Identifies the size of the pixel when the screen is in portrait.
      

@@ -103,7 +103,7 @@ class ScreenshotCell: UITableViewCell {
     
     override func addSubview(_ view: UIView) {
         // Prevents the adding of separators to this cell.
-        let separatorHeight = 1.0 / UIScreen.mainScreen().scale
+        let separatorHeight = UIScreen.mainScreen().pixelHeight
         guard view.frame.height != separatorHeight else {
             return
         }
