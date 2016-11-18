@@ -318,20 +318,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     @objc private func doneButtonTapped(_ button: UIBarButtonItem) {
-        guard let delegate = delegate else {
-            dismiss(animated: true, completion: nil)
-            return
-        }
-        
-        let screenshot = self.view.pinpoint_screenshot
-        if delegate.editorShouldDismiss(self, with: screenshot) {
-            delegate.editorWillDismiss(self, with: screenshot)
-            
-            dismiss(animated: true) { [weak self] in
-                guard let strongSelf = self else { return }
-                delegate.editorDidDismiss(strongSelf, with: screenshot)
-            }
-        }
+        attemptToDismiss(animated: true)
     }
     
     @objc private func handleTouchDownGestureRecognizer(_ gestureRecognizer: UILongPressGestureRecognizer) {
