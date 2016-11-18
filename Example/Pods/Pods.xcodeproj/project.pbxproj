@@ -27,6 +27,7 @@
 		40A2B3349ED694133C5072C4DBC22CFA /* ASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = CBE6EBE3EE7E185D19A3DD6CD0BAA6F9 /* ASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		46AEAECF7531C2384192AAA51FDE6930 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE276403499131D008CB6BA709475D0 /* UIColor+Palette.swift */; };
 		48F822008D266B4351F8FF4CDBF93442 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C238D1A284842EB711EB29E9B69F299 /* Editor.swift */; };
+		4CB771201DCD316C001FC154 /* EditImageViewControllerBarButtonItemProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7711F1DCD316C001FC154 /* EditImageViewControllerBarButtonItemProviding.swift */; };
 		4F23890ECB2FCD34611153312EB69303 /* TextAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBC5604F3145AF00D9544D70E3B9C53 /* TextAnnotationView.swift */; };
 		518C1C0194CD3DE3DEDF951FE46BEED4 /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7309EA9BDF3948F545BC8DF65395B68D /* FeedbackViewController.swift */; };
 		578A5E810F8762F2A2505A7BC1F52370 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F61D6816EA76CDC4EDF0F1337891CC /* Screen.swift */; };
@@ -109,6 +110,7 @@
 		442353394785B418C9A5C78E02204798 /* EditImageViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditImageViewController.swift; sourceTree = "<group>"; };
 		46EB4256B443AF96A12DA037BBA014A4 /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		490CCE9AF334D7DE35D176D874C0B3C4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4CB7711F1DCD316C001FC154 /* EditImageViewControllerBarButtonItemProviding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditImageViewControllerBarButtonItemProviding.swift; sourceTree = "<group>"; };
 		521052D2CB6D84A7FEBDBFFCE2A73EEF /* Screenshotter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Screenshotter.swift; sourceTree = "<group>"; };
 		5C238D1A284842EB711EB29E9B69F299 /* Editor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
 		5E130DAE16C32980DA74035C2A7F56DA /* ShakeDetectingWindowDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShakeDetectingWindowDelegate.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 			children = (
 				34946ECD573272B07976767F4BD6E58B /* AnnotationViewFactory.swift */,
 				442353394785B418C9A5C78E02204798 /* EditImageViewController.swift */,
+				4CB7711F1DCD316C001FC154 /* EditImageViewControllerBarButtonItemProviding.swift */,
 				5C238D1A284842EB711EB29E9B69F299 /* Editor.swift */,
 				1E4719CE9D422494280E1434908D4CC0 /* EditorDelegate.swift */,
 				0BE2A7251C04383DC54945C6085E87F0 /* Tool.swift */,
@@ -574,6 +577,7 @@
 				A6F5B257EA88D86A136A357617839D9D /* PinpointKit.swift in Sources */,
 				578A5E810F8762F2A2505A7BC1F52370 /* Screen.swift in Sources */,
 				F7488AB5559C5A0E64A3819B5B831D42 /* ScreenshotCell.swift in Sources */,
+				4CB771201DCD316C001FC154 /* EditImageViewControllerBarButtonItemProviding.swift in Sources */,
 				5AEBDF41B7855864EB12FACA4FFCB160 /* Screenshotter.swift in Sources */,
 				EAF80411FD205A30714824F17DABF24D /* Sender.swift in Sources */,
 				C891F3B20C8E59859853EAC529251DBC /* ShakeDetectingWindow.swift in Sources */,

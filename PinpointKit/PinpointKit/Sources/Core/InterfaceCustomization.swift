@@ -63,25 +63,29 @@ public struct InterfaceCustomization {
         /// The font used for the text annotation tool segment in the editor.
         let editorTextAnnotationSegmentFont: UIFont
         
-        /// The font used for the done button in the editor displayed while editing a text annotation.
-        let editorTextAnnotationDoneButtonFont: UIFont
+        /// The font used for the dismiss button in the editor displayed while editing a text annotation.
+        let editorTextAnnotationDismissButtonFont: UIFont
+        
+        /// The font used for the done button in the editor to finish editing the image.
+        let editorDoneButtonFont: UIFont
         
         /**
          Initializes an `Appearance` object with a optional annotation color properties.
          
-         - parameter tintColor:                          The tint color of the interface.
-         - parameter annotationFillColor:                The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
-         - parameter annotationStrokeColor:              The stroke color for annotations.
-         - parameter annotationTextAttributes:           The text attributes for annotations.
-         - parameter navigationTitleFont:                The font used for navigation titles.
-         - parameter feedbackSendButtonFont:             The font used for the button that sends feedback.
-         - parameter feedbackCancelButtonFont:           The font used for the button that cancels feedback collection.
-         - parameter feedbackEditHintFont:               The font used for the hint to the user on how to edit the screenshot from the feedback screen.
-         - parameter feedbackBackButtonFont:             The font used for the back button that takes the user back to the initial feedback collection screen.
-         - parameter logCollectionPermissionFont:        The font used for the title of the cell that allows the user to toggle log collection.
-         - parameter logFont:                            The font used for displaying logs.
-         - parameter editorTextAnnotationSegmentFont:    The font used for the text annotation tool segment in the editor.
-         - parameter editorTextAnnotationDoneButtonFont: The font used for the done button in the editor displayed while editing a text annotation.
+         - parameter tintColor:                             The tint color of the interface.
+         - parameter annotationFillColor:                   The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
+         - parameter annotationStrokeColor:                 The stroke color for annotations.
+         - parameter annotationTextAttributes:              The text attributes for annotations.
+         - parameter navigationTitleFont:                   The font used for navigation titles.
+         - parameter feedbackSendButtonFont:                The font used for the button that sends feedback.
+         - parameter feedbackCancelButtonFont:              The font used for the button that cancels feedback collection.
+         - parameter feedbackEditHintFont:                  The font used for the hint to the user on how to edit the screenshot from the feedback screen.
+         - parameter feedbackBackButtonFont:                The font used for the back button that takes the user back to the initial feedback collection screen.
+         - parameter logCollectionPermissionFont:           The font used for the title of the cell that allows the user to toggle log collection.
+         - parameter logFont:                               The font used for displaying logs.
+         - parameter editorTextAnnotationSegmentFont:       The font used for the text annotation tool segment in the editor.
+         - parameter editorTextAnnotationDismissButtonFont: The font used for the dismiss button in the editor displayed while editing a text annotation.
+         - parameter editorDoneButtonFont:                  The font used for the done button in the editor to finish editing the image.
          */
         public init(tintColor: UIColor? = .pinpointOrange(),
                     annotationFillColor: UIColor? = nil,
@@ -95,7 +99,8 @@ public struct InterfaceCustomization {
                     logCollectionPermissionFont: UIFont = .sourceSansProFont(ofSize: 19),
                     logFont: UIFont = .menloRegularFont(ofSize: 10),
                     editorTextAnnotationSegmentFont: UIFont = .sourceSansProFont(ofSize: 18),
-                    editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold)) {
+                    editorTextAnnotationDismissButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
+                    editorDoneButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold)) {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor
@@ -119,7 +124,8 @@ public struct InterfaceCustomization {
             self.feedbackBackButtonFont = feedbackBackButtonFont
             self.logCollectionPermissionFont = logCollectionPermissionFont
             self.editorTextAnnotationSegmentFont = editorTextAnnotationSegmentFont
-            self.editorTextAnnotationDoneButtonFont = editorTextAnnotationDoneButtonFont
+            self.editorTextAnnotationDismissButtonFont = editorTextAnnotationDismissButtonFont
+            self.editorDoneButtonFont = editorDoneButtonFont
         }
     }
     
@@ -152,8 +158,8 @@ public struct InterfaceCustomization {
         ///  The title of a button that cancels text editing.
         let textEditingDismissButtonTitle: String
         
-        ///  The title of a button that cancels text editing.
-        let textEditingDoneButtonTitle: String
+        ///  The title of a button that ends editing of the image.
+        let editorDoneButtonTitle: String
         
         /**
          Initializes an `InterfaceText` with custom values, using a default if a particular property is unspecified.
@@ -166,7 +172,7 @@ public struct InterfaceCustomization {
          - parameter logCollectorTitle:             The title of the log collector.
          - parameter logCollectionPermissionTitle:  The title of the permission button.
          - parameter textEditingDismissButtonTitle: The title of the text editing dismiss button.
-         - parameter textEditingDoneButtonTitle:    The title of the text editing done button.
+         - parameter editorDoneButtonTitle:         The title of a button that ends editing of the image.
          */
         public init(feedbackCollectorTitle: String? = NSLocalizedString("Report a Bug", comment: "Title of a view that reports a bug"),
                     feedbackSendButtonTitle: String = NSLocalizedString("Send", comment: "A button that sends feedback."),
@@ -176,7 +182,7 @@ public struct InterfaceCustomization {
                     logCollectorTitle: String? = NSLocalizedString("Console Log", comment: "Title of a view that collects logs"),
                     logCollectionPermissionTitle: String = NSLocalizedString("Include Console Log", comment: "Title of a button asking the user to include system logs"),
                     textEditingDismissButtonTitle: String = NSLocalizedString("Dismiss", comment: "Title of a button that dismisses text editing"),
-                    textEditingDoneButtonTitle: String = NSLocalizedString("Done", comment: "Title of a button that finish editing")) {
+                    editorDoneButtonTitle: String = NSLocalizedString("Done", comment: "Title of a button that finishes editing")) {
             self.feedbackCollectorTitle = feedbackCollectorTitle
             self.feedbackSendButtonTitle = feedbackSendButtonTitle
             self.feedbackCancelButtonTitle = feedbackCancelButtonTitle
@@ -185,7 +191,7 @@ public struct InterfaceCustomization {
             self.logCollectorTitle = logCollectorTitle
             self.logCollectionPermissionTitle = logCollectionPermissionTitle
             self.textEditingDismissButtonTitle = textEditingDismissButtonTitle
-            self.textEditingDoneButtonTitle = textEditingDoneButtonTitle
+            self.editorDoneButtonTitle = editorDoneButtonTitle
         }
     }
 }
