@@ -185,8 +185,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         
         assert(imageView.image != nil, "A screenshot must be set using `setScreenshot(_:)` before loading the view.")
         
-        navigationItem.rightBarButtonItem = barButtonItemProvider?.rightBarButtonItem
         navigationItem.leftBarButtonItem = barButtonItemProvider?.leftBarButtonItem
+        navigationItem.rightBarButtonItem = barButtonItemProvider?.rightBarButtonItem
         
         view.backgroundColor = .white
         view.addSubview(imageView)
@@ -421,8 +421,8 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
                 currentTextAnnotationView?.removeFromSuperview()
             }
             
-            navigationItem.setRightBarButton(barButtonItemProvider?.rightBarButtonItem, animated: true)
             navigationItem.setLeftBarButton(barButtonItemProvider?.leftBarButtonItem, animated: true)
+            navigationItem.setRightBarButton(barButtonItemProvider?.rightBarButtonItem, animated: true)
             
             currentAnnotationView = nil
         }
