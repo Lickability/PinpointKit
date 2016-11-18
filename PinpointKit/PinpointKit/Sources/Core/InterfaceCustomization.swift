@@ -84,7 +84,7 @@ public struct InterfaceCustomization {
          - parameter logCollectionPermissionFont:           The font used for the title of the cell that allows the user to toggle log collection.
          - parameter logFont:                               The font used for displaying logs.
          - parameter editorTextAnnotationSegmentFont:       The font used for the text annotation tool segment in the editor.
-         - parameter editorTextAnnotationDismissButtonFont: The font used for the done button in the editor displayed while editing a text annotation.
+         - parameter editorTextAnnotationDismissButtonFont: The font used for the dismiss button in the editor displayed while editing a text annotation.
          - parameter editorDoneButtonFont:                  The font used for the done button in the editor to finish editing the image.
          */
         public init(tintColor: UIColor? = .pinpointOrange(),
