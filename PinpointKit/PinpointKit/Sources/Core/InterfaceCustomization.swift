@@ -63,8 +63,8 @@ public struct InterfaceCustomization {
         /// The font used for the text annotation tool segment in the editor.
         let editorTextAnnotationSegmentFont: UIFont
         
-        /// The font used for the done button in the editor displayed while editing a text annotation.
-        let editorTextAnnotationDoneButtonFont: UIFont
+        /// The font used for the dismiss button in the editor displayed while editing a text annotation.
+        let editorTextAnnotationDismissButtonFont: UIFont
         
         /// The font used for the done button in the editor to finish editing the image.
         let editorDoneButtonFont: UIFont
@@ -72,20 +72,20 @@ public struct InterfaceCustomization {
         /**
          Initializes an `Appearance` object with a optional annotation color properties.
          
-         - parameter tintColor:                          The tint color of the interface.
-         - parameter annotationFillColor:                The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
-         - parameter annotationStrokeColor:              The stroke color for annotations.
-         - parameter annotationTextAttributes:           The text attributes for annotations.
-         - parameter navigationTitleFont:                The font used for navigation titles.
-         - parameter feedbackSendButtonFont:             The font used for the button that sends feedback.
-         - parameter feedbackCancelButtonFont:           The font used for the button that cancels feedback collection.
-         - parameter feedbackEditHintFont:               The font used for the hint to the user on how to edit the screenshot from the feedback screen.
-         - parameter feedbackBackButtonFont:             The font used for the back button that takes the user back to the initial feedback collection screen.
-         - parameter logCollectionPermissionFont:        The font used for the title of the cell that allows the user to toggle log collection.
-         - parameter logFont:                            The font used for displaying logs.
-         - parameter editorTextAnnotationSegmentFont:    The font used for the text annotation tool segment in the editor.
-         - parameter editorTextAnnotationDoneButtonFont: The font used for the done button in the editor displayed while editing a text annotation.
-         - parameter editorDoneButtonFont:               The font used for the done button in the editor to finish editing the image.
+         - parameter tintColor:                             The tint color of the interface.
+         - parameter annotationFillColor:                   The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
+         - parameter annotationStrokeColor:                 The stroke color for annotations.
+         - parameter annotationTextAttributes:              The text attributes for annotations.
+         - parameter navigationTitleFont:                   The font used for navigation titles.
+         - parameter feedbackSendButtonFont:                The font used for the button that sends feedback.
+         - parameter feedbackCancelButtonFont:              The font used for the button that cancels feedback collection.
+         - parameter feedbackEditHintFont:                  The font used for the hint to the user on how to edit the screenshot from the feedback screen.
+         - parameter feedbackBackButtonFont:                The font used for the back button that takes the user back to the initial feedback collection screen.
+         - parameter logCollectionPermissionFont:           The font used for the title of the cell that allows the user to toggle log collection.
+         - parameter logFont:                               The font used for displaying logs.
+         - parameter editorTextAnnotationSegmentFont:       The font used for the text annotation tool segment in the editor.
+         - parameter editorTextAnnotationDismissButtonFont: The font used for the done button in the editor displayed while editing a text annotation.
+         - parameter editorDoneButtonFont:                  The font used for the done button in the editor to finish editing the image.
          */
         public init(tintColor: UIColor? = .pinpointOrange(),
                     annotationFillColor: UIColor? = nil,
@@ -99,7 +99,7 @@ public struct InterfaceCustomization {
                     logCollectionPermissionFont: UIFont = .sourceSansProFont(ofSize: 19),
                     logFont: UIFont = .menloRegularFont(ofSize: 10),
                     editorTextAnnotationSegmentFont: UIFont = .sourceSansProFont(ofSize: 18),
-                    editorTextAnnotationDoneButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
+                    editorTextAnnotationDismissButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     editorDoneButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold)) {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
@@ -124,7 +124,7 @@ public struct InterfaceCustomization {
             self.feedbackBackButtonFont = feedbackBackButtonFont
             self.logCollectionPermissionFont = logCollectionPermissionFont
             self.editorTextAnnotationSegmentFont = editorTextAnnotationSegmentFont
-            self.editorTextAnnotationDoneButtonFont = editorTextAnnotationDoneButtonFont
+            self.editorTextAnnotationDismissButtonFont = editorTextAnnotationDismissButtonFont
             self.editorDoneButtonFont = editorDoneButtonFont
         }
     }
