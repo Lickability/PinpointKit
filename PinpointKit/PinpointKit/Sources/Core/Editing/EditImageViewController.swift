@@ -281,7 +281,9 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     // MARK: - EditImageViewController
     
     /**
-     Dismisses the receiver if `delegate` is `nil` or returns `true` for `editorShouldDismiss(_:with:)`. If `delegate` returns `true`, `editorWillDismiss(_:with:)` and `editorDidDismiss(_:with:)` will be called.
+     Dismisses the receiver if `delegate` is `nil` or returns `true` for `editorShouldDismiss(_:with:)`. If `delegate` returns `true`, `editorWillDismiss(_:with:)` and `editorDidDismiss(_:with:)` will be called before and after, respectively.
+     
+     - parameter animated: Whether dismissal is animated.
      */
     public func attemptToDismiss(animated: Bool) {
         guard let delegate = delegate else {
