@@ -387,7 +387,7 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
 
         let imagePixelSize = CGSize(width: imageSize.width * imageScale, height: imageSize.height * imageScale)
         
-        let portraitPixelSize = UIScreen.main.portraitPixelSize()
+        let portraitPixelSize = UIScreen.main.portraitPixelSize
         return CGFloat(imagePixelSize.width) == portraitPixelSize.height && CGFloat(imagePixelSize.height) == portraitPixelSize.width
     }
     

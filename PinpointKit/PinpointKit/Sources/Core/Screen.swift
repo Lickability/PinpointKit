@@ -8,15 +8,16 @@
 
 import UIKit
 
-/// Extends `UIScreen` to identify the pixel size for a screen.
+/// Extends `UIScreen` to add convenience properties.
 extension UIScreen {
     
-    /**
-     Identifies the size of the pixel when the screen is in portrait.
-     
-     - returns: The size of a pixel for the screen's portrait dimensions.
-     */
-    func portraitPixelSize() -> CGSize {
+    /// The height of a single pixel on the screen, in points.
+    var pixelHeight: CGFloat {
+        return 1.0 / scale
+    }
+    
+    /// The size of the receiver when in portrait orientation.
+    var portraitPixelSize: CGSize {
         let coordinateSpaceBounds = fixedCoordinateSpace.bounds
         
         return CGSize(width: coordinateSpaceBounds.width * scale, height: coordinateSpaceBounds.height * scale)
