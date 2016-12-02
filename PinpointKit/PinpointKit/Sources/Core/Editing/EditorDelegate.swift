@@ -55,6 +55,10 @@ extension EditorDelegate {
         return true
     }
     
+    func editorWillDismiss(_ editor: Editor, with screenshot: UIImage) {
+        // Do nothing
+    }
+    
     public func editorDidDismiss(_ editor: Editor, with screenshot: UIImage) {
         // Do nothing
     }
