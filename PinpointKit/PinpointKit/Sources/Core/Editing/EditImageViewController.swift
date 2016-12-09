@@ -10,7 +10,7 @@ import UIKit
 import CoreImage
 
 /// The default view controller responsible for editing an image.
-public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
+public class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
     private static let TextViewEditingBarAnimationDuration = 0.25
     
     // MARK: - Editor
