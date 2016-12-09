@@ -70,6 +70,7 @@ extension EditorDelegate {
     
     public func editor(_ editor: Editor, didMake change: AnnotationChange, to screenshot: UIImage) {
         // Do nothing
+        print(change)
     }
     
     public func editorShouldDismiss(_ editor: Editor, with screenshot: UIImage) -> Bool {
