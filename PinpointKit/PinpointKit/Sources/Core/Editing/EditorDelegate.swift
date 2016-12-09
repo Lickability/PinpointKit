@@ -10,6 +10,16 @@
 public protocol EditorDelegate: class {
     
     /**
+     A method that is called when the tool selection changes in the editor.
+     
+     - parameter editor: The editor responsible for editing the image.
+     - parameter tool: The tool that was selected.
+     
+     - note: The default implementation of this method does nothing.
+     */
+    func editor(_editor: Editor, didSelect tool: Tool)
+    
+    /**
      A method that is called any time the editor makes a modification to the screenshot.
      
      - parameter editor: The editor resonsible for editing the image.
@@ -52,6 +62,10 @@ public protocol EditorDelegate: class {
 
 /// Extends editor delegate with base implementation for functions.
 extension EditorDelegate {
+    
+    public func editor(_editor: Editor, didSelect tool: Tool) {
+        // Do nothing
+    }
     
     public func editorDidMakeChange(_ editor: Editor, to screenshot: UIImage) {
         // Do nothing

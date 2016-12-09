@@ -437,6 +437,10 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     }
     
     @objc private func toolChanged(_ segmentedControl: UISegmentedControl) {
+        if let tool = currentTool {
+            delegate?.editor(_editor: self, didSelect: tool)
+        }
+        
         endEditingTextView()
         
         // Disable the bar hiding behavior when selecting the text tool. Enable for all others.
