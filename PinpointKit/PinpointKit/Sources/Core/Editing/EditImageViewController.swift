@@ -10,7 +10,7 @@ import UIKit
 import CoreImage
 
 /// The default view controller responsible for editing an image.
-public final class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
+open class EditImageViewController: UIViewController, UIGestureRecognizerDelegate {
     private static let TextViewEditingBarAnimationDuration = 0.25
     
     // MARK: - Editor
@@ -169,18 +169,18 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
     
     // MARK: - UIResponder
     
-    public override var canBecomeFirstResponder: Bool {
+    open override var canBecomeFirstResponder: Bool {
         return true
     }
     
-    public override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+    open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         let textViewIsEditing = currentTextAnnotationView?.textView.isFirstResponder ?? false
         return action == #selector(EditImageViewController.deleteSelectedAnnotationView) && !textViewIsEditing
     }
     
     // MARK: - UIViewController
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         assert(imageView.image != nil, "A screenshot must be set using `setScreenshot(_:)` before loading the view.")
@@ -222,25 +222,25 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         setupConstraints()
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.hidesBarsOnTap = true
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    public override func viewDidAppear(_ animated: Bool) {
+    open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    public override func viewWillDisappear(_ animated: Bool) {
+    open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = true
     }
     
-    public override func viewDidLayoutSubviews() {
+    open override func viewDidLayoutSubviews() {
         if let height = navigationController?.navigationBar.frame.height {
             var rect = annotationsView.frame
             rect.origin.y += height
@@ -249,23 +249,23 @@ public final class EditImageViewController: UIViewController, UIGestureRecognize
         }
     }
     
-    public override var prefersStatusBarHidden: Bool {
+    open override var prefersStatusBarHidden: Bool {
         return true
     }
     
-    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         setNeedsStatusBarAppearanceUpdate()
     }
     
-    public override var shouldAutorotate: Bool {
+    open override var shouldAutorotate: Bool {
         return false
     }
     
-    public override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    open override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return imageIsLandscape() ? .landscape : [.portrait, .portraitUpsideDown]
     }
     
-    public override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+    open override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
         var landscapeOrientation = UIInterfaceOrientation.landscapeRight
         var portraitOrientation = UIInterfaceOrientation.portrait
         
