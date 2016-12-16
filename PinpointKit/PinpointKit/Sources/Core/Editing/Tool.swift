@@ -9,7 +9,7 @@
 import UIKit
 
 /// Represents an editing tool.
-enum Tool: Int {
+public enum Tool: Int {
     
     /// The arrow tool.
     case arrow

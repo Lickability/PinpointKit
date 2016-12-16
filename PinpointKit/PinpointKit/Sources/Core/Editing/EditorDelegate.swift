@@ -10,14 +10,25 @@
 public protocol EditorDelegate: class {
     
     /**
+     A method that is called when the tool selection changes in the editor.
+     
+     - parameter editor: The editor responsible for editing the image.
+     - parameter tool: The tool that was selected.
+     
+     - note: The default implementation of this method does nothing.
+     */
+    func editor(_editor: Editor, didSelect tool: Tool)
+    
+    /**
      A method that is called any time the editor makes a modification to the screenshot.
      
      - parameter editor: The editor resonsible for editing the image.
+     - parameter change: The change that was made to the screenshot.
      - parameter screenshot: The edited image of a screenshot.
      
      - note: The default implementation of this method does nothing.
      */
-    func editorDidMakeChange(_ editor: Editor, to screenshot: UIImage)
+    func editor(_ editor: Editor, didMake change: AnnotationChange, to screenshot: UIImage)
     
     /**
      A method that is called with an image to ask if the editor should be dismissed.
@@ -53,7 +64,11 @@ public protocol EditorDelegate: class {
 /// Extends editor delegate with base implementation for functions.
 extension EditorDelegate {
     
-    public func editorDidMakeChange(_ editor: Editor, to screenshot: UIImage) {
+    public func editor(_editor: Editor, didSelect tool: Tool) {
+        // Do nothing
+    }
+    
+    public func editor(_ editor: Editor, didMake change: AnnotationChange, to screenshot: UIImage) {
         // Do nothing
     }
     
@@ -68,4 +83,26 @@ extension EditorDelegate {
     public func editorDidDismiss(_ editor: Editor, with screenshot: UIImage) {
         // Do nothing
     }
+}
+
+/// Represents a change made using the editor.
+public enum AnnotationChange {
+    
+    /// An annotation was added.
+    case added
+    
+    /// An annotation was moved.
+    case moved
+    
+    /// An annotation was brought to front.
+    case broughtToFront
+    
+    /// An annotation was resized.
+    case resized
+    
+    /// A text annotation was edited.
+    case textEdited
+    
+    /// An annotation was deleted. `animated` represents whether the deletion is animated.
+    case deleted(animated: Bool)
 }

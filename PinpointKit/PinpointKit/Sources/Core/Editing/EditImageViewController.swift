@@ -105,12 +105,14 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     private var currentAnnotationView: AnnotationView? {
         didSet {
             if let oldTextAnnotationView = oldValue as? TextAnnotationView {
+                NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidChange, object: oldTextAnnotationView.textView)
                 NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidEndEditing, object: oldTextAnnotationView.textView)
             }
             
             if let currentTextAnnotationView = currentTextAnnotationView {
                 keyboardAvoider?.triggerViews = [currentTextAnnotationView.textView]
                 
+                NotificationCenter.default.addObserver(self, selector: #selector(EditImageViewController.textViewTextDidChange), name: .UITextViewTextDidChange, object: currentTextAnnotationView.textView)
                 NotificationCenter.default.addObserver(self, selector: #selector(EditImageViewController.forceEndEditingTextView), name: .UITextViewTextDidEndEditing, object: currentTextAnnotationView.textView)
             }
         }
@@ -327,9 +329,14 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
             let annotationViewIsNotBlurView = !(possibleAnnotationView is BlurAnnotationView)
             
             if let annotationView = possibleAnnotationView {
+                let wasTopmostAnnotationView = (annotationsView.subviews.last == annotationView)
                 annotationsView.bringSubview(toFront: annotationView)
                 
                 if annotationViewIsNotBlurView {
+                    if !wasTopmostAnnotationView {
+                        informDelegate(of: .broughtToFront)
+                    }
+                    
                     navigationController?.barHideOnTapGestureRecognizer.failRecognizing()
                 }
             }
@@ -405,6 +412,10 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         navigationItem.setLeftBarButton(nil, animated: true)
     }
     
+    @objc private func textViewTextDidChange() {
+        informDelegate(of: .textEdited)
+    }
+    
     @objc private func forceEndEditingTextView() {
         endEditingTextView(false)
     }
@@ -417,8 +428,9 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         if let textView = currentTextAnnotationView?.textView, !checksFirstResponder || textView.isFirstResponder {
             textView.resignFirstResponder()
             
-            if !textView.hasText {
+            if !textView.hasText && currentTextAnnotationView?.superview != nil {
                 currentTextAnnotationView?.removeFromSuperview()
+                informDelegate(of: .deleted(animated: false))
             }
             
             navigationItem.setLeftBarButton(barButtonItemProvider?.leftBarButtonItem, animated: true)
@@ -432,11 +444,13 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         currentBlurAnnotationView?.drawsBorder = false
         let isEditingTextView = currentTextAnnotationView?.textView.isFirstResponder ?? false
         currentAnnotationView = isEditingTextView ? currentAnnotationView : nil
-        
-        informDelegateOfChange()
     }
     
     @objc private func toolChanged(_ segmentedControl: UISegmentedControl) {
+        if let tool = currentTool {
+            delegate?.editor(_editor: self, didSelect: tool)
+        }
+        
         endEditingTextView()
         
         // Disable the bar hiding behavior when selecting the text tool. Enable for all others.
@@ -463,7 +477,14 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
             handleCreateAnnotationGestureRecognizerBegan(gestureRecognizer)
         case .changed:
             handleCreateAnnotationGestureRecognizerChanged(gestureRecognizer)
-        case .cancelled, .failed, .ended:
+        case .ended:
+            handleGestureRecognizerFinished()
+            
+            // We inform the delegate of text annotation view creation on initial creation.
+            if !(currentAnnotationView is TextAnnotationView) {
+                informDelegate(of: .added)
+            }
+        case .cancelled, .failed:
             handleGestureRecognizerFinished()
         default:
             break
@@ -485,7 +506,11 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         annotationsView.addSubview(view)
         currentAnnotationView = view
-        beginEditingTextView()
+        
+        if currentAnnotationView is TextAnnotationView {
+            beginEditingTextView()
+            informDelegate(of: .added)
+        }
     }
     
     private func handleCreateAnnotationGestureRecognizerChanged(_ gestureRecognizer: UIPanGestureRecognizer) {
@@ -501,7 +526,10 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
             handleUpdateAnnotationGestureRecognizerBegan(gestureRecognizer)
         case .changed:
             handleUpdateAnnotationGestureRecognizerChanged(gestureRecognizer)
-        case .cancelled, .failed, .ended:
+        case .ended:
+            handleGestureRecognizerFinished()
+            informDelegate(of: .moved)
+        case .cancelled, .failed:
             handleGestureRecognizerFinished()
         default:
             break
@@ -545,7 +573,14 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
             handleUpdateAnnotationPinchGestureRecognizerBegan(gestureRecognizer)
         case .changed:
             handleUpdateAnnotationPinchGestureRecognizerChanged(gestureRecognizer)
-        case .cancelled, .failed, .ended:
+        case .ended:
+            // Ensure we’re actually editing an annotation before notifying the delegate.
+            // Also, text annotations are not resizable.
+            if currentTextAnnotationView == nil && currentAnnotationView != nil {
+                informDelegate(of: .resized)
+            }
+            handleGestureRecognizerFinished()
+        case .cancelled, .failed:
             handleGestureRecognizerFinished()
         default:
             break
@@ -600,17 +635,18 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         let removeAnnotationView = {
             self.endEditingTextView()
             annotationView.removeFromSuperview()
-            
-            self.informDelegateOfChange()
         }
         
         if animated {
+            informDelegate(of: .deleted(animated: true))
+            
             UIView.perform(.delete, on: [annotationView], options: [], animations: nil) { finished in
                 removeAnnotationView()
             }
             
         } else {
             removeAnnotationView()
+            informDelegate(of: .deleted(animated: false))
         }
     }
     
@@ -620,11 +656,11 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         }
     }
     
-    private func informDelegateOfChange() {
+    private func informDelegate(of change: AnnotationChange) {
         guard let delegate = delegate else { return }
         guard let image = imageView.image else { assertionFailure(); return }
         
-        delegate.editorDidMakeChange(self, to: image)
+        delegate.editor(self, didMake: change, to: image)
     }
     
     // MARK: - UIGestureRecognizerDelegate
