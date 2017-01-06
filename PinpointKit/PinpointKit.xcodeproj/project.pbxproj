@@ -17,8 +17,6 @@
 		12580A431C65332C00ADC01C /* MailSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A421C65332C00ADC01C /* MailSender.swift */; };
 		12580A471C65339F00ADC01C /* FeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A461C65339F00ADC01C /* FeedbackViewController.swift */; };
 		12580A491C6533DC00ADC01C /* BasicLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12580A481C6533DC00ADC01C /* BasicLogViewController.swift */; };
-		2C5C41121C6560AD0033ED3D /* (null) in Sources */ = {isa = PBXBuildFile; };
-		2C5C41141C6568D60033ED3D /* (null) in Sources */ = {isa = PBXBuildFile; };
 		2C9CB20A1CE61F37006567E2 /* PinpointKit+ShakePresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB2091CE61F37006567E2 /* PinpointKit+ShakePresentation.swift */; };
 		2C9CB20C1CE62297006567E2 /* EditorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB20B1CE62297006567E2 /* EditorDelegate.swift */; };
 		2C9CB20E1CE622A3006567E2 /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9CB20D1CE622A3006567E2 /* Tool.swift */; };
@@ -30,7 +28,6 @@
 		2CACDFCF1C9C8AFB0002ECBF /* PinpointKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */; };
 		2CB63F1B1C77B1B6000CEFC6 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */; };
 		2CB63F1D1C77B50D000CEFC6 /* Screenshotter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */; };
-		2CB63F1F1C77C38B000CEFC6 /* ScreenshotHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F1E1C77C38B000CEFC6 /* ScreenshotHeaderView.swift */; };
 		2CB63F211C77CBE9000CEFC6 /* FeedbackTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB63F201C77CBE9000CEFC6 /* FeedbackTableViewDataSource.swift */; };
 		2CB6C1F21C652D6400022CEB /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F11C652D6400022CEB /* Feedback.swift */; };
 		2CB6C1F61C65361900022CEB /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */; };
@@ -53,6 +50,7 @@
 		B92901B71C557406007CCA5E /* BezierPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901B41C557406007CCA5E /* BezierPath.swift */; };
 		B92901B81C557406007CCA5E /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901B51C557406007CCA5E /* Screen.swift */; };
 		B92901B91C557406007CCA5E /* StrokeLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92901B61C557406007CCA5E /* StrokeLayoutManager.swift */; };
+		D26EEF0B1E1DF73400344832 /* ScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26EEF0A1E1DF73400344832 /* ScreenshotCell.swift */; };
 		DA0DA6061C53049B0012ADBE /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = DA0DA6051C53049B0012ADBE /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
 		DA0DA6121C53049B0012ADBE /* PinpointKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA0DA6111C53049B0012ADBE /* PinpointKitTests.swift */; };
@@ -101,7 +99,6 @@
 		2CACDFCE1C9C8AFB0002ECBF /* PinpointKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = PinpointKit.xcassets; path = ../Resources/PinpointKit.xcassets; sourceTree = "<group>"; };
 		2CB63F1A1C77B1B6000CEFC6 /* UIColor+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screenshotter.swift; sourceTree = "<group>"; };
-		2CB63F1E1C77C38B000CEFC6 /* ScreenshotHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotHeaderView.swift; sourceTree = "<group>"; };
 		2CB63F201C77CBE9000CEFC6 /* FeedbackTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedbackTableViewDataSource.swift; sourceTree = "<group>"; };
 		2CB6C1F11C652D6400022CEB /* Feedback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		2CB6C1F51C65361900022CEB /* ScreenshotDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotDetector.swift; sourceTree = "<group>"; };
@@ -125,6 +122,7 @@
 		B92901B41C557406007CCA5E /* BezierPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BezierPath.swift; sourceTree = "<group>"; };
 		B92901B51C557406007CCA5E /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		B92901B61C557406007CCA5E /* StrokeLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokeLayoutManager.swift; sourceTree = "<group>"; };
+		D26EEF0A1E1DF73400344832 /* ScreenshotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenshotCell.swift; sourceTree = "<group>"; };
 		DA0DA6021C53049B0012ADBE /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0DA6051C53049B0012ADBE /* PinpointKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PinpointKit.h; path = PinpointKit/Sources/PinpointKit.h; sourceTree = "<group>"; };
 		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PinpointKit/Info.plist; sourceTree = "<group>"; };
@@ -201,10 +199,10 @@
 				12580A461C65339F00ADC01C /* FeedbackViewController.swift */,
 				2CEAF65B1C779C8D009368B8 /* FeedbackNavigationController.swift */,
 				2CB63F1C1C77B50D000CEFC6 /* Screenshotter.swift */,
-				2CB63F1E1C77C38B000CEFC6 /* ScreenshotHeaderView.swift */,
 				F4F501101D40E5640092AADE /* FeedbackConfiguration.swift */,
 				2CB63F201C77CBE9000CEFC6 /* FeedbackTableViewDataSource.swift */,
 				2CACDFCC1C9C83CE0002ECBF /* CheckmarkCell.swift */,
+				D26EEF0A1E1DF73400344832 /* ScreenshotCell.swift */,
 			);
 			name = Feedback;
 			sourceTree = "<group>";
@@ -468,7 +466,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2CB63F1F1C77C38B000CEFC6 /* ScreenshotHeaderView.swift in Sources */,
 				12580A431C65332C00ADC01C /* MailSender.swift in Sources */,
 				DA7B94F01CC28DE300242E49 /* ShakeDetectingWindowDelegate.swift in Sources */,
 				F4F501111D40E5640092AADE /* FeedbackConfiguration.swift in Sources */,
@@ -505,16 +502,15 @@
 				12580A3F1C6530FB00ADC01C /* LogViewer.swift in Sources */,
 				2CACDFCD1C9C83CE0002ECBF /* CheckmarkCell.swift in Sources */,
 				12580A3D1C6530CC00ADC01C /* FeedbackCollector.swift in Sources */,
+				D26EEF0B1E1DF73400344832 /* ScreenshotCell.swift in Sources */,
 				2CB63F1D1C77B50D000CEFC6 /* Screenshotter.swift in Sources */,
 				2C9CB2121CE622CD006567E2 /* AnnotationViewFactory.swift in Sources */,
 				F2ACE9611CE6539200A461E5 /* InterfaceCustomization.swift in Sources */,
-				2C5C41121C6560AD0033ED3D /* (null) in Sources */,
 				B929017E1C555F86007CCA5E /* EditImageViewController.swift in Sources */,
 				B929019E1C556778007CCA5E /* BlurAnnotationView.swift in Sources */,
 				B92901A51C556791007CCA5E /* Annotations.swift in Sources */,
 				F2BF24061CB9A69200867E01 /* ASLLogger.m in Sources */,
 				F2ACE95F1CE6532000A461E5 /* LogSupporting.swift in Sources */,
-				2C5C41141C6568D60033ED3D /* (null) in Sources */,
 				2CF3B9321CAF142400C8B29B /* NSBundle+PinpointKit.swift in Sources */,
 				12580A471C65339F00ADC01C /* FeedbackViewController.swift in Sources */,
 				DA0DA61D1C5305C00012ADBE /* PinpointKit.swift in Sources */,
