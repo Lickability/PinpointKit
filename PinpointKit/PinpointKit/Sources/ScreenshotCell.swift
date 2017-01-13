@@ -9,7 +9,7 @@
 import UIKit
 
 /// A view that displays a screenshot and hint text about how to edit it.
-class ScreenshotCell: UITableViewCell {
+public class ScreenshotCell: UITableViewCell {
     
     /// A type of closure that is invoked when a button is tapped.
     typealias TapHandler = (button: UIButton) -> Void
@@ -95,13 +95,13 @@ class ScreenshotCell: UITableViewCell {
     
     // MARK: - UIView
     
-    override func tintColorDidChange() {
+    public override func tintColorDidChange() {
         super.tintColorDidChange()
         
         screenshotButton.layer.borderColor = tintColor.CGColor
     }
     
-    override func addSubview(_ view: UIView) {
+    public override func addSubview(view: UIView) {
         // Prevents the adding of separators to this cell.
         let separatorHeight = UIScreen.mainScreen().pixelHeight
         guard view.frame.height != separatorHeight else {
