@@ -213,7 +213,7 @@ extension FeedbackViewController {
         tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
     }
     
-    public override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    public override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         
         // Only leave space under the last section.
         if section == tableView.numberOfSections - 1 {
