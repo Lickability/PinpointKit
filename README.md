@@ -38,7 +38,7 @@
 * iOS 9.0+
 * Xcode 8.0+
 
-> **Note:** [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/develop/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift) depends on the `Photos` framework to access the user’s photo library. This requires you to add an entry for the [`NSPhotoLibraryUsageDescription`](https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17) key in your `Info.plist` file describing your app’s use of the user’s photo library. As of iOS 10, failure to provide a value for this key could cause your submission to the App Store to be rejected by Apple, or cause your app to exit upon attempting to access the user’s photo library. [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/develop/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift) is excluded by default when installing via Cocoapods, but is included otherwise.
+> **Note:** [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift) depends on the `Photos` framework to access the user’s photo library. This requires you to add an entry for the [`NSPhotoLibraryUsageDescription`](https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17) key in your `Info.plist` file describing your app’s use of the user’s photo library. As of iOS 10, failure to provide a value for this key could cause your submission to the App Store to be rejected by Apple, or cause your app to exit upon attempting to access the user’s photo library. [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift) is excluded by default when installing via Cocoapods, but is included otherwise.
 
 ## Installation
 
@@ -60,7 +60,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'YOUR_TARGET_NAME' do
-    pod 'PinpointKit', :git => 'https://github.com/Lickability/PinpointKit.git', :branch => 'develop'
+    pod 'PinpointKit', '~> 1.0'
 end
 
 ```
@@ -71,10 +71,10 @@ Then, run the following command:
 $ pod install
 ```
 
-We also offer a convenience class, [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/develop/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift) that is available via the `ScreenshotDetector` subspec. This class provides delegate callbacks when the user takes a screenshot while using your app. Please see the [Requirements](#requirements) section regarding inclusion of [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/develop/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift). You can add this to your project by adding the following line in your `Podfile`, in addition to the one for `PinpointKit` above:
+We also offer a convenience class, [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift) that is available via the `ScreenshotDetector` subspec. This class provides delegate callbacks when the user takes a screenshot while using your app. Please see the [Requirements](#requirements) section regarding inclusion of [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift). You can add this to your project by adding the following line in your `Podfile`, in addition to the one for `PinpointKit` above:
 
 ```ruby
-pod 'PinpointKit/ScreenshotDetector', :git => 'https://github.com/Lickability/PinpointKit.git', :branch => 'develop'
+pod 'PinpointKit/ScreenshotDetector', '~> 1.0'
 ```
 
 ### Carthage
@@ -91,7 +91,7 @@ $ brew install carthage
 To integrate PinpointKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "Lickability/PinpointKit" "develop"
+github "Lickability/PinpointKit" ~> 1.0
 ```
 
 - Run `carthage update` to build the framework.
@@ -114,7 +114,7 @@ $ git init
 - Add PinpointKit as a git [submodule](http://git-scm.com/docs/git-submodule) by running the following command:
 
 ```bash
-$ git submodule add -b develop https://github.com/Lickability/PinpointKit.git
+$ git submodule add -b master https://github.com/Lickability/PinpointKit.git
 ```
 
 - Open the new `PinpointKit/PinpointKit` folder, and drag the `PinpointKit.xcodeproj` into the Project Navigator of your application’s Xcode project.
@@ -136,18 +136,18 @@ The `PinpointKit.framework` is automatically added as a target dependency, linke
 
 Once PinpointKit is installed, it’s simple to use.
 
-Initialize an instance of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift), specifying an array of feedback recipients used to pre-populate email addresses to which feedback can be sent:
+Initialize an instance of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/PinpointKit.swift), specifying an array of feedback recipients used to pre-populate email addresses to which feedback can be sent:
 
 ```swift
 let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
 ```
 
-To display a feedback view controller, add the following code where you want the feedback to display, passing the view controller from which [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) should present:
+To display a feedback view controller, add the following code where you want the feedback to display, passing the view controller from which [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/PinpointKit.swift) should present:
 
 ```swift
 pinpointKit.show(from: viewController)
 ```
-> **Note:** Be sure to keep a strong reference to your instance of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) for the duration of its use.
+> **Note:** Be sure to keep a strong reference to your instance of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/PinpointKit.swift) for the duration of its use.
 
 If you want to have the feedback view display from a shake gesture, simply add the following to your application delegate, replacing `["feedback@example.com"]` with your array of email recipients and `AppDelegate` with your application delegate’s name:
 
@@ -156,19 +156,19 @@ private static let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@exam
 var window: UIWindow? = ShakeDetectingWindow(frame: UIScreen.main.bounds, delegate: AppDelegate.pinpointKit)
 ```
 
-If you don’t want to use [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift)’s default configuration, you can specify both [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) and [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) instances on initialization of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift).
+If you don’t want to use [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/PinpointKit.swift)’s default configuration, you can specify both [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/Configuration.swift) and [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/PinpointKit.swift) instances on initialization of [`PinpointKit`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/PinpointKit.swift).
 
-The [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift) struct allows you to specify how the feedback view looks and behaves, while the [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/PinpointKit.swift) instance provides hooks into the state of the feedback being sent.
+The [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/Configuration.swift) struct allows you to specify how the feedback view looks and behaves, while the [`PinpointKitDelegate`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/PinpointKit.swift) instance provides hooks into the state of the feedback being sent.
 
 ## Customization
 
 PinpointKit uses a protocol-oriented architecture which allows almost everything to be customized. Here are some examples of what’s possible:
 
-* Implement a `JIRASender` that conforms to [`Sender`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Sender.swift), allowing users to send feedback directly into your bug tracker.
-* Supply your own console log collector that aggregates messages from your third-party logging framework of choice by conforming to [`LogCollector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/LogCollector.swift)
-* Change how logs are viewed by creating your own view controller conforming to [`LogViewer`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/LogViewer.swift).
+* Implement a `JIRASender` that conforms to [`Sender`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/Sender.swift), allowing users to send feedback directly into your bug tracker.
+* Supply your own console log collector that aggregates messages from your third-party logging framework of choice by conforming to [`LogCollector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/LogCollector.swift)
+* Change how logs are viewed by creating your own view controller conforming to [`LogViewer`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/LogViewer.swift).
 
-For more information on what you can customize, take a peek the documentation of [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Configuration.swift).
+For more information on what you can customize, take a peek the documentation of [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/Configuration.swift).
 
 ## License
 
