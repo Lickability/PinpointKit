@@ -170,7 +170,7 @@ PinpointKit uses a protocol-oriented architecture which allows almost everything
 * Supply your own console log collector that aggregates messages from your third-party logging framework of choice by conforming to [`LogCollector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/LogCollector.swift)
 * Change how logs are viewed by creating your own view controller conforming to [`LogViewer`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/LogViewer.swift).
 
-For more information on what you can customize, take a peek the documentation of [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/Configuration.swift).
+For more information on what you can customize, take a peek at the documentation of [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/Configuration.swift).
 
 ## License
 
