@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0820"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0F5DF15BABB3D03F2E090B40AC299F94"
+               BlueprintIdentifier = "2F1CAC6902BC17CD20FCF9781D7E23AE"
                BuildableName = "PinpointKit.framework"
                BlueprintName = "PinpointKit"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0F5DF15BABB3D03F2E090B40AC299F94"
+            BlueprintIdentifier = "2F1CAC6902BC17CD20FCF9781D7E23AE"
             BuildableName = "PinpointKit.framework"
             BlueprintName = "PinpointKit"
             ReferencedContainer = "container:Pods.xcodeproj">
