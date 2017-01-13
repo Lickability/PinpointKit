@@ -62,6 +62,7 @@
 		4C4038261D9EB1B700305A6E /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C4038251D9EB1B700305A6E /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C4038281D9EB27A00305A6E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4038271D9EB27A00305A6E /* NavigationController.swift */; };
 		4C40382C1D9EB7A800305A6E /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C40382B1D9EB7A800305A6E /* ScreenshotDetector.swift */; };
+		4CFB58801E29464B00B64D0D /* EditImageViewControllerBarButtonItemProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB587F1E29464B00B64D0D /* EditImageViewControllerBarButtonItemProviding.swift */; };
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
 		F24381121D54CBAB004CC87F /* SystemLogCollectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24381111D54CBAB004CC87F /* SystemLogCollectorTests.swift */; };
 		F24381151D54ECD2004CC87F /* XCTestCaseExpectationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24381141D54ECD2004CC87F /* XCTestCaseExpectationExtensions.swift */; };
@@ -134,6 +135,7 @@
 		4C4038251D9EB1B700305A6E /* PinpointKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PinpointKit.h; path = PinpointKit/Sources/Core/PinpointKit.h; sourceTree = "<group>"; };
 		4C4038271D9EB27A00305A6E /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = Core/NavigationController.swift; sourceTree = "<group>"; };
 		4C40382B1D9EB7A800305A6E /* ScreenshotDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotDetector.swift; path = ScreenshotDetector/ScreenshotDetector.swift; sourceTree = "<group>"; };
+		4CFB587F1E29464B00B64D0D /* EditImageViewControllerBarButtonItemProviding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditImageViewControllerBarButtonItemProviding.swift; path = Core/Editing/EditImageViewControllerBarButtonItemProviding.swift; sourceTree = "<group>"; };
 		DA0DA6021C53049B0012ADBE /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PinpointKit/Info.plist; sourceTree = "<group>"; };
 		DA0DA60C1C53049B0012ADBE /* PinpointKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PinpointKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +233,7 @@
 				B92901A31C556783007CCA5E /* Annotations */,
 				B92901871C55650A007CCA5E /* Views */,
 				4C4037D81D9EAF1F00305A6E /* EditImageViewController.swift */,
+				4CFB587F1E29464B00B64D0D /* EditImageViewControllerBarButtonItemProviding.swift */,
 				4C4037EA1D9EAFC700305A6E /* UIGestureRecognizer+FailRecognizing.swift */,
 			);
 			name = EditImageViewController;
@@ -475,6 +478,7 @@
 				4C4037C61D9EAE9500305A6E /* InterfaceCustomization.swift in Sources */,
 				4C4037E51D9EAFA000305A6E /* AnnotationView.swift in Sources */,
 				4C4038091D9EB0CB00305A6E /* UIView+PinpointKit.swift in Sources */,
+				4CFB58801E29464B00B64D0D /* EditImageViewControllerBarButtonItemProviding.swift in Sources */,
 				4C40382C1D9EB7A800305A6E /* ScreenshotDetector.swift in Sources */,
 				4C4038011D9EB07000305A6E /* LogViewer.swift in Sources */,
 				4C4037FF1D9EB06900305A6E /* BasicLogViewController.swift in Sources */,
@@ -590,6 +594,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -633,6 +638,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
