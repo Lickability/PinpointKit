@@ -15,7 +15,7 @@ import Photos
 open class ScreenshotDetector: NSObject {
     
     /// An error encountered when detecting and retreiving a screenshot.
-    enum Error: Swift.Error {
+    public enum Error: Swift.Error {
         /// The user did not give authorization to this application to their Photo Library.
         case unauthorized(status: PHAuthorizationStatus)
         
@@ -42,7 +42,7 @@ open class ScreenshotDetector: NSObject {
      - parameter application:        An application that will be the `object` of the notification observer.
      - parameter imageManager:       An image manager used to fetch the image data of the screenshot.
      */
-    init(delegate: ScreenshotDetectorDelegate, notificationCenter: NotificationCenter = .default, application: UIApplication = .shared, imageManager: PHImageManager = .default()) {
+    public init(delegate: ScreenshotDetectorDelegate, notificationCenter: NotificationCenter = .default, application: UIApplication = .shared, imageManager: PHImageManager = .default()) {
         self.delegate = delegate
         self.notificationCenter = notificationCenter
         self.application = application
@@ -100,7 +100,7 @@ open class ScreenshotDetector: NSObject {
 /// A protocol that `ScreenshotDetector` uses to inform its delegate of successful and failed screenshot detection events.
 
 @available(iOS 9.0, *)
-protocol ScreenshotDetectorDelegate: class {
+public protocol ScreenshotDetectorDelegate: class {
     
     /**
      Notifies the delegate that the detector did successfully detect a screenshot.
