@@ -1,5 +1,9 @@
 ![PinpointKit Logo](Assets/logo.png)
 
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=588239a8711a3f0100b86836&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/588239a8711a3f0100b86836/build/latest?branch=master)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/PinpointKit.svg)](https://img.shields.io/cocoapods/v/PinpointKit.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
 **PinpointKit** is an open-source iOS library in Swift that lets your testers and users send feedback with annotated screenshots and logs using a simple gesture.
 
 ![Screenshots](Assets/screenshots.png)
