@@ -47,15 +47,21 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     // MARK: - FeedbackTableViewDataSource
     
     private static func sectionsFromConfiguration(_ interfaceCustomization: InterfaceCustomization, screenshot: UIImage, logSupporting: LogSupporting, userEnabledLogCollection: Bool) -> [Section] {
-        guard logSupporting.logCollector != nil else { return [] }
+        var sections = [Section]()
         
         let screenshotRow = Row.screenshot(screensot: screenshot, hintText: interfaceCustomization.interfaceText.feedbackEditHint, hintFont: interfaceCustomization.appearance.feedbackEditHintFont)
         let screenshotSection = Section.feedback(rows: [screenshotRow])
         
-        let collectLogsRow = Row.collectLogs(enabled: userEnabledLogCollection, title: interfaceCustomization.interfaceText.logCollectionPermissionTitle, font: interfaceCustomization.appearance.logCollectionPermissionFont, canView: logSupporting.logViewer != nil)
-        let collectLogsSection = Section.feedback(rows: [collectLogsRow])
+        sections.append(screenshotSection)
         
-        return [screenshotSection, collectLogsSection]
+        if logSupporting.logCollector != nil {
+            let collectLogsRow = Row.collectLogs(enabled: userEnabledLogCollection, title: interfaceCustomization.interfaceText.logCollectionPermissionTitle, font: interfaceCustomization.appearance.logCollectionPermissionFont, canView: logSupporting.logViewer != nil)
+            let collectLogsSection = Section.feedback(rows: [collectLogsRow])
+            
+            sections.append(collectLogsSection)
+        }
+        
+        return sections
     }
     
     private func checkmarkCell(for row: Row) -> CheckmarkCell {
