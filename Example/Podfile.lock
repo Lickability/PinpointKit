@@ -1,16 +1,18 @@
 PODS:
-  - PinpointKit (0.9)
+  - PinpointKit (0.9):
+    - PinpointKit/Core (= 0.9)
+  - PinpointKit/Core (0.9)
 
 DEPENDENCIES:
   - PinpointKit (from `../`)
 
 EXTERNAL SOURCES:
   PinpointKit:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  PinpointKit: 79a54c1642c37fe466c8ff128f98ae0147067255
+  PinpointKit: 6d19d08afddfad2753aee95e2a6160f2d8d30764
 
 PODFILE CHECKSUM: 57140b686c94ba1e5869bbc5b91a657c508da681
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.0.1

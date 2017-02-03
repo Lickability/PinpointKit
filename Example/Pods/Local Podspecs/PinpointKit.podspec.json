@@ -6,9 +6,9 @@
     "git": "https://github.com/Lickability/PinpointKit.git",
     "tag": "0.9"
   },
-  "summary": "A library that makes bug reporting dead simple for your testers and users by allowing them to send feedback with annotated screenshots and logs using a simple gesture.",
+  "summary": "A library that makes bug reporting simple for your users by allowing them to send feedback with annotated screenshots and logs.",
   "authors": {
-    "Matthew Bishoff": "matt@lickability.com",
+    "Matthew Bischoff": "matt@lickability.com",
     "Brian Capps": "brian@lickability.com",
     "Kenneth Ackerson": "pearapps@gmail.com",
     "Paul Rehkugler": "paul@rehkugler.com",
@@ -25,11 +25,26 @@
   "requires_arc": true,
   "frameworks": [
     "Foundation",
-    "UIKit",
-    "MessageUI"
+    "UIKit"
   ],
-  "source_files": "PinpointKit/PinpointKit/Sources/**/*.{h,m,swift}",
-  "resources": "PinpointKit/PinpointKit/Resources/*",
+  "default_subspec": "Core",
   "dependencies": {
-  }
+  },
+  "subspecs": [
+    {
+      "name": "Core",
+      "resources": "PinpointKit/PinpointKit/Resources/*",
+      "source_files": "PinpointKit/PinpointKit/Sources/Core/**/*.{h,m,swift}",
+      "frameworks": [
+        "MessageUI"
+      ]
+    },
+    {
+      "name": "ScreenshotDetector",
+      "source_files": "PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift",
+      "frameworks": [
+        "Photos"
+      ]
+    }
+  ]
 }

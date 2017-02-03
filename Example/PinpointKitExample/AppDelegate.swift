@@ -11,10 +11,10 @@ import PinpointKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    lazy var window: UIWindow? = ShakeDetectingWindow(frame: UIScreen.mainScreen().bounds)
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    var window: UIWindow?
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         NSLog("Initial test log for the system logger.")
         return true
     }
