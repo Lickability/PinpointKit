@@ -23,9 +23,9 @@ class SystemLogCollectorTests: XCTestCase {
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
             
-            let logs = systemLogCollector.retrieveLogs()
+            let systemLogs = systemLogCollector?.retrieveLogs()
             
-            guard let firstLog = logs.first else { return XCTFail("There should be at least 1 log.") }
+            guard let logs = systemLogs, let firstLog = logs.first else { return XCTFail("There should be at least 1 log.") }
             
             XCTAssertEqual(logs.count, 3)
             XCTAssertTrue(firstLog.contains(testString))
@@ -49,9 +49,9 @@ class SystemLogCollectorTests: XCTestCase {
         let expectation = defaultExpectation()
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-            let logs = systemLogCollector.retrieveLogs()
+            let systemLogs = systemLogCollector?.retrieveLogs()
             
-            guard logs.count == 3 else { return XCTFail("Count should be 3.") }
+            guard let logs = systemLogs, logs.count == 3 else { return XCTFail("Count should be 3.") }
             
             let firstLog = logs[0]
             let secondLog = logs[1]
@@ -74,14 +74,14 @@ class SystemLogCollectorTests: XCTestCase {
 
         let systemLogCollector = SystemLogCollector(loggingType: .testing)
         
-        XCTAssertEqual(systemLogCollector.retrieveLogs().count, 0)
+        XCTAssertEqual(systemLogCollector?.retrieveLogs().count, 0)
     }
     
     func testLogCollectorHasNoLogsInitially() {
         let systemLogCollector = SystemLogCollector(loggingType: .testing)
         
-        let logs = systemLogCollector.retrieveLogs()
+        let logs = systemLogCollector?.retrieveLogs()
         
-        XCTAssertEqual(logs.count, 0)
+        XCTAssertEqual(logs?.count, 0)
     }
 }

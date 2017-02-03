@@ -22,7 +22,19 @@ open class SystemLogCollector: LogCollector {
     
     private let logger: ASLLogger
     
-    public init(loggingType: LoggingType = .application) {
+    /**
+     Creates a new system logger.
+     
+     - parameter loggingType: Specifies the type of logs to collect.
+     
+     - warning: This initializer returns `nil` on iOS 10.0+. When running on iOS 10.0+, ASL is superseded by unified logging, for which there are no APIs to search or read log messages.
+     - seealso: https://developer.apple.com/reference/os/logging
+     */
+    public init?(loggingType: LoggingType = .application) {
+        if #available(iOS 10.0, *), loggingType == .application {
+            return nil
+        }
+        
         switch loggingType {
         case .application:
             logger = ASLLogger(bundleIdentifier: Bundle.main.bundleIdentifier ?? "")
