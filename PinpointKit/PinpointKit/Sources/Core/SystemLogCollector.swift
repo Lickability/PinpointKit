@@ -31,7 +31,7 @@ open class SystemLogCollector: LogCollector {
      - seealso: https://developer.apple.com/reference/os/logging
      */
     public init?(loggingType: LoggingType = .application) {
-        if #available(iOS 10.0, *) {
+        if #available(iOS 10.0, *), loggingType == .application {
             return nil
         }
         
