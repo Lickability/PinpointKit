@@ -47,7 +47,7 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     // MARK: - FeedbackTableViewDataSource
     
     private static func sectionsFromConfiguration(_ interfaceCustomization: InterfaceCustomization, screenshot: UIImage, logSupporting: LogSupporting, userEnabledLogCollection: Bool) -> [Section] {
-        var sections = [Section]()
+        var sections: [Section] = []
         
         let screenshotRow = Row.screenshot(screensot: screenshot, hintText: interfaceCustomization.interfaceText.feedbackEditHint, hintFont: interfaceCustomization.appearance.feedbackEditHintFont)
         let screenshotSection = Section.feedback(rows: [screenshotRow])
