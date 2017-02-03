@@ -4,7 +4,7 @@
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/PinpointKit.svg)](https://img.shields.io/cocoapods/v/PinpointKit.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-**PinpointKit** is an open-source iOS library in Swift that lets your testers and users send feedback with annotated screenshots and logs using a simple gesture.
+**PinpointKit** is an open-source iOS library in Swift that lets your testers and users send feedback with annotated screenshots using a simple gesture.
 
 ![Screenshots](Assets/screenshots.png)
 
@@ -27,9 +27,9 @@
 ## Features
 
 - [x] Shake to trigger feedback collection
-- [x] Automatic, opt-in system log collection
 - [x] Add arrows, boxes, and text to screenshots to point out problems.
 - [x] Blur our sensitive information before sending screenshots
+- [x] Automatic, opt-in system log collection ([iOS 9.x only](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/SystemLogCollector.swift#L30))
 - [x] Customize everything
 	- [x] The color of the arrows, and boxes
 	- [x] The text in the interface
