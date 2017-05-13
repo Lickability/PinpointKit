@@ -86,7 +86,18 @@ extension PinpointKit: SenderDelegate {
     public func sender(_ sender: Sender, didFailToSend feedback: Feedback?, error: Error) {
         if case MailSender.Error.mailCanceled = error { return }
         
-        NSLog("An error occurred sending mail: \(error)")
+        let alert = UIAlertController(
+            title: "Mailer error",
+            message: "Unable to prepare an email to send. Ensure that you have at least one email account set up.",
+            preferredStyle: UIAlertControllerStyle.alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        alert.addAction(okAction)
+        
+        self.configuration.feedbackCollector.viewController.present(alert, animated: true, completion: nil)
+        
+        guard let feedback = feedback else { return }
+        delegate?.pinpointKit(self, didFailToSend: feedback, error: error)
     }
 }
 
@@ -108,6 +119,15 @@ public protocol PinpointKitDelegate: class {
      - parameter feedback:      The feedback that’s just been sent.
      */
     func pinpointKit(_ pinpointKit: PinpointKit, didSend feedback: Feedback)
+    
+    /**
+     Notifies the delegate that PinpointKit has failed to send user feedback.
+     
+     - parameter pinpointKit:   The `PinpointKit` instance responsible for the feedback.
+     - parameter feedback:      The feedback that failed to send.
+     - parameter error:         The error that occurred.
+     */
+    func pinpointKit(_ pinpointKit: PinpointKit, didFailToSend feedback: Feedback, error: Error)
 }
 
 /// An extension on PinpointKitDelegate that makes all delegate methods optional by giving them empty implementations by default.
@@ -115,4 +135,5 @@ public extension PinpointKitDelegate {
     
     func pinpointKit(_ pinpointKit: PinpointKit, willSend feedback: Feedback) {}
     func pinpointKit(_ pinpointKit: PinpointKit, didSend feedback: Feedback) {}
+    func pinpointKit(_ pinpointKit: PinpointKit, didFailToSend feedback: Feedback, error: Error) {}
 }
