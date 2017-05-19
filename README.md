@@ -176,6 +176,12 @@ PinpointKit uses a protocol-oriented architecture which allows almost everything
 
 For more information on what you can customize, take a peek at the documentation of [`Configuration`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/Core/Configuration.swift).
 
+## Apps Using PinpointKit
+
+Here are just a few of the apps and companies using PinpointKit to collect feedback. If your app does too, submit a pull request!
+
+* [Pinpoint](https://itunes.apple.com/us/app/pinpoint-mark-up-screenshots/id669858907?mt=8) (of course)
+
 ## License
 
 PinpointKit is available under the MIT license. See the [`LICENSE`](LICENSE) file for more information.
