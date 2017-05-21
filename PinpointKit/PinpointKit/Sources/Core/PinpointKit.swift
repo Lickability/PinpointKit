@@ -84,17 +84,7 @@ extension PinpointKit: SenderDelegate {
     }
     
     public func sender(_ sender: Sender, didFailToSend feedback: Feedback?, error: Error) {
-        if case MailSender.Error.mailCanceled = error { return }
-        
-        let alert = UIAlertController(
-            title: "Mailer error",
-            message: "Unable to prepare an email to send. Ensure that you have at least one email account set up.",
-            preferredStyle: UIAlertControllerStyle.alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
-        alert.addAction(okAction)
-        
-        self.configuration.feedbackCollector.viewController.present(alert, animated: true, completion: nil)
+        if case MailSender.Error.mailCanceled = error { return }        
         
         guard let feedback = feedback else { return }
         delegate?.pinpointKit(self, didFailToSend: feedback, error: error)
@@ -132,8 +122,18 @@ public protocol PinpointKitDelegate: class {
 
 /// An extension on PinpointKitDelegate that makes all delegate methods optional by giving them empty implementations by default.
 public extension PinpointKitDelegate {
-    
     func pinpointKit(_ pinpointKit: PinpointKit, willSend feedback: Feedback) {}
     func pinpointKit(_ pinpointKit: PinpointKit, didSend feedback: Feedback) {}
-    func pinpointKit(_ pinpointKit: PinpointKit, didFailToSend feedback: Feedback, error: Error) {}
+    
+    func pinpointKit(_ pinpointKit: PinpointKit, didFailToSend feedback: Feedback, error: Error) {
+        let alert = UIAlertController(
+            title: "Mailer error",
+            message: "Unable to prepare an email to send. Ensure that you have at least one email account set up.",
+            preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        
+        self.configuration.feedbackCollector.viewController.present(alert, animated: true, completion: nil)
+    }
 }
