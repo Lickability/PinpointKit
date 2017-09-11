@@ -60,20 +60,22 @@ public struct Configuration {
                 editor: Editor = EditImageViewController(),
                 sender: Sender = MailSender(),
                 feedbackConfiguration: FeedbackConfiguration) {
-        self.feedbackCollector = feedbackCollector
-        self.editor = editor
         
-        self.feedbackCollector.editor = editor
+        self.editor = editor
         
         self.sender = sender
         
         let interfaceCustomization = InterfaceCustomization(interfaceText: interfaceText, appearance: appearance)
         
-        self.feedbackCollector.interfaceCustomization = interfaceCustomization
-        self.feedbackCollector.logCollector = logCollector
-        self.feedbackCollector.logViewer = logViewer
-        self.feedbackCollector.logViewer?.interfaceCustomization = interfaceCustomization
-        self.feedbackCollector.editor?.interfaceCustomization = interfaceCustomization
-        self.feedbackCollector.feedbackConfiguration = feedbackConfiguration
+        var newFeedbackCollector = feedbackCollector
+        newFeedbackCollector.editor = editor
+        newFeedbackCollector.interfaceCustomization = interfaceCustomization
+        newFeedbackCollector.logCollector = logCollector
+        newFeedbackCollector.logViewer = logViewer
+        newFeedbackCollector.logViewer?.interfaceCustomization = interfaceCustomization
+        newFeedbackCollector.editor?.interfaceCustomization = interfaceCustomization
+        newFeedbackCollector.feedbackConfiguration = feedbackConfiguration
+        
+        self.feedbackCollector = newFeedbackCollector
     }
 }
