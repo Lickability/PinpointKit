@@ -25,8 +25,8 @@ class SystemLogCollectorTests: XCTestCase {
             
             let systemLogs = systemLogCollector?.retrieveLogs()
             
-            guard let logs = systemLogs, let firstLog = logs.first else { return XCTFail("There should be at least 1 log.") }
-            
+            guard let logs = systemLogs else { return XCTFail("systemLogs should not be nil") }
+            guard let firstLog = systemLogs?.first else { return XCTFail("There should be at least 1 log.") }
             XCTAssertEqual(logs.count, 3)
             XCTAssertTrue(firstLog.contains(testString))
             expectation.fulfill()
