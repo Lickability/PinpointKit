@@ -65,7 +65,7 @@ open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     public override init(frame: CGRect) {
         let bounds = CGRect(origin: CGPoint.zero, size: frame.size)
 
-        EAGLContext = OpenGLES.EAGLContext(api: .openGLES2)
+        EAGLContext = OpenGLES.EAGLContext(api: .openGLES2)!
         GLKView = GLKit.GLKView(frame: bounds, context: EAGLContext)
         CIContext = CoreImage.CIContext(eaglContext: EAGLContext, options: [
             kCIContextUseSoftwareRenderer: false
