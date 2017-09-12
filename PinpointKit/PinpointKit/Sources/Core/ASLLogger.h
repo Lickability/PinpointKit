@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Initialize the ASLLogger with a bundle identifier.
  *
- *  @param senderName The bundle identifier to retrieve logs for.
+ *  @param bundleIdentifier The bundle identifier to retrieve logs for.
  */
 - (instancetype)initWithBundleIdentifier:(NSString *)bundleIdentifier NS_DESIGNATED_INITIALIZER;
 
