@@ -172,13 +172,15 @@ class BlurAnnotation: Annotation {
         let inputScale = 16
         pixellateFilter?.setValue(inputScale, forKey: kCIInputScaleKey)
         image = pixellateFilter?.value(forKey: kCIOutputImageKey) as? CIImage
-
-        if let imageValue = image, let extentValue = extent {
-            let vector = CIVector(cgRect: extentValue)
-            let filter: CIFilter? = CIFilter(name: "CICrop")
-            filter?.setValue(imageValue, forKey: kCIInputImageKey)
-            filter?.setValue(vector, forKey: "inputRectangle")
-            image = filter?.value(forKey: kCIOutputImageKey) as? CIImage
+        
+        if let imageValue = image {
+            if let extentValue = extent {
+                let vector = CIVector(cgRect: extentValue)
+                let filter: CIFilter? = CIFilter(name: "CICrop")
+                filter?.setValue(imageValue, forKey: kCIInputImageKey)
+                filter?.setValue(vector, forKey: "inputRectangle")
+                image = filter?.value(forKey: kCIOutputImageKey) as? CIImage
+            }
         }
 
         return image
