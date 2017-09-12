@@ -114,14 +114,14 @@ public final class FeedbackViewController: UITableViewController {
         let appearance = interfaceCustomization.appearance
 
         title = interfaceText.feedbackCollectorTitle
-        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: appearance.navigationTitleFont]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: appearance.navigationTitleFont]
         
         let sendBarButtonItem = UIBarButtonItem(title: interfaceText.feedbackSendButtonTitle, style: .done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
-        sendBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackSendButtonFont], for: UIControlState())
+        sendBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.font: appearance.feedbackSendButtonFont], for: UIControlState())
         navigationItem.rightBarButtonItem = sendBarButtonItem
         
         let backBarButtonItem = UIBarButtonItem(title: interfaceText.feedbackBackButtonTitle, style: .plain, target: nil, action: nil)
-        backBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackBackButtonFont], for: UIControlState())
+        backBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.font: appearance.feedbackBackButtonFont], for: UIControlState())
         navigationItem.backBarButtonItem = backBarButtonItem
         
         let cancelBarButtonItem: UIBarButtonItem
@@ -132,7 +132,7 @@ public final class FeedbackViewController: UITableViewController {
             cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: cancelAction)
         }
         
-        cancelBarButtonItem.setTitleTextAttributes([NSFontAttributeName: appearance.feedbackCancelButtonFont], for: UIControlState())
+        cancelBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.font: appearance.feedbackCancelButtonFont], for: UIControlState())
         
         if presentingViewController != nil {
             navigationItem.leftBarButtonItem = cancelBarButtonItem

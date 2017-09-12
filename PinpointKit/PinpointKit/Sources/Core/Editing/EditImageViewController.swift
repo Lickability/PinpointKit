@@ -406,7 +406,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         
         guard let buttonFont = interfaceCustomization?.appearance.editorTextAnnotationDismissButtonFont else { assertionFailure(); return }
         let dismissButton = UIBarButtonItem(title: interfaceCustomization?.interfaceText.textEditingDismissButtonTitle, style: .done, target: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
-        dismissButton.setTitleTextAttributes([NSFontAttributeName: buttonFont], for: UIControlState())
+        dismissButton.setTitleTextAttributes([NSAttributedStringKey.font: buttonFont], for: UIControlState())
         
         navigationItem.setRightBarButton(dismissButton, animated: true)
         navigationItem.setLeftBarButton(nil, animated: true)
@@ -459,9 +459,9 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     
     private func updateInterfaceCustomization() {
         guard let appearance = interfaceCustomization?.appearance else { assertionFailure(); return }
-        segmentedControl.setTitleTextAttributes([NSFontAttributeName: appearance.editorTextAnnotationSegmentFont], for: UIControlState())
+        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: appearance.editorTextAnnotationSegmentFont], for: UIControlState())
         
-        guard let annotationFont = appearance.annotationTextAttributes[NSFontAttributeName] as? UIFont else { assertionFailure(); return }
+        guard let annotationFont = appearance.annotationTextAttributes[NSAttributedStringKey.font.rawValue] as? UIFont else { assertionFailure(); return }
         UITextView.appearance(whenContainedInInstancesOf: [TextAnnotationView.self]).font = annotationFont
         
         if let annotationFillColor = appearance.annotationFillColor {
