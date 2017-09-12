@@ -32,7 +32,7 @@ public struct Configuration {
     }
     
     /// A feedback collector that obtains the feedback to send.
-    let feedbackCollector: FeedbackCollector
+    var feedbackCollector: FeedbackCollector
     
     /// An editor that allows annotation of images.
     let editor: Editor
