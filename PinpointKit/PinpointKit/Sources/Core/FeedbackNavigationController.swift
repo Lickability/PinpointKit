@@ -85,7 +85,7 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         commonInitialization()
     }
     
-    convenience init() {
+    public convenience init() {
         self.init(navigationBarClass: nil, toolbarClass: nil)
     }
     
