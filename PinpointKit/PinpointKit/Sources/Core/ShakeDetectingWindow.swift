@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 /// `ShakeDetectingWindow` is a `UIWindow` subclass that notifies a `ShakeDetectingWindowDelegate` any time a shake motion event occurs.
 open class ShakeDetectingWindow: UIWindow {
 

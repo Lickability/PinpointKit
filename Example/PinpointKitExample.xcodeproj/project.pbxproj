@@ -225,7 +225,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "../swiftlint/bin/swiftlint lint --config ../swiftlint/bin/.swiftlint.yml\n\ncd ../PinpointKit\n../swiftlint/bin/swiftlint lint --config ../swiftlint/bin/.swiftlint.yml";
+			shellScript = "\"${PODS_ROOT}\"/SwiftLint/swiftlint lint --config ../.swiftlint.yml\n\ncd ../PinpointKit\n\"${PODS_ROOT}\"/SwiftLint/swiftlint lint --config ../.swiftlint.yml";
 		};
 /* End PBXShellScriptBuildPhase section */
 

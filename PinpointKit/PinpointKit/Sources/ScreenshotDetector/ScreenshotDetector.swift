@@ -88,7 +88,7 @@ open class ScreenshotDetector: NSObject {
         imageManager.requestImage(for: screenshot,
             targetSize: PHImageManagerMaximumSize,
             contentMode: .default,
-            options: PHImageRequestOptions.highQualitySynchronousLocalOptions()) { [weak self] image, info in
+            options: PHImageRequestOptions.highQualitySynchronousLocalOptions()) { [weak self] image, _ in
             OperationQueue.main.addOperation {
                 guard let strongSelf = self else { return }
                 guard let image = image else { strongSelf.fail(with: .loadFailure); return }

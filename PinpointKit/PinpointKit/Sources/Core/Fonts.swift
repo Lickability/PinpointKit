@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 /// Describes the weight of a font.
 public enum FontWeight: Int {
     
