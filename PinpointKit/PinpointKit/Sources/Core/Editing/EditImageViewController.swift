@@ -188,7 +188,11 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         assert(imageView.image != nil, "A screenshot must be set using `setScreenshot(_:)` before loading the view.")
         
         navigationItem.leftBarButtonItem = barButtonItemProvider?.leftBarButtonItem
-        navigationItem.rightBarButtonItem = barButtonItemProvider?.rightBarButtonItem
+        
+        if let rightBarButtonItem = barButtonItemProvider?.rightBarButtonItem {
+            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            navigationItem.rightBarButtonItems = [rightBarButtonItem, flexibleSpace]
+        }
         
         view.backgroundColor = .white
         view.addSubview(imageView)
@@ -408,7 +412,8 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         let dismissButton = UIBarButtonItem(title: interfaceCustomization?.interfaceText.textEditingDismissButtonTitle, style: .done, target: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
         dismissButton.setTitleTextAttributes([NSAttributedStringKey.font: buttonFont], for: UIControlState())
         
-        navigationItem.setRightBarButton(dismissButton, animated: true)
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        navigationItem.setRightBarButtonItems([dismissButton, flexibleSpace], animated: true)
         navigationItem.setLeftBarButton(nil, animated: true)
     }
     
