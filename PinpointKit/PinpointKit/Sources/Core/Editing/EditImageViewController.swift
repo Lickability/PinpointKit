@@ -45,7 +45,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         return DefaultBarButtonItemProvider(interfaceCustomization: interfaceCustomization, rightBarButtonItemTarget: self, rightBarButtonItemSelector: #selector(EditImageViewController.doneButtonTapped(_:)))
     }()
     
-    private var barButtonItemProviderBackingStore: EditImageViewControllerBarButtonItemProviding? = nil
+    private var barButtonItemProviderBackingStore: EditImageViewControllerBarButtonItemProviding?
     
     private lazy var segmentedControl: UISegmentedControl = { [unowned self] in
         let segmentArray = [Tool.arrow, Tool.box, Tool.text, Tool.blur]
@@ -648,7 +648,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         if animated {
             informDelegate(of: .deleted(animated: true))
             
-            UIView.perform(.delete, on: [annotationView], options: [], animations: nil) { finished in
+            UIView.perform(.delete, on: [annotationView], options: [], animations: nil) { _ in
                 removeAnnotationView()
             }
             
