@@ -190,8 +190,9 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         navigationItem.leftBarButtonItem = barButtonItemProvider?.leftBarButtonItem
         
         if let rightBarButtonItem = barButtonItemProvider?.rightBarButtonItem {
-            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            navigationItem.rightBarButtonItems = [rightBarButtonItem, flexibleSpace]
+            let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+            fixedSpace.width = 10
+            navigationItem.rightBarButtonItems = [rightBarButtonItem, fixedSpace]
         }
         
         view.backgroundColor = .white
@@ -412,8 +413,10 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         let dismissButton = UIBarButtonItem(title: interfaceCustomization?.interfaceText.textEditingDismissButtonTitle, style: .done, target: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
         dismissButton.setTitleTextAttributes([NSAttributedStringKey.font: buttonFont], for: UIControlState())
         
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        navigationItem.setRightBarButtonItems([dismissButton, flexibleSpace], animated: true)
+        let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        fixedSpace.width = 10
+        
+        navigationItem.setRightBarButtonItems([dismissButton, fixedSpace], animated: true)
         navigationItem.setLeftBarButton(nil, animated: true)
     }
     
