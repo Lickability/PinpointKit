@@ -48,7 +48,6 @@ final class StrokeLayoutManager: NSLayoutManager {
         guard let strokeColor = self.strokeColor else { return }
         guard let strokeWidth = self.strokeWidth else { return }
         
-        
         // Remove the shadow. It'll all be drawn at once afterwards.
         textAttributes[NSAttributedStringKey.shadow] = nil
         graphicsContext.setShadow(offset: CGSize.zero, blur: 0, color: nil)

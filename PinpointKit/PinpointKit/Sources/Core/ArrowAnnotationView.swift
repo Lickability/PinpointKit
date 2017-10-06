@@ -68,7 +68,6 @@ open class ArrowAnnotationView: AnnotationView {
         return annotation?.touchTargetPath?.contains(point) ?? false
     }
 
-
     // MARK: - AnnotationView
 
     override func setSecondControlPoint(_ point: CGPoint) {
