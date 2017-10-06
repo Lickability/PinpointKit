@@ -128,6 +128,13 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     
     private var selectedAnnotationView: AnnotationView?
     
+    private var fixedSpaceBarButtonItem: UIBarButtonItem {
+        let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        fixedSpace.width = 10
+        
+        return fixedSpace
+    }
+    
     public init() {
         super.init(nibName: nil, bundle: nil)
         
@@ -188,7 +195,10 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         assert(imageView.image != nil, "A screenshot must be set using `setScreenshot(_:)` before loading the view.")
         
         navigationItem.leftBarButtonItem = barButtonItemProvider?.leftBarButtonItem
-        navigationItem.rightBarButtonItem = barButtonItemProvider?.rightBarButtonItem
+        
+        if let rightBarButtonItem = barButtonItemProvider?.rightBarButtonItem {
+            navigationItem.rightBarButtonItems = [rightBarButtonItem, fixedSpaceBarButtonItem]
+        }
         
         view.backgroundColor = .white
         view.addSubview(imageView)
@@ -408,7 +418,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         let dismissButton = UIBarButtonItem(title: interfaceCustomization?.interfaceText.textEditingDismissButtonTitle, style: .done, target: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
         dismissButton.setTitleTextAttributes([NSAttributedStringKey.font: buttonFont], for: UIControlState())
         
-        navigationItem.setRightBarButton(dismissButton, animated: true)
+        navigationItem.setRightBarButtonItems([dismissButton, fixedSpaceBarButtonItem], animated: true)
         navigationItem.setLeftBarButton(nil, animated: true)
     }
     
