@@ -13,7 +13,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  PinpointKit: e828ae9c7e27ee68dd062b48457ab1a42ef09b34
+  PinpointKit: c60e0f217081b6e0691a2e61f03bf5ed39eb86ee
   SwiftLint: 1134786caedd2caab0560d2f36b76414a5a56808
 
 PODFILE CHECKSUM: 1f4e98c55bec5a078c5fdd5afec7cf066461b486
