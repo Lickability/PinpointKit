@@ -15,9 +15,9 @@ open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
 
     // MARK: - Properties
 
-    private let EAGLContext: OpenGLES.EAGLContext
-    private let GLKView: GLKit.GLKView
-    private let CIContext: CoreImage.CIContext
+    private let EAGLContext: OpenGLES.EAGLContext?
+    private let GLKView: GLKit.GLKView?
+    private let CIContext: CoreImage.CIContext?
 
     /// The corresponding annotation.
     var annotation: BlurAnnotation? {
@@ -29,7 +29,7 @@ open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
                 layer.path = UIBezierPath(rect: annotationFrame).cgPath
             }
             
-            GLKView.layer.mask = layer
+            GLKView?.layer.mask = layer
         }
     }
     
@@ -64,21 +64,30 @@ open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
 
     public override init(frame: CGRect) {
         let bounds = CGRect(origin: CGPoint.zero, size: frame.size)
-
-        EAGLContext = OpenGLES.EAGLContext(api: .openGLES2)
-        GLKView = GLKit.GLKView(frame: bounds, context: EAGLContext)
-        CIContext = CoreImage.CIContext(eaglContext: EAGLContext, options: [
-            kCIContextUseSoftwareRenderer: false
-        ])
+        
+        if let EAGLContext = OpenGLES.EAGLContext(api: .openGLES2) {
+            self.EAGLContext = EAGLContext
+            GLKView = GLKit.GLKView(frame: bounds, context: EAGLContext)
+            CIContext = CoreImage.CIContext(eaglContext: EAGLContext, options: [
+                kCIContextUseSoftwareRenderer: false
+            ])
+        } else {
+            EAGLContext = nil
+            GLKView = nil
+            CIContext = nil
+        }
 
         super.init(frame: frame)
 
         isOpaque = false
         
-        GLKView.isUserInteractionEnabled = false
-        GLKView.delegate = self
-        GLKView.contentMode = .redraw
-        addSubview(GLKView)
+        GLKView?.isUserInteractionEnabled = false
+        GLKView?.delegate = self
+        GLKView?.contentMode = .redraw
+        
+        if let glkView = GLKView {
+            addSubview(glkView)
+        }
     }
 
     public required init?(coder: NSCoder) {
@@ -89,7 +98,7 @@ open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
 
     override open func layoutSubviews() {
         super.layoutSubviews()
-        GLKView.frame = bounds
+        GLKView?.frame = bounds
     }
 
     override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
@@ -140,12 +149,15 @@ open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
     // MARK: - GLKViewDelegate
 
     open func glkView(_ view: GLKit.GLKView, drawIn rect: CGRect) {
+        
         glClearColor(0, 0, 0, 0)
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
+        
+        guard let CIContext = self.CIContext else { return }
+        guard let image = annotation?.blurredImage else { return }
 
-        if let image = annotation?.blurredImage {
-            let drawableRect = CGRect(x: 0, y: 0, width: view.drawableWidth, height: view.drawableHeight)
-            CIContext.draw(image, in: drawableRect, from: image.extent)
-        }
+        let drawableRect = CGRect(x: 0, y: 0, width: view.drawableWidth, height: view.drawableHeight)
+        CIContext.draw(image, in: drawableRect, from: image.extent)
+        
     }
 }

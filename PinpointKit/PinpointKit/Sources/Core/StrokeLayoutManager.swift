@@ -22,7 +22,7 @@ final class StrokeLayoutManager: NSLayoutManager {
         
         let firstIndex = characterIndexForGlyph(at: glyphsToShow.location)
         let attributes = textStorage?.attributes(at: firstIndex, effectiveRange: nil)
-        let shadow = attributes?[NSShadowAttributeName] as? NSShadow
+        let shadow = attributes?[NSAttributedStringKey.shadow] as? NSShadow
         let shouldRenderTransparencyLayer = strokeColor != nil && strokeWidth != nil && shadow != nil
         
         if let shadow = shadow, shouldRenderTransparencyLayer {
@@ -38,31 +38,34 @@ final class StrokeLayoutManager: NSLayoutManager {
         }
     }
     
-    override func showCGGlyphs(_ glyphs: UnsafePointer<CGGlyph>, positions: UnsafePointer<CGPoint>, count glyphCount: Int, font: UIFont, matrix textMatrix: CGAffineTransform, attributes: [String : Any], in graphicsContext: CGContext) {
+    override func showCGGlyphs(_ glyphs: UnsafePointer<CGGlyph>, positions: UnsafePointer<CGPoint>, count glyphCount: Int, font: UIFont, matrix textMatrix: CGAffineTransform, attributes: [NSAttributedStringKey : Any], in graphicsContext: CGContext) {
         var textAttributes = attributes
         
-        if let strokeColor = strokeColor, let strokeWidth = strokeWidth {
-            // Remove the shadow. It'll all be drawn at once afterwards.
-            textAttributes[NSShadowAttributeName] = nil
-            graphicsContext.setShadow(offset: CGSize.zero, blur: 0, color: nil)
-            
-            graphicsContext.saveGState()
-            
-            strokeColor.setStroke()
-            
-            graphicsContext.setLineWidth(strokeWidth)
-            graphicsContext.setLineJoin(.miter)
-            
-            graphicsContext.setTextDrawingMode(.fillStroke)
-            
+        defer {
             super.showCGGlyphs(glyphs, positions: positions, count: glyphCount, font: font, matrix: textMatrix, attributes: textAttributes, in: graphicsContext)
-            
-            // Due to a bug introduced in iOS 7, kCGTextFillStroke will never have the correct fill color, so we must draw the string twice: once for stroke and once for fill. http://stackoverflow.com/questions/18894907/why-cgcontextsetrgbstrokecolor-isnt-working-on-ios7
-            
-            graphicsContext.restoreGState()
-            graphicsContext.setTextDrawingMode(.fill)
         }
         
+        guard let strokeColor = self.strokeColor else { return }
+        guard let strokeWidth = self.strokeWidth else { return }
+        
+        // Remove the shadow. It'll all be drawn at once afterwards.
+        textAttributes[NSAttributedStringKey.shadow] = nil
+        graphicsContext.setShadow(offset: CGSize.zero, blur: 0, color: nil)
+        
+        graphicsContext.saveGState()
+        
+        strokeColor.setStroke()
+        
+        graphicsContext.setLineWidth(strokeWidth)
+        graphicsContext.setLineJoin(.miter)
+        
+        graphicsContext.setTextDrawingMode(.fillStroke)
+        
         super.showCGGlyphs(glyphs, positions: positions, count: glyphCount, font: font, matrix: textMatrix, attributes: textAttributes, in: graphicsContext)
+        
+        // Due to a bug introduced in iOS 7, kCGTextFillStroke will never have the correct fill color, so we must draw the string twice: once for stroke and once for fill. http://stackoverflow.com/questions/18894907/why-cgcontextsetrgbstrokecolor-isnt-working-on-ios7
+        
+        graphicsContext.restoreGState()
+        graphicsContext.setTextDrawingMode(.fill)
     }
 }

@@ -61,11 +61,11 @@ final class KeyboardAvoider {
             avoidingView.superview?.layoutIfNeeded()
         }
         
-        UIView.animate(withDuration: animationDuration, animations: {}) { finished in
+        UIView.animate(withDuration: animationDuration, animations: {}, completion: { _ in
             if isDismissing {
                 self.originalConstraintConstants.removeAll(keepingCapacity: false)
             }
-        }
+        })
     }
     
     private func updateAndStore(_ constraints: [NSLayoutConstraint], on view: UIView, withDifference difference: CGFloat, isDismissing: Bool) {

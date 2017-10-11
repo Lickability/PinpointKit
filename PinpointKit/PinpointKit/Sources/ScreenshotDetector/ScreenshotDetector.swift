@@ -32,7 +32,8 @@ open class ScreenshotDetector: NSObject {
     private weak var delegate: ScreenshotDetectorDelegate?
     private let notificationCenter: NotificationCenter
     private let application: UIApplication
-    private let imageManager: PHImageManager
+    private let imageManager: PHImageManager?
+    fileprivate let photoLibrary: PHPhotoLibrary
     
     /**
      Initializes a `ScreenshotDetector` with its dependencies. Note that `ScreenshotDetector` requires access to the user’s Photo Library and it will request this access if your application does not already have it.
@@ -40,13 +41,15 @@ open class ScreenshotDetector: NSObject {
      - parameter delegate:           The delegate that will be notified when detection succeeds or fails.
      - parameter notificationCenter: A notification center that will listen for screenshot notifications.
      - parameter application:        An application that will be the `object` of the notification observer.
-     - parameter imageManager:       An image manager used to fetch the image data of the screenshot.
+     - parameter imageManager:       An image manager used to fetch the image data of the screenshot. If `nil`, the `default()` image manager will be used.
+     - parameter photoLibrary:       The photo library used for detecting a change event after a screenshot is taken. Defaults to `.shared()`.
      */
-    public init(delegate: ScreenshotDetectorDelegate, notificationCenter: NotificationCenter = .default, application: UIApplication = .shared, imageManager: PHImageManager = .default()) {
+    public init(delegate: ScreenshotDetectorDelegate, notificationCenter: NotificationCenter = .default, application: UIApplication = .shared, imageManager: PHImageManager? = nil, photoLibrary: PHPhotoLibrary = .shared()) {
         self.delegate = delegate
         self.notificationCenter = notificationCenter
         self.application = application
         self.imageManager = imageManager
+        self.photoLibrary = photoLibrary
         
         super.init()
         
@@ -64,7 +67,9 @@ open class ScreenshotDetector: NSObject {
             OperationQueue.main.addOperation {
                 switch authorizationStatus {
                 case .authorized:
-                    self.findScreenshot()
+                    // Register for the next photo library change notification since the new screenshot
+                    // won’t be available immediately.
+                    self.photoLibrary.register(self)
                 case .denied, .notDetermined, .restricted:
                     self.fail(with: .unauthorized(status: authorizationStatus))
                 }
@@ -72,13 +77,18 @@ open class ScreenshotDetector: NSObject {
         }
     }
     
-    private func findScreenshot() {
+    fileprivate func findScreenshot() {
         guard let screenshot = PHAsset.fetchLastScreenshot() else { fail(with: .fetchFailure); return }
+        
+        // Fall back to the `.default()` image manager if an image manager wasn’t set on initialization.
+        // We don’t specify this as a default parameter to the initializer since calling `.default()`
+        // immediately prompts the user for access to the photo library, before we even need to use it.
+        let imageManager: PHImageManager = self.imageManager ?? .default()
         
         imageManager.requestImage(for: screenshot,
             targetSize: PHImageManagerMaximumSize,
             contentMode: .default,
-            options: PHImageRequestOptions.highQualitySynchronousLocalOptions()) { [weak self] image, info in
+            options: PHImageRequestOptions.highQualitySynchronousLocalOptions()) { [weak self] image, _ in
             OperationQueue.main.addOperation {
                 guard let strongSelf = self else { return }
                 guard let image = image else { strongSelf.fail(with: .loadFailure); return }
@@ -121,7 +131,7 @@ public protocol ScreenshotDetectorDelegate: class {
 
 @available(iOS 9.0, *)
 private extension PHAsset {
-
+    
     static func fetchLastScreenshot() -> PHAsset? {
         let options = PHFetchOptions()
         
@@ -145,5 +155,15 @@ private extension PHImageRequestOptions {
         options.isSynchronous = true
         
         return options
+    }
+}
+
+extension ScreenshotDetector: PHPhotoLibraryChangeObserver {
+    
+    // MARK: - PHPhotoLibraryChangeObserver
+    
+    public func photoLibraryDidChange(_ changeInstance: PHChange) {
+        photoLibrary.unregisterChangeObserver(self)
+        findScreenshot()
     }
 }

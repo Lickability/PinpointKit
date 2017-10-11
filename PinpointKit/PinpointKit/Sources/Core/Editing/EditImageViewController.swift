@@ -45,7 +45,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         return DefaultBarButtonItemProvider(interfaceCustomization: interfaceCustomization, rightBarButtonItemTarget: self, rightBarButtonItemSelector: #selector(EditImageViewController.doneButtonTapped(_:)))
     }()
     
-    private var barButtonItemProviderBackingStore: EditImageViewControllerBarButtonItemProviding? = nil
+    private var barButtonItemProviderBackingStore: EditImageViewControllerBarButtonItemProviding?
     
     private lazy var segmentedControl: UISegmentedControl = { [unowned self] in
         let segmentArray = [Tool.arrow, Tool.box, Tool.text, Tool.blur]
@@ -128,6 +128,13 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     
     private var selectedAnnotationView: AnnotationView?
     
+    private var fixedSpaceBarButtonItem: UIBarButtonItem {
+        let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        fixedSpace.width = 10
+        
+        return fixedSpace
+    }
+    
     public init() {
         super.init(nibName: nil, bundle: nil)
         
@@ -188,7 +195,10 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         assert(imageView.image != nil, "A screenshot must be set using `setScreenshot(_:)` before loading the view.")
         
         navigationItem.leftBarButtonItem = barButtonItemProvider?.leftBarButtonItem
-        navigationItem.rightBarButtonItem = barButtonItemProvider?.rightBarButtonItem
+        
+        if let rightBarButtonItem = barButtonItemProvider?.rightBarButtonItem {
+            navigationItem.rightBarButtonItems = [rightBarButtonItem, fixedSpaceBarButtonItem]
+        }
         
         view.backgroundColor = .white
         view.addSubview(imageView)
@@ -406,9 +416,9 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         
         guard let buttonFont = interfaceCustomization?.appearance.editorTextAnnotationDismissButtonFont else { assertionFailure(); return }
         let dismissButton = UIBarButtonItem(title: interfaceCustomization?.interfaceText.textEditingDismissButtonTitle, style: .done, target: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
-        dismissButton.setTitleTextAttributes([NSFontAttributeName: buttonFont], for: UIControlState())
+        dismissButton.setTitleTextAttributes([NSAttributedStringKey.font: buttonFont], for: UIControlState())
         
-        navigationItem.setRightBarButton(dismissButton, animated: true)
+        navigationItem.setRightBarButtonItems([dismissButton, fixedSpaceBarButtonItem], animated: true)
         navigationItem.setLeftBarButton(nil, animated: true)
     }
     
@@ -459,9 +469,9 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     
     private func updateInterfaceCustomization() {
         guard let appearance = interfaceCustomization?.appearance else { assertionFailure(); return }
-        segmentedControl.setTitleTextAttributes([NSFontAttributeName: appearance.editorTextAnnotationSegmentFont], for: UIControlState())
+        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: appearance.editorTextAnnotationSegmentFont], for: UIControlState())
         
-        guard let annotationFont = appearance.annotationTextAttributes[NSFontAttributeName] as? UIFont else { assertionFailure(); return }
+        guard let annotationFont = appearance.annotationTextAttributes[NSAttributedStringKey.font.rawValue] as? UIFont else { assertionFailure(); return }
         UITextView.appearance(whenContainedInInstancesOf: [TextAnnotationView.self]).font = annotationFont
         
         if let annotationFillColor = appearance.annotationFillColor {
@@ -640,7 +650,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         if animated {
             informDelegate(of: .deleted(animated: true))
             
-            UIView.perform(.delete, on: [annotationView], options: [], animations: nil) { finished in
+            UIView.perform(.delete, on: [annotationView], options: [], animations: nil) { _ in
                 removeAnnotationView()
             }
             
