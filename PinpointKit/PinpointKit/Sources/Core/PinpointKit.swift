@@ -133,6 +133,6 @@ public extension PinpointKitDelegate {
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okAction)
         
-        self.configuration.feedbackCollector.viewController.present(alert, animated: true, completion: nil)
+        pinpointKit.configuration.feedbackCollector.viewController.present(alert, animated: true, completion: nil)
     }
 }
