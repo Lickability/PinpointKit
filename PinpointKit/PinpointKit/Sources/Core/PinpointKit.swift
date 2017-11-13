@@ -83,7 +83,7 @@ extension PinpointKit: SenderDelegate {
     }
     
     public func sender(_ sender: Sender, didFailToSend feedback: Feedback?, error: Error) {
-        if case MailSender.Error.mailCanceled = error { return }        
+        if case MailSender.Error.mailCanceled = error { return }
         
         guard let feedback = feedback else { return }
         delegate?.pinpointKit(self, didFailToSend: feedback, error: error)
