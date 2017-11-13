@@ -126,8 +126,8 @@ public extension PinpointKitDelegate {
     
     func pinpointKit(_ pinpointKit: PinpointKit, didFailToSend feedback: Feedback, error: Error) {
         let alert = UIAlertController(
-            title: "Mailer error",
-            message: "Unable to prepare an email to send. Ensure that you have at least one email account set up.",
+            title: "Can’t Send Email",
+            message: "Make sure that you have at least one email account set up.",
             preferredStyle: .alert)
         
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
