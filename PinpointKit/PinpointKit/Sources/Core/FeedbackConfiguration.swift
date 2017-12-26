@@ -30,6 +30,9 @@ public struct FeedbackConfiguration {
     /// A dictionary of additional information provided by the application developer.
     public var additionalInformation: [String: AnyObject]?
     
+    /// The modal presentation style for the feedback collection screen.
+    public let presentationStyle: UIModalPresentationStyle
+    
     /**
      Initializes a `FeedbackConfiguration` with optional default values.
      
@@ -39,18 +42,21 @@ public struct FeedbackConfiguration {
      - parameter body:                   The default body text.
      - parameter logsFileName:           The file name of the logs text file.
      - parameter additionalInformation:  Any additional information you want to capture.
+     - parameter presentationStyle:      The modal presentation style for the the feedback collection screen.
      */
     public init(screenshotFileName: String = "Screenshot",
                 recipients: [String],
                 title: String? = FeedbackConfiguration.DefaultTitle,
                 body: String? = nil,
                 logsFileName: String = "logs",
-                additionalInformation: [String: AnyObject]? = nil) {
+                additionalInformation: [String: AnyObject]? = nil,
+                presentationStyle: UIModalPresentationStyle = .fullScreen) {
         self.screenshotFileName = screenshotFileName
         self.recipients = recipients
         self.title = title
         self.body = body
         self.logsFileName = logsFileName
         self.additionalInformation = additionalInformation
+        self.presentationStyle = presentationStyle
     }
 }

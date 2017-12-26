@@ -193,6 +193,7 @@ extension FeedbackViewController: FeedbackCollector {
 extension FeedbackViewController: EditorDelegate {
     public func editorWillDismiss(_ editor: Editor, with screenshot: UIImage) {
         annotatedScreenshot = screenshot
+        tableView.reloadData()
     }
 }
 
@@ -236,6 +237,7 @@ extension FeedbackViewController: FeedbackTableViewDataSourceDelegate {
         
         let editImageViewController = NavigationController(rootViewController: editor.viewController)
         editImageViewController.view.tintColor = interfaceCustomization?.appearance.tintColor
+        editImageViewController.modalPresentationStyle = feedbackConfiguration?.presentationStyle ?? .fullScreen
         present(editImageViewController, animated: true, completion: nil)
     }
 }

@@ -122,7 +122,7 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         
         feedbackViewController.screenshot = screenshot
         feedbackViewController.annotatedScreenshot = screenshot
-
+        self.modalPresentationStyle = feedbackConfiguration?.presentationStyle ?? .fullScreen
         viewController.present(self, animated: true, completion: nil)
     }
 }
