@@ -21,7 +21,6 @@ final class NavigationController: UINavigationController, UINavigationController
     override init(rootViewController: UIViewController) {
         super.init(rootViewController: rootViewController)
         delegate = self
-        modalPresentationStyle = .fullScreen // Necessary for proper transition rotation.
         modalPresentationCapturesStatusBarAppearance = true
     }
 
