@@ -11,15 +11,10 @@ import PinpointKit
 
 final class ViewController: UITableViewController {
     
-    fileprivate var pinpointKit: PinpointKit?
+    fileprivate let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
-        let feedbackConfiguration = FeedbackConfiguration(recipients: ["feedback@example.com"], presentationStyle: .formSheet)
-        let configuration = Configuration(feedbackConfiguration: feedbackConfiguration)
-        self.pinpointKit = PinpointKit(configuration: configuration)
         
         // Hides the infinite cells footer.
         tableView.tableFooterView = UIView()
@@ -28,6 +23,6 @@ final class ViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        pinpointKit?.show(from: self)
+        pinpointKit.show(from: self)
     }
 }
