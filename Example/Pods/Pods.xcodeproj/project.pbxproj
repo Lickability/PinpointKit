@@ -84,7 +84,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0148F29BAA8B901AF499610F69E21EB0 /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0148F29BAA8B901AF499610F69E21EB0 /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PinpointKit.framework; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		028E82183DF44F6D1CA707A17BD3F159 /* NavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = PinpointKit/PinpointKit/Sources/Core/NavigationController.swift; sourceTree = "<group>"; };
 		0820DEC99A63608D5EF428640C816EAF /* Feedback.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Feedback.swift; path = PinpointKit/PinpointKit/Sources/Core/Feedback.swift; sourceTree = "<group>"; };
 		0E375E734A232C7FC456511B2476D796 /* EditImageViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditImageViewController.swift; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		33ADB596A21D0D64F1947D9E28EF9F14 /* BasicLogViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BasicLogViewController.swift; path = PinpointKit/PinpointKit/Sources/Core/BasicLogViewController.swift; sourceTree = "<group>"; };
 		343A466A7D13188F42473AEE2CF2954E /* PinpointKit+ShakePresentation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "PinpointKit+ShakePresentation.swift"; path = "PinpointKit/PinpointKit/Sources/Core/PinpointKit+ShakePresentation.swift"; sourceTree = "<group>"; };
 		37C13F2C1F83A6A43BE53FB9E2C3543E /* FeedbackCollector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FeedbackCollector.swift; path = PinpointKit/PinpointKit/Sources/Core/FeedbackCollector.swift; sourceTree = "<group>"; };
-		38B7ED7C8CA198DA1CE136548A7D8C41 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "SourceSansPro-Regular.ttf"; path = "PinpointKit/PinpointKit/Resources/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		38B7ED7C8CA198DA1CE136548A7D8C41 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "SourceSansPro-Regular.ttf"; path = "PinpointKit/PinpointKit/Resources/SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		39560F2D47F865BE6F3D929A7E382DF7 /* ShakeDetectingWindowDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShakeDetectingWindowDelegate.swift; path = PinpointKit/PinpointKit/Sources/Core/ShakeDetectingWindowDelegate.swift; sourceTree = "<group>"; };
 		3B86491F230EF531B54484A2818BDAAE /* Pods-PinpointKitExample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PinpointKitExample-resources.sh"; sourceTree = "<group>"; };
 		4327D6687DE888351CBBE30DFBCBEF26 /* BoxAnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BoxAnnotationView.swift; path = PinpointKit/PinpointKit/Sources/Core/BoxAnnotationView.swift; sourceTree = "<group>"; };
@@ -133,13 +133,13 @@
 		86ED254D6B5AFC227023EEC7727DB6D7 /* Fonts.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Fonts.swift; path = PinpointKit/PinpointKit/Sources/Core/Fonts.swift; sourceTree = "<group>"; };
 		89667A292906D796887DEFC858B57275 /* InterfaceCustomization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InterfaceCustomization.swift; path = PinpointKit/PinpointKit/Sources/Core/InterfaceCustomization.swift; sourceTree = "<group>"; };
 		8990F1FB3B7EFD78D7A38CC17474E04A /* SystemLogCollector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SystemLogCollector.swift; path = PinpointKit/PinpointKit/Sources/Core/SystemLogCollector.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9888C71FFFE7C517194C87833C52F3B2 /* MailSender.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MailSender.swift; path = PinpointKit/PinpointKit/Sources/Core/MailSender.swift; sourceTree = "<group>"; };
 		9B630FD89A4A13815EF569FB02F07BFA /* EditImageViewControllerBarButtonItemProviding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditImageViewControllerBarButtonItemProviding.swift; sourceTree = "<group>"; };
 		A3E239F9A419CDD13F310D72B521A9EF /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Configuration.swift; path = PinpointKit/PinpointKit/Sources/Core/Configuration.swift; sourceTree = "<group>"; };
-		B926BF5DF1140A5905B62DC71C6299C7 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "SourceSansPro-Semibold.ttf"; path = "PinpointKit/PinpointKit/Resources/SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
+		B926BF5DF1140A5905B62DC71C6299C7 /* SourceSansPro-Semibold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "SourceSansPro-Semibold.ttf"; path = "PinpointKit/PinpointKit/Resources/SourceSansPro-Semibold.ttf"; sourceTree = "<group>"; };
 		C29D51E4E8E93994310ADCA633D301E6 /* Pods-PinpointKitExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PinpointKitExample-umbrella.h"; sourceTree = "<group>"; };
-		C4A6908DFBA7072A43C5A5B9C0AEBFAF /* Pods-PinpointKitExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-PinpointKitExample.modulemap"; sourceTree = "<group>"; };
+		C4A6908DFBA7072A43C5A5B9C0AEBFAF /* Pods-PinpointKitExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-PinpointKitExample.modulemap"; sourceTree = "<group>"; };
 		C9459A3B945E69F35F2CF8F09D784F90 /* EditorDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditorDelegate.swift; sourceTree = "<group>"; };
 		CCC9DFE70A35B1C9D56C07C8E27586F5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
 		CDC3A4BF8774A7DEE2316927BCA8BA3A /* Pods-PinpointKitExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PinpointKitExample-frameworks.sh"; sourceTree = "<group>"; };
@@ -154,14 +154,14 @@
 		DC37305B2CF04F702E4B8159DB7B7C1D /* UIGestureRecognizer+FailRecognizing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIGestureRecognizer+FailRecognizing.swift"; path = "PinpointKit/PinpointKit/Sources/Core/UIGestureRecognizer+FailRecognizing.swift"; sourceTree = "<group>"; };
 		E2E58969892F32C49D183C7EA4B7ECCB /* FeedbackTableViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FeedbackTableViewDataSource.swift; path = PinpointKit/PinpointKit/Sources/Core/FeedbackTableViewDataSource.swift; sourceTree = "<group>"; };
 		E9F2057E47096272002F614A415954F9 /* AnnotationView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnnotationView.swift; path = PinpointKit/PinpointKit/Sources/Core/AnnotationView.swift; sourceTree = "<group>"; };
-		EBBA4EE8E13AD4BC2740B81A990FF8E5 /* PinpointKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = PinpointKit.modulemap; sourceTree = "<group>"; };
-		ED5D75D20CD71C847C054ACBA03824C9 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "SourceSansPro-Bold.ttf"; path = "PinpointKit/PinpointKit/Resources/SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
+		EBBA4EE8E13AD4BC2740B81A990FF8E5 /* PinpointKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PinpointKit.modulemap; sourceTree = "<group>"; };
+		ED5D75D20CD71C847C054ACBA03824C9 /* SourceSansPro-Bold.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = "SourceSansPro-Bold.ttf"; path = "PinpointKit/PinpointKit/Resources/SourceSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		EF691E770A0A74C5D33A4E8136E5E1BB /* Screen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Screen.swift; path = PinpointKit/PinpointKit/Sources/Core/Screen.swift; sourceTree = "<group>"; };
 		F3D8132F9DC617E978F59BF7226AC88A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		F4A5C1AFC3ACAA19404790EF32C63669 /* Screenshotter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Screenshotter.swift; path = PinpointKit/PinpointKit/Sources/Core/Screenshotter.swift; sourceTree = "<group>"; };
 		F78DE06EB97A22DBA97D801C51C5454B /* StrokeLayoutManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StrokeLayoutManager.swift; path = PinpointKit/PinpointKit/Sources/Core/StrokeLayoutManager.swift; sourceTree = "<group>"; };
 		FD0952F9B52A5DA37449AF14A1EA391B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		FFC218B076577FDDB35FED8A4C0FBB33 /* Pods_PinpointKitExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PinpointKitExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFC218B076577FDDB35FED8A4C0FBB33 /* Pods_PinpointKitExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PinpointKitExample.framework; path = "Pods-PinpointKitExample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 			);
+			name = SwiftLint;
 			path = SwiftLint;
 			sourceTree = "<group>";
 		};
@@ -445,7 +446,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -703,7 +704,6 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -711,7 +711,6 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -760,7 +759,6 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -768,7 +766,6 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
