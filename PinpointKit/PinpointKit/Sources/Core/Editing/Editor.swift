@@ -10,7 +10,7 @@
 public protocol Editor: class, InterfaceCustomizable {
     
     /// A delegate for the editor.
-    weak var delegate: EditorDelegate? { get set }
+    var delegate: EditorDelegate? { get set }
     
     /// The view controller that displays the image being edited.
     var viewController: UIViewController { get }
