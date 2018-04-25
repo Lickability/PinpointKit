@@ -40,8 +40,8 @@
 ## Requirements
 
 * iOS 9.0+
-* Xcode 9.0+
-* Swift 4.0
+* Xcode 9.3+
+* Swift 4.1
 
 > **Note:** [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift) depends on the `Photos` framework to access the user’s photo library. This requires you to add an entry for the [`NSPhotoLibraryUsageDescription`](https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17) key in your `Info.plist` file describing your app’s use of the user’s photo library. As of iOS 10, failure to provide a value for this key could cause your submission to the App Store to be rejected by Apple, or cause your app to exit upon attempting to access the user’s photo library. [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift) is excluded by default when installing via CocoaPods, but is included otherwise.
 
