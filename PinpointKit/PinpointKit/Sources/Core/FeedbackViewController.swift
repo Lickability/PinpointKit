@@ -117,11 +117,11 @@ public final class FeedbackViewController: UITableViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: appearance.navigationTitleFont]
         
         let sendBarButtonItem = UIBarButtonItem(title: interfaceText.feedbackSendButtonTitle, style: .done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
-        sendBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.font: appearance.feedbackSendButtonFont], for: UIControlState())
+        sendBarButtonItem.setTitleTextAttributesForAllStates([.font: appearance.feedbackSendButtonFont])
         navigationItem.rightBarButtonItem = sendBarButtonItem
         
         let backBarButtonItem = UIBarButtonItem(title: interfaceText.feedbackBackButtonTitle, style: .plain, target: nil, action: nil)
-        backBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.font: appearance.feedbackBackButtonFont], for: UIControlState())
+        backBarButtonItem.setTitleTextAttributesForAllStates([.font: appearance.feedbackBackButtonFont])
         navigationItem.backBarButtonItem = backBarButtonItem
         
         let cancelBarButtonItem: UIBarButtonItem
@@ -132,7 +132,7 @@ public final class FeedbackViewController: UITableViewController {
             cancelBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: cancelAction)
         }
         
-        cancelBarButtonItem.setTitleTextAttributes([NSAttributedStringKey.font: appearance.feedbackCancelButtonFont], for: UIControlState())
+        cancelBarButtonItem.setTitleTextAttributesForAllStates([.font: appearance.feedbackCancelButtonFont])
         
         if presentingViewController != nil {
             navigationItem.leftBarButtonItem = cancelBarButtonItem
