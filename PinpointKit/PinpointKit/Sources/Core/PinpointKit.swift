@@ -62,12 +62,11 @@ open class PinpointKit {
     
     /// Presents an alert signifying the inability to compose a Mail message.
     open func presentFailureToComposeMailAlert() {
-        let alert = UIAlertController(
-            title: "Can’t Send Email",
-            message: "Make sure that you have at least one email account set up.",
-            preferredStyle: .alert)
+        let alertTitle = NSLocalizedString("Can’t Send Email", comment: "Title for an alert shown when attempting to send mail without a mail account setup.")
+        let alertMessage = NSLocalizedString("Make sure that you have at least one email account set up.", comment: "Message for an alert shown when attempting to send mail without a mail account setup.")
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: "OK button on mail send failure alert."), style: .default, handler: nil)
         alert.addAction(okAction)
         
         configuration.feedbackCollector.viewController.present(alert, animated: true, completion: nil)
