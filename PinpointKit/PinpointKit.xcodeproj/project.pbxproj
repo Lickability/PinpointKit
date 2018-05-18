@@ -62,6 +62,9 @@
 		4C4038261D9EB1B700305A6E /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C4038251D9EB1B700305A6E /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C4038281D9EB27A00305A6E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4038271D9EB27A00305A6E /* NavigationController.swift */; };
 		4C40382C1D9EB7A800305A6E /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C40382B1D9EB7A800305A6E /* ScreenshotDetector.swift */; };
+		4C46BA5D20AF2AEC0037E8A8 /* SourceSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C4038221D9EB19400305A6E /* SourceSansPro-Bold.ttf */; };
+		4C46BA5E20AF2AEC0037E8A8 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C4038231D9EB19400305A6E /* SourceSansPro-Regular.ttf */; };
+		4C46BA5F20AF2AEC0037E8A8 /* SourceSansPro-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C4038241D9EB19400305A6E /* SourceSansPro-Semibold.ttf */; };
 		4C772569209CDBBD00269047 /* UIBarButtonItem+TitleTextAttributeStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C772568209CDBBD00269047 /* UIBarButtonItem+TitleTextAttributeStates.swift */; };
 		4CFB58801E29464B00B64D0D /* EditImageViewControllerBarButtonItemProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB587F1E29464B00B64D0D /* EditImageViewControllerBarButtonItemProviding.swift */; };
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
@@ -459,6 +462,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C46BA5D20AF2AEC0037E8A8 /* SourceSansPro-Bold.ttf in Resources */,
+				4C46BA5E20AF2AEC0037E8A8 /* SourceSansPro-Regular.ttf in Resources */,
+				4C46BA5F20AF2AEC0037E8A8 /* SourceSansPro-Semibold.ttf in Resources */,
 				2CACDFCF1C9C8AFB0002ECBF /* PinpointKit.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
