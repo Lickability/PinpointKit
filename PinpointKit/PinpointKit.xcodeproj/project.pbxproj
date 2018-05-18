@@ -62,6 +62,7 @@
 		4C4038261D9EB1B700305A6E /* PinpointKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C4038251D9EB1B700305A6E /* PinpointKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C4038281D9EB27A00305A6E /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4038271D9EB27A00305A6E /* NavigationController.swift */; };
 		4C40382C1D9EB7A800305A6E /* ScreenshotDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C40382B1D9EB7A800305A6E /* ScreenshotDetector.swift */; };
+		4C772569209CDBBD00269047 /* UIBarButtonItem+TitleTextAttributeStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C772568209CDBBD00269047 /* UIBarButtonItem+TitleTextAttributeStates.swift */; };
 		4CFB58801E29464B00B64D0D /* EditImageViewControllerBarButtonItemProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFB587F1E29464B00B64D0D /* EditImageViewControllerBarButtonItemProviding.swift */; };
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
 		F24381121D54CBAB004CC87F /* SystemLogCollectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24381111D54CBAB004CC87F /* SystemLogCollectorTests.swift */; };
@@ -135,6 +136,7 @@
 		4C4038251D9EB1B700305A6E /* PinpointKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PinpointKit.h; path = PinpointKit/Sources/Core/PinpointKit.h; sourceTree = "<group>"; };
 		4C4038271D9EB27A00305A6E /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NavigationController.swift; path = Core/NavigationController.swift; sourceTree = "<group>"; };
 		4C40382B1D9EB7A800305A6E /* ScreenshotDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenshotDetector.swift; path = ScreenshotDetector/ScreenshotDetector.swift; sourceTree = "<group>"; };
+		4C772568209CDBBD00269047 /* UIBarButtonItem+TitleTextAttributeStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIBarButtonItem+TitleTextAttributeStates.swift"; path = "Core/UIBarButtonItem+TitleTextAttributeStates.swift"; sourceTree = "<group>"; };
 		4CFB587F1E29464B00B64D0D /* EditImageViewControllerBarButtonItemProviding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditImageViewControllerBarButtonItemProviding.swift; path = Core/Editing/EditImageViewControllerBarButtonItemProviding.swift; sourceTree = "<group>"; };
 		DA0DA6021C53049B0012ADBE /* PinpointKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PinpointKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA0DA6071C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = PinpointKit/Info.plist; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				4C4038181D9EB11500305A6E /* StrokeLayoutManager.swift */,
 				4C40381A1D9EB11E00305A6E /* SuccessType.swift */,
 				4C40381C1D9EB12900305A6E /* UIColor+Palette.swift */,
+				4C772568209CDBBD00269047 /* UIBarButtonItem+TitleTextAttributeStates.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				4C4038151D9EB10500305A6E /* BezierPath.swift in Sources */,
 				4C4037E91D9EAFA000305A6E /* TextAnnotationView.swift in Sources */,
 				4C4038061D9EB08E00305A6E /* ShakeDetectingWindow.swift in Sources */,
+				4C772569209CDBBD00269047 /* UIBarButtonItem+TitleTextAttributeStates.swift in Sources */,
 				4C4037F31D9EB01800305A6E /* FeedbackCollector.swift in Sources */,
 				4C4037CB1D9EAEBD00305A6E /* LogCollector.swift in Sources */,
 				4C4038171D9EB10C00305A6E /* Screen.swift in Sources */,

@@ -416,7 +416,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         
         guard let buttonFont = interfaceCustomization?.appearance.editorTextAnnotationDismissButtonFont else { assertionFailure(); return }
         let dismissButton = UIBarButtonItem(title: interfaceCustomization?.interfaceText.textEditingDismissButtonTitle, style: .done, target: self, action: #selector(EditImageViewController.endEditingTextViewIfFirstResponder))
-        dismissButton.setTitleTextAttributes([NSAttributedStringKey.font: buttonFont], for: UIControlState())
+        dismissButton.setTitleTextAttributesForAllStates([.font: buttonFont])
         
         navigationItem.setRightBarButtonItems([dismissButton, fixedSpaceBarButtonItem], animated: true)
         navigationItem.setLeftBarButton(nil, animated: true)
