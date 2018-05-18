@@ -59,6 +59,18 @@ open class PinpointKit {
         configuration.editor.clearAllAnnotations()
         configuration.feedbackCollector.collectFeedback(with: screenshot, from: viewController)
     }
+    
+    /// Presents an alert signifying the inability to compose a Mail message.
+    open func presentFailureToComposeMailAlert() {
+        let alertTitle = NSLocalizedString("Can’t Send Email", comment: "Title for an alert shown when attempting to send mail without a mail account setup.")
+        let alertMessage = NSLocalizedString("Make sure that you have at least one email account set up.", comment: "Message for an alert shown when attempting to send mail without a mail account setup.")
+        let alertController = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: "OK button on mail send failure alert."), style: .default, handler: nil)
+        alertController.addAction(okAction)
+        
+        configuration.feedbackCollector.viewController.present(alertController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - FeedbackCollectorDelegate
@@ -86,7 +98,11 @@ extension PinpointKit: SenderDelegate {
         if case MailSender.Error.mailCanceled = error { return }
         
         guard let feedback = feedback else { return }
-        delegate?.pinpointKit(self, didFailToSend: feedback, error: error)
+        if let delegate = delegate {
+            delegate.pinpointKit(self, didFailToSend: feedback, error: error)
+        } else if case MailSender.Error.mailCannotSend = error {
+            presentFailureToComposeMailAlert()
+        }
     }
 }
 
@@ -119,20 +135,14 @@ public protocol PinpointKitDelegate: class {
     func pinpointKit(_ pinpointKit: PinpointKit, didFailToSend feedback: Feedback, error: Error)
 }
 
-/// An extension on PinpointKitDelegate that makes all delegate methods optional by giving them empty implementations by default.
+/// An extension on PinpointKitDelegate that makes all delegate methods optional to implement. The `pinpointKit(_:didFailToSend:error)` implementation presents a default alert for the `MailSender.Error.mailCannotSend` error.
 public extension PinpointKitDelegate {
     func pinpointKit(_ pinpointKit: PinpointKit, willSend feedback: Feedback) {}
     func pinpointKit(_ pinpointKit: PinpointKit, didSend feedback: Feedback) {}
     
     func pinpointKit(_ pinpointKit: PinpointKit, didFailToSend feedback: Feedback, error: Error) {
-        let alert = UIAlertController(
-            title: "Can’t Send Email",
-            message: "Make sure that you have at least one email account set up.",
-            preferredStyle: .alert)
+        guard case MailSender.Error.mailCannotSend = error else { return }
         
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(okAction)
-        
-        pinpointKit.configuration.feedbackCollector.viewController.present(alert, animated: true, completion: nil)
+        pinpointKit.presentFailureToComposeMailAlert()
     }
 }

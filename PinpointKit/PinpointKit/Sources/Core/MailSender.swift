@@ -60,14 +60,13 @@ open class MailSender: NSObject, Sender {
      - parameter viewController: The view controller from which to present any of the sender’s necessary views.
      */
     open func send(_ feedback: Feedback, from viewController: UIViewController?) {
-        guard let viewController = viewController else { fail(with: .noViewControllerProvided); return }
+        self.feedback = feedback
         
+        guard let viewController = viewController else { fail(with: .noViewControllerProvided); return }
         guard MFMailComposeViewController.canSendMail() else { fail(with: .mailCannotSend); return }
         
         let mailComposer = MFMailComposeViewController()
         mailComposer.mailComposeDelegate = self
-        
-        self.feedback = feedback
         
         do {
             try mailComposer.attach(feedback)
