@@ -38,6 +38,9 @@ public struct InterfaceCustomization {
         
         /// The stroke color for annotations.
         let annotationStrokeColor: UIColor
+
+        /// The font used for navigation titles.
+        let navigationTitleColor: UIColor
         
         /// The font used for navigation titles.
         let navigationTitleFont: UIFont
@@ -76,6 +79,7 @@ public struct InterfaceCustomization {
          - parameter annotationFillColor:                   The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
          - parameter annotationStrokeColor:                 The stroke color for annotations.
          - parameter annotationTextAttributes:              The text attributes for annotations.
+         - parameter navigationTitleColor:                  The color used for navigation titles.
          - parameter navigationTitleFont:                   The font used for navigation titles.
          - parameter feedbackSendButtonFont:                The font used for the button that sends feedback.
          - parameter feedbackCancelButtonFont:              The font used for the button that cancels feedback collection.
@@ -91,6 +95,7 @@ public struct InterfaceCustomization {
                     annotationFillColor: UIColor? = nil,
                     annotationStrokeColor: UIColor = .white,
                     annotationTextAttributes: [String: AnyObject]? = nil,
+                    navigationTitleColor: UIColor = UIColor.darkText,
                     navigationTitleFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackSendButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackCancelButtonFont: UIFont = .sourceSansProFont(ofSize: 19),
@@ -104,6 +109,7 @@ public struct InterfaceCustomization {
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor
+            self.navigationTitleColor = navigationTitleColor
             
             // Custom annotation text attributes
             if var customAnnotationTextAttributes = annotationTextAttributes {
