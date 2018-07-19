@@ -78,6 +78,12 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     // MARK: - UIViewController
+
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        guard let interfaceCustomization = interfaceCustomization else { assertionFailure(); return .default }
+        let appearance = interfaceCustomization.appearance
+        return appearance.statusBarStyle
+    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
