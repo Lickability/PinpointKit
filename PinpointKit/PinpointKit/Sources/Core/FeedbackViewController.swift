@@ -78,6 +78,12 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     // MARK: - UIViewController
+
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        guard let interfaceCustomization = interfaceCustomization else { assertionFailure(); return .default }
+        let appearance = interfaceCustomization.appearance
+        return appearance.statusBarStyle
+    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +120,10 @@ public final class FeedbackViewController: UITableViewController {
         let appearance = interfaceCustomization.appearance
 
         title = interfaceText.feedbackCollectorTitle
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: appearance.navigationTitleFont]
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.font: appearance.navigationTitleFont,
+            NSAttributedStringKey.foregroundColor: appearance.navigationTitleColor
+        ]
         
         let sendBarButtonItem = UIBarButtonItem(title: interfaceText.feedbackSendButtonTitle, style: .done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))
         sendBarButtonItem.setTitleTextAttributesForAllStates([.font: appearance.feedbackSendButtonFont])

@@ -26,6 +26,9 @@ public struct InterfaceCustomization {
      *  A struct containing information about the appearance of displayed components.
      */
     public struct Appearance {
+
+        /// The status bar style of PinpointKit
+        let statusBarStyle: UIStatusBarStyle
         
         /// The tint color of PinpointKit views used to style interactive and selected elements.
         let tintColor: UIColor?
@@ -38,6 +41,9 @@ public struct InterfaceCustomization {
         
         /// The stroke color for annotations.
         let annotationStrokeColor: UIColor
+
+        /// The font used for navigation titles.
+        let navigationTitleColor: UIColor
         
         /// The font used for navigation titles.
         let navigationTitleFont: UIFont
@@ -71,11 +77,13 @@ public struct InterfaceCustomization {
         
         /**
          Initializes an `Appearance` object with a optional annotation color properties.
-         
+
+         - parameter statusBarStyle:                        The status bar style of PinpointKit
          - parameter tintColor:                             The tint color of the interface.
          - parameter annotationFillColor:                   The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
          - parameter annotationStrokeColor:                 The stroke color for annotations.
          - parameter annotationTextAttributes:              The text attributes for annotations.
+         - parameter navigationTitleColor:                  The color used for navigation titles.
          - parameter navigationTitleFont:                   The font used for navigation titles.
          - parameter feedbackSendButtonFont:                The font used for the button that sends feedback.
          - parameter feedbackCancelButtonFont:              The font used for the button that cancels feedback collection.
@@ -87,10 +95,12 @@ public struct InterfaceCustomization {
          - parameter editorTextAnnotationDismissButtonFont: The font used for the dismiss button in the editor displayed while editing a text annotation.
          - parameter editorDoneButtonFont:                  The font used for the done button in the editor to finish editing the image.
          */
-        public init(tintColor: UIColor? = .pinpointOrange(),
+        public init(statusBarStyle: UIStatusBarStyle = .default,
+                    tintColor: UIColor? = .pinpointOrange(),
                     annotationFillColor: UIColor? = nil,
                     annotationStrokeColor: UIColor = .white,
                     annotationTextAttributes: [String: AnyObject]? = nil,
+                    navigationTitleColor: UIColor = UIColor.darkText,
                     navigationTitleFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackSendButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackCancelButtonFont: UIFont = .sourceSansProFont(ofSize: 19),
@@ -101,9 +111,11 @@ public struct InterfaceCustomization {
                     editorTextAnnotationSegmentFont: UIFont = .sourceSansProFont(ofSize: 18),
                     editorTextAnnotationDismissButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     editorDoneButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold)) {
+            self.statusBarStyle = statusBarStyle
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
             self.annotationStrokeColor = annotationStrokeColor
+            self.navigationTitleColor = navigationTitleColor
             
             // Custom annotation text attributes
             if var customAnnotationTextAttributes = annotationTextAttributes {
