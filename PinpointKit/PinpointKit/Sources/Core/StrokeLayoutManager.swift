@@ -22,7 +22,7 @@ final class StrokeLayoutManager: NSLayoutManager {
         
         let firstIndex = characterIndexForGlyph(at: glyphsToShow.location)
         let attributes = textStorage?.attributes(at: firstIndex, effectiveRange: nil)
-        let shadow = attributes?[NSAttributedStringKey.shadow] as? NSShadow
+        let shadow = attributes?[.shadow] as? NSShadow
         let shouldRenderTransparencyLayer = strokeColor != nil && strokeWidth != nil && shadow != nil
         
         if let shadow = shadow, shouldRenderTransparencyLayer {
@@ -49,7 +49,7 @@ final class StrokeLayoutManager: NSLayoutManager {
         guard let strokeWidth = self.strokeWidth else { return }
         
         // Remove the shadow. It'll all be drawn at once afterwards.
-        textAttributes[NSAttributedStringKey.shadow] = nil
+        textAttributes[.shadow] = nil
         graphicsContext.setShadow(offset: CGSize.zero, blur: 0, color: nil)
         
         graphicsContext.saveGState()
