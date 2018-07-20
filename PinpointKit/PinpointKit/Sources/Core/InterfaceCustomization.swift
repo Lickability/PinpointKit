@@ -100,7 +100,7 @@ public struct InterfaceCustomization {
                     annotationFillColor: UIColor? = nil,
                     annotationStrokeColor: UIColor = .white,
                     annotationTextAttributes: [String: AnyObject]? = nil,
-                    navigationTitleColor: UIColor = UIColor.darkText,
+                    navigationTitleColor: UIColor = .darkText,
                     navigationTitleFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackSendButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackCancelButtonFont: UIFont = .sourceSansProFont(ofSize: 19),
