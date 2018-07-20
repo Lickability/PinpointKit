@@ -45,7 +45,7 @@ public protocol SenderDelegate: class {
     func sender(_ sender: Sender, didFailToSend feedback: Feedback?, error: Error)
 }
 
-/// An extension on PinpointKitDelegate that makes some of the delegate methods optional by giving them empty implementations by default.
+/// An extension on `PinpointKitDelegate` that makes some of the delegate methods optional by giving them empty implementations by default.
 public extension SenderDelegate {
 
     func sender(_ sender: Sender, didFailToSend feedback: Feedback?, error: Error) { }

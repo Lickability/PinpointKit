@@ -8,11 +8,11 @@
 
 import UIKit
 
-/// Extends UIGestureRecognizer to force a failure to recognize the gesture.
+/// Extends `UIGestureRecognizer` to force a failure to recognize the gesture.
 extension UIGestureRecognizer {
     
     /**
-     Function that forces a gesture recognizer to fail
+     Forces the receiver to fail.
      */
     func failRecognizing() {
         if !isEnabled {

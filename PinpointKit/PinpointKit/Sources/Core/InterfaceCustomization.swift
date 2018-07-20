@@ -27,7 +27,7 @@ public struct InterfaceCustomization {
      */
     public struct Appearance {
 
-        /// The status bar style of PinpointKit
+        /// The status bar style of PinpointKit.
         let statusBarStyle: UIStatusBarStyle
         
         /// The tint color of PinpointKit views used to style interactive and selected elements.
@@ -78,7 +78,7 @@ public struct InterfaceCustomization {
         /**
          Initializes an `Appearance` object with a optional annotation color properties.
 
-         - parameter statusBarStyle:                        The status bar style of PinpointKit
+         - parameter statusBarStyle:                        The status bar style of PinpointKit.
          - parameter tintColor:                             The tint color of the interface.
          - parameter annotationFillColor:                   The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
          - parameter annotationStrokeColor:                 The stroke color for annotations.
