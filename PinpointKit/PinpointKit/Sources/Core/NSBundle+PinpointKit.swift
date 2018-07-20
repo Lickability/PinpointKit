@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Extends `NSBundle` to provide bundles from PinpointKit.
+/// Extends `Bundle` to provide bundles from PinpointKit.
 extension Bundle {
     
     /**

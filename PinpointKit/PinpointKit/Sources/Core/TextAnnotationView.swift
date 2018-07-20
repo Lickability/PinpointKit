@@ -108,7 +108,7 @@ open class TextAnnotationView: AnnotationView, UITextViewDelegate {
         let character = "." as NSString
         let textFont = textAttributes[NSAttributedStringKey.font.rawValue] ?? font
         
-        let size = character.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: textFont], context: nil)
+        let size = character.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [.font: textFont], context: nil)
         return CGSize(width: width, height: size.height + TextAnnotationView.TextViewInset.top + TextAnnotationView.TextViewInset.bottom + TextAnnotationView.TextViewLineFragmentPadding)
     }
     

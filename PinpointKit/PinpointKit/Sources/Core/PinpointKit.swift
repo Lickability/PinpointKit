@@ -135,7 +135,7 @@ public protocol PinpointKitDelegate: class {
     func pinpointKit(_ pinpointKit: PinpointKit, didFailToSend feedback: Feedback, error: Error)
 }
 
-/// An extension on PinpointKitDelegate that makes all delegate methods optional to implement. The `pinpointKit(_:didFailToSend:error)` implementation presents a default alert for the `MailSender.Error.mailCannotSend` error.
+/// An extension on `PinpointKitDelegate` that makes all delegate methods optional to implement. The `pinpointKit(_:didFailToSend:error)` implementation presents a default alert for the `MailSender.Error.mailCannotSend` error.
 public extension PinpointKitDelegate {
     func pinpointKit(_ pinpointKit: PinpointKit, willSend feedback: Feedback) {}
     func pinpointKit(_ pinpointKit: PinpointKit, didSend feedback: Feedback) {}

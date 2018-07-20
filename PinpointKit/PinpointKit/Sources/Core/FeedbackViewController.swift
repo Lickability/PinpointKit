@@ -121,8 +121,8 @@ public final class FeedbackViewController: UITableViewController {
 
         title = interfaceText.feedbackCollectorTitle
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.font: appearance.navigationTitleFont,
-            NSAttributedStringKey.foregroundColor: appearance.navigationTitleColor
+            .font: appearance.navigationTitleFont,
+            .foregroundColor: appearance.navigationTitleColor
         ]
         
         let sendBarButtonItem = UIBarButtonItem(title: interfaceText.feedbackSendButtonTitle, style: .done, target: self, action: #selector(FeedbackViewController.sendButtonTapped))

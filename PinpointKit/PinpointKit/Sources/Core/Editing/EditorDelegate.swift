@@ -6,7 +6,7 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
-/// A delegate for the Editor.
+/// A delegate for the `Editor`.
 public protocol EditorDelegate: class {
     
     /**
@@ -61,7 +61,7 @@ public protocol EditorDelegate: class {
     func editorDidDismiss(_ editor: Editor, with screenshot: UIImage)
 }
 
-/// Extends editor delegate with base implementation for functions.
+/// Extends `EditorDelegate` with base implementation for functions.
 extension EditorDelegate {
     
     public func editor(_editor: Editor, didSelect tool: Tool) {
