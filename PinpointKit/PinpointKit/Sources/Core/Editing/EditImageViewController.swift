@@ -469,7 +469,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     
     private func updateInterfaceCustomization() {
         guard let appearance = interfaceCustomization?.appearance else { assertionFailure(); return }
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: appearance.editorTextAnnotationSegmentFont], for: .normal)
+        segmentedControl.setTitleTextAttributes([.font: appearance.editorTextAnnotationSegmentFont], for: .normal)
         
         guard let annotationFont = appearance.annotationTextAttributes[.font] as? UIFont else { assertionFailure(); return }
         UITextView.appearance(whenContainedInInstancesOf: [TextAnnotationView.self]).font = annotationFont
