@@ -105,15 +105,15 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     private var currentAnnotationView: AnnotationView? {
         didSet {
             if let oldTextAnnotationView = oldValue as? TextAnnotationView {
-                NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidChange, object: oldTextAnnotationView.textView)
-                NotificationCenter.default.removeObserver(self, name: .UITextViewTextDidEndEditing, object: oldTextAnnotationView.textView)
+                NotificationCenter.default.removeObserver(self, name: UITextView.textDidChangeNotification, object: oldTextAnnotationView.textView)
+                NotificationCenter.default.removeObserver(self, name: UITextView.textDidEndEditingNotification, object: oldTextAnnotationView.textView)
             }
             
             if let currentTextAnnotationView = currentTextAnnotationView {
                 keyboardAvoider?.triggerViews = [currentTextAnnotationView.textView]
                 
-                NotificationCenter.default.addObserver(self, selector: #selector(EditImageViewController.textViewTextDidChange), name: .UITextViewTextDidChange, object: currentTextAnnotationView.textView)
-                NotificationCenter.default.addObserver(self, selector: #selector(EditImageViewController.forceEndEditingTextView), name: .UITextViewTextDidEndEditing, object: currentTextAnnotationView.textView)
+                NotificationCenter.default.addObserver(self, selector: #selector(EditImageViewController.textViewTextDidChange), name: UITextView.textDidChangeNotification, object: currentTextAnnotationView.textView)
+                NotificationCenter.default.addObserver(self, selector: #selector(EditImageViewController.forceEndEditingTextView), name: UITextView.textDidEndEditingNotification, object: currentTextAnnotationView.textView)
             }
         }
     }
@@ -159,7 +159,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         updateAnnotationPinchGestureRecognizer.delegate = self
         
         annotationsView.isAccessibilityElement = true
-        annotationsView.accessibilityTraits = annotationsView.accessibilityTraits | UIAccessibilityTraitAllowsDirectInteraction
+        annotationsView.accessibilityTraits.insert(.allowsDirectInteraction)
     }
     
     @available(*, unavailable)
@@ -340,7 +340,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
             
             if let annotationView = possibleAnnotationView {
                 let wasTopmostAnnotationView = (annotationsView.subviews.last == annotationView)
-                annotationsView.bringSubview(toFront: annotationView)
+                annotationsView.bringSubviewToFront(annotationView)
                 
                 if annotationViewIsNotBlurView {
                     if !wasTopmostAnnotationView {
@@ -469,9 +469,9 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     
     private func updateInterfaceCustomization() {
         guard let appearance = interfaceCustomization?.appearance else { assertionFailure(); return }
-        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: appearance.editorTextAnnotationSegmentFont], for: UIControlState())
+        segmentedControl.setTitleTextAttributes([.font: appearance.editorTextAnnotationSegmentFont], for: .normal)
         
-        guard let annotationFont = appearance.annotationTextAttributes[NSAttributedStringKey.font.rawValue] as? UIFont else { assertionFailure(); return }
+        guard let annotationFont = appearance.annotationTextAttributes[.font] as? UIFont else { assertionFailure(); return }
         UITextView.appearance(whenContainedInInstancesOf: [TextAnnotationView.self]).font = annotationFont
         
         if let annotationFillColor = appearance.annotationFillColor {
@@ -620,7 +620,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     }
     
     @objc private func handleLongPressGestureRecognizer(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        if gestureRecognizer.state != UIGestureRecognizerState.began {
+        if gestureRecognizer.state != .began {
             return
         }
         

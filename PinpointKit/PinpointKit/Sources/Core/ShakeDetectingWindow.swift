@@ -33,7 +33,7 @@ open class ShakeDetectingWindow: UIWindow {
 	
 	// MARK: - UIResponder
     
-    override open func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+    override open func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             guard let delegate = delegate else {
                 NSLog(#file + "- There is no ShakeDetectingWindowDelegate registered to handle this shake.")

@@ -23,7 +23,7 @@ final class KeyboardAvoider {
     init(window: UIWindow) {
         self.window = window
         
-        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardAvoider.keyboardWillChangeFrame(_:)), name: .UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyboardAvoider.keyboardWillChangeFrame(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     deinit {
@@ -31,8 +31,8 @@ final class KeyboardAvoider {
     }
     
     @objc private func keyboardWillChangeFrame(_ notification: Notification) {
-        let frameEndValue = (notification as NSNotification).userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
-        let animationDurationValue = (notification as NSNotification).userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSValue
+        let frameEndValue = (notification as NSNotification).userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
+        let animationDurationValue = (notification as NSNotification).userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSValue
         
         guard let keyboardEndFrame = frameEndValue?.cgRectValue else { return }
         

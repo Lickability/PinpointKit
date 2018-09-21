@@ -31,7 +31,7 @@ class ScreenshotCell: UITableViewCell {
     /// Set the `viewData` in order to update the receiver’s content.
     var viewModel: ViewModel? {
         didSet {
-            screenshotButton.setImage(viewModel?.screenshot.withRenderingMode(.alwaysOriginal), for: UIControlState())
+            screenshotButton.setImage(viewModel?.screenshot.withRenderingMode(.alwaysOriginal), for: .normal)
             
             if let screenshot = viewModel?.screenshot {
                 screenshotButtonHeightConstraint = screenshotButton.heightAnchor.constraint(equalTo: screenshotButton.widthAnchor, multiplier: 1.0 / screenshot.aspectRatio)
@@ -81,7 +81,7 @@ class ScreenshotCell: UITableViewCell {
         }
     }
     
-    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setUp()

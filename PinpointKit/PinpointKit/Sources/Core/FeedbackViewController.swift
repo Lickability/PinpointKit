@@ -68,7 +68,7 @@ public final class FeedbackViewController: UITableViewController {
     }
     
     @available(*, unavailable)
-    override init(style: UITableViewStyle) {
+    override init(style: UITableView.Style) {
         super.init(style: .grouped)
     }
     
@@ -89,7 +89,7 @@ public final class FeedbackViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.estimatedRowHeight = 100.0
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         
         // Helps to prevent extra spacing from appearing at the top of the table.
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: .leastNormalMagnitude))
