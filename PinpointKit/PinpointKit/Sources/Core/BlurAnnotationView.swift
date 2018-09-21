@@ -68,7 +68,7 @@ open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
         if let EAGLContext = OpenGLES.EAGLContext(api: .openGLES2) {
             self.EAGLContext = EAGLContext
             GLKView = GLKit.GLKView(frame: bounds, context: EAGLContext)
-            CIContext = CoreImage.CIContext(eaglContext: EAGLContext, options: [CIContextOption.useSoftwareRenderer: false])
+            CIContext = CoreImage.CIContext(eaglContext: EAGLContext, options: [.useSoftwareRenderer: false])
         } else {
             EAGLContext = nil
             GLKView = nil
