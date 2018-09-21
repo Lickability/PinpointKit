@@ -56,7 +56,7 @@ open class TextAnnotationView: AnnotationView, UITextViewDelegate {
         addSubview(textView)
         
         textView.delegate = self
-        textView.typingAttributes = textAttributes
+        textView.typingAttributes = convertToNSAttributedStringKeyDictionary(textAttributes)
     }
 
     @available(*, unavailable)
@@ -69,7 +69,7 @@ open class TextAnnotationView: AnnotationView, UITextViewDelegate {
     override open func tintColorDidChange() {
         textView.typingAttributes = {
             var attributes = self.textView.typingAttributes
-            attributes[NSAttributedStringKey.foregroundColor.rawValue] = self.tintColor
+            attributes[.foregroundColor] = self.tintColor
             return attributes
         }()
     }
@@ -93,8 +93,8 @@ open class TextAnnotationView: AnnotationView, UITextViewDelegate {
     /// The attributes of the text to use for an `NSAttributedString`.
     var textAttributes: [String: AnyObject] = [:] {
         didSet {
-            textAttributes[NSAttributedStringKey.font.rawValue] = font
-            textView.typingAttributes = textAttributes
+            textAttributes[NSAttributedString.Key.font.rawValue] = font
+            textView.typingAttributes = convertToNSAttributedStringKeyDictionary(textAttributes)
         }
     }
     
@@ -106,7 +106,7 @@ open class TextAnnotationView: AnnotationView, UITextViewDelegate {
     var minimumTextSize: CGSize {
         let width: CGFloat = 40.0
         let character = "." as NSString
-        let textFont = textAttributes[NSAttributedStringKey.font.rawValue] ?? font
+        let textFont = textAttributes[NSAttributedString.Key.font.rawValue] ?? font
         
         let size = character.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [.font: textFont], context: nil)
         return CGSize(width: width, height: size.height + TextAnnotationView.TextViewInset.top + TextAnnotationView.TextViewInset.bottom + TextAnnotationView.TextViewLineFragmentPadding)
@@ -166,4 +166,9 @@ open class TextAnnotationView: AnnotationView, UITextViewDelegate {
         textView.layer.borderWidth = 0
         textView.layer.borderColor = nil
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

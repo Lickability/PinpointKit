@@ -126,7 +126,7 @@ private extension MFMailComposeViewController {
     }
     
     func attach(_ image: UIImage, filename: String) throws {
-        guard let PNGData = UIImagePNGRepresentation(image) else { throw MailSender.Error.imageEncoding }
+        guard let PNGData = image.pngData() else { throw MailSender.Error.imageEncoding }
         
         addAttachmentData(PNGData, mimeType: MIMEType.PNG.rawValue, fileName: filename)
     }

@@ -120,8 +120,8 @@ public struct InterfaceCustomization {
             // Custom annotation text attributes
             if var customAnnotationTextAttributes = annotationTextAttributes {
                 // Ensure annotation font is set, if not use default font
-                if customAnnotationTextAttributes[NSAttributedStringKey.font.rawValue] == nil {
-                    customAnnotationTextAttributes[NSAttributedStringKey.font.rawValue] = type(of: self).DefaultAnnotationTextFont
+                if customAnnotationTextAttributes[NSAttributedString.Key.font.rawValue] == nil {
+                    customAnnotationTextAttributes[NSAttributedString.Key.font.rawValue] = type(of: self).DefaultAnnotationTextFont
                 }
                 self.annotationTextAttributes = customAnnotationTextAttributes
             } else {
@@ -216,9 +216,9 @@ private extension InterfaceCustomization.Appearance {
         shadow.shadowColor = UIColor.black
         shadow.shadowOffset = .zero
 
-        return [NSAttributedStringKey.font.rawValue: DefaultAnnotationTextFont,
-                NSAttributedStringKey.shadow.rawValue: shadow,
-                NSAttributedStringKey.kern.rawValue: 1.3 as NSNumber]
+        return [NSAttributedString.Key.font.rawValue: DefaultAnnotationTextFont,
+                NSAttributedString.Key.shadow.rawValue: shadow,
+                NSAttributedString.Key.kern.rawValue: 1.3 as NSNumber]
     }
     
     static let DefaultAnnotationTextFont = UIFont.sourceSansProFont(ofSize: 32, weight: .semibold)

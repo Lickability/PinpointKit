@@ -15,8 +15,8 @@ class AnnotationsView: UIView {
         moveViewIfAppropriate(view)
     }
     
-    override func bringSubview(toFront view: UIView) {
-        super.bringSubview(toFront: view)
+    override func bringSubviewToFront(_ view: UIView) {
+        super.bringSubviewToFront(view)
         moveViewIfAppropriate(view)
     }
     
