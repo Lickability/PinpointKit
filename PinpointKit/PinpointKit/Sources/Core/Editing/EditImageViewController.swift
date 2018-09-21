@@ -159,7 +159,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         updateAnnotationPinchGestureRecognizer.delegate = self
         
         annotationsView.isAccessibilityElement = true
-        annotationsView.accessibilityTraits = UIAccessibilityTraits(rawValue: annotationsView.accessibilityTraits.rawValue | UIAccessibilityTraits.allowsDirectInteraction.rawValue)
+        annotationsView.accessibilityTraits.insert(.allowsDirectInteraction)
     }
     
     @available(*, unavailable)
