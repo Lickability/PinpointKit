@@ -56,7 +56,7 @@ open class TextAnnotationView: AnnotationView, UITextViewDelegate {
         addSubview(textView)
         
         textView.delegate = self
-        textView.typingAttributes = convertToNSAttributedStringKeyDictionary(textAttributes)
+        textView.typingAttributes = textAttributes
     }
 
     @available(*, unavailable)
@@ -91,10 +91,10 @@ open class TextAnnotationView: AnnotationView, UITextViewDelegate {
     // MARK: - TextAnnotationView
     
     /// The attributes of the text to use for an `NSAttributedString`.
-    var textAttributes: [String: AnyObject] = [:] {
+    var textAttributes: [NSAttributedString.Key: AnyObject] = [:] {
         didSet {
-            textAttributes[NSAttributedString.Key.font.rawValue] = font
-            textView.typingAttributes = convertToNSAttributedStringKeyDictionary(textAttributes)
+            textAttributes[.font] = font
+            textView.typingAttributes = textAttributes
         }
     }
     
@@ -106,7 +106,7 @@ open class TextAnnotationView: AnnotationView, UITextViewDelegate {
     var minimumTextSize: CGSize {
         let width: CGFloat = 40.0
         let character = "." as NSString
-        let textFont = textAttributes[NSAttributedString.Key.font.rawValue] ?? font
+        let textFont = textAttributes[.font] ?? font
         
         let size = character.boundingRect(with: CGSize(width: width, height: CGFloat.greatestFiniteMagnitude), options: .usesLineFragmentOrigin, attributes: [.font: textFont], context: nil)
         return CGSize(width: width, height: size.height + TextAnnotationView.TextViewInset.top + TextAnnotationView.TextViewInset.bottom + TextAnnotationView.TextViewLineFragmentPadding)
@@ -166,9 +166,4 @@ open class TextAnnotationView: AnnotationView, UITextViewDelegate {
         textView.layer.borderWidth = 0
         textView.layer.borderColor = nil
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-private func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
 }

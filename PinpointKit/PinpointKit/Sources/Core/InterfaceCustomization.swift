@@ -37,7 +37,7 @@ public struct InterfaceCustomization {
         let annotationFillColor: UIColor?
         
         /// The text attributes for annotations. Note that `NSForegroundColorAttributeName` can only be customized using `annotationFillColor`.
-        let annotationTextAttributes: [String: AnyObject]
+        let annotationTextAttributes: [NSAttributedString.Key: AnyObject]
         
         /// The stroke color for annotations.
         let annotationStrokeColor: UIColor
@@ -99,7 +99,7 @@ public struct InterfaceCustomization {
                     tintColor: UIColor? = .pinpointOrange(),
                     annotationFillColor: UIColor? = nil,
                     annotationStrokeColor: UIColor = .white,
-                    annotationTextAttributes: [String: AnyObject]? = nil,
+                    annotationTextAttributes: [NSAttributedString.Key: AnyObject]? = nil,
                     navigationTitleColor: UIColor = .darkText,
                     navigationTitleFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackSendButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
@@ -120,8 +120,8 @@ public struct InterfaceCustomization {
             // Custom annotation text attributes
             if var customAnnotationTextAttributes = annotationTextAttributes {
                 // Ensure annotation font is set, if not use default font
-                if customAnnotationTextAttributes[NSAttributedString.Key.font.rawValue] == nil {
-                    customAnnotationTextAttributes[NSAttributedString.Key.font.rawValue] = type(of: self).DefaultAnnotationTextFont
+                if customAnnotationTextAttributes[.font] == nil {
+                    customAnnotationTextAttributes[.font] = type(of: self).DefaultAnnotationTextFont
                 }
                 self.annotationTextAttributes = customAnnotationTextAttributes
             } else {
@@ -210,15 +210,13 @@ public struct InterfaceCustomization {
 
 private extension InterfaceCustomization.Appearance {
     
-    static var defaultTextAnnotationAttributes: [String: AnyObject] {
+    static var defaultTextAnnotationAttributes: [NSAttributedString.Key: AnyObject] {
         let shadow = NSShadow()
         shadow.shadowBlurRadius = 5
         shadow.shadowColor = UIColor.black
         shadow.shadowOffset = .zero
 
-        return [NSAttributedString.Key.font.rawValue: DefaultAnnotationTextFont,
-                NSAttributedString.Key.shadow.rawValue: shadow,
-                NSAttributedString.Key.kern.rawValue: 1.3 as NSNumber]
+        return [.font: DefaultAnnotationTextFont, .shadow: shadow, .kern: 1.3 as NSNumber]
     }
     
     static let DefaultAnnotationTextFont = UIFont.sourceSansProFont(ofSize: 32, weight: .semibold)

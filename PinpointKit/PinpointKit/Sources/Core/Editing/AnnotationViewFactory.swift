@@ -22,7 +22,7 @@ struct AnnotationViewFactory {
     let strokeColor: UIColor
     
     /// The text attributes of the annotation.
-    let textAttributes: [String: AnyObject]
+    let textAttributes: [NSAttributedString.Key: AnyObject]
     
     /**
      Constructs an annotation view.

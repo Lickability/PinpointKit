@@ -471,7 +471,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         guard let appearance = interfaceCustomization?.appearance else { assertionFailure(); return }
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.font: appearance.editorTextAnnotationSegmentFont], for: UIControl.State())
         
-        guard let annotationFont = appearance.annotationTextAttributes[NSAttributedString.Key.font.rawValue] as? UIFont else { assertionFailure(); return }
+        guard let annotationFont = appearance.annotationTextAttributes[.font] as? UIFont else { assertionFailure(); return }
         UITextView.appearance(whenContainedInInstancesOf: [TextAnnotationView.self]).font = annotationFont
         
         if let annotationFillColor = appearance.annotationFillColor {
