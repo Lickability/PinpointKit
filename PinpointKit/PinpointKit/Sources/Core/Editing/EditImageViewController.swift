@@ -53,7 +53,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         let view = UISegmentedControl(items: segmentArray.map { $0.segmentedControlItem })
         view.selectedSegmentIndex = 0
         
-        let textToolIndex = segmentArray.index(of: Tool.text)
+        let textToolIndex = segmentArray.firstIndex(of: Tool.text)
         
         if let index = textToolIndex {
             let segment = view.subviews[index]

@@ -165,6 +165,8 @@ extension MailSender: MFMailComposeViewControllerDelegate {
             succeed(with: .saved)
         case .sent:
             succeed(with: .sent)
+        @unknown default:
+            fail(with: .mailFailed(underlyingError: error))
         }
     }
 }

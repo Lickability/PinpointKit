@@ -31,7 +31,7 @@ public extension UIFont {
      
      - returns: A Source Sans Pro `UIFont` at the specified size and weight.
      */
-    public static func sourceSansProFont(ofSize fontSize: CGFloat, weight: FontWeight = .regular) -> UIFont {
+    static func sourceSansProFont(ofSize fontSize: CGFloat, weight: FontWeight = .regular) -> UIFont {
         let fontName: String = {
             switch weight {
             case .regular:
@@ -57,7 +57,7 @@ public extension UIFont {
      
      - returns: A `UIFont` representing Menlo Regular at the specified size.
      */
-    public static func menloRegularFont(ofSize fontSize: CGFloat) -> UIFont {
+    static func menloRegularFont(ofSize fontSize: CGFloat) -> UIFont {
         return UIFont(name: "Menlo-Regular", size: fontSize) ?? .systemFont(ofSize: fontSize)
     }
 }
