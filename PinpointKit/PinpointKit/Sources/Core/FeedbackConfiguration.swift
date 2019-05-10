@@ -8,6 +8,17 @@
 
 /// Encapsulates configuration properties for all feedback to be sent.
 public struct FeedbackConfiguration {
+
+	/// Encapsulates body content of the feedback submission. Suitable for an email body.
+	public struct Body {
+		public var content: String
+		public var isHTML: Bool
+
+		public init(_ content: String, isHTML: Bool = false) {
+			self.content = content
+			self.isHTML = isHTML
+		}
+	}
     
     /// The value of the default parameter for `title` in the initializer.
     public static let DefaultTitle = "Bug Report"
@@ -21,8 +32,8 @@ public struct FeedbackConfiguration {
     /// A short, optional title of the feedback submission. Suitable for an email subject.
     public var title: String?
     
-    /// An optional plain-text body of the feedback submission. Suitable for an email body.
-    public var body: String?
+    /// An optional body of the feedback submission.
+    public var body: Body?
     
     /// A file name without an extension for the logs text file.
     public var logsFileName: String
@@ -47,7 +58,7 @@ public struct FeedbackConfiguration {
     public init(screenshotFileName: String = "Screenshot",
                 recipients: [String],
                 title: String? = FeedbackConfiguration.DefaultTitle,
-                body: String? = nil,
+                body: Body? = nil,
                 logsFileName: String = "logs",
                 additionalInformation: [String: AnyObject]? = nil,
                 presentationStyle: UIModalPresentationStyle = .fullScreen) {
