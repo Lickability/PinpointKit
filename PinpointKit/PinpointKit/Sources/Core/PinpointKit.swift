@@ -41,7 +41,7 @@ open class PinpointKit {
      - parameter body:               The default body text of the feedback.
      - parameter delegate:           A delegate that is notified of significant events.
      */
-    public convenience init(feedbackRecipients: [String], title: String? = FeedbackConfiguration.DefaultTitle, body: String? = nil, delegate: PinpointKitDelegate? = nil) {
+    public convenience init(feedbackRecipients: [String], title: String? = FeedbackConfiguration.DefaultTitle, body: FeedbackConfiguration.Body? = nil, delegate: PinpointKitDelegate? = nil) {
         let feedbackConfiguration = FeedbackConfiguration(recipients: feedbackRecipients, title: title, body: body)
         let configuration = Configuration(feedbackConfiguration: feedbackConfiguration)
         
