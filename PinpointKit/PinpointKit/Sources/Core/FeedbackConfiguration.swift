@@ -14,7 +14,7 @@ public struct FeedbackConfiguration {
 		public var content: String
 		public var isHTML: Bool
 
-		init(_ content: String, isHTML: Bool = false) {
+		public init(_ content: String, isHTML: Bool = false) {
 			self.content = content
 			self.isHTML = isHTML
 		}
