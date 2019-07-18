@@ -180,6 +180,7 @@ For more information on what you can customize, take a peek at the documentation
 Here are just a few of the apps and companies using PinpointKit to collect feedback. If your app does too, submit a pull request!
 
 * [Pinpoint](https://itunes.apple.com/us/app/pinpoint-mark-up-screenshots/id669858907?mt=8) (of course)
+* [WAVE Meditation](https://wavemeditation.com)
 
 ## License
 
