@@ -296,7 +296,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
             return
         }
         
-        let screenshot = self.view.pinpoint_screenshot
+        let screenshot = self.view.imageSnapshotCroppedToFrame(self.imageView.frame)
         if delegate.editorShouldDismiss(self, with: screenshot) {
             delegate.editorWillDismiss(self, with: screenshot)
             
