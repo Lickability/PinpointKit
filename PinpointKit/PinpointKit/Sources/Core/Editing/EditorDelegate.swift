@@ -58,7 +58,7 @@ public protocol EditorDelegate: class {
      
      - note: The default implementation of this method does nothing.
      */
-    func editorDidDismiss(_ editor: Editor, with screenshot: UIImage)
+    func editorDidDisappear(_ editor: Editor, with screenshot: UIImage)
 }
 
 /// Extends `EditorDelegate` with base implementation for functions.
@@ -76,11 +76,11 @@ extension EditorDelegate {
         return true
     }
     
-    func editorWillDismiss(_ editor: Editor, with screenshot: UIImage) {
+    public func editorWillDismiss(_ editor: Editor, with screenshot: UIImage) {
         // Do nothing
     }
     
-    public func editorDidDismiss(_ editor: Editor, with screenshot: UIImage) {
+    public func editorDidDisappear(_ editor: Editor, with screenshot: UIImage) {
         // Do nothing
     }
 }
