@@ -63,7 +63,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         for i in 0..<view.numberOfSegments {
             view.setWidth(54, forSegmentAt: i)
         }
-        
+        let abc = self.interfaceCustomization
         view.addTarget(self, action: #selector(EditImageViewController.toolChanged(_:)), for: .valueChanged)
         
         return view
@@ -74,6 +74,9 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
         
+        imageView.layer.borderColor = UIColor.systemGray.cgColor
+        imageView.layer.borderWidth = 1
+        imageView.layer.cornerRadius = 5
         return imageView
     }()
     
@@ -236,20 +239,14 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        navigationController?.hidesBarsOnTap = true
-        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.hidesBarsOnTap = true
     }
     
     open override func viewDidLayoutSubviews() {
@@ -259,10 +256,6 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
             rect.size.height -= height
             annotationsView.accessibilityFrame = rect
         }
-    }
-    
-    open override var prefersStatusBarHidden: Bool {
-        return true
     }
     
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -303,7 +296,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
             return
         }
         
-        let screenshot = self.view.pinpoint_screenshot
+        let screenshot = self.view.imageSnapshotCroppedToFrame(self.imageView.frame)
         if delegate.editorShouldDismiss(self, with: screenshot) {
             delegate.editorWillDismiss(self, with: screenshot)
             
@@ -317,16 +310,20 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     // MARK: - Private
     
     private func setupConstraints() {
-        let views = [
-            "imageView": imageView,
-            "annotationsView": annotationsView
-        ]
-        
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[imageView]|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[annotationsView]|", options: [], metrics: nil, views: views))
-        
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView]|", options: [], metrics: nil, views: views))
-        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[annotationsView]|", options: [], metrics: nil, views: views))
+        let safe = view.safeAreaLayoutGuide
+        let screenSize = UIScreen.main.bounds.size
+        let screenRatio = screenSize.width / screenSize.height
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: safe.topAnchor, constant: 20),
+            imageView.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -10),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor, multiplier: screenRatio),
+            imageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            
+            annotationsView.leftAnchor.constraint(equalTo: imageView.leftAnchor),
+            annotationsView.rightAnchor.constraint(equalTo: imageView.rightAnchor),
+            annotationsView.topAnchor.constraint(equalTo: imageView.topAnchor),
+            annotationsView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor)
+        ])
     }
     
     @objc private func doneButtonTapped(_ button: UIBarButtonItem) {
