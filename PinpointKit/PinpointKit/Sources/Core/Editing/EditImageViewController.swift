@@ -245,8 +245,11 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         super.viewDidAppear(animated)
     }
     
-    open override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    open override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        let screenshot = self.view.imageSnapshotCroppedToFrame(self.imageView.frame)
+        delegate?.editorDidDisappear(self, with: screenshot)
     }
     
     open override func viewDidLayoutSubviews() {
@@ -300,10 +303,7 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         if delegate.editorShouldDismiss(self, with: screenshot) {
             delegate.editorWillDismiss(self, with: screenshot)
             
-            dismiss(animated: animated) { [weak self] in
-                guard let strongSelf = self else { return }
-                delegate.editorDidDismiss(strongSelf, with: screenshot)
-            }
+            dismiss(animated: animated)
         }
     }
     
