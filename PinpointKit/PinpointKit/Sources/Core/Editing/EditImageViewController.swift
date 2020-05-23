@@ -252,8 +252,15 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        let screenshot = self.view.snapshot(of: self.imageView.frame, afterScreenUpdates: true)
-        delegate?.editorDidDisappear(self, with: screenshot)
+        //let screenshot = self.view.snapshot(of: self.imageView.frame, afterScreenUpdates: true)
+        let screenShot = self.view.resizableSnapshotView(from: self.imageView.frame, afterScreenUpdates: true, withCapInsets: UIEdgeInsets())
+        
+        let renderer = UIGraphicsImageRenderer(bounds: self.imageView.frame)
+        let image = renderer.image { rendererContext in
+            self.view.layer.render(in: rendererContext.cgContext)
+        }
+        
+        delegate?.editorDidDisappear(self, with: image)
     }
     
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
