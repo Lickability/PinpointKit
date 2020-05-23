@@ -51,14 +51,14 @@ public protocol EditorDelegate: class {
     func editorWillDismiss(_ editor: Editor, with screenshot: UIImage)
     
     /**
-     A method that is called with an image just after the editor was dismissed.
+     A method that is called with an image just after before the editor will disappear.
      
      - parameter editor: The editor resonsible for editing the image.
      - parameter screenshot: The edited image of a screenshot, after editing is complete.
      
      - note: The default implementation of this method does nothing.
      */
-    func editorDidDisappear(_ editor: Editor, with screenshot: UIImage)
+    func editorWillDisappear(_ editor: Editor, with screenshot: UIImage)
 }
 
 /// Extends `EditorDelegate` with base implementation for functions.
@@ -80,7 +80,7 @@ extension EditorDelegate {
         // Do nothing
     }
     
-    public func editorDidDisappear(_ editor: Editor, with screenshot: UIImage) {
+    public func editorWillDisappear(_ editor: Editor, with screenshot: UIImage) {
         // Do nothing
     }
 }
