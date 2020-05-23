@@ -248,6 +248,10 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
+    }
+    
+    open override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         let screenshot = self.view.snapshot(of: self.imageView.frame, afterScreenUpdates: true)
         delegate?.editorDidDisappear(self, with: screenshot)
     }
