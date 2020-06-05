@@ -72,6 +72,8 @@ open class ScreenshotDetector: NSObject {
                     self.photoLibrary.register(self)
                 case .denied, .notDetermined, .restricted:
                     self.fail(with: .unauthorized(status: authorizationStatus))
+                @unknown default:
+                    break;
                 }
             }
         }
