@@ -26,7 +26,6 @@ public struct InterfaceCustomization {
      *  A struct containing information about the appearance of displayed components.
      */
     public struct Appearance {
-
         /// The status bar style of PinpointKit.
         let statusBarStyle: UIStatusBarStyle
         
@@ -100,7 +99,7 @@ public struct InterfaceCustomization {
                     annotationFillColor: UIColor? = nil,
                     annotationStrokeColor: UIColor = .white,
                     annotationTextAttributes: [NSAttributedString.Key: AnyObject]? = nil,
-                    navigationTitleColor: UIColor = .darkText,
+                    navigationTitleColor: UIColor = Self.defaultNavigationTitleColor,
                     navigationTitleFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackSendButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackCancelButtonFont: UIFont = .sourceSansProFont(ofSize: 19),
@@ -138,6 +137,15 @@ public struct InterfaceCustomization {
             self.editorTextAnnotationSegmentFont = editorTextAnnotationSegmentFont
             self.editorTextAnnotationDismissButtonFont = editorTextAnnotationDismissButtonFont
             self.editorDoneButtonFont = editorDoneButtonFont
+        }
+        
+        /// A default color to use for text within a navigation bar. Defaults to `UIColor.label` on iOS 13+ and `UIColor.darkText` on earlier versions.
+        public static var defaultNavigationTitleColor: UIColor {
+            if #available(iOS 13.0, *) {
+                return .label
+            } else {
+                return .darkText
+            }
         }
     }
     
