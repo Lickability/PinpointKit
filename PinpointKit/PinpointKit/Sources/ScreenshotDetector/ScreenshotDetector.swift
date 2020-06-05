@@ -73,7 +73,7 @@ open class ScreenshotDetector: NSObject {
                 case .denied, .notDetermined, .restricted:
                     self.fail(with: .unauthorized(status: authorizationStatus))
                 @unknown default:
-                    break;
+                    break
                 }
             }
         }
