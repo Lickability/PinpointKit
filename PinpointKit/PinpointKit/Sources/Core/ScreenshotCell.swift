@@ -117,12 +117,12 @@ class ScreenshotCell: UITableViewCell {
         backgroundColor = .clear
         selectionStyle = .none
         
-        addSubview(stackView)
+        contentView.addSubview(stackView)
         
-        stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         
         stackView.addArrangedSubview(screenshotButton)
         stackView.addArrangedSubview(hintLabel)
