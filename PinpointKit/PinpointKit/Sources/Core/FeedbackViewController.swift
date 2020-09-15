@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
 public final class FeedbackViewController: UITableViewController {
@@ -194,6 +195,33 @@ extension FeedbackViewController: FeedbackCollector {
         self.screenshot = screenshot
         annotatedScreenshot = nil
         viewController.showDetailViewController(self, sender: viewController)
+    }
+    
+    @available(iOS 14, *)
+    public func requestScreenshot(from viewController: UIViewController) {
+        self.screenshot = UIImage()
+        annotatedScreenshot = nil
+
+        let x = PHPickerViewController(configuration: .init(photoLibrary: .shared()))
+        x.delegate = self
+        
+        viewController.present(x, animated: true, completion: nil)
+    }
+}
+
+@available(iOS 14, *)
+extension FeedbackViewController: PHPickerViewControllerDelegate {
+    
+    public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        results.first?.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: { image, _ in
+            OperationQueue.main.addOperation {
+                guard let image = image as? UIImage, let presentingViewController = picker.presentingViewController else { return }
+                
+                presentingViewController.dismiss(animated: true) {
+                    self.collectFeedback(with: image, from: presentingViewController)
+                }
+            }
+        })
     }
 }
 

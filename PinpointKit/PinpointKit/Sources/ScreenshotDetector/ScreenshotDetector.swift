@@ -16,6 +16,7 @@ open class ScreenshotDetector: NSObject {
     
     /// An error encountered when detecting and retreiving a screenshot.
     public enum Error: Swift.Error {
+        
         /// The user did not give authorization to this application to their Photo Library.
         case unauthorized(status: PHAuthorizationStatus)
         
@@ -24,6 +25,9 @@ open class ScreenshotDetector: NSObject {
         
         /// The screenshot image data could not be loaded from the library.
         case loadFailure
+        
+        /// The user has limited library authorization active.
+        case limitedAuthorization
     }
     
     /// A boolean value indicating whether the detector is enabled. When set to true, the detector will request photo access whenever a screenshot is taken by the user and deliver screenshots to its delegate.
@@ -63,17 +67,38 @@ open class ScreenshotDetector: NSObject {
     }
     
     private func requestPhotosAuthorization() {
-        PHPhotoLibrary.requestAuthorization { authorizationStatus in
-            OperationQueue.main.addOperation {
-                switch authorizationStatus {
-                case .authorized:
-                    // Register for the next photo library change notification since the new screenshot
-                    // won’t be available immediately.
-                    self.photoLibrary.register(self)
-                case .denied, .notDetermined, .restricted:
-                    self.fail(with: .unauthorized(status: authorizationStatus))
-                @unknown default:
-                    break
+        if #available(iOS 14, *) {
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { authorizationStatus in
+                OperationQueue.main.addOperation {
+                    switch authorizationStatus {
+                    case .authorized:
+                        // Register for the next photo library change notification since the new screenshot
+                        // won’t be available immediately.
+                        self.photoLibrary.register(self)
+                    case .limited:
+                        self.fail(with: .limitedAuthorization)
+                    case .denied, .notDetermined, .restricted:
+                        self.fail(with: .unauthorized(status: authorizationStatus))
+                    @unknown default:
+                        break
+                    }
+                }
+            }
+        } else {
+            PHPhotoLibrary.requestAuthorization { authorizationStatus in
+                OperationQueue.main.addOperation {
+                    switch authorizationStatus {
+                    case .authorized:
+                        // Register for the next photo library change notification since the new screenshot
+                        // won’t be available immediately.
+                        self.photoLibrary.register(self)
+                    case .limited:
+                        self.fail(with: .limitedAuthorization)
+                    case .denied, .notDetermined, .restricted:
+                        self.fail(with: .unauthorized(status: authorizationStatus))
+                    @unknown default:
+                        break
+                    }
                 }
             }
         }

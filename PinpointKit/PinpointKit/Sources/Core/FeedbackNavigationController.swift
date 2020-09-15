@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 /// A `UINavigationController` subclass that has a `FeedbackViewController` as its root view controller. Use this class as a `FeedbackCollector`.
 public final class FeedbackNavigationController: UINavigationController, FeedbackCollector {
@@ -116,7 +117,7 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
     
     public func collectFeedback(with screenshot: UIImage, from viewController: UIViewController) {
         guard presentingViewController == nil else {
-            NSLog("Unable to present FeedbackNavigationController because it is already being presetned")
+            NSLog("Unable to present FeedbackNavigationController because it is already being presented")
             return
         }
         
@@ -125,10 +126,39 @@ public final class FeedbackNavigationController: UINavigationController, Feedbac
         self.modalPresentationStyle = feedbackConfiguration?.presentationStyle ?? .fullScreen
         viewController.present(self, animated: true, completion: nil)
     }
+    
+    @available(iOS 14, *)
+    public func requestScreenshot(from viewController: UIViewController) {
+        feedbackViewController.screenshot = UIImage()
+        feedbackViewController.annotatedScreenshot = feedbackViewController.screenshot
 
+        let x = PHPickerViewController(configuration: .init(photoLibrary: .shared()))
+        x.delegate = self
+        
+        viewController.present(x, animated: true, completion: nil)
+        //viewController.showDetailViewController(self, sender: viewController)
+    }
+        
     // MARK: - UINavigationController
 
     public override var preferredStatusBarStyle: UIStatusBarStyle {
         return topViewController?.preferredStatusBarStyle ?? .default
+    }
+}
+
+@available(iOS 14, *)
+extension FeedbackNavigationController: PHPickerViewControllerDelegate {
+    
+    public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        
+        results.first?.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: { image, _ in
+            OperationQueue.main.addOperation {
+                guard let image = image as? UIImage, let presentingViewController = picker.presentingViewController else { return }
+                
+                presentingViewController.dismiss(animated: true) {
+                    self.collectFeedback(with: image, from: presentingViewController)
+                }
+            }
+        })
     }
 }

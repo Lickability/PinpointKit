@@ -31,7 +31,14 @@ final class ViewController: UITableViewController, ScreenshotDetectorDelegate {
     }
     
     func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didFailWith error: ScreenshotDetector.Error) {
-        print(error)
+        switch error {
+        case .limitedAuthorization:
+            if #available(iOS 14, *) {
+                pinpointKit.show(from: self, selectImageText: "Hello")
+            }
+        case .fetchFailure, .loadFailure, .unauthorized:
+            print(error)
+        }
     }
     
 }

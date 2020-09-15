@@ -60,6 +60,13 @@ open class PinpointKit {
         configuration.feedbackCollector.collectFeedback(with: screenshot, from: viewController)
     }
     
+    @available(iOS 14, *)
+    open func show(from viewController: UIViewController, selectImageText: String) {
+        displayingViewController = viewController
+        configuration.editor.clearAllAnnotations()
+        configuration.feedbackCollector.requestScreenshot(from: viewController)
+    }
+    
     /// Presents an alert signifying the inability to compose a Mail message.
     open func presentFailureToComposeMailAlert() {
         let alertTitle = NSLocalizedString("Can’t Send Email", comment: "Title for an alert shown when attempting to send mail without a mail account setup.")
