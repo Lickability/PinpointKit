@@ -40,7 +40,7 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     private enum Row {
-        case selectScreenshot(text: String, font: UIFont, buttonBackgroundColor: UIColor)
+        case selectScreenshot(text: String, font: UIFont)
         case screenshot(screensot: UIImage, hintText: String?, hintFont: UIFont)
         case collectLogs(enabled: Bool, title: String, font: UIFont, canView: Bool)
     }
@@ -56,15 +56,7 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
             
             sections.append(screenshotSection)
         } else {
-            let color: UIColor = {
-                if #available(iOS 13.0, *) {
-                    return UIColor.systemBackground
-                } else {
-                    return UIColor.darkGray
-                }
-            }()
-            
-            let requestScreenshotRow = Row.selectScreenshot(text: interfaceCustomization.interfaceText.selectScreenshotButtonTitle, font: interfaceCustomization.appearance.selectScreenshotButtonFont, buttonBackgroundColor: color)
+            let requestScreenshotRow = Row.selectScreenshot(text: interfaceCustomization.interfaceText.selectScreenshotButtonTitle, font: interfaceCustomization.appearance.selectScreenshotButtonFont)
             
             let screenshotSection = Section.feedback(rows: [requestScreenshotRow])
             
@@ -118,12 +110,12 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
     private func requestScreenshotCell(for row: Row) -> UITableViewCell {
         let cell = RequestScreenshotCell()
         
-        guard case let .selectScreenshot(text, font, buttonBackgroundColor) = row else {
+        guard case let .selectScreenshot(text, font) = row else {
             assertionFailure("Found unexpected row type when creating screenshot cell.")
             return cell
         }
                 
-        cell.viewModel = .init(buttonText: text, buttonBackgroundColor: buttonBackgroundColor, buttonFont: font)
+        cell.viewModel = .init(buttonText: text, buttonFont: font)
         cell.screenshotButtonTapHandler = { [weak self] _ in
             guard let self = self else { return }
             

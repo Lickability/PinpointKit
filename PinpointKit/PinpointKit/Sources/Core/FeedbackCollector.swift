@@ -24,7 +24,7 @@ public protocol FeedbackCollector: class, LogSupporting, InterfaceCustomizable {
     /**
      Begins feedback collection about a screenshot from a view controller.
      
-     - parameter screenshot:     The screenshot the user will be providing feedback on.
+     - parameter screenshot:     The screenshot the user will be providing feedback on. If the screenshot is nil, the user will be presented with a button to select a screenshot from their photo library.
      - parameter viewController: The view controller from which to present.
      */
     func collectFeedback(with screenshot: UIImage?, from viewController: UIViewController)

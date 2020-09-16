@@ -8,15 +8,17 @@
 
 import UIKit
 
+/// A view that displays a button allowing a user to select a screenshot from their library.
 class RequestScreenshotCell: UITableViewCell {
 
+    // MARK: - RequestScreenshotCell
+    
     /// A type of closure that is invoked when a button is tapped.
     typealias TapHandler = (_ button: UIButton) -> Void
 
     /// A struct encapsulating the information necessary for this view to be displayed.
     struct ViewModel {
         let buttonText: String
-        let buttonBackgroundColor: UIColor
         let buttonFont: UIFont?
     }
     
@@ -25,8 +27,17 @@ class RequestScreenshotCell: UITableViewCell {
         static let topInset: CGFloat = 54.0
         static let horizontalInset: CGFloat = 32.0
     }
+    
     /// A closure that is invoked when the user taps on the button.
     var screenshotButtonTapHandler: TapHandler?
+    
+    /// Set the `viewModel` in order to update the receiver’s content.
+    var viewModel: ViewModel? {
+        didSet {
+            requestScreenshotButton.setTitle(viewModel?.buttonText, for: .normal)
+            requestScreenshotButton.titleLabel?.font = viewModel?.buttonFont
+        }
+    }
     
     private lazy var requestScreenshotButton: UIButton = {
         let button = UIButton(type: .system)
@@ -36,19 +47,7 @@ class RequestScreenshotCell: UITableViewCell {
         return button
     }()
 
-    var viewModel: ViewModel? {
-        didSet {
-            requestScreenshotButton.setTitle(viewModel?.buttonText, for: .normal)
-            requestScreenshotButton.titleLabel?.font = viewModel?.buttonFont
-            requestScreenshotButton.backgroundColor = viewModel?.buttonBackgroundColor
-        }
-    }
-    
-    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        setUp()
-    }
+    // MARK: - UIView
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -66,6 +65,16 @@ class RequestScreenshotCell: UITableViewCell {
         super.addSubview(view)
     }
 
+    // MARK: - UITableViewCell
+    
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        setUp()
+    }
+    
+    // MARK: - RequestScreenshotCell
+    
     private func setUp() {
         backgroundColor = .clear
         selectionStyle = .none

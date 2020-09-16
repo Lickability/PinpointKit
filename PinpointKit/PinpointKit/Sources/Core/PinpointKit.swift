@@ -59,7 +59,7 @@ open class PinpointKit {
         configuration.editor.clearAllAnnotations()
         configuration.feedbackCollector.collectFeedback(with: screenshot, from: viewController)
     }
-        
+    
     /// Presents an alert signifying the inability to compose a Mail message.
     open func presentFailureToComposeMailAlert() {
         let alertTitle = NSLocalizedString("Can’t Send Email", comment: "Title for an alert shown when attempting to send mail without a mail account setup.")
