@@ -63,38 +63,36 @@ open class ScreenshotDetector: NSObject {
     }
     
     private func requestPhotosAuthorization() {
+        
+        func handleStatus(status: PHAuthorizationStatus) {
+            switch status {
+            case .authorized:
+                // Register for the next photo library change notification since the new screenshot
+                // won’t be available immediately.
+                self.photoLibrary.register(self)
+            case .limited:
+                let screenshotPresentationDelay = 0.5
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + screenshotPresentationDelay) {
+                    self.succeed(with: nil)
+                }
+            case .denied, .notDetermined, .restricted:
+                self.fail(with: .unauthorized(status: status))
+            @unknown default:
+                break
+            }
+        }
+        
         if #available(iOS 14, *) {
             PHPhotoLibrary.requestAuthorization(for: .readWrite) { authorizationStatus in
                 OperationQueue.main.addOperation {
-                    switch authorizationStatus {
-                    case .authorized:
-                        // Register for the next photo library change notification since the new screenshot
-                        // won’t be available immediately.
-                        self.photoLibrary.register(self)
-                    case .limited:
-                        self.succeed(with: nil)
-                    case .denied, .notDetermined, .restricted:
-                        self.fail(with: .unauthorized(status: authorizationStatus))
-                    @unknown default:
-                        break
-                    }
+                    handleStatus(status: authorizationStatus)
                 }
             }
         } else {
             PHPhotoLibrary.requestAuthorization { authorizationStatus in
                 OperationQueue.main.addOperation {
-                    switch authorizationStatus {
-                    case .authorized:
-                        // Register for the next photo library change notification since the new screenshot
-                        // won’t be available immediately.
-                        self.photoLibrary.register(self)
-                    case .limited:
-                        self.succeed(with: nil)
-                    case .denied, .notDetermined, .restricted:
-                        self.fail(with: .unauthorized(status: authorizationStatus))
-                    @unknown default:
-                        break
-                    }
+                    handleStatus(status: authorizationStatus)
                 }
             }
         }
