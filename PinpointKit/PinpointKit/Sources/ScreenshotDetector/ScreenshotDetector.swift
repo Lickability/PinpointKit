@@ -73,6 +73,7 @@ open class ScreenshotDetector: NSObject {
             case .limited:
                 let screenshotPresentationDelay = 0.5
                 
+                /// Delaying the presentation, so that the feedback report doesn't immediately present while the screenshot is still being taken.
                 DispatchQueue.main.asyncAfter(deadline: .now() + screenshotPresentationDelay) {
                     self.succeed(with: nil)
                 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// A view that displays a button allowing a user to select a screenshot from their library.
+/// A cell that displays a button allowing a user to select a screenshot from their library.
 class RequestScreenshotCell: UITableViewCell {
 
     // MARK: - RequestScreenshotCell
@@ -18,7 +18,11 @@ class RequestScreenshotCell: UITableViewCell {
 
     /// A struct encapsulating the information necessary for this view to be displayed.
     struct ViewModel {
+        
+        /// The text displayed in the button requesting a screenshot.
         let buttonText: String
+        
+        /// The font for the text in the button that is requesting a screenshot.
         let buttonFont: UIFont?
     }
     
@@ -91,8 +95,7 @@ class RequestScreenshotCell: UITableViewCell {
             requestScreenshotButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: DesignConstants.topInset),
             requestScreenshotButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             requestScreenshotButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: DesignConstants.horizontalInset),
-            requestScreenshotButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -DesignConstants.horizontalInset),
-            requestScreenshotButton.heightAnchor.constraint(equalToConstant: DesignConstants.buttonHeight)
+            requestScreenshotButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -DesignConstants.horizontalInset)
         ])
     }
     

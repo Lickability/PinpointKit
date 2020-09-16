@@ -115,7 +115,7 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
             return cell
         }
                 
-        cell.viewModel = .init(buttonText: text, buttonFont: font)
+        cell.viewModel = RequestScreenshotCell.ViewModel(buttonText: text, buttonFont: font)
         cell.screenshotButtonTapHandler = { [weak self] _ in
             guard let self = self else { return }
             

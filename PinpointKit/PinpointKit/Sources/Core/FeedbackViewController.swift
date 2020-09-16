@@ -252,9 +252,11 @@ extension FeedbackViewController: FeedbackTableViewDataSourceDelegate {
     
     @available(iOS 14, *)
     func feedbackTableViewDataSourceDidRequestScreenshot(feedbackTableViewDataSource: FeedbackTableViewDataSource) {
-        let pickerController = PHPickerViewController(configuration: .init(photoLibrary: .shared()))
+        var configuration = PHPickerConfiguration(photoLibrary: .shared())
+        configuration.filter = .images
+        
+        let pickerController = PHPickerViewController(configuration: configuration)
         pickerController.delegate = self
-
         viewController.present(pickerController, animated: true, completion: nil)
     }
 }
