@@ -25,9 +25,6 @@ open class ScreenshotDetector: NSObject {
         
         /// The screenshot image data could not be loaded from the library.
         case loadFailure
-        
-        /// The user has limited library authorization active.
-        case limitedAuthorization
     }
     
     /// A boolean value indicating whether the detector is enabled. When set to true, the detector will request photo access whenever a screenshot is taken by the user and deliver screenshots to its delegate.
@@ -76,7 +73,7 @@ open class ScreenshotDetector: NSObject {
                         // won’t be available immediately.
                         self.photoLibrary.register(self)
                     case .limited:
-                        self.fail(with: .limitedAuthorization)
+                        self.succeed(with: nil)
                     case .denied, .notDetermined, .restricted:
                         self.fail(with: .unauthorized(status: authorizationStatus))
                     @unknown default:
@@ -93,7 +90,7 @@ open class ScreenshotDetector: NSObject {
                         // won’t be available immediately.
                         self.photoLibrary.register(self)
                     case .limited:
-                        self.fail(with: .limitedAuthorization)
+                        self.succeed(with: nil)
                     case .denied, .notDetermined, .restricted:
                         self.fail(with: .unauthorized(status: authorizationStatus))
                     @unknown default:
@@ -125,7 +122,7 @@ open class ScreenshotDetector: NSObject {
         }
     }
     
-    private func succeed(with image: UIImage) {
+    private func succeed(with image: UIImage?) {
         delegate?.screenshotDetector(self, didDetect: image)
     }
     
@@ -143,9 +140,9 @@ public protocol ScreenshotDetectorDelegate: class {
      Notifies the delegate that the detector did successfully detect a screenshot.
      
      - parameter screenshotDetector: The detector responsible for the message.
-     - parameter screenshot:         The screenshot that was detected.
+     - parameter screenshot:         The screenshot that was detected. Optional if the asset cannot be retrieved due to limited library access.
      */
-    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didDetect screenshot: UIImage)
+    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didDetect screenshot: UIImage?)
     
     /**
      Notifies the delegate that the detector failed to detect a screenshot.

@@ -109,7 +109,6 @@ public final class FeedbackViewController: UITableViewController {
     
     private func updateDataSource() {
         guard let interfaceCustomization = interfaceCustomization else { assertionFailure(); return }
-        guard let screenshot = screenshot else { assertionFailure(); return }
         let screenshotToDisplay = annotatedScreenshot ?? screenshot
 
         dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, screenshot: screenshotToDisplay, logSupporting: self, userEnabledLogCollection: userEnabledLogCollection, delegate: self)
@@ -191,37 +190,10 @@ public final class FeedbackViewController: UITableViewController {
 // MARK: - FeedbackCollector
 
 extension FeedbackViewController: FeedbackCollector {
-    public func collectFeedback(with screenshot: UIImage, from viewController: UIViewController) {
+    public func collectFeedback(with screenshot: UIImage?, from viewController: UIViewController) {
         self.screenshot = screenshot
         annotatedScreenshot = nil
         viewController.showDetailViewController(self, sender: viewController)
-    }
-    
-    @available(iOS 14, *)
-    public func requestScreenshot(from viewController: UIViewController) {
-        self.screenshot = UIImage()
-        annotatedScreenshot = nil
-
-        let x = PHPickerViewController(configuration: .init(photoLibrary: .shared()))
-        x.delegate = self
-        
-        viewController.present(x, animated: true, completion: nil)
-    }
-}
-
-@available(iOS 14, *)
-extension FeedbackViewController: PHPickerViewControllerDelegate {
-    
-    public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        results.first?.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: { image, _ in
-            OperationQueue.main.addOperation {
-                guard let image = image as? UIImage, let presentingViewController = picker.presentingViewController else { return }
-                
-                presentingViewController.dismiss(animated: true) {
-                    self.collectFeedback(with: image, from: presentingViewController)
-                }
-            }
-        })
     }
 }
 
@@ -276,5 +248,37 @@ extension FeedbackViewController: FeedbackTableViewDataSourceDelegate {
         editImageViewController.view.tintColor = interfaceCustomization?.appearance.tintColor
         editImageViewController.modalPresentationStyle = feedbackConfiguration?.presentationStyle ?? .fullScreen
         present(editImageViewController, animated: true, completion: nil)
+    }
+    
+    @available(iOS 14, *)
+    func feedbackTableViewDataSourceDidRequestScreenshot(feedbackTableViewDataSource: FeedbackTableViewDataSource) {
+        let pickerController = PHPickerViewController(configuration: .init(photoLibrary: .shared()))
+        pickerController.delegate = self
+
+        viewController.present(pickerController, animated: true, completion: nil)
+    }
+}
+
+@available(iOS 14, *)
+extension FeedbackViewController: PHPickerViewControllerDelegate {
+    
+    public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        guard let result = results.first else {
+            picker.presentingViewController?.dismiss(animated: true)
+            return
+        }
+        
+        result.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: { image, _ in
+            OperationQueue.main.addOperation {
+                defer {
+                    picker.presentingViewController?.dismiss(animated: true)
+                }
+                
+                guard let image = image as? UIImage else { return }
+                self.screenshot = image
+                
+                self.tableView.reloadData()
+            }
+        })
     }
 }

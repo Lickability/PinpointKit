@@ -54,19 +54,12 @@ open class PinpointKit {
      - parameter viewController: The view controller from which to present.
      - parameter screenshot:     The screenshot to be annotated. The default value is a screenshot taken at the time this method is called. This image is intended to match the device’s screen size in points.
      */
-    open func show(from viewController: UIViewController, screenshot: UIImage = Screenshotter.takeScreenshot()) {
+    open func show(from viewController: UIViewController, screenshot: UIImage? = Screenshotter.takeScreenshot()) {
         displayingViewController = viewController
         configuration.editor.clearAllAnnotations()
         configuration.feedbackCollector.collectFeedback(with: screenshot, from: viewController)
     }
-    
-    @available(iOS 14, *)
-    open func show(from viewController: UIViewController, selectImageText: String) {
-        displayingViewController = viewController
-        configuration.editor.clearAllAnnotations()
-        configuration.feedbackCollector.requestScreenshot(from: viewController)
-    }
-    
+        
     /// Presents an alert signifying the inability to compose a Mail message.
     open func presentFailureToComposeMailAlert() {
         let alertTitle = NSLocalizedString("Can’t Send Email", comment: "Title for an alert shown when attempting to send mail without a mail account setup.")

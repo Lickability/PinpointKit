@@ -27,10 +27,7 @@ public protocol FeedbackCollector: class, LogSupporting, InterfaceCustomizable {
      - parameter screenshot:     The screenshot the user will be providing feedback on.
      - parameter viewController: The view controller from which to present.
      */
-    func collectFeedback(with screenshot: UIImage, from viewController: UIViewController)
-    
-    @available(iOS 14, *)
-    func requestScreenshot(from viewController: UIViewController)
+    func collectFeedback(with screenshot: UIImage?, from viewController: UIViewController)
 }
 
 extension FeedbackCollector where Self: UIViewController {
