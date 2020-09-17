@@ -208,7 +208,7 @@ public struct InterfaceCustomization {
                     feedbackCancelButtonTitle: String? = nil,
                     feedbackBackButtonTitle: String? = NSLocalizedString("Report", comment: "Back button title of a view that reports a bug"),
                     feedbackEditHint: String? = NSLocalizedString("Tap the screenshot to annotate.", comment: "A hint on how to edit the screenshot"),
-                    selectScreenshotButtonTitle: String = NSLocalizedString("Select Screenshot", comment: "A button that allows screenshot selection from the photo library."),
+                    selectScreenshotButtonTitle: String = NSLocalizedString("Select Screenshot…", comment: "A button that allows screenshot selection from the photo library."),
                     logCollectorTitle: String? = NSLocalizedString("Console Log", comment: "Title of a view that collects logs"),
                     logCollectionPermissionTitle: String = NSLocalizedString("Include Console Log", comment: "Title of a button asking the user to include system logs"),
                     textEditingDismissButtonTitle: String = NSLocalizedString("Dismiss", comment: "Title of a button that dismisses text editing"),

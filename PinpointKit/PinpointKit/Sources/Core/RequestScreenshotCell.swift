@@ -28,7 +28,7 @@ class RequestScreenshotCell: UITableViewCell {
     
     private enum DesignConstants {
         static let buttonHeight: CGFloat = 54.0
-        static let topInset: CGFloat = 54.0
+        static let topInset: CGFloat = 80.0
         static let horizontalInset: CGFloat = 32.0
     }
     
