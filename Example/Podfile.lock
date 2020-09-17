@@ -2,12 +2,10 @@ PODS:
   - PinpointKit (1.4.0):
     - PinpointKit/Core (= 1.4.0)
   - PinpointKit/Core (1.4.0)
-  - PinpointKit/ScreenshotDetector (1.4.0)
   - SwiftLint (0.25.1)
 
 DEPENDENCIES:
   - PinpointKit (from `../`)
-  - PinpointKit/ScreenshotDetector (from `../`)
   - SwiftLint (= 0.25.1)
 
 SPEC REPOS:
@@ -22,6 +20,6 @@ SPEC CHECKSUMS:
   PinpointKit: a33c929c2e9c3b7d9a1a343fd309161b71c02d06
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
 
-PODFILE CHECKSUM: fedf7c8ff2aafefa997652a50057931848ec893d
+PODFILE CHECKSUM: 24af8a2ca63352a72ca1cd13fc8977477eae3a12
 
 COCOAPODS: 1.5.0

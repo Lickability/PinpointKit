@@ -2,8 +2,7 @@ platform :ios, '9.2'
 use_frameworks!
 
 target 'PinpointKitExample' do
-    pod 'PinpointKit', :path => '../'
-    pod 'PinpointKit/ScreenshotDetector', :path => '../'
+	pod 'PinpointKit', :path => '../'
     
     pod 'SwiftLint', '0.25.1'
 end

@@ -9,29 +9,20 @@
 import UIKit
 import PinpointKit
 
-final class ViewController: UITableViewController, ScreenshotDetectorDelegate {
-
-    private var screenshotDetector: ScreenshotDetector?
+final class ViewController: UITableViewController {
     
     fileprivate let pinpointKit = PinpointKit(feedbackRecipients: ["feedback@example.com"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        screenshotDetector = ScreenshotDetector(delegate: self)
-        
         // Hides the infinite cells footer.
         tableView.tableFooterView = UIView()
     }
     
-    // MARK: - ScreenshotDetectorDelegate
-    
-    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didDetect screenshot: UIImage?) {
-        pinpointKit.show(from: self, screenshot: screenshot)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        pinpointKit.show(from: self)
     }
-    
-    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didFailWith error: ScreenshotDetector.Error) {
-        print(error)
-    }
-    
 }
