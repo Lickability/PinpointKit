@@ -87,6 +87,7 @@ public struct InterfaceCustomization {
          - parameter annotationTextAttributes:              The text attributes for annotations.
          - parameter navigationTitleColor:                  The color used for navigation titles.
          - parameter navigationTitleFont:                   The font used for navigation titles.
+         - parameter selectScreenshotButtonFont:            The font used for the select screenshot button.
          - parameter feedbackSendButtonFont:                The font used for the button that sends feedback.
          - parameter feedbackCancelButtonFont:              The font used for the button that cancels feedback collection.
          - parameter feedbackEditHintFont:                  The font used for the hint to the user on how to edit the screenshot from the feedback screen.
