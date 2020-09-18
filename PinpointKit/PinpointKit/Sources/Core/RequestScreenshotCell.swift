@@ -89,7 +89,7 @@ class RequestScreenshotCell: UITableViewCell {
     }
     
     private func setupRequestButton() {
-        requestScreenshotButton.addTarget(self, action: #selector(screenshotButtonTapped), for: .touchUpInside)
+        requestScreenshotButton.addTarget(self, action: #selector(screenshotButtonTapped), for: .primaryActionTriggered)
         
         NSLayoutConstraint.activate([
             requestScreenshotButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: DesignConstants.topInset),
