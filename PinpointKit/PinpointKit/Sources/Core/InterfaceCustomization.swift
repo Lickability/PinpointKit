@@ -47,6 +47,9 @@ public struct InterfaceCustomization {
         /// The font used for navigation titles.
         let navigationTitleFont: UIFont
         
+        /// The font used for the select screenshot button used for `.limited` photo library access.
+        let selectScreenshotButtonFont: UIFont
+        
         /// The font used for the button that sends feedback.
         let feedbackSendButtonFont: UIFont
         
@@ -84,6 +87,7 @@ public struct InterfaceCustomization {
          - parameter annotationTextAttributes:              The text attributes for annotations.
          - parameter navigationTitleColor:                  The color used for navigation titles.
          - parameter navigationTitleFont:                   The font used for navigation titles.
+         - parameter selectScreenshotButtonFont:            The font used for the select screenshot button.
          - parameter feedbackSendButtonFont:                The font used for the button that sends feedback.
          - parameter feedbackCancelButtonFont:              The font used for the button that cancels feedback collection.
          - parameter feedbackEditHintFont:                  The font used for the hint to the user on how to edit the screenshot from the feedback screen.
@@ -101,6 +105,7 @@ public struct InterfaceCustomization {
                     annotationTextAttributes: [NSAttributedString.Key: AnyObject]? = nil,
                     navigationTitleColor: UIColor = Self.defaultNavigationTitleColor,
                     navigationTitleFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
+                    selectScreenshotButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackSendButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
                     feedbackCancelButtonFont: UIFont = .sourceSansProFont(ofSize: 19),
                     feedbackEditHintFont: UIFont = .sourceSansProFont(ofSize: 14),
@@ -129,6 +134,7 @@ public struct InterfaceCustomization {
             
             self.logFont = logFont
             self.navigationTitleFont = navigationTitleFont
+            self.selectScreenshotButtonFont = selectScreenshotButtonFont
             self.feedbackSendButtonFont = feedbackSendButtonFont
             self.feedbackCancelButtonFont = feedbackCancelButtonFont
             self.feedbackEditHintFont = feedbackEditHintFont
@@ -169,6 +175,9 @@ public struct InterfaceCustomization {
         /// A hint to the user on how to edit the screenshot from the feedback screen.
         let feedbackEditHint: String?
         
+        /// A title to use for the select screenshot button.
+        let selectScreenshotButtonTitle: String
+        
         /// The title of the log collection screen.
         let logCollectorTitle: String?
         
@@ -189,6 +198,7 @@ public struct InterfaceCustomization {
          - parameter feedbackCancelButtonTitle:     The title of the cancel button.
          - parameter feedbackBackButtonTitle:       The title of the back button.
          - parameter feedbackEditHint:              The hint to show during editing.
+         - parameter selectScreenshotButtonTitle:   The title of the select screenshot button.
          - parameter logCollectorTitle:             The title of the log collector.
          - parameter logCollectionPermissionTitle:  The title of the permission button.
          - parameter textEditingDismissButtonTitle: The title of the text editing dismiss button.
@@ -199,6 +209,7 @@ public struct InterfaceCustomization {
                     feedbackCancelButtonTitle: String? = nil,
                     feedbackBackButtonTitle: String? = NSLocalizedString("Report", comment: "Back button title of a view that reports a bug"),
                     feedbackEditHint: String? = NSLocalizedString("Tap the screenshot to annotate.", comment: "A hint on how to edit the screenshot"),
+                    selectScreenshotButtonTitle: String = NSLocalizedString("Select Screenshot…", comment: "A button that allows screenshot selection from the photo library."),
                     logCollectorTitle: String? = NSLocalizedString("Console Log", comment: "Title of a view that collects logs"),
                     logCollectionPermissionTitle: String = NSLocalizedString("Include Console Log", comment: "Title of a button asking the user to include system logs"),
                     textEditingDismissButtonTitle: String = NSLocalizedString("Dismiss", comment: "Title of a button that dismisses text editing"),
@@ -208,6 +219,7 @@ public struct InterfaceCustomization {
             self.feedbackCancelButtonTitle = feedbackCancelButtonTitle
             self.feedbackBackButtonTitle = feedbackBackButtonTitle
             self.feedbackEditHint = feedbackEditHint
+            self.selectScreenshotButtonTitle = selectScreenshotButtonTitle
             self.logCollectorTitle = logCollectorTitle
             self.logCollectionPermissionTitle = logCollectionPermissionTitle
             self.textEditingDismissButtonTitle = textEditingDismissButtonTitle
