@@ -70,6 +70,7 @@
 		DA0DA60D1C53049B0012ADBE /* PinpointKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA0DA6021C53049B0012ADBE /* PinpointKit.framework */; };
 		F24381121D54CBAB004CC87F /* SystemLogCollectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24381111D54CBAB004CC87F /* SystemLogCollectorTests.swift */; };
 		F24381151D54ECD2004CC87F /* XCTestCaseExpectationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24381141D54ECD2004CC87F /* XCTestCaseExpectationExtensions.swift */; };
+		F2619BA32512C6100083286C /* RequestScreenshotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2619BA22512C6100083286C /* RequestScreenshotCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,7 @@
 		DA0DA6131C53049B0012ADBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F24381111D54CBAB004CC87F /* SystemLogCollectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemLogCollectorTests.swift; sourceTree = "<group>"; };
 		F24381141D54ECD2004CC87F /* XCTestCaseExpectationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCaseExpectationExtensions.swift; sourceTree = "<group>"; };
+		F2619BA22512C6100083286C /* RequestScreenshotCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestScreenshotCell.swift; path = Core/RequestScreenshotCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 				4C4037F11D9EB01800305A6E /* FeedbackViewController.swift */,
 				4C4037EF1D9EB01800305A6E /* FeedbackNavigationController.swift */,
 				4C4037FC1D9EB04400305A6E /* Screenshotter.swift */,
+				F2619BA22512C6100083286C /* RequestScreenshotCell.swift */,
 				4C4037F91D9EB02300305A6E /* ScreenshotCell.swift */,
 				4C4037EE1D9EB01800305A6E /* FeedbackConfiguration.swift */,
 				4C4037F01D9EB01800305A6E /* FeedbackTableViewDataSource.swift */,
@@ -490,6 +493,7 @@
 				4C4038091D9EB0CB00305A6E /* UIView+PinpointKit.swift in Sources */,
 				4CFB58801E29464B00B64D0D /* EditImageViewControllerBarButtonItemProviding.swift in Sources */,
 				4C40382C1D9EB7A800305A6E /* ScreenshotDetector.swift in Sources */,
+				F2619BA32512C6100083286C /* RequestScreenshotCell.swift in Sources */,
 				4C4038011D9EB07000305A6E /* LogViewer.swift in Sources */,
 				4C4037FF1D9EB06900305A6E /* BasicLogViewController.swift in Sources */,
 				4C4037D51D9EAF0D00305A6E /* Editor.swift in Sources */,
@@ -686,7 +690,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.Lickability.PinpointKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -709,7 +713,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 1.4.0;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.Lickability.PinpointKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

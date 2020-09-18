@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 /// A `UITableViewController` that conforms to `FeedbackCollector` in order to display an interface that allows the user to see, change, and send feedback.
 public final class FeedbackViewController: UITableViewController {
@@ -108,7 +109,6 @@ public final class FeedbackViewController: UITableViewController {
     
     private func updateDataSource() {
         guard let interfaceCustomization = interfaceCustomization else { assertionFailure(); return }
-        guard let screenshot = screenshot else { assertionFailure(); return }
         let screenshotToDisplay = annotatedScreenshot ?? screenshot
 
         dataSource = FeedbackTableViewDataSource(interfaceCustomization: interfaceCustomization, screenshot: screenshotToDisplay, logSupporting: self, userEnabledLogCollection: userEnabledLogCollection, delegate: self)
@@ -190,7 +190,7 @@ public final class FeedbackViewController: UITableViewController {
 // MARK: - FeedbackCollector
 
 extension FeedbackViewController: FeedbackCollector {
-    public func collectFeedback(with screenshot: UIImage, from viewController: UIViewController) {
+    public func collectFeedback(with screenshot: UIImage?, from viewController: UIViewController) {
         self.screenshot = screenshot
         annotatedScreenshot = nil
         viewController.showDetailViewController(self, sender: viewController)
@@ -248,5 +248,39 @@ extension FeedbackViewController: FeedbackTableViewDataSourceDelegate {
         editImageViewController.view.tintColor = interfaceCustomization?.appearance.tintColor
         editImageViewController.modalPresentationStyle = feedbackConfiguration?.presentationStyle ?? .fullScreen
         present(editImageViewController, animated: true, completion: nil)
+    }
+    
+    @available(iOS 14, *)
+    func feedbackTableViewDataSourceDidRequestScreenshot(feedbackTableViewDataSource: FeedbackTableViewDataSource) {
+        var configuration = PHPickerConfiguration(photoLibrary: .shared())
+        configuration.filter = .images
+        
+        let pickerController = PHPickerViewController(configuration: configuration)
+        pickerController.delegate = self
+        viewController.present(pickerController, animated: true, completion: nil)
+    }
+}
+
+@available(iOS 14, *)
+extension FeedbackViewController: PHPickerViewControllerDelegate {
+    
+    public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        guard let result = results.first else {
+            picker.presentingViewController?.dismiss(animated: true)
+            return
+        }
+        
+        result.itemProvider.loadObject(ofClass: UIImage.self, completionHandler: { image, _ in
+            OperationQueue.main.addOperation {
+                defer {
+                    picker.presentingViewController?.dismiss(animated: true)
+                }
+                
+                guard let image = image as? UIImage else { return }
+                self.screenshot = image
+                
+                self.tableView.reloadData()
+            }
+        })
     }
 }

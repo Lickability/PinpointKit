@@ -40,7 +40,7 @@
 ## Requirements
 
 * iOS 9.0+
-* Xcode 10.2+
+* Xcode 12+
 * Swift 5.0
 
 > **Note:** [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift) depends on the `Photos` framework to access the user’s photo library. This requires you to add an entry for the [`NSPhotoLibraryUsageDescription`](https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW17) key in your `Info.plist` file describing your app’s use of the user’s photo library. As of iOS 10, failure to provide a value for this key could cause your submission to the App Store to be rejected by Apple, or cause your app to exit upon attempting to access the user’s photo library. [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift) is excluded by default when installing via CocoaPods, but is included otherwise.
@@ -65,7 +65,7 @@ platform :ios, '9.0'
 use_frameworks!
 
 target 'YOUR_TARGET_NAME' do
-    pod 'PinpointKit', '~> 1.4.0'
+    pod 'PinpointKit', '~> 1.5.0'
 end
 
 ```
@@ -79,7 +79,7 @@ $ pod install
 We also offer a convenience class, [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift) that is available via the `ScreenshotDetector` subspec. This class provides delegate callbacks when the user takes a screenshot while using your app. Please see the [Requirements](#requirements) section regarding inclusion of [`ScreenshotDetector`](https://github.com/Lickability/PinpointKit/blob/master/PinpointKit/PinpointKit/Sources/ScreenshotDetector/ScreenshotDetector.swift). You can add this to your project by adding the following line in your `Podfile`, in addition to the one for `PinpointKit` above:
 
 ```ruby
-pod 'PinpointKit/ScreenshotDetector', '~> 1.4.0'
+pod 'PinpointKit/ScreenshotDetector', '~> 1.5.0'
 ```
 
 ### Carthage
@@ -96,7 +96,7 @@ $ brew install carthage
 To integrate PinpointKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "Lickability/PinpointKit" ~> 1.4.0
+github "Lickability/PinpointKit" ~> 1.5.0
 ```
 
 - Run `carthage update` to build the framework.
@@ -129,8 +129,8 @@ $ git submodule add -b master https://github.com/Lickability/PinpointKit.git
 - Select the `PinpointKit.xcodeproj` in the Project Navigator and verify the deployment target matches that of your application target.
 - Next, select your application project in the Project Navigator (blue project icon) to navigate to the target configuration window and select the application target under the “Targets” heading in the sidebar.
 - In the tab bar at the top of that window, open the “General” panel.
-- Click on the `+` button under the “Embedded Binaries” section.    
-- You will see two different `PinpointKit.xcodeproj` folders each with two different versions of the `PinpointKit.framework` nested inside a Products folder.
+- Click on the `+` button under the “Frameworks, Libraries, and Embeeded Content” section.    
+- You may see two different `PinpointKit.xcodeproj` folders each with two different versions of the `PinpointKit.framework` nested inside a Products folder.
 - Select the top `PinpointKit.framework` for iOS.
 
 - And that’s it!

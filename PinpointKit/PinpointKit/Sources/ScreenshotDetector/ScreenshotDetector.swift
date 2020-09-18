@@ -63,17 +63,37 @@ open class ScreenshotDetector: NSObject {
     }
     
     private func requestPhotosAuthorization() {
-        PHPhotoLibrary.requestAuthorization { authorizationStatus in
-            OperationQueue.main.addOperation {
-                switch authorizationStatus {
-                case .authorized:
-                    // Register for the next photo library change notification since the new screenshot
-                    // won’t be available immediately.
-                    self.photoLibrary.register(self)
-                case .denied, .notDetermined, .restricted:
-                    self.fail(with: .unauthorized(status: authorizationStatus))
-                @unknown default:
-                    break
+        
+        func handleStatus(status: PHAuthorizationStatus) {
+            switch status {
+            case .authorized:
+                // Register for the next photo library change notification since the new screenshot
+                // won’t be available immediately.
+                self.photoLibrary.register(self)
+            case .limited:
+                let screenshotPresentationDelay = 0.5
+                
+                /// Delaying the presentation, so that the feedback report doesn't immediately present while the screenshot is still being taken.
+                DispatchQueue.main.asyncAfter(deadline: .now() + screenshotPresentationDelay) {
+                    self.succeed(with: nil)
+                }
+            case .denied, .notDetermined, .restricted:
+                self.fail(with: .unauthorized(status: status))
+            @unknown default:
+                break
+            }
+        }
+        
+        if #available(iOS 14, *) {
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { authorizationStatus in
+                OperationQueue.main.addOperation {
+                    handleStatus(status: authorizationStatus)
+                }
+            }
+        } else {
+            PHPhotoLibrary.requestAuthorization { authorizationStatus in
+                OperationQueue.main.addOperation {
+                    handleStatus(status: authorizationStatus)
                 }
             }
         }
@@ -100,7 +120,7 @@ open class ScreenshotDetector: NSObject {
         }
     }
     
-    private func succeed(with image: UIImage) {
+    private func succeed(with image: UIImage?) {
         delegate?.screenshotDetector(self, didDetect: image)
     }
     
@@ -118,9 +138,9 @@ public protocol ScreenshotDetectorDelegate: class {
      Notifies the delegate that the detector did successfully detect a screenshot.
      
      - parameter screenshotDetector: The detector responsible for the message.
-     - parameter screenshot:         The screenshot that was detected.
+     - parameter screenshot:         The screenshot that was detected. Optional if the asset cannot be retrieved due to limited library access.
      */
-    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didDetect screenshot: UIImage)
+    func screenshotDetector(_ screenshotDetector: ScreenshotDetector, didDetect screenshot: UIImage?)
     
     /**
      Notifies the delegate that the detector failed to detect a screenshot.
