@@ -6,6 +6,8 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
+import UIKit
+
 /// A struct that supplies customized interface text and appearance values.
 public struct InterfaceCustomization {
     let interfaceText: InterfaceText

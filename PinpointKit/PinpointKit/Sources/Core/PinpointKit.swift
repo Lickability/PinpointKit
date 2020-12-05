@@ -6,7 +6,7 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// `PinpointKit` is an object that can be used to collect feedback from application users.
 open class PinpointKit {

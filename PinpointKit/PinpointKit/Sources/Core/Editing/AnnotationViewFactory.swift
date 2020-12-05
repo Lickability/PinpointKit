@@ -6,6 +6,8 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
+import UIKit
+
 /// A factory that constructs `AnnotationView`s.
 struct AnnotationViewFactory {
     

@@ -6,6 +6,8 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
+import UIKit
+
 /// A protocol describing an object that can collect feedback about a screenshot.
 public protocol FeedbackCollector: class, LogSupporting, InterfaceCustomizable {
     

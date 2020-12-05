@@ -6,6 +6,10 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
+#if SWIFT_PACKAGE
+import ASLLogger
+#endif
+
 /// A log collector that uses [Apple System Logger](https://developer.apple.com/library/mac/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/LoggingErrorsAndWarnings.html) API to retrieve messages logged to the console with `NSLog`.
 open class SystemLogCollector: LogCollector {
     
