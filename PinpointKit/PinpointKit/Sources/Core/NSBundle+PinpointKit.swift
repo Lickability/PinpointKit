@@ -17,6 +17,10 @@ extension Bundle {
      - returns: Returns the bundle associated with PinpointKit.
      */
     static func pinpointKitBundle() -> Bundle {
+        #if SWIFT_PACKAGE
+        return .module
+        #else
         return Bundle(for: PinpointKit.self)
+        #endif
     }
 }
