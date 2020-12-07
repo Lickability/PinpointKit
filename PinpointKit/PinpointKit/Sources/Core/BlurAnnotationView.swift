@@ -7,16 +7,16 @@
 //
 
 import UIKit
-import GLKit
+import MetalKit
 import CoreImage
 
 /// The default blur annotation view.
-open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
+open class BlurAnnotationView: AnnotationView, MTKViewDelegate {
 
     // MARK: - Properties
 
-    private let EAGLContext: OpenGLES.EAGLContext?
-    private let GLKView: GLKit.GLKView?
+    private let MTLCommandQueue: MetalKit.MTLCommandQueue?
+    private let MTKView: MetalKit.MTKView?
     private let CIContext: CoreImage.CIContext?
 
     /// The corresponding annotation.
@@ -29,7 +29,7 @@ open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
                 layer.path = UIBezierPath(rect: annotationFrame).cgPath
             }
             
-            GLKView?.layer.mask = layer
+            MTKView?.layer.mask = layer
         }
     }
     
@@ -64,27 +64,29 @@ open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
 
     public override init(frame: CGRect) {
         let bounds = CGRect(origin: CGPoint.zero, size: frame.size)
-        
-        if let EAGLContext = OpenGLES.EAGLContext(api: .openGLES2) {
-            self.EAGLContext = EAGLContext
-            GLKView = GLKit.GLKView(frame: bounds, context: EAGLContext)
-            CIContext = CoreImage.CIContext(eaglContext: EAGLContext, options: [.useSoftwareRenderer: false])
+
+        if let MTLDevice = MTLCreateSystemDefaultDevice() {
+            MTLCommandQueue = MTLDevice.makeCommandQueue()
+            MTKView = MetalKit.MTKView(frame: bounds, device: MTLDevice)
+            CIContext = CoreImage.CIContext(mtlDevice: MTLDevice, options: [.useSoftwareRenderer: false])
         } else {
-            EAGLContext = nil
-            GLKView = nil
+            MTLCommandQueue = nil
+            MTKView = nil
             CIContext = nil
         }
 
         super.init(frame: frame)
 
         isOpaque = false
-        
-        GLKView?.isUserInteractionEnabled = false
-        GLKView?.delegate = self
-        GLKView?.contentMode = .redraw
-        
-        if let glkView = GLKView {
-            addSubview(glkView)
+
+        MTKView?.isUserInteractionEnabled = false
+        MTKView?.delegate = self
+        MTKView?.contentMode = .redraw
+        MTKView?.enableSetNeedsDisplay = true
+        MTKView?.framebufferOnly = false
+
+        if let mtkView = MTKView {
+            addSubview(mtkView)
         }
     }
 
@@ -96,7 +98,7 @@ open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
 
     override open func layoutSubviews() {
         super.layoutSubviews()
-        GLKView?.frame = bounds
+        MTKView?.frame = bounds
     }
 
     override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
@@ -111,7 +113,7 @@ open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
             
             tintColor?.withAlphaComponent(type(of: self).BorderAlpha).setStroke()
             
-            // Since this draws under the GLKView, and strokes extend both inside and outside, we have to double the intended width.
+            // Since this draws under the MTKView, and strokes extend both inside and outside, we have to double the intended width.
             let strokeWidth: CGFloat = 1.0
             context.setLineWidth(strokeWidth * 2.0)
             
@@ -144,18 +146,29 @@ open class BlurAnnotationView: AnnotationView, GLKViewDelegate {
         annotation = BlurAnnotation(startLocation: startLocation, endLocation: endLocation, image: previousAnnotation.image)
     }
 
-    // MARK: - GLKViewDelegate
+    // MARK: - MTKViewDelegate
 
-    open func glkView(_ view: GLKit.GLKView, drawIn rect: CGRect) {
-        
-        glClearColor(0, 0, 0, 0)
-        glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
-        
+    public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+    }
+
+    public func draw(in view: MTKView) {
         guard let CIContext = self.CIContext else { return }
-        guard let image = annotation?.blurredImage else { return }
+        guard var image = annotation?.blurredImage else { return }
+        guard let drawable = view.currentDrawable else { return }
 
-        let drawableRect = CGRect(x: 0, y: 0, width: view.drawableWidth, height: view.drawableHeight)
-        CIContext.draw(image, in: drawableRect, from: image.extent)
-        
+        // A workaround to resolve the issue of image flipping vertically when run in the simulator
+        #if targetEnvironment(simulator)
+        image = image
+            .transformed(by: CGAffineTransform(scaleX: 1, y: -1))
+            .transformed(by: CGAffineTransform(translationX: 0, y: image.extent.height))
+        #endif
+
+        let commandBuffer = MTLCommandQueue?.makeCommandBuffer()
+        let drawableRect = CGRect(origin: CGPoint.zero, size: view.drawableSize)
+        let colorSpace = image.colorSpace ?? CGColorSpaceCreateDeviceRGB()
+        CIContext.render(image, to: drawable.texture, commandBuffer: commandBuffer, bounds: drawableRect, colorSpace: colorSpace)
+        commandBuffer?.present(drawable)
+        commandBuffer?.commit()
+        commandBuffer?.waitUntilCompleted()
     }
 }
