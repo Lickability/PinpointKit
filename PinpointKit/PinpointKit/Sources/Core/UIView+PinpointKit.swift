@@ -6,6 +6,8 @@
 //
 //
 
+import UIKit
+
 /// Extends `UIView` to take a snapshot of the screen.
 extension UIView {
     

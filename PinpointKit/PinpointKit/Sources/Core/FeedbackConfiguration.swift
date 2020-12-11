@@ -6,6 +6,8 @@
 //
 //
 
+import UIKit
+
 /// Encapsulates configuration properties for all feedback to be sent.
 public struct FeedbackConfiguration {
     

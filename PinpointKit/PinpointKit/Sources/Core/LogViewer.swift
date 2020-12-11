@@ -6,6 +6,8 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
+import UIKit
+
 /// A protocol describing an interface to an object that can view a console log.
 public protocol LogViewer: InterfaceCustomizable {
     

@@ -6,7 +6,7 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// A class responsible for generating a screenshot image of all windows shown by a `UIApplication` on a given `UIScreen`.
 open class Screenshotter {

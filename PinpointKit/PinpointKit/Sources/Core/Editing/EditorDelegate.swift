@@ -6,6 +6,8 @@
 //  Copyright © 2016 Lickability. All rights reserved.
 //
 
+import UIKit
+
 /// A delegate for the `Editor`.
 public protocol EditorDelegate: class {
     
