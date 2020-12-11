@@ -551,7 +551,11 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         previousUpdateAnnotationPanGestureRecognizerLocation = gestureRecognizer.location(in: gestureRecognizer.view)
         currentBlurAnnotationView?.drawsBorder = true
         
-        UIMenuController.shared.setMenuVisible(false, animated: true)
+        if #available(iOS 13.0, *) {
+            UIMenuController.shared.hideMenu()
+        } else {
+            UIMenuController.shared.setMenuVisible(false, animated: true)
+        }
         currentTextAnnotationView?.textView.selectedRange = NSRange()
     }
     
@@ -633,12 +637,19 @@ open class EditImageViewController: UIViewController, UIGestureRecognizerDelegat
         let targetRect = CGRect(origin: point, size: CGSize())
         
         let controller = UIMenuController.shared
-        controller.setTargetRect(targetRect, in: view)
+        if #available(iOS 13.0, *) {
+        } else {
+            controller.setTargetRect(targetRect, in: view)
+        }
         controller.menuItems = [
             UIMenuItem(title: "Delete", action: #selector(EditImageViewController.deleteSelectedAnnotationView))
         ]
         controller.update()
-        controller.setMenuVisible(true, animated: true)
+        if #available(iOS 13.0, *) {
+            controller.showMenu(from: view, rect: targetRect)
+        } else {
+            controller.setMenuVisible(true, animated: true)
+        }
     }
     
     private func deleteAnnotationView(_ annotationView: UIView, animated: Bool) {
