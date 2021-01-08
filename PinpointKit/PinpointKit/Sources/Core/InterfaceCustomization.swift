@@ -16,7 +16,7 @@ public struct InterfaceCustomization {
     /**
      Initializes an InterfaceCustomization object.
      
-     - parameter interfaceText: The interfact text customization.
+     - parameter interfaceText: The interface text customization.
      - parameter appearance:    The appearance customization.     
      */
     public init(interfaceText: InterfaceText = InterfaceText(), appearance: Appearance = Appearance()) {
@@ -79,8 +79,11 @@ public struct InterfaceCustomization {
         /// The font used for the done button in the editor to finish editing the image.
         let editorDoneButtonFont: UIFont
         
+        /// The foreground color of the selected tool in the segmented control. (Only used on iOS 13+.)
+        let editorSelectedToolSegmentForegroundColor: UIColor
+        
         /**
-         Initializes an `Appearance` object with a optional annotation color properties.
+         Initializes an `Appearance` object with an optional annotation color properties.
 
          - parameter statusBarStyle:                        The status bar style of PinpointKit.
          - parameter tintColor:                             The tint color of the interface.
@@ -116,7 +119,8 @@ public struct InterfaceCustomization {
                     logFont: UIFont = .menloRegularFont(ofSize: 10),
                     editorTextAnnotationSegmentFont: UIFont = .sourceSansProFont(ofSize: 18),
                     editorTextAnnotationDismissButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
-                    editorDoneButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold)) {
+                    editorDoneButtonFont: UIFont = .sourceSansProFont(ofSize: 19, weight: .semibold),
+                    editorSelectedToolSegmentForegroundColor: UIColor = .white) {
             self.statusBarStyle = statusBarStyle
             self.tintColor = tintColor
             self.annotationFillColor = annotationFillColor
@@ -145,6 +149,7 @@ public struct InterfaceCustomization {
             self.editorTextAnnotationSegmentFont = editorTextAnnotationSegmentFont
             self.editorTextAnnotationDismissButtonFont = editorTextAnnotationDismissButtonFont
             self.editorDoneButtonFont = editorDoneButtonFont
+            self.editorSelectedToolSegmentForegroundColor = editorSelectedToolSegmentForegroundColor
         }
         
         /// A default color to use for text within a navigation bar. Defaults to `UIColor.label` on iOS 13+ and `UIColor.darkText` on earlier versions.
