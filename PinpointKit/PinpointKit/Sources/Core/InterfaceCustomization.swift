@@ -79,7 +79,7 @@ public struct InterfaceCustomization {
         /// The font used for the done button in the editor to finish editing the image.
         let editorDoneButtonFont: UIFont
         
-        /// The foreground color of the selected tool in the segmented control. (Only used on iOS 13+.)
+        /// The foreground color of the selected tool in the editor’s segmented control. (Only used on iOS 13+.)
         let editorSelectedToolSegmentForegroundColor: UIColor
         
         /**
@@ -102,7 +102,7 @@ public struct InterfaceCustomization {
          - parameter editorTextAnnotationSegmentFont:          The font used for the text annotation tool segment in the editor.
          - parameter editorTextAnnotationDismissButtonFont:    The font used for the dismiss button in the editor displayed while editing a text annotation.
          - parameter editorDoneButtonFont:                     The font used for the done button in the editor to finish editing the image.
-         - parameter editorSelectedToolSegmentForegroundColor: The foreground color of the selected tool in the segmented control. (Only used on iOS 13+.)
+         - parameter editorSelectedToolSegmentForegroundColor: The foreground color of the selected tool in the editor’s segmented control. (Only used on iOS 13+.)
          */
         public init(statusBarStyle: UIStatusBarStyle = .default,
                     tintColor: UIColor? = .pinpointOrange(),
