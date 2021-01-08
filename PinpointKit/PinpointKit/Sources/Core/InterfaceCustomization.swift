@@ -85,23 +85,24 @@ public struct InterfaceCustomization {
         /**
          Initializes an `Appearance` object with an optional annotation color properties.
 
-         - parameter statusBarStyle:                        The status bar style of PinpointKit.
-         - parameter tintColor:                             The tint color of the interface.
-         - parameter annotationFillColor:                   The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
-         - parameter annotationStrokeColor:                 The stroke color for annotations.
-         - parameter annotationTextAttributes:              The text attributes for annotations.
-         - parameter navigationTitleColor:                  The color used for navigation titles.
-         - parameter navigationTitleFont:                   The font used for navigation titles.
-         - parameter selectScreenshotButtonFont:            The font used for the select screenshot button.
-         - parameter feedbackSendButtonFont:                The font used for the button that sends feedback.
-         - parameter feedbackCancelButtonFont:              The font used for the button that cancels feedback collection.
-         - parameter feedbackEditHintFont:                  The font used for the hint to the user on how to edit the screenshot from the feedback screen.
-         - parameter feedbackBackButtonFont:                The font used for the back button that takes the user back to the initial feedback collection screen.
-         - parameter logCollectionPermissionFont:           The font used for the title of the cell that allows the user to toggle log collection.
-         - parameter logFont:                               The font used for displaying logs.
-         - parameter editorTextAnnotationSegmentFont:       The font used for the text annotation tool segment in the editor.
-         - parameter editorTextAnnotationDismissButtonFont: The font used for the dismiss button in the editor displayed while editing a text annotation.
-         - parameter editorDoneButtonFont:                  The font used for the done button in the editor to finish editing the image.
+         - parameter statusBarStyle:                           The status bar style of PinpointKit.
+         - parameter tintColor:                                The tint color of the interface.
+         - parameter annotationFillColor:                      The fill color for annotations. If none is supplied, the `tintColor` of the relevant view will be used.
+         - parameter annotationStrokeColor:                    The stroke color for annotations.
+         - parameter annotationTextAttributes:                 The text attributes for annotations.
+         - parameter navigationTitleColor:                     The color used for navigation titles.
+         - parameter navigationTitleFont:                      The font used for navigation titles.
+         - parameter selectScreenshotButtonFont:               The font used for the select screenshot button.
+         - parameter feedbackSendButtonFont:                   The font used for the button that sends feedback.
+         - parameter feedbackCancelButtonFont:                 The font used for the button that cancels feedback collection.
+         - parameter feedbackEditHintFont:                     The font used for the hint to the user on how to edit the screenshot from the feedback screen.
+         - parameter feedbackBackButtonFont:                   The font used for the back button that takes the user back to the initial feedback collection screen.
+         - parameter logCollectionPermissionFont:              The font used for the title of the cell that allows the user to toggle log collection.
+         - parameter logFont:                                  The font used for displaying logs.
+         - parameter editorTextAnnotationSegmentFont:          The font used for the text annotation tool segment in the editor.
+         - parameter editorTextAnnotationDismissButtonFont:    The font used for the dismiss button in the editor displayed while editing a text annotation.
+         - parameter editorDoneButtonFont:                     The font used for the done button in the editor to finish editing the image.
+         - parameter editorSelectedToolSegmentForegroundColor: The foreground color of the selected tool in the segmented control. (Only used on iOS 13+.)
          */
         public init(statusBarStyle: UIStatusBarStyle = .default,
                     tintColor: UIColor? = .pinpointOrange(),
