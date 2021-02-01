@@ -24,12 +24,24 @@ open class ShakeDetectingWindow: UIWindow {
         self.delegate = delegate
         super.init(frame: frame)
 	}
+	
+    /**
+     Initializes a `ShakeDetectingWindow`.
+
+     - parameter windowScene:The window scene.
+     - parameter delegate: An object to notify when a shake motion event occurs.
+     */
+    @available(iOS 13.0, *)
+    public init(windowScene: UIWindowScene, delegate: ShakeDetectingWindowDelegate) {
+        self.delegate = delegate
+        super.init(windowScene: windowScene)
+    }
 
 	// MARK: - UIWindow
     
 	required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-	}
+	}	
 	
 	// MARK: - UIResponder
     
