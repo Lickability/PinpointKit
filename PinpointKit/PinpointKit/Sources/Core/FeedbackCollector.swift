@@ -9,7 +9,7 @@
 import UIKit
 
 /// A protocol describing an object that can collect feedback about a screenshot.
-public protocol FeedbackCollector: class, LogSupporting, InterfaceCustomizable {
+public protocol FeedbackCollector: AnyObject, LogSupporting, InterfaceCustomizable {
     
     /// A delegate that is informed of significant events in feedback collection.
     var feedbackDelegate: FeedbackCollectorDelegate? { get set }
@@ -39,7 +39,7 @@ extension FeedbackCollector where Self: UIViewController {
 }
 
 /// A delegate protocol that `FeedbackCollector`s use to communicate significant events in feedback collection.
-public protocol FeedbackCollectorDelegate: class {
+public protocol FeedbackCollectorDelegate: AnyObject {
     
     /**
      Informs the receiver that the collector has finished collecting feedback.

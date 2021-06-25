@@ -9,7 +9,7 @@
 import UIKit
 
 /// A protocol describing an object that is responsible for editing a screenshot.
-public protocol Editor: class, InterfaceCustomizable {
+public protocol Editor: AnyObject, InterfaceCustomizable {
     
     /// A delegate for the editor.
     var delegate: EditorDelegate? { get set }

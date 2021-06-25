@@ -156,7 +156,7 @@ final class FeedbackTableViewDataSource: NSObject, UITableViewDataSource {
 }
 
 /// Delegate protocol describing a type that is informed of screenshot tapping events.
-protocol FeedbackTableViewDataSourceDelegate: class {
+protocol FeedbackTableViewDataSourceDelegate: AnyObject {
     
     /**
      Notifies the delegate when a screenshot is tapped.

@@ -132,7 +132,7 @@ open class ScreenshotDetector: NSObject {
 /// A protocol that `ScreenshotDetector` uses to inform its delegate of successful and failed screenshot detection events.
 
 @available(iOS 9.0, *)
-public protocol ScreenshotDetectorDelegate: class {
+public protocol ScreenshotDetectorDelegate: AnyObject {
     
     /**
      Notifies the delegate that the detector did successfully detect a screenshot.

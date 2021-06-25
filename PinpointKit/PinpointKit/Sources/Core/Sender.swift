@@ -9,7 +9,7 @@
 import UIKit
 
 /// A behavior protocol that describes an object that sends feedback.
-public protocol Sender: class {
+public protocol Sender: AnyObject {
     
     /// A delegate that is informed of successful or failed feedback sending.
     var delegate: SenderDelegate? { get set }
@@ -24,7 +24,7 @@ public protocol Sender: class {
 }
 
 /// A delegate protocol describing an object that receives success and failure events from a `Sender`.
-public protocol SenderDelegate: class {    
+public protocol SenderDelegate: AnyObject {    
     
     /**
      Notifies the receiver that the sender successfully sent the feedback with a given type of success.

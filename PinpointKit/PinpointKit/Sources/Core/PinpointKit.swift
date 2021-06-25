@@ -107,7 +107,7 @@ extension PinpointKit: SenderDelegate {
 }
 
 /// A protocol describing an object that can be notified of events from PinpointKit.
-public protocol PinpointKitDelegate: class {
+public protocol PinpointKitDelegate: AnyObject {
 
     /**
      Notifies the delegate that PinpointKit is about to send user feedback.

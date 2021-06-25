@@ -9,7 +9,7 @@
 import UIKit
 
 /// A delegate for the `Editor`.
-public protocol EditorDelegate: class {
+public protocol EditorDelegate: AnyObject {
     
     /**
      A method that is called when the tool selection changes in the editor.

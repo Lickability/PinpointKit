@@ -9,7 +9,7 @@
 import Foundation
 
 /// A `ShakeDetectingWindowDelegate` is the receiver of callbacks from `ShakeDetectingWindow` when a shake motion event occurs.
-public protocol ShakeDetectingWindowDelegate: class {
+public protocol ShakeDetectingWindowDelegate: AnyObject {
 
     /**
      Notifies the receiver that a shake motion event has been detected by the `ShakeDetectingWindow`.
