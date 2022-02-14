@@ -4,6 +4,13 @@
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/PinpointKit.svg)](https://img.shields.io/cocoapods/v/PinpointKit.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
+# ⚠️ Archived Repo ⚠️
+This is an archived project and is no longer updated by Lickability. Please do not file issues or pull requests—if you wish to continue development yourself, feel free to fork the project! 
+
+If you’re looking for a commercial alternative, consider options like [Instabug](https://instabug.com/) & [Bugsee](https://www.bugsee.com).
+
+----
+
 **PinpointKit** is an open-source iOS library in Swift that lets your testers and users send feedback with annotated screenshots using a simple gesture.
 
 ![Screenshots](Assets/screenshots.png)
